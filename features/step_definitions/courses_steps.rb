@@ -1,3 +1,4 @@
+#comment used to test initial git push
 Given /the following courses exist/ do |courses_table|
   courses_table.hashes.each do |course|
     Decal.new(course).save!
