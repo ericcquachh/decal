@@ -7,7 +7,7 @@ Feature: display list of courses sorted by different criteria
 Background: movies have been added to database
 
   Given the following movies exist:
-  | title                    | catagory           | units | time            | status |
+  | title                    | category           | units | time            | status |
   | Quantum Consciousness    | Cognitive Science  | 2-3   | TuTh 5PM-6PM    | open   |
   | Taiwanese Language       | Languages          | 1-2   | MW 5PM-6:30PM   | full   |
   | Python on Crack          | Computer Science   | 3     | MWF 6PM-8PM     | full   |

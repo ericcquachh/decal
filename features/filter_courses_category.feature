@@ -2,12 +2,12 @@ Feature: display list of courses filtered by catagory
  
   As a student
   So that I can decide what courses to enroll in
-  I want to see courses matching only from certain catagories
+  I want to see courses matching only from certain categories
 
 Background: movies have been added to database
 
   Given the following movies exist:
-  | course                   | catagory           | units | time            | status |
+  | course                   | category           | units | time            | status |
   | Quantum Consciousness    | Cognitive Science  | 2-3   | TuTh 5PM-6PM    | open   |
   | Taiwanese Language       | Languages          | 1-2   | MW 5PM-6:30PM   | full   |
   | Python on Crack          | Computer Science   | 3     | MWF 6PM-8PM     | full   |
@@ -18,7 +18,7 @@ Background: movies have been added to database
   And I am on the Decal courses page
 
 Scenario: restrict to course with 'Computer Science' or 'Business" catagory
-  When I select the following catagories: Computer Science, Business
+  When I select the following categories: Computer Science, Business
   And I press "Search"
   Then I should see "Python on Crack" 
   And I should see "Ruby on Rails"

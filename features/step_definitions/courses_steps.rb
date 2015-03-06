@@ -10,10 +10,10 @@ Then /I should see "(.*)" before "(.*)"/ do |e1, e2|
   assert page.body.index(e1) < page.body.index(e2)
 end
 
-When /I (un)?select the following catagories: (.*)/ do |unselect, rating_list|
-  catagory_list.split(",").each do |catagory|
-    catagory = "catagories_#{catagory.strip}"
-    unselect ? unselect(catagory) : select(catagory)
+When /I (un)?select the following categories: (.*)/ do |unselect, rating_list|
+  category_list.split(",").each do |category|
+    category = "categories_#{category.strip}"
+    unselect ? unselect(category) : select(category)
   end
 end
 
