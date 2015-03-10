@@ -17,6 +17,6 @@ Background: movies have been added to database
 
   And I am on the Decal courses page
 
-Scenario: sort courses alphabetically
+Scenario: sort title alphabetically
   When I follow "Course Title"
   Then I should see "Introduction to Banking" before "Python on Crack"

@@ -17,13 +17,13 @@ Background: movies have been added to database
 
   And I am on the Decal courses page
 
-Scenario: restrict to course with "Tuesday" time
+Scenario: restrict to title with "Tuesday" time
   When I select the following days of week: Tuesday
   And I press "Search
   Then I should see "Quantum Consciousness" 
   And I should see "Introduction to Banking"   
 
-Scenario: restrict to course starting time "8PM" and ending time "9PM"
+Scenario: restrict to title starting time "8PM" and ending time "9PM"
   When I select the following starting time: 8PM
   When I select the following ending time: 9PM
   And I press "Search"

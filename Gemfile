@@ -24,7 +24,11 @@ group :assets do
 
   gem 'therubyracer'
   gem 'sass-rails'
-  gem 'coffee-rails'
+  #gem 'coffee-rails'
+
+    #bootstrap (installed without gem)
+  #gem 'bootstrap-sass', '~> 3.2.0'
+  #gem 'autoprefixer-rails'
 
 end
 

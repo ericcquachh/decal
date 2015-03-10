@@ -7,7 +7,7 @@ Feature: display list of courses filtered by units
 Background: movies have been added to database
 
   Given the following movies exist:
-  | course                   | category           | units | time            | status |
+  | title                    | category           | units | time            | status |
   | Quantum Consciousness    | Cognitive Science  | 2-3   | TuTh 5PM-6PM    | open   |
   | Taiwanese Language       | Languages          | 1-2   | MW 5PM-6:30PM   | full   |
   | Python on Crack          | Computer Science   | 3     | MWF 6PM-8PM     | full   |
@@ -17,7 +17,7 @@ Background: movies have been added to database
 
   And I am on the Decal courses page
 
-Scenario: restrict to course with '2' or '3" units
+Scenario: restrict to title with '2' or '3" units
   When I select the following units: 2, 3
   And I press "Search"
   Then I should see "Quantum Consciousness" 
