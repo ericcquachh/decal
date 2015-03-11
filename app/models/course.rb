@@ -1,3 +1,3 @@
 class Course < ActiveRecord::Base
-  attr_accessible :category, :status, :time, :title, :units
+  attr_accessible :category, :status, :days, :time, :title, :units
 end
