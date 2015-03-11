@@ -1,10 +1,16 @@
 #comment used to test initial git push
 Given /the following courses exist/ do |courses_table|
   courses_table.hashes.each do |course|
-    Decal.new(course).save!
+    input_course = Course.new
+    input_course.title = course["title"]
+    input_course.category = course["category"]
+    input_course.units = course["units"]
+    input_course.time = course["time"]
+    input_course.status = course["status"]
+    input_course.save
   end
-
 end
+
 
 Then /I should see "(.*)" before "(.*)"/ do |e1, e2|
   assert page.body.index(e1) < page.body.index(e2)

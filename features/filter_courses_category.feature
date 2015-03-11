@@ -17,7 +17,7 @@ Background: courses have been added to database
 
   And I am on the Decal courses page
 
-Scenario: restrict to title with 'Computer Science' or 'Business" catagory
+Scenario: restrict to title with 'Computer Science' or 'Business" category
   When I select the following categories: Computer Science, Business
   And I press "Search"
   Then I should see "Python on Crack" 
