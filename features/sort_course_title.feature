@@ -4,9 +4,9 @@ Feature: display list of courses sorted by different criteria
   So that I can decide what courses to enroll in
   I want to see courses sorted by title
 
-Background: movies have been added to database
+Background: courses have been added to database
 
-  Given the following movies exist:
+  Given the following courses exist:
   | title                    | category           | units | time            | status |
   | Quantum Consciousness    | Cognitive Science  | 2-3   | TuTh 5PM-6PM    | open   |
   | Taiwanese Language       | Languages          | 1-2   | MW 5PM-6:30PM   | full   |
