@@ -17,4 +17,8 @@ class Course < ActiveRecord::Base
     ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]
   end
 
+  def self.search(input)
+  	broad_search_condition = "%" + input + "%"
+  	find(:all, :conditions => ['title LIKE ?', broad_search_condition])
+  end
 end
