@@ -13,6 +13,13 @@
 
 
 <table class="table table-striped">
+
+  <%= form_tag("/courses", method: "post") do %>
+    <%= label_tag(:q, "Search for:") %>
+    <%= text_field_tag(:q) %>
+    <%= submit_tag("Search") %>
+  <% end %>
+
   <tr>
     <th><%= link_to 'Course Title', courses_path(:title => "title") %></th>
     <th>Category</th>

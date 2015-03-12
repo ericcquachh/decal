@@ -19,6 +19,7 @@
         null,
         null,
         1,
+<<<<<<< HEAD
         8,
         8,
         8,
@@ -54,11 +55,28 @@
         null,
         8,
         35,
+=======
+        1,
+        null,
+        1,
+        0,
+>>>>>>> fd94dd7ed4bbe2a9f2e0e2dd96caf5781f9ce1e7
         null,
         null,
         null,
         null,
         null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        1,
+        1,
+        null,
+        1,
+        1,
+        1,
         null,
         null,
         null,
@@ -74,17 +92,6 @@
         null,
         null,
         null,
-        null,
-        1,
-        0,
-        null,
-        0,
-        0,
-        0,
-        null,
-        null,
-        null,
-        null,
         1,
         0,
         null,
@@ -92,12 +99,12 @@
         null,
         null,
         1,
-        0,
+        1,
         null,
-        0,
-        0,
-        0,
-        0,
+        1,
+        1,
+        2,
+        1,
         null,
         0,
         0,
@@ -140,6 +147,10 @@
         null
       ]
     },
+<<<<<<< HEAD
     "timestamp": 1426126909
+=======
+    "timestamp": 1426117328
+>>>>>>> fd94dd7ed4bbe2a9f2e0e2dd96caf5781f9ce1e7
   }
 }

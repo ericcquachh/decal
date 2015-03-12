@@ -11,6 +11,9 @@ Given /the following courses exist/ do |courses_table|
   end
 end
 
+When /I search the following title: (.*)/ do |search_field|
+  puts search_field
+end
 
 Then /I should see "(.*)" before "(.*)"/ do |e1, e2|
   assert page.body.index(e1) < page.body.index(e2)
@@ -56,8 +59,4 @@ When /I (un)?select the following ending_time: (.*)/ do |unselect, ending_time_l
     ending_time = "ending_times_#{ending_time.strip}"
     unselect ? unselect(ending_time) : select(ending_time)
   end
-end
-
-When /I search the following / do |movie, director|
-  Movie.find_by_title(movie).director == director
 end
