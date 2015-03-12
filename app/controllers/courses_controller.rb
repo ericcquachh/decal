@@ -13,6 +13,10 @@ class CoursesController < ApplicationController
     @existing_session = false
     @test = "lol"
 
+    if params[:search_field]
+      @courses = Course.search(params[:search_field])
+    end
+      
     if params[:title] == 'title'
       session[:title] = params[:title]
       @courses = Course.all(:order => "title ASC")
