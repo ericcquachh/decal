@@ -21,14 +21,12 @@ end
 
 When /I (un)?select the following categories: (.*)/ do |unselect, category_list|
   category_list.split(",").each do |category|
-    category = "categories_#{category.strip}"
     unselect ? unselect(category) : select(category)
   end
 end
 
 When /I (un)?select the following status: (.*)/ do |unselect, status_list|
   status_list.split(/[\s,]+/).each do |status|
-    status = "status_#{status.strip}"
     unselect ? unselect(status) : select(status)
   end
 end

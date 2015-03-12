@@ -10,7 +10,7 @@
       <%= h unit%>
     <% end %>
   <b>Categories</b>
-  <%= select_tag 'selected_categories[]', options_for_select(@all_categories, @selected_category), include_blank: true%>
+  <%= select_tag 'selected_categories[]', options_for_select(@all_categories, @selected_category)%>
   <b>Course Status</b>
   <%= select_tag 'selected_status[]', options_for_select(@all_status, @selected_status)%>
   <%= submit_tag "Search" %>

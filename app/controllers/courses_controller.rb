@@ -5,10 +5,10 @@ class CoursesController < ApplicationController
     @courses = Course.all
     @all_units = ["1", "2","3","4"]
     @all_categories = ["Computer Science", "Fitness", "Business", "Languages", "Cognitive Science", "All"]
-    @all_status = ["open", "full", "all"]
+    @all_status = ["Open", "Full", "All"]
     @selected_units = {}
     @selected_categories = []
-    @selected_status = "all"
+    @selected_status = "All"
     @selected_category = "All"
     @existing_session = false
     @test = "lol"
@@ -36,7 +36,6 @@ class CoursesController < ApplicationController
       @selected_category = params[:selected_categories][0]
       if params[:selected_categories][0] != "All"
         @courses = @courses.find_all{|c| params[:selected_categories].include?(c.category)}
-        @test = params[:selected_categories].size
       end
     elsif session.has_key?(:selected_categories)
       params[:selected_categories] = session[:selected_categories]
@@ -46,7 +45,7 @@ class CoursesController < ApplicationController
     if params[:selected_status]
       session[:selected_status] = params[:selected_status]
       @selected_status = params[:selected_status]
-      if params[:selected_status] != "all"
+      if params[:selected_status][0] != "All"
         @courses = @courses.find_all{|c| params[:selected_status].include?(c.status)}
       end
     elsif session.has_key?(:selected_status)
@@ -72,7 +71,7 @@ class CoursesController < ApplicationController
     if session.empty?
       @all_units.each { |unit| @selected_units[unit] = true}
       @selected_categories = @all_categories
-      @selected_status = "all"
+      @selected_status = "All"
     end
 
     # respond_to do |format|
