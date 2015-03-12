@@ -3,9 +3,44 @@ class CoursesController < ApplicationController
   # GET /courses.json
   def index
     @courses = Course.all
+    @all_units = ["1", "2","3","4"]
+    @selected = {}
+    @existing_session = false
+    @test = "nope"
+    @test2 = "nobreak"
 
     if params[:title] == 'title'
+      session[:title] = params[:title]
       @courses = Course.all(:order => "title ASC")
+    elsif session.has_key?(:title)
+      params[:title] = session[:title]
+      @existing_session = true
+      @test2 = "break"
+    end
+
+    if params[:checked_units]
+      session[:checked_units] = params[:checked_units]
+      @courses = @courses.find_all{|u| params[:checked_units].include?(u.units)}
+      @test = "yay"
+    elsif session.has_key?(:checked_units)
+      params[:checked_units] = session[:checked_units]
+      @existing_session = true
+    end
+
+    if @existing_session
+      redirect_to courses_path(:title =>params[:title], :checked_units =>params[:checked_units])
+    end
+
+    @all_units.each { |unit|
+      if params[:checked_units]
+        @selected[unit] = params[:checked_units].include?(unit)
+      else
+        @selected[unit] = false
+      end
+    }
+
+    if session.empty?
+      @all_units.each { |unit| @selected[unit] = true}
     end
 
     # respond_to do |format|
