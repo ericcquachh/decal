@@ -13,7 +13,7 @@ class Course < ActiveRecord::Base
     ["Open", "Full", "All"]
   end
 
-  def self.times
+  def self.days
     ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]
   end
 

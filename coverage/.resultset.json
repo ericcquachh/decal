@@ -29,6 +29,8 @@
         12,
         12,
         12,
+        12,
+        12,
         null,
         12,
         1,
@@ -172,9 +174,26 @@
       "/home/saasbook/Documents/decal/app/models/course.rb": [
         1,
         1,
+        null,
+        1,
+        12,
+        null,
+        null,
+        1,
+        12,
+        null,
+        null,
+        1,
+        12,
+        null,
+        null,
+        1,
+        12,
+        null,
+        null,
         null
       ]
     },
-    "timestamp": 1426200923
+    "timestamp": 1426202661
   }
 }

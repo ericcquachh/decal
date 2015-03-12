@@ -6,13 +6,13 @@ class CoursesController < ApplicationController
     @all_units = Course.units
     @all_categories = Course.categories
     @all_status = Course.statuses
-    @all_times = Course.times
+    @all_days = Course.days
     @selected_units = {}
     @selected_categories = []
     @selected_status = "All"
     @selected_category = "All"
     @existing_session = false
-    @selected_times = {}
+    @selected_days = {}
     @test = "lol"
 
     if params[:title] == 'title'
@@ -29,6 +29,15 @@ class CoursesController < ApplicationController
       @courses = @courses.find_all{|u| params[:checked_units].include?(u.units)}
     elsif session.has_key?(:checked_units)
       params[:checked_units] = session[:checked_units]
+      @existing_session = true
+    end
+
+    if params[:checked_days]
+      @selected_days = params[:checked_days]
+      session[:checked_days] = params[:checked_days]
+      @courses = @courses.find_all{|d| params[:checked_days].include?(d.days)}
+    elsif session.has_key?(:checked_days)
+      params[:checked_days] = session[:checked_days]
       @existing_session = true
     end
 

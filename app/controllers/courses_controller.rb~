@@ -6,13 +6,14 @@ class CoursesController < ApplicationController
     @all_units = Course.units
     @all_categories = Course.categories
     @all_status = Course.statuses
-    @all_times = Course.times
+
+    @all_days = Course.days
     @selected_units = {}
     @selected_categories = []
     @selected_status = "All"
     @selected_category = "All"
     @existing_session = false
-    @selected_time = {}
+    @selected_days = {}
     @test = "lol"
 
     if params[:title] == 'title'

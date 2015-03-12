@@ -11,10 +11,10 @@
     <% end %>
   <b>Categories</b>
   <%= select_tag 'selected_categories[]', options_for_select(@all_categories, @selected_category)%>
-  <b>Times</b>
-  <% @all_times.each do |time| %>
-    <%= check_box_tag 'checked_times[]', time, @selected_times[time], id: time%>
-      <%= h time%>
+  <b>Days</b>
+  <% @all_days.each do |day| %>
+    <%= check_box_tag 'checked_days[]', day, @selected_days[day], id: day%>
+      <%= h day%>
     <% end %>
   <b>Course Status</b>
   <%= select_tag 'selected_status[]', options_for_select(@all_status, @selected_status)%>
