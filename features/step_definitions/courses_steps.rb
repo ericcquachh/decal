@@ -31,7 +31,7 @@ When /I (un)?check the following units: (.*)/ do |uncheck, unit_list|
   end
 end
 
-When /I (un)?check the following day_of_week: (.*)/ do |uncheck, days_list|
+When /I (un)?check the following days_of_week: (.*)/ do |uncheck, days_list|
   days_list.split(",").each do |day|
     day = "days_of_week_#{day.strip}"
     uncheck ? uncheck(day) : check(day)
