@@ -1,25 +1,21 @@
 <h1>Listing Courses</h1>
 <p><%= @test %></p>
-<p><%= @test2 %></p>
+<p><%= params %></p>
 <%= form_for(courses_path, method: :get, id: 'units_form') do -%>
-  <p><b>Units</b></p>
-    <% @all_units.each do |unit| %>
-        <%= check_box_tag 'checked_units[]', unit, @selected[unit], id: 'unit_#{unit}' -%>
-        <%= h unit -%>
+  <%= label_tag(:q, "Search for:") %>
+  <%= text_field_tag(:q) %>
+  <b>Units</b>
+  <% @all_units.each do |unit| %>
+    <%= check_box_tag 'checked_units[]', unit, @selected_units[unit], id: unit%>
+      <%= h unit%>
     <% end %>
-
+  <b>Categories</b>
+  <%= select_tag 'selected_categories[]', options_for_select(@all_categories, @selected_categories.sample), include_blank: true%>
   <%= submit_tag "Search" %>
 <% end %>
 
 
 <table class="table table-striped">
-
-  <%= form_tag("/courses", method: "post") do %>
-    <%= label_tag(:q, "Search for:") %>
-    <%= text_field_tag(:q) %>
-    <%= submit_tag("Search") %>
-  <% end %>
-
   <tr>
     <th><%= link_to 'Course Title', courses_path(:title => "title") %></th>
     <th>Category</th>

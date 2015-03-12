@@ -19,7 +19,7 @@ Then /I should see "(.*)" before "(.*)"/ do |e1, e2|
   assert page.body.index(e1) < page.body.index(e2)
 end
 
-When /I (un)?select the following categories: (.*)/ do |unselect, rating_list|
+When /I (un)?select the following categories: (.*)/ do |unselect, category_list|
   category_list.split(",").each do |category|
     category = "categories_#{category.strip}"
     unselect ? unselect(category) : select(category)
@@ -27,15 +27,14 @@ When /I (un)?select the following categories: (.*)/ do |unselect, rating_list|
 end
 
 When /I (un)?select the following status: (.*)/ do |unselect, status_list|
-  status_list.split(",").each do |status|
+  status_list.split(/[\s,]+/).each do |status|
     status = "status_#{status.strip}"
     unselect ? unselect(status) : select(status)
   end
 end
 
 When /I (un)?check the following units: (.*)/ do |uncheck, unit_list|
-  unit_list.split(",").each do |status|
-    unit = "units_#{unit.strip}"
+  unit_list.split(/[\s,]+/).each do |unit|
     uncheck ? check(unit) : check(unit)
   end
 end

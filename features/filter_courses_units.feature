@@ -19,7 +19,7 @@ Background: courses have been added to database
 
 Scenario: restrict to title with '2' or '3" units
   When I check the following units: 2, 3
-  And uncheck the following units: 1, 4
+  And I uncheck the following units: 1, 4
   And I press "Search"
   Then I should see "Quantum Consciousness" 
   And I should see "Taiwanese Language"
