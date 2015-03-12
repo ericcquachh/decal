@@ -4,11 +4,11 @@
 <%= form_for(courses_path, method: :get, id: 'units_form') do -%>
   <p><b>Units</b></p>
     <% @all_units.each do |unit| %>
-        <%= check_box_tag 'checked_units[]', unit, @selected[unit] -%>
+        <%= check_box_tag 'checked_units[]', unit, @selected[unit], id: 'unit_#{unit}' -%>
         <%= h unit -%>
     <% end %>
 
-  <%= submit_tag "Filter" %>
+  <%= submit_tag "Search" %>
 <% end %>
 
 

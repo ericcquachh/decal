@@ -5838,3 +5838,272 @@ Served asset /courses.js - 304 Not Modified (0ms)
 
 Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2015-03-11 22:59:06 -0300
 Served asset /application.js - 304 Not Modified (6ms)
+
+
+Started GET "/courses" for 127.0.0.1 at 2015-03-11 23:01:45 -0300
+Connecting to database specified by database.yml
+Processing by CoursesController#index as HTML
+  [1m[36mCourse Load (4.8ms)[0m  [1mSELECT "courses".* FROM "courses" [0m
+Redirected to http://localhost:3000/courses?checked_units%5B%5D=2&checked_units%5B%5D=3&checked_units%5B%5D=4
+Completed 302 Found in 161.5ms (ActiveRecord: 19.8ms)
+
+
+Started GET "/courses?checked_units%5B%5D=2&checked_units%5B%5D=3&checked_units%5B%5D=4" for 127.0.0.1 at 2015-03-11 23:01:47 -0300
+Processing by CoursesController#index as HTML
+  Parameters: {"checked_units"=>["2", "3", "4"]}
+  [1m[35mCourse Load (0.4ms)[0m  SELECT "courses".* FROM "courses" 
+  Rendered courses/index.html.erb within layouts/application (89.1ms)
+Completed 200 OK in 352.6ms (Views: 351.1ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2015-03-11 23:01:48 -0300
+Served asset /application.css - 304 Not Modified (121ms)
+
+
+Started GET "/assets/bootstrap.css?body=1" for 127.0.0.1 at 2015-03-11 23:01:48 -0300
+Served asset /bootstrap.css - 304 Not Modified (16ms)
+
+
+Started GET "/assets/bootstrap.min.css?body=1" for 127.0.0.1 at 2015-03-11 23:01:48 -0300
+Served asset /bootstrap.min.css - 304 Not Modified (53ms)
+
+
+Started GET "/assets/courses.css?body=1" for 127.0.0.1 at 2015-03-11 23:01:48 -0300
+Served asset /courses.css - 304 Not Modified (6ms)
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2015-03-11 23:01:48 -0300
+Served asset /scaffolds.css - 304 Not Modified (23ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2015-03-11 23:01:48 -0300
+Served asset /jquery.js - 304 Not Modified (25ms)
+
+
+Started GET "/assets/bootstrap.min.js?body=1" for 127.0.0.1 at 2015-03-11 23:01:48 -0300
+Served asset /bootstrap.min.js - 304 Not Modified (8ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2015-03-11 23:01:48 -0300
+Served asset /jquery_ujs.js - 304 Not Modified (9ms)
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2015-03-11 23:01:48 -0300
+Served asset /bootstrap.js - 304 Not Modified (23ms)
+
+
+Started GET "/assets/courses.js?body=1" for 127.0.0.1 at 2015-03-11 23:01:48 -0300
+Served asset /courses.js - 304 Not Modified (14ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2015-03-11 23:01:48 -0300
+Served asset /application.js - 304 Not Modified (53ms)
+
+
+Started GET "/courses?utf8=%E2%9C%93&checked_units%5B%5D=1&checked_units%5B%5D=2&checked_units%5B%5D=3&checked_units%5B%5D=4&commit=Filter" for 127.0.0.1 at 2015-03-11 23:02:26 -0300
+Processing by CoursesController#index as HTML
+  Parameters: {"utf8"=>"✓", "checked_units"=>["1", "2", "3", "4"], "commit"=>"Filter"}
+  [1m[36mCourse Load (0.5ms)[0m  [1mSELECT "courses".* FROM "courses" [0m
+  Rendered courses/index.html.erb within layouts/application (7.7ms)
+Completed 200 OK in 52.9ms (Views: 45.5ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2015-03-11 23:02:26 -0300
+Served asset /application.css - 304 Not Modified (7ms)
+
+
+Started GET "/assets/bootstrap.min.css?body=1" for 127.0.0.1 at 2015-03-11 23:02:26 -0300
+Served asset /bootstrap.min.css - 304 Not Modified (15ms)
+
+
+Started GET "/assets/bootstrap.css?body=1" for 127.0.0.1 at 2015-03-11 23:02:26 -0300
+Served asset /bootstrap.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/courses.css?body=1" for 127.0.0.1 at 2015-03-11 23:02:26 -0300
+Served asset /courses.css - 304 Not Modified (11ms)
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2015-03-11 23:02:26 -0300
+Served asset /scaffolds.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2015-03-11 23:02:27 -0300
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2015-03-11 23:02:27 -0300
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/courses.js?body=1" for 127.0.0.1 at 2015-03-11 23:02:27 -0300
+Served asset /courses.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2015-03-11 23:02:27 -0300
+Served asset /bootstrap.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.min.js?body=1" for 127.0.0.1 at 2015-03-11 23:02:27 -0300
+Served asset /bootstrap.min.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2015-03-11 23:02:27 -0300
+Served asset /application.js - 304 Not Modified (10ms)
+
+
+Started GET "/courses?utf8=%E2%9C%93&checked_units%5B%5D=1&checked_units%5B%5D=2&checked_units%5B%5D=3&commit=Filter" for 127.0.0.1 at 2015-03-11 23:02:33 -0300
+Processing by CoursesController#index as HTML
+  Parameters: {"utf8"=>"✓", "checked_units"=>["1", "2", "3"], "commit"=>"Filter"}
+  [1m[35mCourse Load (0.5ms)[0m  SELECT "courses".* FROM "courses" 
+  Rendered courses/index.html.erb within layouts/application (9.1ms)
+Completed 200 OK in 38.3ms (Views: 32.4ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2015-03-11 23:02:34 -0300
+Served asset /application.css - 304 Not Modified (19ms)
+
+
+Started GET "/assets/bootstrap.min.css?body=1" for 127.0.0.1 at 2015-03-11 23:02:34 -0300
+Served asset /bootstrap.min.css - 304 Not Modified (25ms)
+
+
+Started GET "/assets/bootstrap.css?body=1" for 127.0.0.1 at 2015-03-11 23:02:34 -0300
+Served asset /bootstrap.css - 304 Not Modified (6ms)
+
+
+Started GET "/assets/courses.css?body=1" for 127.0.0.1 at 2015-03-11 23:02:34 -0300
+Served asset /courses.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2015-03-11 23:02:34 -0300
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2015-03-11 23:02:34 -0300
+Served asset /scaffolds.css - 304 Not Modified (18ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2015-03-11 23:02:34 -0300
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.min.js?body=1" for 127.0.0.1 at 2015-03-11 23:02:34 -0300
+Served asset /bootstrap.min.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2015-03-11 23:02:35 -0300
+Served asset /bootstrap.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/courses.js?body=1" for 127.0.0.1 at 2015-03-11 23:02:35 -0300
+Served asset /courses.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2015-03-11 23:02:35 -0300
+Served asset /application.js - 304 Not Modified (18ms)
+
+
+Started GET "/courses?utf8=%E2%9C%93&checked_units%5B%5D=1&checked_units%5B%5D=2&checked_units%5B%5D=3&checked_units%5B%5D=4&commit=Filter" for 127.0.0.1 at 2015-03-11 23:02:39 -0300
+Processing by CoursesController#index as HTML
+  Parameters: {"utf8"=>"✓", "checked_units"=>["1", "2", "3", "4"], "commit"=>"Filter"}
+  [1m[36mCourse Load (12.8ms)[0m  [1mSELECT "courses".* FROM "courses" [0m
+  Rendered courses/index.html.erb within layouts/application (8.3ms)
+Completed 200 OK in 52.9ms (Views: 38.9ms | ActiveRecord: 12.8ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2015-03-11 23:02:39 -0300
+Served asset /application.css - 304 Not Modified (11ms)
+
+
+Started GET "/assets/bootstrap.min.css?body=1" for 127.0.0.1 at 2015-03-11 23:02:39 -0300
+Served asset /bootstrap.min.css - 304 Not Modified (24ms)
+
+
+Started GET "/assets/bootstrap.css?body=1" for 127.0.0.1 at 2015-03-11 23:02:39 -0300
+Served asset /bootstrap.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/courses.css?body=1" for 127.0.0.1 at 2015-03-11 23:02:39 -0300
+Served asset /courses.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2015-03-11 23:02:39 -0300
+Served asset /jquery.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2015-03-11 23:02:39 -0300
+Served asset /scaffolds.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2015-03-11 23:02:39 -0300
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.min.js?body=1" for 127.0.0.1 at 2015-03-11 23:02:39 -0300
+Served asset /bootstrap.min.js - 304 Not Modified (12ms)
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2015-03-11 23:02:39 -0300
+Served asset /bootstrap.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/courses.js?body=1" for 127.0.0.1 at 2015-03-11 23:02:39 -0300
+Served asset /courses.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2015-03-11 23:02:39 -0300
+Served asset /application.js - 304 Not Modified (10ms)
+
+
+Started GET "/courses?utf8=%E2%9C%93&checked_units%5B%5D=1&checked_units%5B%5D=2&checked_units%5B%5D=3&checked_units%5B%5D=4&commit=Filter" for 127.0.0.1 at 2015-03-11 23:24:31 -0300
+Connecting to database specified by database.yml
+Processing by CoursesController#index as HTML
+  Parameters: {"utf8"=>"✓", "checked_units"=>["1", "2", "3", "4"], "commit"=>"Filter"}
+  [1m[36mCourse Load (0.3ms)[0m  [1mSELECT "courses".* FROM "courses" [0m
+  Rendered courses/index.html.erb within layouts/application (14.6ms)
+Completed 200 OK in 333.5ms (Views: 172.5ms | ActiveRecord: 54.8ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2015-03-11 23:24:33 -0300
+Served asset /application.css - 304 Not Modified (116ms)
+
+
+Started GET "/assets/bootstrap.min.css?body=1" for 127.0.0.1 at 2015-03-11 23:24:33 -0300
+Served asset /bootstrap.min.css - 304 Not Modified (7ms)
+
+
+Started GET "/assets/bootstrap.css?body=1" for 127.0.0.1 at 2015-03-11 23:24:33 -0300
+Served asset /bootstrap.css - 304 Not Modified (29ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2015-03-11 23:24:33 -0300
+Served asset /jquery.js - 304 Not Modified (37ms)
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2015-03-11 23:24:33 -0300
+Served asset /scaffolds.css - 304 Not Modified (35ms)
+
+
+Started GET "/assets/courses.css?body=1" for 127.0.0.1 at 2015-03-11 23:24:33 -0300
+Served asset /courses.css - 304 Not Modified (11ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2015-03-11 23:24:33 -0300
+Served asset /jquery_ujs.js - 304 Not Modified (23ms)
+
+
+Started GET "/assets/bootstrap.min.js?body=1" for 127.0.0.1 at 2015-03-11 23:24:34 -0300
+Served asset /bootstrap.min.js - 304 Not Modified (18ms)
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2015-03-11 23:24:34 -0300
+Served asset /bootstrap.js - 304 Not Modified (12ms)
+
+
+Started GET "/assets/courses.js?body=1" for 127.0.0.1 at 2015-03-11 23:24:34 -0300
+Served asset /courses.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2015-03-11 23:24:34 -0300
+Served asset /application.js - 304 Not Modified (62ms)

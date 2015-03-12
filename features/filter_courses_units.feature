@@ -18,10 +18,10 @@ Background: courses have been added to database
   And I am on the Decal courses page
 
 Scenario: restrict to title with '2' or '3" units
-  When I select the following units: 2, 3
+  When I check the following units: 2, 3
+  And uncheck the following units: 1, 4
   And I press "Search"
   Then I should see "Quantum Consciousness" 
-  And I should see "Quantum Consciousness"   
   And I should see "Taiwanese Language"
   And I should see "Python on Crack"  
   And I should see "Ruby on Rails"   

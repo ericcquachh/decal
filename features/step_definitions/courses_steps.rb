@@ -30,10 +30,10 @@ When /I (un)?select the following status: (.*)/ do |unselect, status_list|
   end
 end
 
-When /I (un)?select the following units: (.*)/ do |unselect, unit_list|
+When /I (un)?check the following units: (.*)/ do |uncheck, unit_list|
   unit_list.split(",").each do |status|
     unit = "units_#{unit.strip}"
-    unselect ? unselect(unit) : select(unit)
+    uncheck ? check(unit) : check(unit)
   end
 end
 

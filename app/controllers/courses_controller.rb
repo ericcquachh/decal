@@ -6,8 +6,6 @@ class CoursesController < ApplicationController
     @all_units = ["1", "2","3","4"]
     @selected = {}
     @existing_session = false
-    @test = "nope"
-    @test2 = "nobreak"
 
     if params[:title] == 'title'
       session[:title] = params[:title]
@@ -15,13 +13,11 @@ class CoursesController < ApplicationController
     elsif session.has_key?(:title)
       params[:title] = session[:title]
       @existing_session = true
-      @test2 = "break"
     end
 
     if params[:checked_units]
       session[:checked_units] = params[:checked_units]
       @courses = @courses.find_all{|u| params[:checked_units].include?(u.units)}
-      @test = "yay"
     elsif session.has_key?(:checked_units)
       params[:checked_units] = session[:checked_units]
       @existing_session = true

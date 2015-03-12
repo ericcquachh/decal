@@ -344,3 +344,397 @@ Processing by CoursesController#index as HTML
   Rendered courses/index.html.erb within layouts/application (12.0ms)
 Completed 200 OK in 28.4ms (Views: 14.7ms | ActiveRecord: 0.3ms)
   [1m[36m (1.2ms)[0m  [1mrollback transaction[0m
+Connecting to database specified by database.yml
+  [1m[36m (2.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (24.3ms)[0m  [1mINSERT INTO "courses" ("category", "created_at", "days", "status", "time", "title", "units", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["category", "Cognitive Science"], ["created_at", Thu, 12 Mar 2015 02:17:32 UTC +00:00], ["days", nil], ["status", "open"], ["time", "TuTh 5PM-6PM"], ["title", "Quantum Consciousness"], ["units", "2-3"], ["updated_at", Thu, 12 Mar 2015 02:17:32 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (1.5ms)[0m  INSERT INTO "courses" ("category", "created_at", "days", "status", "time", "title", "units", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)  [["category", "Languages"], ["created_at", Thu, 12 Mar 2015 02:17:32 UTC +00:00], ["days", nil], ["status", "full"], ["time", "MW 5PM-6:30PM"], ["title", "Taiwanese Language"], ["units", "1-2"], ["updated_at", Thu, 12 Mar 2015 02:17:32 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "courses" ("category", "created_at", "days", "status", "time", "title", "units", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["category", "Computer Science"], ["created_at", Thu, 12 Mar 2015 02:17:32 UTC +00:00], ["days", nil], ["status", "full"], ["time", "MWF 6PM-8PM"], ["title", "Python on Crack"], ["units", "3"], ["updated_at", Thu, 12 Mar 2015 02:17:32 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "courses" ("category", "created_at", "days", "status", "time", "title", "units", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)  [["category", "Computer Science"], ["created_at", Thu, 12 Mar 2015 02:17:32 UTC +00:00], ["days", nil], ["status", "full"], ["time", "MW 7PM-8PM"], ["title", "Ruby on Rails"], ["units", "2"], ["updated_at", Thu, 12 Mar 2015 02:17:32 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "courses" ("category", "created_at", "days", "status", "time", "title", "units", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["category", "Fitness"], ["created_at", Thu, 12 Mar 2015 02:17:32 UTC +00:00], ["days", nil], ["status", "open"], ["time", "W 8PM-9PM"], ["title", "Max Interval Training"], ["units", "1"], ["updated_at", Thu, 12 Mar 2015 02:17:32 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "courses" ("category", "created_at", "days", "status", "time", "title", "units", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)  [["category", "Business"], ["created_at", Thu, 12 Mar 2015 02:17:32 UTC +00:00], ["days", nil], ["status", "full"], ["time", "TuTh 6PM-7PM"], ["title", "Introduction to Banking"], ["units", "2"], ["updated_at", Thu, 12 Mar 2015 02:17:32 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/courses" for 127.0.0.1 at 2015-03-11 23:17:32 -0300
+Processing by CoursesController#index as HTML
+  [1m[35mCourse Load (0.2ms)[0m  SELECT "courses".* FROM "courses" 
+  Rendered courses/index.html.erb within layouts/application (12.9ms)
+Completed 200 OK in 89.3ms (Views: 87.2ms | ActiveRecord: 0.2ms)
+  [1m[36m (3.5ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.9ms)[0m  INSERT INTO "courses" ("category", "created_at", "days", "status", "time", "title", "units", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)  [["category", "Cognitive Science"], ["created_at", Thu, 12 Mar 2015 02:17:33 UTC +00:00], ["days", nil], ["status", "open"], ["time", "TuTh 5PM-6PM"], ["title", "Quantum Consciousness"], ["units", "2-3"], ["updated_at", Thu, 12 Mar 2015 02:17:33 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (7.7ms)[0m  [1mINSERT INTO "courses" ("category", "created_at", "days", "status", "time", "title", "units", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["category", "Languages"], ["created_at", Thu, 12 Mar 2015 02:17:33 UTC +00:00], ["days", nil], ["status", "full"], ["time", "MW 5PM-6:30PM"], ["title", "Taiwanese Language"], ["units", "1-2"], ["updated_at", Thu, 12 Mar 2015 02:17:33 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "courses" ("category", "created_at", "days", "status", "time", "title", "units", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)  [["category", "Computer Science"], ["created_at", Thu, 12 Mar 2015 02:17:33 UTC +00:00], ["days", nil], ["status", "full"], ["time", "MWF 6PM-8PM"], ["title", "Python on Crack"], ["units", "3"], ["updated_at", Thu, 12 Mar 2015 02:17:33 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (2.1ms)[0m  [1mINSERT INTO "courses" ("category", "created_at", "days", "status", "time", "title", "units", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["category", "Computer Science"], ["created_at", Thu, 12 Mar 2015 02:17:33 UTC +00:00], ["days", nil], ["status", "full"], ["time", "MW 7PM-8PM"], ["title", "Ruby on Rails"], ["units", "2"], ["updated_at", Thu, 12 Mar 2015 02:17:33 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "courses" ("category", "created_at", "days", "status", "time", "title", "units", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)  [["category", "Fitness"], ["created_at", Thu, 12 Mar 2015 02:17:33 UTC +00:00], ["days", nil], ["status", "open"], ["time", "W 8PM-9PM"], ["title", "Max Interval Training"], ["units", "1"], ["updated_at", Thu, 12 Mar 2015 02:17:33 UTC +00:00]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (9.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "courses" ("category", "created_at", "days", "status", "time", "title", "units", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["category", "Business"], ["created_at", Thu, 12 Mar 2015 02:17:33 UTC +00:00], ["days", nil], ["status", "full"], ["time", "TuTh 6PM-7PM"], ["title", "Introduction to Banking"], ["units", "2"], ["updated_at", Thu, 12 Mar 2015 02:17:33 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Started GET "/courses" for 127.0.0.1 at 2015-03-11 23:17:33 -0300
+Processing by CoursesController#index as HTML
+  [1m[36mCourse Load (0.2ms)[0m  [1mSELECT "courses".* FROM "courses" [0m
+  Rendered courses/index.html.erb within layouts/application (6.8ms)
+Completed 200 OK in 10.7ms (Views: 9.0ms | ActiveRecord: 0.2ms)
+  [1m[35m (1.7ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (1.1ms)[0m  [1mINSERT INTO "courses" ("category", "created_at", "days", "status", "time", "title", "units", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["category", "Cognitive Science"], ["created_at", Thu, 12 Mar 2015 02:17:33 UTC +00:00], ["days", nil], ["status", "open"], ["time", "TuTh 5PM-6PM"], ["title", "Quantum Consciousness"], ["units", "2-3"], ["updated_at", Thu, 12 Mar 2015 02:17:33 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.7ms)[0m  INSERT INTO "courses" ("category", "created_at", "days", "status", "time", "title", "units", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)  [["category", "Languages"], ["created_at", Thu, 12 Mar 2015 02:17:33 UTC +00:00], ["days", nil], ["status", "full"], ["time", "MW 5PM-6:30PM"], ["title", "Taiwanese Language"], ["units", "1-2"], ["updated_at", Thu, 12 Mar 2015 02:17:33 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "courses" ("category", "created_at", "days", "status", "time", "title", "units", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["category", "Computer Science"], ["created_at", Thu, 12 Mar 2015 02:17:33 UTC +00:00], ["days", nil], ["status", "full"], ["time", "MWF 6PM-8PM"], ["title", "Python on Crack"], ["units", "3"], ["updated_at", Thu, 12 Mar 2015 02:17:33 UTC +00:00]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "courses" ("category", "created_at", "days", "status", "time", "title", "units", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)  [["category", "Computer Science"], ["created_at", Thu, 12 Mar 2015 02:17:33 UTC +00:00], ["days", nil], ["status", "full"], ["time", "MW 7PM-8PM"], ["title", "Ruby on Rails"], ["units", "2"], ["updated_at", Thu, 12 Mar 2015 02:17:33 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "courses" ("category", "created_at", "days", "status", "time", "title", "units", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["category", "Fitness"], ["created_at", Thu, 12 Mar 2015 02:17:33 UTC +00:00], ["days", nil], ["status", "open"], ["time", "W 8PM-9PM"], ["title", "Max Interval Training"], ["units", "1"], ["updated_at", Thu, 12 Mar 2015 02:17:33 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "courses" ("category", "created_at", "days", "status", "time", "title", "units", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)  [["category", "Business"], ["created_at", Thu, 12 Mar 2015 02:17:33 UTC +00:00], ["days", nil], ["status", "full"], ["time", "TuTh 6PM-7PM"], ["title", "Introduction to Banking"], ["units", "2"], ["updated_at", Thu, 12 Mar 2015 02:17:33 UTC +00:00]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/courses" for 127.0.0.1 at 2015-03-11 23:17:33 -0300
+Processing by CoursesController#index as HTML
+  [1m[35mCourse Load (0.1ms)[0m  SELECT "courses".* FROM "courses" 
+  Rendered courses/index.html.erb within layouts/application (14.8ms)
+Completed 200 OK in 17.9ms (Views: 16.2ms | ActiveRecord: 0.1ms)
+  [1m[36m (1.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.9ms)[0m  INSERT INTO "courses" ("category", "created_at", "days", "status", "time", "title", "units", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)  [["category", "Cognitive Science"], ["created_at", Thu, 12 Mar 2015 02:17:33 UTC +00:00], ["days", nil], ["status", "open"], ["time", "TuTh 5PM-6PM"], ["title", "Quantum Consciousness"], ["units", "2-3"], ["updated_at", Thu, 12 Mar 2015 02:17:33 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (8.5ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "courses" ("category", "created_at", "days", "status", "time", "title", "units", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["category", "Languages"], ["created_at", Thu, 12 Mar 2015 02:17:33 UTC +00:00], ["days", nil], ["status", "full"], ["time", "MW 5PM-6:30PM"], ["title", "Taiwanese Language"], ["units", "1-2"], ["updated_at", Thu, 12 Mar 2015 02:17:33 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "courses" ("category", "created_at", "days", "status", "time", "title", "units", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)  [["category", "Computer Science"], ["created_at", Thu, 12 Mar 2015 02:17:33 UTC +00:00], ["days", nil], ["status", "full"], ["time", "MWF 6PM-8PM"], ["title", "Python on Crack"], ["units", "3"], ["updated_at", Thu, 12 Mar 2015 02:17:33 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "courses" ("category", "created_at", "days", "status", "time", "title", "units", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["category", "Computer Science"], ["created_at", Thu, 12 Mar 2015 02:17:33 UTC +00:00], ["days", nil], ["status", "full"], ["time", "MW 7PM-8PM"], ["title", "Ruby on Rails"], ["units", "2"], ["updated_at", Thu, 12 Mar 2015 02:17:33 UTC +00:00]]
+  [1m[35m (0.5ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "courses" ("category", "created_at", "days", "status", "time", "title", "units", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)  [["category", "Fitness"], ["created_at", Thu, 12 Mar 2015 02:17:33 UTC +00:00], ["days", nil], ["status", "open"], ["time", "W 8PM-9PM"], ["title", "Max Interval Training"], ["units", "1"], ["updated_at", Thu, 12 Mar 2015 02:17:33 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.6ms)[0m  [1mINSERT INTO "courses" ("category", "created_at", "days", "status", "time", "title", "units", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["category", "Business"], ["created_at", Thu, 12 Mar 2015 02:17:33 UTC +00:00], ["days", nil], ["status", "full"], ["time", "TuTh 6PM-7PM"], ["title", "Introduction to Banking"], ["units", "2"], ["updated_at", Thu, 12 Mar 2015 02:17:33 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Started GET "/courses" for 127.0.0.1 at 2015-03-11 23:17:33 -0300
+Processing by CoursesController#index as HTML
+  [1m[36mCourse Load (0.2ms)[0m  [1mSELECT "courses".* FROM "courses" [0m
+  Rendered courses/index.html.erb within layouts/application (13.8ms)
+Completed 200 OK in 20.5ms (Views: 15.7ms | ActiveRecord: 0.2ms)
+  [1m[35m (0.9ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (8.4ms)[0m  [1mINSERT INTO "courses" ("category", "created_at", "days", "status", "time", "title", "units", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["category", "Cognitive Science"], ["created_at", Thu, 12 Mar 2015 02:17:33 UTC +00:00], ["days", nil], ["status", "open"], ["time", "TuTh 5PM-6PM"], ["title", "Quantum Consciousness"], ["units", "2-3"], ["updated_at", Thu, 12 Mar 2015 02:17:33 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.6ms)[0m  INSERT INTO "courses" ("category", "created_at", "days", "status", "time", "title", "units", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)  [["category", "Languages"], ["created_at", Thu, 12 Mar 2015 02:17:33 UTC +00:00], ["days", nil], ["status", "full"], ["time", "MW 5PM-6:30PM"], ["title", "Taiwanese Language"], ["units", "1-2"], ["updated_at", Thu, 12 Mar 2015 02:17:33 UTC +00:00]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (10.8ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (4.7ms)[0m  [1mINSERT INTO "courses" ("category", "created_at", "days", "status", "time", "title", "units", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["category", "Computer Science"], ["created_at", Thu, 12 Mar 2015 02:17:33 UTC +00:00], ["days", nil], ["status", "full"], ["time", "MWF 6PM-8PM"], ["title", "Python on Crack"], ["units", "3"], ["updated_at", Thu, 12 Mar 2015 02:17:33 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "courses" ("category", "created_at", "days", "status", "time", "title", "units", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)  [["category", "Computer Science"], ["created_at", Thu, 12 Mar 2015 02:17:33 UTC +00:00], ["days", nil], ["status", "full"], ["time", "MW 7PM-8PM"], ["title", "Ruby on Rails"], ["units", "2"], ["updated_at", Thu, 12 Mar 2015 02:17:33 UTC +00:00]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "courses" ("category", "created_at", "days", "status", "time", "title", "units", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["category", "Fitness"], ["created_at", Thu, 12 Mar 2015 02:17:33 UTC +00:00], ["days", nil], ["status", "open"], ["time", "W 8PM-9PM"], ["title", "Max Interval Training"], ["units", "1"], ["updated_at", Thu, 12 Mar 2015 02:17:33 UTC +00:00]]
+  [1m[35m (6.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "courses" ("category", "created_at", "days", "status", "time", "title", "units", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)  [["category", "Business"], ["created_at", Thu, 12 Mar 2015 02:17:33 UTC +00:00], ["days", nil], ["status", "full"], ["time", "TuTh 6PM-7PM"], ["title", "Introduction to Banking"], ["units", "2"], ["updated_at", Thu, 12 Mar 2015 02:17:33 UTC +00:00]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/courses" for 127.0.0.1 at 2015-03-11 23:17:33 -0300
+Processing by CoursesController#index as HTML
+  [1m[35mCourse Load (0.2ms)[0m  SELECT "courses".* FROM "courses" 
+  Rendered courses/index.html.erb within layouts/application (17.5ms)
+Completed 200 OK in 26.8ms (Views: 19.7ms | ActiveRecord: 0.2ms)
+  [1m[36m (2.9ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.9ms)[0m  INSERT INTO "courses" ("category", "created_at", "days", "status", "time", "title", "units", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)  [["category", "Cognitive Science"], ["created_at", Thu, 12 Mar 2015 02:17:34 UTC +00:00], ["days", nil], ["status", "open"], ["time", "TuTh 5PM-6PM"], ["title", "Quantum Consciousness"], ["units", "2-3"], ["updated_at", Thu, 12 Mar 2015 02:17:34 UTC +00:00]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (8.2ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.7ms)[0m  [1mINSERT INTO "courses" ("category", "created_at", "days", "status", "time", "title", "units", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["category", "Languages"], ["created_at", Thu, 12 Mar 2015 02:17:34 UTC +00:00], ["days", nil], ["status", "full"], ["time", "MW 5PM-6:30PM"], ["title", "Taiwanese Language"], ["units", "1-2"], ["updated_at", Thu, 12 Mar 2015 02:17:34 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "courses" ("category", "created_at", "days", "status", "time", "title", "units", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)  [["category", "Computer Science"], ["created_at", Thu, 12 Mar 2015 02:17:34 UTC +00:00], ["days", nil], ["status", "full"], ["time", "MWF 6PM-8PM"], ["title", "Python on Crack"], ["units", "3"], ["updated_at", Thu, 12 Mar 2015 02:17:34 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "courses" ("category", "created_at", "days", "status", "time", "title", "units", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["category", "Computer Science"], ["created_at", Thu, 12 Mar 2015 02:17:34 UTC +00:00], ["days", nil], ["status", "full"], ["time", "MW 7PM-8PM"], ["title", "Ruby on Rails"], ["units", "2"], ["updated_at", Thu, 12 Mar 2015 02:17:34 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.7ms)[0m  INSERT INTO "courses" ("category", "created_at", "days", "status", "time", "title", "units", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)  [["category", "Fitness"], ["created_at", Thu, 12 Mar 2015 02:17:34 UTC +00:00], ["days", nil], ["status", "open"], ["time", "W 8PM-9PM"], ["title", "Max Interval Training"], ["units", "1"], ["updated_at", Thu, 12 Mar 2015 02:17:34 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "courses" ("category", "created_at", "days", "status", "time", "title", "units", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["category", "Business"], ["created_at", Thu, 12 Mar 2015 02:17:34 UTC +00:00], ["days", nil], ["status", "full"], ["time", "TuTh 6PM-7PM"], ["title", "Introduction to Banking"], ["units", "2"], ["updated_at", Thu, 12 Mar 2015 02:17:34 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Started GET "/courses" for 127.0.0.1 at 2015-03-11 23:17:34 -0300
+Processing by CoursesController#index as HTML
+  [1m[36mCourse Load (0.1ms)[0m  [1mSELECT "courses".* FROM "courses" [0m
+  Rendered courses/index.html.erb within layouts/application (13.8ms)
+Completed 200 OK in 24.7ms (Views: 15.3ms | ActiveRecord: 0.1ms)
+  [1m[35m (6.4ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (5.2ms)[0m  [1mINSERT INTO "courses" ("category", "created_at", "days", "status", "time", "title", "units", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["category", "Cognitive Science"], ["created_at", Thu, 12 Mar 2015 02:17:34 UTC +00:00], ["days", nil], ["status", "open"], ["time", "TuTh 5PM-6PM"], ["title", "Quantum Consciousness"], ["units", "2-3"], ["updated_at", Thu, 12 Mar 2015 02:17:34 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.6ms)[0m  INSERT INTO "courses" ("category", "created_at", "days", "status", "time", "title", "units", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)  [["category", "Languages"], ["created_at", Thu, 12 Mar 2015 02:17:34 UTC +00:00], ["days", nil], ["status", "full"], ["time", "MW 5PM-6:30PM"], ["title", "Taiwanese Language"], ["units", "1-2"], ["updated_at", Thu, 12 Mar 2015 02:17:34 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.3ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "courses" ("category", "created_at", "days", "status", "time", "title", "units", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["category", "Computer Science"], ["created_at", Thu, 12 Mar 2015 02:17:34 UTC +00:00], ["days", nil], ["status", "full"], ["time", "MWF 6PM-8PM"], ["title", "Python on Crack"], ["units", "3"], ["updated_at", Thu, 12 Mar 2015 02:17:34 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "courses" ("category", "created_at", "days", "status", "time", "title", "units", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)  [["category", "Computer Science"], ["created_at", Thu, 12 Mar 2015 02:17:34 UTC +00:00], ["days", nil], ["status", "full"], ["time", "MW 7PM-8PM"], ["title", "Ruby on Rails"], ["units", "2"], ["updated_at", Thu, 12 Mar 2015 02:17:34 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "courses" ("category", "created_at", "days", "status", "time", "title", "units", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["category", "Fitness"], ["created_at", Thu, 12 Mar 2015 02:17:34 UTC +00:00], ["days", nil], ["status", "open"], ["time", "W 8PM-9PM"], ["title", "Max Interval Training"], ["units", "1"], ["updated_at", Thu, 12 Mar 2015 02:17:34 UTC +00:00]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "courses" ("category", "created_at", "days", "status", "time", "title", "units", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)  [["category", "Business"], ["created_at", Thu, 12 Mar 2015 02:17:34 UTC +00:00], ["days", nil], ["status", "full"], ["time", "TuTh 6PM-7PM"], ["title", "Introduction to Banking"], ["units", "2"], ["updated_at", Thu, 12 Mar 2015 02:17:34 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/courses" for 127.0.0.1 at 2015-03-11 23:17:34 -0300
+Processing by CoursesController#index as HTML
+  [1m[35mCourse Load (0.3ms)[0m  SELECT "courses".* FROM "courses" 
+  Rendered courses/index.html.erb within layouts/application (6.4ms)
+Completed 200 OK in 14.7ms (Views: 12.6ms | ActiveRecord: 0.3ms)
+Started GET "/courses?title=title" for 127.0.0.1 at 2015-03-11 23:17:34 -0300
+Processing by CoursesController#index as HTML
+  Parameters: {"title"=>"title"}
+  [1m[36mCourse Load (0.1ms)[0m  [1mSELECT "courses".* FROM "courses" [0m
+  [1m[35mCourse Load (0.1ms)[0m  SELECT "courses".* FROM "courses" ORDER BY title ASC
+  Rendered courses/index.html.erb within layouts/application (12.3ms)
+Completed 200 OK in 16.8ms (Views: 13.9ms | ActiveRecord: 0.3ms)
+  [1m[36m (5.0ms)[0m  [1mrollback transaction[0m
+Connecting to database specified by database.yml
+  [1m[36m (1.9ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (21.1ms)[0m  [1mINSERT INTO "courses" ("category", "created_at", "days", "status", "time", "title", "units", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["category", "Cognitive Science"], ["created_at", Thu, 12 Mar 2015 02:21:46 UTC +00:00], ["days", nil], ["status", "open"], ["time", "TuTh 5PM-6PM"], ["title", "Quantum Consciousness"], ["units", "2-3"], ["updated_at", Thu, 12 Mar 2015 02:21:46 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (1.1ms)[0m  INSERT INTO "courses" ("category", "created_at", "days", "status", "time", "title", "units", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)  [["category", "Languages"], ["created_at", Thu, 12 Mar 2015 02:21:46 UTC +00:00], ["days", nil], ["status", "full"], ["time", "MW 5PM-6:30PM"], ["title", "Taiwanese Language"], ["units", "1-2"], ["updated_at", Thu, 12 Mar 2015 02:21:46 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "courses" ("category", "created_at", "days", "status", "time", "title", "units", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["category", "Computer Science"], ["created_at", Thu, 12 Mar 2015 02:21:46 UTC +00:00], ["days", nil], ["status", "full"], ["time", "MWF 6PM-8PM"], ["title", "Python on Crack"], ["units", "3"], ["updated_at", Thu, 12 Mar 2015 02:21:46 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "courses" ("category", "created_at", "days", "status", "time", "title", "units", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)  [["category", "Computer Science"], ["created_at", Thu, 12 Mar 2015 02:21:46 UTC +00:00], ["days", nil], ["status", "full"], ["time", "MW 7PM-8PM"], ["title", "Ruby on Rails"], ["units", "2"], ["updated_at", Thu, 12 Mar 2015 02:21:46 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "courses" ("category", "created_at", "days", "status", "time", "title", "units", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["category", "Fitness"], ["created_at", Thu, 12 Mar 2015 02:21:46 UTC +00:00], ["days", nil], ["status", "open"], ["time", "W 8PM-9PM"], ["title", "Max Interval Training"], ["units", "1"], ["updated_at", Thu, 12 Mar 2015 02:21:46 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.6ms)[0m  INSERT INTO "courses" ("category", "created_at", "days", "status", "time", "title", "units", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)  [["category", "Business"], ["created_at", Thu, 12 Mar 2015 02:21:46 UTC +00:00], ["days", nil], ["status", "full"], ["time", "TuTh 6PM-7PM"], ["title", "Introduction to Banking"], ["units", "2"], ["updated_at", Thu, 12 Mar 2015 02:21:46 UTC +00:00]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/courses" for 127.0.0.1 at 2015-03-11 23:21:46 -0300
+Processing by CoursesController#index as HTML
+  [1m[35mCourse Load (0.2ms)[0m  SELECT "courses".* FROM "courses" 
+  Rendered courses/index.html.erb within layouts/application (12.2ms)
+Completed 200 OK in 109.8ms (Views: 108.1ms | ActiveRecord: 0.2ms)
+  [1m[36m (11.3ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (9.4ms)[0m  INSERT INTO "courses" ("category", "created_at", "days", "status", "time", "title", "units", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)  [["category", "Cognitive Science"], ["created_at", Thu, 12 Mar 2015 02:21:46 UTC +00:00], ["days", nil], ["status", "open"], ["time", "TuTh 5PM-6PM"], ["title", "Quantum Consciousness"], ["units", "2-3"], ["updated_at", Thu, 12 Mar 2015 02:21:46 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.8ms)[0m  [1mINSERT INTO "courses" ("category", "created_at", "days", "status", "time", "title", "units", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["category", "Languages"], ["created_at", Thu, 12 Mar 2015 02:21:47 UTC +00:00], ["days", nil], ["status", "full"], ["time", "MW 5PM-6:30PM"], ["title", "Taiwanese Language"], ["units", "1-2"], ["updated_at", Thu, 12 Mar 2015 02:21:47 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "courses" ("category", "created_at", "days", "status", "time", "title", "units", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)  [["category", "Computer Science"], ["created_at", Thu, 12 Mar 2015 02:21:47 UTC +00:00], ["days", nil], ["status", "full"], ["time", "MWF 6PM-8PM"], ["title", "Python on Crack"], ["units", "3"], ["updated_at", Thu, 12 Mar 2015 02:21:47 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "courses" ("category", "created_at", "days", "status", "time", "title", "units", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["category", "Computer Science"], ["created_at", Thu, 12 Mar 2015 02:21:47 UTC +00:00], ["days", nil], ["status", "full"], ["time", "MW 7PM-8PM"], ["title", "Ruby on Rails"], ["units", "2"], ["updated_at", Thu, 12 Mar 2015 02:21:47 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (4.6ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "courses" ("category", "created_at", "days", "status", "time", "title", "units", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)  [["category", "Fitness"], ["created_at", Thu, 12 Mar 2015 02:21:47 UTC +00:00], ["days", nil], ["status", "open"], ["time", "W 8PM-9PM"], ["title", "Max Interval Training"], ["units", "1"], ["updated_at", Thu, 12 Mar 2015 02:21:47 UTC +00:00]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "courses" ("category", "created_at", "days", "status", "time", "title", "units", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["category", "Business"], ["created_at", Thu, 12 Mar 2015 02:21:47 UTC +00:00], ["days", nil], ["status", "full"], ["time", "TuTh 6PM-7PM"], ["title", "Introduction to Banking"], ["units", "2"], ["updated_at", Thu, 12 Mar 2015 02:21:47 UTC +00:00]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+Started GET "/courses" for 127.0.0.1 at 2015-03-11 23:21:47 -0300
+Processing by CoursesController#index as HTML
+  [1m[36mCourse Load (0.2ms)[0m  [1mSELECT "courses".* FROM "courses" [0m
+  Rendered courses/index.html.erb within layouts/application (8.3ms)
+Completed 200 OK in 12.4ms (Views: 10.2ms | ActiveRecord: 0.2ms)
+  [1m[35m (1.3ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.9ms)[0m  [1mINSERT INTO "courses" ("category", "created_at", "days", "status", "time", "title", "units", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["category", "Cognitive Science"], ["created_at", Thu, 12 Mar 2015 02:21:47 UTC +00:00], ["days", nil], ["status", "open"], ["time", "TuTh 5PM-6PM"], ["title", "Quantum Consciousness"], ["units", "2-3"], ["updated_at", Thu, 12 Mar 2015 02:21:47 UTC +00:00]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (13.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.7ms)[0m  INSERT INTO "courses" ("category", "created_at", "days", "status", "time", "title", "units", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)  [["category", "Languages"], ["created_at", Thu, 12 Mar 2015 02:21:47 UTC +00:00], ["days", nil], ["status", "full"], ["time", "MW 5PM-6:30PM"], ["title", "Taiwanese Language"], ["units", "1-2"], ["updated_at", Thu, 12 Mar 2015 02:21:47 UTC +00:00]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "courses" ("category", "created_at", "days", "status", "time", "title", "units", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["category", "Computer Science"], ["created_at", Thu, 12 Mar 2015 02:21:47 UTC +00:00], ["days", nil], ["status", "full"], ["time", "MWF 6PM-8PM"], ["title", "Python on Crack"], ["units", "3"], ["updated_at", Thu, 12 Mar 2015 02:21:47 UTC +00:00]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "courses" ("category", "created_at", "days", "status", "time", "title", "units", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)  [["category", "Computer Science"], ["created_at", Thu, 12 Mar 2015 02:21:47 UTC +00:00], ["days", nil], ["status", "full"], ["time", "MW 7PM-8PM"], ["title", "Ruby on Rails"], ["units", "2"], ["updated_at", Thu, 12 Mar 2015 02:21:47 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "courses" ("category", "created_at", "days", "status", "time", "title", "units", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["category", "Fitness"], ["created_at", Thu, 12 Mar 2015 02:21:47 UTC +00:00], ["days", nil], ["status", "open"], ["time", "W 8PM-9PM"], ["title", "Max Interval Training"], ["units", "1"], ["updated_at", Thu, 12 Mar 2015 02:21:47 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "courses" ("category", "created_at", "days", "status", "time", "title", "units", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)  [["category", "Business"], ["created_at", Thu, 12 Mar 2015 02:21:47 UTC +00:00], ["days", nil], ["status", "full"], ["time", "TuTh 6PM-7PM"], ["title", "Introduction to Banking"], ["units", "2"], ["updated_at", Thu, 12 Mar 2015 02:21:47 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/courses" for 127.0.0.1 at 2015-03-11 23:21:47 -0300
+Processing by CoursesController#index as HTML
+  [1m[35mCourse Load (0.5ms)[0m  SELECT "courses".* FROM "courses" 
+  Rendered courses/index.html.erb within layouts/application (20.4ms)
+Completed 200 OK in 36.2ms (Views: 35.1ms | ActiveRecord: 0.5ms)
+  [1m[36m (5.6ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (6.5ms)[0m  INSERT INTO "courses" ("category", "created_at", "days", "status", "time", "title", "units", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)  [["category", "Cognitive Science"], ["created_at", Thu, 12 Mar 2015 02:21:47 UTC +00:00], ["days", nil], ["status", "open"], ["time", "TuTh 5PM-6PM"], ["title", "Quantum Consciousness"], ["units", "2-3"], ["updated_at", Thu, 12 Mar 2015 02:21:47 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (5.2ms)[0m  [1mINSERT INTO "courses" ("category", "created_at", "days", "status", "time", "title", "units", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["category", "Languages"], ["created_at", Thu, 12 Mar 2015 02:21:47 UTC +00:00], ["days", nil], ["status", "full"], ["time", "MW 5PM-6:30PM"], ["title", "Taiwanese Language"], ["units", "1-2"], ["updated_at", Thu, 12 Mar 2015 02:21:47 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "courses" ("category", "created_at", "days", "status", "time", "title", "units", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)  [["category", "Computer Science"], ["created_at", Thu, 12 Mar 2015 02:21:47 UTC +00:00], ["days", nil], ["status", "full"], ["time", "MWF 6PM-8PM"], ["title", "Python on Crack"], ["units", "3"], ["updated_at", Thu, 12 Mar 2015 02:21:47 UTC +00:00]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (4.5ms)[0m  [1mINSERT INTO "courses" ("category", "created_at", "days", "status", "time", "title", "units", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["category", "Computer Science"], ["created_at", Thu, 12 Mar 2015 02:21:47 UTC +00:00], ["days", nil], ["status", "full"], ["time", "MW 7PM-8PM"], ["title", "Ruby on Rails"], ["units", "2"], ["updated_at", Thu, 12 Mar 2015 02:21:47 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "courses" ("category", "created_at", "days", "status", "time", "title", "units", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)  [["category", "Fitness"], ["created_at", Thu, 12 Mar 2015 02:21:47 UTC +00:00], ["days", nil], ["status", "open"], ["time", "W 8PM-9PM"], ["title", "Max Interval Training"], ["units", "1"], ["updated_at", Thu, 12 Mar 2015 02:21:47 UTC +00:00]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "courses" ("category", "created_at", "days", "status", "time", "title", "units", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["category", "Business"], ["created_at", Thu, 12 Mar 2015 02:21:47 UTC +00:00], ["days", nil], ["status", "full"], ["time", "TuTh 6PM-7PM"], ["title", "Introduction to Banking"], ["units", "2"], ["updated_at", Thu, 12 Mar 2015 02:21:47 UTC +00:00]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+Started GET "/courses" for 127.0.0.1 at 2015-03-11 23:21:47 -0300
+Processing by CoursesController#index as HTML
+  [1m[36mCourse Load (0.2ms)[0m  [1mSELECT "courses".* FROM "courses" [0m
+  Rendered courses/index.html.erb within layouts/application (13.8ms)
+Completed 200 OK in 20.6ms (Views: 19.4ms | ActiveRecord: 0.2ms)
+  [1m[35m (3.0ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.9ms)[0m  [1mINSERT INTO "courses" ("category", "created_at", "days", "status", "time", "title", "units", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["category", "Cognitive Science"], ["created_at", Thu, 12 Mar 2015 02:21:47 UTC +00:00], ["days", nil], ["status", "open"], ["time", "TuTh 5PM-6PM"], ["title", "Quantum Consciousness"], ["units", "2-3"], ["updated_at", Thu, 12 Mar 2015 02:21:47 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.6ms)[0m  INSERT INTO "courses" ("category", "created_at", "days", "status", "time", "title", "units", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)  [["category", "Languages"], ["created_at", Thu, 12 Mar 2015 02:21:47 UTC +00:00], ["days", nil], ["status", "full"], ["time", "MW 5PM-6:30PM"], ["title", "Taiwanese Language"], ["units", "1-2"], ["updated_at", Thu, 12 Mar 2015 02:21:47 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "courses" ("category", "created_at", "days", "status", "time", "title", "units", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["category", "Computer Science"], ["created_at", Thu, 12 Mar 2015 02:21:47 UTC +00:00], ["days", nil], ["status", "full"], ["time", "MWF 6PM-8PM"], ["title", "Python on Crack"], ["units", "3"], ["updated_at", Thu, 12 Mar 2015 02:21:47 UTC +00:00]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "courses" ("category", "created_at", "days", "status", "time", "title", "units", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)  [["category", "Computer Science"], ["created_at", Thu, 12 Mar 2015 02:21:47 UTC +00:00], ["days", nil], ["status", "full"], ["time", "MW 7PM-8PM"], ["title", "Ruby on Rails"], ["units", "2"], ["updated_at", Thu, 12 Mar 2015 02:21:47 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "courses" ("category", "created_at", "days", "status", "time", "title", "units", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["category", "Fitness"], ["created_at", Thu, 12 Mar 2015 02:21:47 UTC +00:00], ["days", nil], ["status", "open"], ["time", "W 8PM-9PM"], ["title", "Max Interval Training"], ["units", "1"], ["updated_at", Thu, 12 Mar 2015 02:21:47 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "courses" ("category", "created_at", "days", "status", "time", "title", "units", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)  [["category", "Business"], ["created_at", Thu, 12 Mar 2015 02:21:47 UTC +00:00], ["days", nil], ["status", "full"], ["time", "TuTh 6PM-7PM"], ["title", "Introduction to Banking"], ["units", "2"], ["updated_at", Thu, 12 Mar 2015 02:21:47 UTC +00:00]]
+  [1m[36m (0.6ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/courses" for 127.0.0.1 at 2015-03-11 23:21:47 -0300
+Processing by CoursesController#index as HTML
+  [1m[35mCourse Load (0.1ms)[0m  SELECT "courses".* FROM "courses" 
+  Rendered courses/index.html.erb within layouts/application (15.9ms)
+Completed 200 OK in 18.3ms (Views: 17.3ms | ActiveRecord: 0.1ms)
+  [1m[36m (5.9ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.9ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.9ms)[0m  INSERT INTO "courses" ("category", "created_at", "days", "status", "time", "title", "units", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)  [["category", "Cognitive Science"], ["created_at", Thu, 12 Mar 2015 02:21:47 UTC +00:00], ["days", nil], ["status", "open"], ["time", "TuTh 5PM-6PM"], ["title", "Quantum Consciousness"], ["units", "2-3"], ["updated_at", Thu, 12 Mar 2015 02:21:47 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (1.8ms)[0m  [1mINSERT INTO "courses" ("category", "created_at", "days", "status", "time", "title", "units", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["category", "Languages"], ["created_at", Thu, 12 Mar 2015 02:21:47 UTC +00:00], ["days", nil], ["status", "full"], ["time", "MW 5PM-6:30PM"], ["title", "Taiwanese Language"], ["units", "1-2"], ["updated_at", Thu, 12 Mar 2015 02:21:47 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "courses" ("category", "created_at", "days", "status", "time", "title", "units", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)  [["category", "Computer Science"], ["created_at", Thu, 12 Mar 2015 02:21:47 UTC +00:00], ["days", nil], ["status", "full"], ["time", "MWF 6PM-8PM"], ["title", "Python on Crack"], ["units", "3"], ["updated_at", Thu, 12 Mar 2015 02:21:47 UTC +00:00]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (4.6ms)[0m  [1mINSERT INTO "courses" ("category", "created_at", "days", "status", "time", "title", "units", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["category", "Computer Science"], ["created_at", Thu, 12 Mar 2015 02:21:47 UTC +00:00], ["days", nil], ["status", "full"], ["time", "MW 7PM-8PM"], ["title", "Ruby on Rails"], ["units", "2"], ["updated_at", Thu, 12 Mar 2015 02:21:47 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "courses" ("category", "created_at", "days", "status", "time", "title", "units", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)  [["category", "Fitness"], ["created_at", Thu, 12 Mar 2015 02:21:47 UTC +00:00], ["days", nil], ["status", "open"], ["time", "W 8PM-9PM"], ["title", "Max Interval Training"], ["units", "1"], ["updated_at", Thu, 12 Mar 2015 02:21:47 UTC +00:00]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "courses" ("category", "created_at", "days", "status", "time", "title", "units", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["category", "Business"], ["created_at", Thu, 12 Mar 2015 02:21:47 UTC +00:00], ["days", nil], ["status", "full"], ["time", "TuTh 6PM-7PM"], ["title", "Introduction to Banking"], ["units", "2"], ["updated_at", Thu, 12 Mar 2015 02:21:47 UTC +00:00]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+Started GET "/courses" for 127.0.0.1 at 2015-03-11 23:21:47 -0300
+Processing by CoursesController#index as HTML
+  [1m[36mCourse Load (0.8ms)[0m  [1mSELECT "courses".* FROM "courses" [0m
+  Rendered courses/index.html.erb within layouts/application (9.6ms)
+Completed 200 OK in 20.2ms (Views: 10.7ms | ActiveRecord: 0.8ms)
+  [1m[35m (3.6ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (1.0ms)[0m  [1mINSERT INTO "courses" ("category", "created_at", "days", "status", "time", "title", "units", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["category", "Cognitive Science"], ["created_at", Thu, 12 Mar 2015 02:21:47 UTC +00:00], ["days", nil], ["status", "open"], ["time", "TuTh 5PM-6PM"], ["title", "Quantum Consciousness"], ["units", "2-3"], ["updated_at", Thu, 12 Mar 2015 02:21:47 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.6ms)[0m  INSERT INTO "courses" ("category", "created_at", "days", "status", "time", "title", "units", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)  [["category", "Languages"], ["created_at", Thu, 12 Mar 2015 02:21:47 UTC +00:00], ["days", nil], ["status", "full"], ["time", "MW 5PM-6:30PM"], ["title", "Taiwanese Language"], ["units", "1-2"], ["updated_at", Thu, 12 Mar 2015 02:21:47 UTC +00:00]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.7ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "courses" ("category", "created_at", "days", "status", "time", "title", "units", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["category", "Computer Science"], ["created_at", Thu, 12 Mar 2015 02:21:47 UTC +00:00], ["days", nil], ["status", "full"], ["time", "MWF 6PM-8PM"], ["title", "Python on Crack"], ["units", "3"], ["updated_at", Thu, 12 Mar 2015 02:21:47 UTC +00:00]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.6ms)[0m  INSERT INTO "courses" ("category", "created_at", "days", "status", "time", "title", "units", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)  [["category", "Computer Science"], ["created_at", Thu, 12 Mar 2015 02:21:47 UTC +00:00], ["days", nil], ["status", "full"], ["time", "MW 7PM-8PM"], ["title", "Ruby on Rails"], ["units", "2"], ["updated_at", Thu, 12 Mar 2015 02:21:47 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "courses" ("category", "created_at", "days", "status", "time", "title", "units", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["category", "Fitness"], ["created_at", Thu, 12 Mar 2015 02:21:47 UTC +00:00], ["days", nil], ["status", "open"], ["time", "W 8PM-9PM"], ["title", "Max Interval Training"], ["units", "1"], ["updated_at", Thu, 12 Mar 2015 02:21:47 UTC +00:00]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "courses" ("category", "created_at", "days", "status", "time", "title", "units", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)  [["category", "Business"], ["created_at", Thu, 12 Mar 2015 02:21:47 UTC +00:00], ["days", nil], ["status", "full"], ["time", "TuTh 6PM-7PM"], ["title", "Introduction to Banking"], ["units", "2"], ["updated_at", Thu, 12 Mar 2015 02:21:47 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/courses" for 127.0.0.1 at 2015-03-11 23:21:48 -0300
+Processing by CoursesController#index as HTML
+  [1m[35mCourse Load (0.8ms)[0m  SELECT "courses".* FROM "courses" 
+  Rendered courses/index.html.erb within layouts/application (12.8ms)
+Completed 200 OK in 20.9ms (Views: 18.4ms | ActiveRecord: 0.8ms)
+Started GET "/courses?title=title" for 127.0.0.1 at 2015-03-11 23:21:48 -0300
+Processing by CoursesController#index as HTML
+  Parameters: {"title"=>"title"}
+  [1m[36mCourse Load (0.2ms)[0m  [1mSELECT "courses".* FROM "courses" [0m
+  [1m[35mCourse Load (0.2ms)[0m  SELECT "courses".* FROM "courses" ORDER BY title ASC
+  Rendered courses/index.html.erb within layouts/application (13.7ms)
+Completed 200 OK in 19.1ms (Views: 15.7ms | ActiveRecord: 0.3ms)
+  [1m[36m (4.4ms)[0m  [1mrollback transaction[0m
