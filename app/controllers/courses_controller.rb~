@@ -12,7 +12,7 @@ class CoursesController < ApplicationController
     @selected_status = "All"
     @selected_category = "All"
     @existing_session = false
-    @selected_times = {}
+    @selected_time = {}
     @test = "lol"
 
     if params[:title] == 'title'

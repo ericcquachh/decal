@@ -9,7 +9,7 @@ class Course < ActiveRecord::Base
     [1, 2, 3, 4]
   end
 
-  def self.statuses
+  def self.status
     ["Open", "Full", "All"]
   end
 
