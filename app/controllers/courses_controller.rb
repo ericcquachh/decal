@@ -8,6 +8,7 @@ class CoursesController < ApplicationController
     @selected_units = {}
     @selected_categories = []
     @existing_session = false
+    @curr_category = "All"
     @test = "lol"
 
     if params[:title] == 'title'
@@ -29,6 +30,7 @@ class CoursesController < ApplicationController
 
     if params[:selected_categories]
       session[:selected_categories] = params[:selected_categories]
+      @curr_category = params[:selected_categories][0]
       if params[:selected_categories][0] != "All"
         @courses = @courses.find_all{|c| params[:selected_categories].include?(c.category)}
         @test = params[:selected_categories].size
