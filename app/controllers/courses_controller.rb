@@ -5,10 +5,12 @@ class CoursesController < ApplicationController
     @courses = Course.all
     @all_units = ["1", "2","3","4"]
     @all_categories = ["Computer Science", "Fitness", "Business", "Languages", "Cognitive Science", "All"]
+    @all_status = ["open", "full", "all"]
     @selected_units = {}
     @selected_categories = []
+    @selected_status = "all"
+    @selected_category = "All"
     @existing_session = false
-    @curr_category = "All"
     @test = "lol"
 
     if params[:title] == 'title'
@@ -30,7 +32,8 @@ class CoursesController < ApplicationController
 
     if params[:selected_categories]
       session[:selected_categories] = params[:selected_categories]
-      @curr_category = params[:selected_categories][0]
+      #currently a hacky way to support selecting just ONE category. Need to alter cucumber to this OR enable multiple selecting (Easy)
+      @selected_category = params[:selected_categories][0]
       if params[:selected_categories][0] != "All"
         @courses = @courses.find_all{|c| params[:selected_categories].include?(c.category)}
         @test = params[:selected_categories].size
@@ -40,8 +43,19 @@ class CoursesController < ApplicationController
       @existing_session = true
     end
 
+    if params[:selected_status]
+      session[:selected_status] = params[:selected_status]
+      @selected_status = params[:selected_status]
+      if params[:selected_status] != "all"
+        @courses = @courses.find_all{|c| params[:selected_status].include?(c.status)}
+      end
+    elsif session.has_key?(:selected_status)
+      params[:selected_status] = session[:selected_status]
+      @existing_session = true
+    end
+
     if @existing_session
-      redirect_to courses_path(:title => params[:title], :checked_units => params[:checked_units], :selected_categories => params[:checked_units])
+      redirect_to courses_path(:title => params[:title], :checked_units => params[:checked_units], :selected_categories => params[:checked_units], :selected_status => params[:selected_status])
     end
 
     @all_units.each { |unit|
@@ -53,10 +67,12 @@ class CoursesController < ApplicationController
     }
 
     @selected_categories = params[:selected_categories]
+    @selected_status = params[:selected_status]
   
     if session.empty?
       @all_units.each { |unit| @selected_units[unit] = true}
       @selected_categories = @all_categories
+      @selected_status = "all"
     end
 
     # respond_to do |format|

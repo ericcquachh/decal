@@ -21,3 +21,4 @@ Scenario: restrict to title containing 'Python' in title
   When I search the following title: Python
   And I press "Search"
   Then I should see "Python on Crack"
+  And I should not see "Ruby on Rails"
