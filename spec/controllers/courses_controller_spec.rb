@@ -32,12 +32,37 @@ describe CoursesController do
       course2 = Course.find_by_title("Ballmer Peak")
       course3 = Course.find_by_title("The Communist Manifesto")
       course4 = Course.find_by_title("Kim Jong Un: Our Dear CEO")
-      get :index
+      get :index, {:category => "All", :status => "All"}
       response.should render_template 'index'
       assigns(:courses).should == [course1, course2, course3, course4]
     end
 
-   
+    it 'should filter by categories' do
+      course1 = Course.find_by_title("Flirting in French")
+      course2 = Course.find_by_title("Ballmer Peak")
+      course3 = Course.find_by_title("The Communist Manifesto")
+      course4 = Course.find_by_title("Kim Jong Un: Our Dear CEO")
+      get :index, {:category => "Business"}
+      assigns(:courses).should == [course3, course4]      
+    end
+
+    it 'should filter by status' do
+      course1 = Course.find_by_title("Flirting in French")
+      course2 = Course.find_by_title("Ballmer Peak")
+      course3 = Course.find_by_title("The Communist Manifesto")
+      course4 = Course.find_by_title("Kim Jong Un: Our Dear CEO")
+      get :index, {:status => "Open"}
+      assigns(:courses).should == [course2, course4]      
+    end
+
+    it 'should filter by units' do
+      course1 = Course.find_by_title("Flirting in French")
+      course2 = Course.find_by_title("Ballmer Peak")
+      course3 = Course.find_by_title("The Communist Manifesto")
+      course4 = Course.find_by_title("Kim Jong Un: Our Dear CEO")
+      get :index, {:units => {"3" => nil}}
+      assigns(:courses).should == [course2, course3]      
+    end
 
   end
 
