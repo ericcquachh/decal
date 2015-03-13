@@ -7,10 +7,6 @@ class CoursesController < ApplicationController
     @all_categories = Course.categories
     @all_status = Course.statuses
 
-    if params[:search_field]
-      @courses = Course.search(params[:search_field])
-    end
-
     # if params[:title] == 'title'
     #   session[:title] = params[:title]
     #   @courses = Course.all(:order => "title ASC")
