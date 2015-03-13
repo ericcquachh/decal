@@ -6297,3 +6297,32 @@ Processing by CoursesController#index as HTML
 Completed 200 OK in 9.3ms (Views: 8.0ms | ActiveRecord: 0.1ms)
   [1m[35m (2.9ms)[0m  rollback transaction
 >>>>>>> dd17ee1fac3ed50b9207ae464b8cefe992fda563
+Connecting to database specified by database.yml
+  [1m[36m (0.3ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (11.2ms)[0m  [1mINSERT INTO "courses" ("category", "created_at", "days", "status", "time", "title", "units", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["category", "Cognitive Science"], ["created_at", Fri, 13 Mar 2015 00:23:35 UTC +00:00], ["days", nil], ["status", "Open"], ["time", "TuTh 5PM-6PM"], ["title", "Quantum Consciousness"], ["units", "2"], ["updated_at", Fri, 13 Mar 2015 00:23:35 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (1.0ms)[0m  INSERT INTO "courses" ("category", "created_at", "days", "status", "time", "title", "units", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)  [["category", "Languages"], ["created_at", Fri, 13 Mar 2015 00:23:35 UTC +00:00], ["days", nil], ["status", "Full"], ["time", "MW 5PM-6:30PM"], ["title", "Taiwanese Language"], ["units", "1"], ["updated_at", Fri, 13 Mar 2015 00:23:35 UTC +00:00]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "courses" ("category", "created_at", "days", "status", "time", "title", "units", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["category", "Computer Science"], ["created_at", Fri, 13 Mar 2015 00:23:35 UTC +00:00], ["days", nil], ["status", "Full"], ["time", "MWF 6PM-8PM"], ["title", "Python on Crack"], ["units", "3"], ["updated_at", Fri, 13 Mar 2015 00:23:35 UTC +00:00]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "courses" ("category", "created_at", "days", "status", "time", "title", "units", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)  [["category", "Computer Science"], ["created_at", Fri, 13 Mar 2015 00:23:35 UTC +00:00], ["days", nil], ["status", "Full"], ["time", "MW 7PM-8PM"], ["title", "Ruby on Rails"], ["units", "2"], ["updated_at", Fri, 13 Mar 2015 00:23:35 UTC +00:00]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "courses" ("category", "created_at", "days", "status", "time", "title", "units", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["category", "Fitness"], ["created_at", Fri, 13 Mar 2015 00:23:35 UTC +00:00], ["days", nil], ["status", "Open"], ["time", "W 8PM-9PM"], ["title", "Max Interval Training"], ["units", "1"], ["updated_at", Fri, 13 Mar 2015 00:23:35 UTC +00:00]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "courses" ("category", "created_at", "days", "status", "time", "title", "units", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)  [["category", "Business"], ["created_at", Fri, 13 Mar 2015 00:23:35 UTC +00:00], ["days", nil], ["status", "Full"], ["time", "TuTh 6PM-7PM"], ["title", "Introduction to Banking"], ["units", "2"], ["updated_at", Fri, 13 Mar 2015 00:23:35 UTC +00:00]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/courses" for 127.0.0.1 at 2015-03-12 17:23:35 -0700
+Processing by CoursesController#index as HTML
+  [1m[35mCourse Load (0.1ms)[0m  SELECT "courses".* FROM "courses" 
+  Rendered courses/_search.html.erb (1.2ms)
+  Rendered courses/index.html.erb within layouts/application (16.6ms)
+Completed 200 OK in 54.3ms (Views: 52.8ms | ActiveRecord: 0.1ms)
+  [1m[36m (0.6ms)[0m  [1mrollback transaction[0m
