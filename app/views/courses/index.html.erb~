@@ -1,17 +1,18 @@
 <h1>Listing Courses</h1>
+<p> <%= session %> </p>
 <%= form_for(courses_path, method: :get, id: 'units_form') do %>
   <%= label_tag("Search for:") %>
   <%= text_field_tag(:search_field) %>
   <%= label_tag("Units:") %>
   <% @all[:units].each do |unit| %>
-    <%= check_box_tag "units[#{unit}]", 1, session[:units[unit]] || !session[:units], id: unit %>
+    <%= check_box_tag "units[#{unit}]", 1, session[:units].include?(unit), id: unit %>
     <%= unit%>
   <% end %>
   <%= label_tag("Categories:") %>
   <%= select_tag 'category', options_for_select(@all[:category], session[:category])%>
   <%= label_tag("Days:") %>
   <% @all[:days].each do |day| %>
-    <%= check_box_tag "days[#{day}]", 1, session[:days[day]] || !session[:days], id: day %>
+    <%= check_box_tag "days[#{day}]", 1, session[:days].include?(day), id: day %>
     <%= day%>
   <% end %>
   <%= label_tag("Course Status:") %>
