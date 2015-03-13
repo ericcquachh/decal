@@ -1,50 +1,63 @@
-<h1>Listing Courses</h1>
-<p><%= @test %></p>
-<p><%= params %></p>
-<%= form_for(courses_path, method: :get, id: 'units_form') do %>
-  <%= label_tag("Search for:") %>
-  <%= text_field_tag(:search_field) %>
-  <%= label_tag("Units:") %>
-  <% @all_units.each do |unit| %>
-    <%= check_box_tag "checked_units[#{unit}]", 1, @selected_units.size == 0 || @selected_units[unit], id: unit %>
-    <%= unit%>
-  <% end %>
-  <%= label_tag("Categories:") %>
-  <%= select_tag 'selected_categories', options_for_select(@all_categories, @selected_category)%>
-  <%= label_tag("Course Status:") %>
-  <%= select_tag 'selected_status', options_for_select(@all_status, @selected_status)%>
-  <%= submit_tag "Search" %>
-<% end %>
+<div class="container">
+  <h1>COURSES</h1>
+ <!-- <p><%= @test %></p>
+  <p><%= params %></p> -->
+  <form class="form-inline">
+    <div class="form-group">
+      <%= form_for(courses_path, method: :get, id: 'units_form') do %>
+
+        <%= label_tag("Search:") %>
+        <input type="text" class="form-control" placeholder="By title" id=<%= text_field_tag(:search_field) %> </input>
+
+        <%= label_tag("Units:") %>
+        <% @all_units.each do |unit| %>
+          <%= check_box_tag "checked_units[#{unit}]", 1, @selected_units.size == 0 || @selected_units[unit], id: unit %>
+          <%= unit%>
+        <% end %>
+        <br></br>
+        <%= label_tag("Categories:") %>
+        <%= select_tag 'selected_categories', options_for_select(@all_categories, @selected_category), :class => 'form-control'%>
 
 
-<table class="table table-striped">
-  <tr>
-    <th><%= link_to 'Course Title', courses_path(:title => "title") %></th>
-    <th>Category</th>
-    <th>Units</th>
-     <th>Days</th>
-    <th>Time</th>
-    <th>Status</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+        <%= label_tag("Status:") %>
+        <%= select_tag 'selected_status', options_for_select(@all_status, @selected_status), :class => 'form-control'%>
 
-<% @courses.each do |course| %>
-  <tr>
-    <td><%= course.title %></td>
-    <td><%= course.category %></td>
-    <td><%= course.units %></td>
-    <td><%= course.days %></td>
-    <td><%= course.time %></td>
-    <td><%= course.status %></td>
-    <td><%= link_to 'Show', course %></td>
-    <td><%= link_to 'Edit', edit_course_path(course) %></td>
-    <td><%= link_to 'Destroy', course, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
-</table>
+        <%= submit_tag "Search", :class=>"btn btn-primary" %>
 
-<br />
+      <% end %>
 
-<%= link_to 'New Course', new_course_path %>
+      <br></br>
+
+      <table class="table table-hover">
+        <tr>
+          <th><%= link_to 'Course Title ▼' , courses_path(:title => "title") %></th>
+          <th>Category</th>
+          <th>Units</th>
+           <th>Days</th>
+          <th>Time</th>
+          <th>Status</th>
+          <th></th>
+          <th></th>
+          <th></th>
+        </tr>
+
+      <% @courses.each do |course| %>
+        <tr>
+          <td><%= course.title %></td>
+          <td><%= course.category %></td>
+          <td><%= course.units %></td>
+          <td><%= course.days %></td>
+          <td><%= course.time %></td>
+          <td><%= course.status %></td>
+          <td><%= link_to 'Show', course %></td>
+          <td><%= link_to 'Edit', edit_course_path(course) %></td>
+          <td><%= link_to 'Destroy', course, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+      </table>
+    </div>
+  </form>
+  <br />
+
+  <%= link_to 'New Course', new_course_path %>
+</div>

@@ -17,6 +17,10 @@ Background: courses have been added to database
 
   And I am on the Decal courses page
 
-Scenario: sort title alphabetically
+Scenario: sort title alphabetically when status full
   When I follow "Course Title"
   Then I should see "Introduction to Banking" before "Python on Crack"
+
+Scenario: sort title alphabetically when status open and full
+  When I follow "Course Title"
+  Then I should see "Introduction to Banking" before "Max Interval Training"
