@@ -31,7 +31,7 @@
 
 	.navbar-default {
 	  background-color: #30678E;
-	  border-color: #e7e7e7;
+	
 	}
 
 	.navbar-default .navbar-nav > .active > a {
@@ -61,7 +61,19 @@
 	.table-hover > tbody > tr:hover {
 		background-color: #F2F2AE;
 	}
-	
+
+	.shadow { 
+	-webkit-box-shadow: 0 8px 6px -3px #F2F2AE;
+	   -moz-box-shadow: 0 8px 6px -3px #F2F2AE;
+	        box-shadow: 0 8px 6px -3px #F2F2AE;
+	}
+
+	.container
+	{
+	margin-left: auto;
+	margin-right: auto;
+	width: 50em;
+	}
 
 	</style>
 <!--
@@ -102,7 +114,7 @@
 
 	<header class="header">
 
-		<nav class="navbar navbar-default">
+		<nav class="navbar navbar-default shadow">
 			<div class= "container">
 			  <div class="container-fluid">
 			    <!-- Brand and toggle get grouped for better mobile display -->
