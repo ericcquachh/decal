@@ -29,7 +29,7 @@ end
 
 When /I (un)?check the following days_of_week: (.*)/ do |uncheck, days_list|
   days_list.split(",").each do |day|
-    day = "days_of_week_#{day.strip}"
+    day = "days[#{day.strip}]"
     uncheck ? uncheck(day) : check(day)
   end
 end

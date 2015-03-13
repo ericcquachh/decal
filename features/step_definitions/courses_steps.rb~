@@ -1,12 +1,8 @@
 #comment used to test initial git push
 Given /the following courses exist/ do |courses_table|
   courses_table.hashes.each do |course|
-    Courses.create!(course)
+    Course.create!(course)
   end
-end
-
-When /I search the following title: (.*)/ do |search_field|
-  puts search_field
 end
 
 Then /I should see "(.*)" before "(.*)"/ do |e1, e2|
@@ -27,13 +23,13 @@ end
 
 When /I (un)?check the following units: (.*)/ do |uncheck, unit_list|
   unit_list.split(/[\s,]+/).each do |unit|
-    uncheck ? check(unit) : check(unit)
+    uncheck ? uncheck(unit) : check(unit)
   end
 end
 
-When /I (un)?check the following day_of_week: (.*)/ do |uncheck, days_list|
+When /I (un)?check the following days_of_week: (.*)/ do |uncheck, days_list|
   days_list.split(",").each do |day|
-    day = "days_of_week_#{day.strip}"
+    day = "days#{day.strip}"
     uncheck ? uncheck(day) : check(day)
   end
 end
