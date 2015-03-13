@@ -9035,3 +9035,35 @@ Processing by CoursesController#index as HTML
   Rendered courses/index.html.erb within layouts/application (5.4ms)
 Completed 200 OK in 7.4ms (Views: 6.4ms | ActiveRecord: 0.1ms)
   [1m[35m (0.5ms)[0m  rollback transaction
+Connecting to database specified by database.yml
+  [1m[36m (0.3ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (4.6ms)[0m  [1mINSERT INTO "courses" ("category", "created_at", "days", "status", "time", "title", "units", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["category", "Politics"], ["created_at", Fri, 13 Mar 2015 05:23:47 UTC +00:00], ["days", nil], ["status", "open"], ["time", nil], ["title", "Vacuum Cleaner"], ["units", "3"], ["updated_at", Fri, 13 Mar 2015 05:23:47 UTC +00:00]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.8ms)[0m  INSERT INTO "courses" ("category", "created_at", "days", "status", "time", "title", "units", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)  [["category", "Politics"], ["created_at", Fri, 13 Mar 2015 05:23:47 UTC +00:00], ["days", nil], ["status", "open"], ["time", nil], ["title", "Soap Opera"], ["units", "3"], ["updated_at", Fri, 13 Mar 2015 05:23:47 UTC +00:00]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "courses" ("category", "created_at", "days", "status", "time", "title", "units", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["category", "Politics"], ["created_at", Fri, 13 Mar 2015 05:23:47 UTC +00:00], ["days", nil], ["status", "open"], ["time", nil], ["title", "The Communist Manifesto"], ["units", "3"], ["updated_at", Fri, 13 Mar 2015 05:23:47 UTC +00:00]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "courses" ("category", "created_at", "days", "status", "time", "title", "units", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)  [["category", "Politics"], ["created_at", Fri, 13 Mar 2015 05:23:47 UTC +00:00], ["days", nil], ["status", "open"], ["time", nil], ["title", "Kim Jong Un: Our Dear Leader"], ["units", "15"], ["updated_at", Fri, 13 Mar 2015 05:23:47 UTC +00:00]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mCourse Load (0.1ms)[0m  SELECT "courses".* FROM "courses" WHERE "courses"."category" = 'Politics'
+  [1m[36m (0.5ms)[0m  [1mrollback transaction[0m
+Connecting to database specified by database.yml
+  [1m[36m (0.2ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (4.0ms)[0m  [1mINSERT INTO "courses" ("category", "created_at", "days", "status", "time", "title", "units", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["category", "Politics"], ["created_at", Fri, 13 Mar 2015 05:24:13 UTC +00:00], ["days", nil], ["status", "open"], ["time", nil], ["title", "Vacuum Cleaner"], ["units", "3"], ["updated_at", Fri, 13 Mar 2015 05:24:13 UTC +00:00]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (1.0ms)[0m  INSERT INTO "courses" ("category", "created_at", "days", "status", "time", "title", "units", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)  [["category", "Politics"], ["created_at", Fri, 13 Mar 2015 05:24:13 UTC +00:00], ["days", nil], ["status", "open"], ["time", nil], ["title", "Soap Opera"], ["units", "3"], ["updated_at", Fri, 13 Mar 2015 05:24:13 UTC +00:00]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "courses" ("category", "created_at", "days", "status", "time", "title", "units", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["category", "Politics"], ["created_at", Fri, 13 Mar 2015 05:24:13 UTC +00:00], ["days", nil], ["status", "open"], ["time", nil], ["title", "The Communist Manifesto"], ["units", "3"], ["updated_at", Fri, 13 Mar 2015 05:24:13 UTC +00:00]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "courses" ("category", "created_at", "days", "status", "time", "title", "units", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)  [["category", "Politics"], ["created_at", Fri, 13 Mar 2015 05:24:13 UTC +00:00], ["days", nil], ["status", "open"], ["time", nil], ["title", "Kim Jong Un: Our Dear Leader"], ["units", "15"], ["updated_at", Fri, 13 Mar 2015 05:24:13 UTC +00:00]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mCourse Load (0.1ms)[0m  SELECT "courses".* FROM "courses" WHERE "courses"."category" = 'Politics'
+  [1m[36m (1.2ms)[0m  [1mrollback transaction[0m
