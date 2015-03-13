@@ -20,14 +20,9 @@ class CoursesController < ApplicationController
 
     @courses = Course.find(:all, :order => session[:title], :conditions => {:category => session[:category], :status => session[:status], 
     :units => session[:units]})
+
     if params[:search_field]
-      new_courses_array = []
-      @courses.each do |course|
-        if course.title.downcase.include? params[:search_field].downcase
-          new_courses_array.push(course)
-        end
-      end
-      @courses = new_courses_array
+      @courses = @courses.select {|course| course.title.downcase.include? params[:search_field].downcase}
     end
   end
 
