@@ -19,6 +19,4 @@ describe CoursesController do
     end
   end
 
-  it "should "
-
 end

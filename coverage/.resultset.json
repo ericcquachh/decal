@@ -1,20 +1,20 @@
 {
   "Cucumber Features": {
     "coverage": {
-      "/Users/felixliu/Documents/decal/app/controllers/application_controller.rb": [
+      "/home/saasbook/github/decal/app/controllers/application_controller.rb": [
         1,
         1,
         null
       ],
-      "/Users/felixliu/Documents/decal/app/helpers/application_helper.rb": [
+      "/home/saasbook/github/decal/app/helpers/application_helper.rb": [
         1,
         null
       ],
-      "/Users/felixliu/Documents/decal/app/helpers/courses_helper.rb": [
+      "/home/saasbook/github/decal/app/helpers/courses_helper.rb": [
         1,
         null
       ],
-      "/Users/felixliu/Documents/decal/app/controllers/courses_controller.rb": [
+      "/home/saasbook/github/decal/app/controllers/courses_controller.rb": [
         1,
         null,
         null,
@@ -155,7 +155,7 @@
         null,
         null
       ],
-      "/Users/felixliu/Documents/decal/app/models/course.rb": [
+      "/home/saasbook/github/decal/app/models/course.rb": [
         1,
         1,
         null,
@@ -178,6 +178,6 @@
         null
       ]
     },
-    "timestamp": 1426224119
+    "timestamp": 1426225916
   }
 }
