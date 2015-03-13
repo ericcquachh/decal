@@ -18,7 +18,4 @@ describe CoursesController do
       check_var != 0
     end
   end
-
-
-
 end

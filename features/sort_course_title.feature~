@@ -1,8 +1,8 @@
-Feature: display list of courses filtered by catagory
- 
+Feature: display list of courses sorted by different criteria
+
   As a student
   So that I can decide what courses to enroll in
-  I want to see courses matching only from certain categories
+  I want to see courses sorted by title
 
 Background: courses have been added to database
 
@@ -17,10 +17,8 @@ Background: courses have been added to database
 
   And I am on the Decal courses page
   And I set everything to default
-
-Scenario: restrict to title with 'Computer Science' category
-  When I select the following categories: Computer Science
   And I press "Search"
-  Then I should see "Python on Crack" 
-  And I should see "Ruby on Rails"
-  And I should not see "Introduction to Banking"
+
+Scenario: sort title alphabetically
+  When I follow "Course Title"
+  Then I should see "Introduction to Banking" before "Python on Crack"

@@ -16,6 +16,7 @@ Background: courses have been added to database
   | Introduction to Banking  | Business           | 2     | TuTh 6PM-7PM    | Full   |
 
   And I am on the Decal courses page
+  And I set everything to default
 
 Scenario: restrict to title with '2' or '3" units
   When I check the following units: 2, 3

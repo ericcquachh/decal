@@ -11,7 +11,7 @@ class CoursesController < ApplicationController
     @attributes.each do |attribute|
       if params[attribute] && params[attribute] != 'All'
         if attribute == :days || attribute == :units
-          session[attribute] = params[attribute].keys
+          session[attribute] = params[attribute].keys.map {|a| a.to_s}
         else
           session[attribute] = params[attribute]
         end

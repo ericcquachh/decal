@@ -16,6 +16,7 @@ Background: courses have been added to database
   | Introduction to Banking  | Business           | 2     | TuTh 6PM-7PM    | Full   |
 
   And I am on the Decal courses page
+  And I set everything to default
 
 Scenario: restrict to courses with "Tuesday" time
   When I check the following days_of_week: Tuesday

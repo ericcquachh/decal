@@ -1,28 +1,42 @@
 {
   "Cucumber Features": {
     "coverage": {
-      "/Users/felixliu/Documents/decal/app/controllers/application_controller.rb": [
+      "/home/saasbook/Documents/decal/app/controllers/application_controller.rb": [
         1,
         1,
         null
       ],
-      "/Users/felixliu/Documents/decal/app/helpers/application_helper.rb": [
+      "/home/saasbook/Documents/decal/app/helpers/application_helper.rb": [
         1,
         null
       ],
-      "/Users/felixliu/Documents/decal/app/helpers/courses_helper.rb": [
+      "/home/saasbook/Documents/decal/app/helpers/courses_helper.rb": [
         1,
         null
       ],
-      "/Users/felixliu/Documents/decal/app/controllers/courses_controller.rb": [
+      "/home/saasbook/Documents/decal/app/controllers/courses_controller.rb": [
         1,
         null,
         null,
         1,
-        12,
-        12,
-        12,
-        12,
+<<<<<<< HEAD
+        13,
+        13,
+=======
+        14,
+        14,
+        14,
+        14,
+>>>>>>> f7050859545fbf615d3d07073f2361d10e94fbb2
+        null,
+        13,
+        78,
+        null,
+<<<<<<< HEAD
+        13,
+        78,
+        5,
+=======
         null,
         null,
         null,
@@ -34,52 +48,64 @@
         null,
         null,
         null,
+        14,
+        14,
+        14,
+        14,
         null,
-        null,
-        12,
-        12,
-        12,
-        12,
-        null,
-        12,
+        14,
         4,
         null,
         null,
-        12,
+        14,
         0,
         null,
         null,
-        12,
+        14,
         1,
         null,
         null,
-        12,
+        14,
+>>>>>>> f7050859545fbf615d3d07073f2361d10e94fbb2
         2,
         null,
-        1,
+        3,
         null,
+<<<<<<< HEAD
+        null,
+=======
         1,
         null,
         0,
         null,
         null,
         null,
-        12,
-        1,
-        1,
+        14,
+        2,
+        2,
         null,
-        7,
+        14,
+>>>>>>> f7050859545fbf615d3d07073f2361d10e94fbb2
         null,
         null,
+        13,
         null,
-        12,
+<<<<<<< HEAD
+        13,
+        5,
+        5,
+        20,
+        15,
+=======
+        14,
         4,
         4,
         14,
         9,
+>>>>>>> f7050859545fbf615d3d07073f2361d10e94fbb2
         null,
         null,
-        4,
+        5,
         null,
         null,
         null,
@@ -155,29 +181,52 @@
         null,
         null
       ],
-      "/Users/felixliu/Documents/decal/app/models/course.rb": [
+      "/home/saasbook/Documents/decal/app/models/course.rb": [
         1,
         1,
         null,
         1,
-        0,
-        0,
+        13,
         null,
         null,
         1,
-        12,
+        13,
         null,
         null,
         1,
-        12,
+        13,
         null,
         null,
         1,
-        12,
+<<<<<<< HEAD
+        13,
+        null,
+        null,
+        1,
+        20,
+        null,
+        null,
+        1,
+        13,
+=======
+        14,
+        null,
+        null,
+        1,
+        14,
+        null,
+        null,
+        1,
+        14,
+>>>>>>> f7050859545fbf615d3d07073f2361d10e94fbb2
         null,
         null
       ]
     },
-    "timestamp": 1426224119
+<<<<<<< HEAD
+    "timestamp": 1426247936
+=======
+    "timestamp": 1426254453
+>>>>>>> f7050859545fbf615d3d07073f2361d10e94fbb2
   }
 }

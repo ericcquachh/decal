@@ -17,6 +17,7 @@ Background: courses have been added to database
 
   And I am on the Decal courses page
   And I set everything to default
+  And I press "Search"
 
 Scenario: restrict to title with 'Computer Science' category
   When I select the following categories: Computer Science
