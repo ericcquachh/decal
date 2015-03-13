@@ -3,91 +3,28 @@ class CoursesController < ApplicationController
   # GET /courses.json
   def index
     @courses = Course.all
-    @all_units = Course.units
-    @all_categories = Course.categories
-    @all_status = Course.statuses
-    @all_days = Course.days
-    @selected_units = {}
-    @selected_categories = []
-    @selected_status = "All"
-    @selected_category = "All"
-    @existing_session = false
-    @selected_days = {}
-    @test = "lol"
-
-    if params[:search_field]
-      @courses = Course.search(params[:search_field])
+    @all = Course.all_attributes
+    Course.accessible_attributes.each do |attribute|
+      session[attribute] ||= @all[attribute]
     end
-      
-    if params[:title] == 'title'
-      session[:title] = params[:title]
-      @courses = Course.all(:order => "title ASC")
-    elsif session.has_key?(:title)
-      params[:title] = session[:title]
-      @existing_session = true
-    end
-
-    if params[:checked_units]
-      @selected_categories = params[:checked_units]
-      session[:checked_units] = params[:checked_units]
-      @courses = @courses.find_all{|u| params[:checked_units].include?(u.units)}
-    elsif session.has_key?(:checked_units)
-      params[:checked_units] = session[:checked_units]
-      @existing_session = true
-    end
-
-    if params[:checked_days]
-      @selected_days = params[:checked_days]
-      session[:checked_days] = params[:checked_days]
-      @courses = @courses.find_all{|d| params[:checked_days].include?(d.days)}
-    elsif session.has_key?(:checked_days)
-      params[:checked_days] = session[:checked_days]
-      @existing_session = true
-    end
-
-    if params[:selected_categories]
-      session[:selected_categories] = params[:selected_categories]
-      #currently a hacky way to support selecting just ONE category. Need to alter cucumber to this OR enable multiple selecting (Easy)
-      @selected_category = params[:selected_categories][0]
-      if params[:selected_categories][0] != "All"
-        @courses = @courses.find_all{|c| params[:selected_categories].include?(c.category)}
+    Course.accessible_attributes.each do |attribute|
+      if params[attribute]
+        session[attribute] = params[attribute]
       end
-    elsif session.has_key?(:selected_categories)
-      params[:selected_categories] = session[:selected_categories]
-      @existing_session = true
     end
 
-    if params[:selected_status]
-      session[:selected_status] = params[:selected_status]
-      @selected_status = params[:selected_status]
-      if params[:selected_status][0] != "All"
-        @courses = @courses.find_all{|c| params[:selected_status].include?(c.status)}
-      end
-    elsif session.has_key?(:selected_status)
-      params[:selected_status] = session[:selected_status]
-      @existing_session = true
-    end
+    #if params[:search_field]
+    #  @courses = Course.search(params[:search_field])
+    #end
 
-    if @existing_session
-      redirect_to courses_path(:title => params[:title], :checked_units => params[:checked_units], :selected_categories => params[:checked_units], :selected_status => params[:selected_status])
-    end
-
-    @all_units.each { |unit|
-      if params[:checked_units]
-        @selected_units[unit] = params[:checked_units].include?(unit)
-      else
-        @selected_units[unit] = false
-      end
-    }
-
-    @selected_categories = params[:selected_categories]
-    @selected_status = params[:selected_status]
-  
-    if session.empty?
-      @all_units.each { |unit| @selected_units[unit] = true}
-      @selected_categories = @all_categories
-      @selected_status = "All"
-    end
+    #@all_units.each { |unit|
+    #  if params[:checked_units]
+    #    @selected_units[unit] = params[:checked_units].include?(unit)
+    #  else
+    #    @selected_units[unit] = false
+    #  end
+    #}
+ 
 
     # respond_to do |format|
     #   format.html # index.html.erb

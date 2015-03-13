@@ -24247,3 +24247,745 @@ Served asset /courses.js - 304 Not Modified (0ms)
 
 Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2015-03-12 16:39:09 -0700
 Served asset /application.js - 304 Not Modified (0ms)
+
+
+Started GET "/courses" for 127.0.0.1 at 2015-03-12 21:15:48 -0300
+Connecting to database specified by database.yml
+Processing by CoursesController#index as HTML
+  [1m[36mCourse Load (0.2ms)[0m  [1mSELECT "courses".* FROM "courses" [0m
+Redirected to http://localhost:3000/courses?checked_units%5B%5D=2&selected_categories%5B%5D=2&selected_status%5B%5D=Open
+Completed 302 Found in 49.8ms (ActiveRecord: 2.0ms)
+
+
+Started GET "/courses?checked_units%5B%5D=2&selected_categories%5B%5D=2&selected_status%5B%5D=Open" for 127.0.0.1 at 2015-03-12 21:15:49 -0300
+Processing by CoursesController#index as HTML
+  Parameters: {"checked_units"=>["2"], "selected_categories"=>["2"], "selected_status"=>["Open"]}
+  [1m[35mCourse Load (0.2ms)[0m  SELECT "courses".* FROM "courses" 
+Redirected to http://localhost:3000/courses?checked_units%5B%5D=2&selected_categories%5B%5D=2&selected_status%5B%5D=Open
+Completed 302 Found in 3.8ms (ActiveRecord: 0.2ms)
+
+
+Started GET "/courses?checked_units%5B%5D=2&selected_categories%5B%5D=2&selected_status%5B%5D=Open" for 127.0.0.1 at 2015-03-12 21:15:49 -0300
+Processing by CoursesController#index as HTML
+  Parameters: {"checked_units"=>["2"], "selected_categories"=>["2"], "selected_status"=>["Open"]}
+  [1m[36mCourse Load (4.1ms)[0m  [1mSELECT "courses".* FROM "courses" [0m
+Redirected to http://localhost:3000/courses?checked_units%5B%5D=2&selected_categories%5B%5D=2&selected_status%5B%5D=Open
+Completed 302 Found in 5.8ms (ActiveRecord: 4.1ms)
+
+
+Started GET "/courses?checked_units%5B%5D=2&selected_categories%5B%5D=2&selected_status%5B%5D=Open" for 127.0.0.1 at 2015-03-12 21:15:49 -0300
+Processing by CoursesController#index as HTML
+  Parameters: {"checked_units"=>["2"], "selected_categories"=>["2"], "selected_status"=>["Open"]}
+  [1m[35mCourse Load (0.3ms)[0m  SELECT "courses".* FROM "courses" 
+Redirected to http://localhost:3000/courses?checked_units%5B%5D=2&selected_categories%5B%5D=2&selected_status%5B%5D=Open
+Completed 302 Found in 1.8ms (ActiveRecord: 0.3ms)
+
+
+Started GET "/courses?checked_units%5B%5D=2&selected_categories%5B%5D=2&selected_status%5B%5D=Open" for 127.0.0.1 at 2015-03-12 21:15:49 -0300
+Processing by CoursesController#index as HTML
+  Parameters: {"checked_units"=>["2"], "selected_categories"=>["2"], "selected_status"=>["Open"]}
+  [1m[36mCourse Load (0.2ms)[0m  [1mSELECT "courses".* FROM "courses" [0m
+Redirected to http://localhost:3000/courses?checked_units%5B%5D=2&selected_categories%5B%5D=2&selected_status%5B%5D=Open
+Completed 302 Found in 1.8ms (ActiveRecord: 0.2ms)
+
+
+Started GET "/courses?checked_units%5B%5D=2&selected_categories%5B%5D=2&selected_status%5B%5D=Open" for 127.0.0.1 at 2015-03-12 21:15:49 -0300
+Processing by CoursesController#index as HTML
+  Parameters: {"checked_units"=>["2"], "selected_categories"=>["2"], "selected_status"=>["Open"]}
+  [1m[35mCourse Load (1.1ms)[0m  SELECT "courses".* FROM "courses" 
+Redirected to http://localhost:3000/courses?checked_units%5B%5D=2&selected_categories%5B%5D=2&selected_status%5B%5D=Open
+Completed 302 Found in 3.1ms (ActiveRecord: 1.1ms)
+
+
+Started GET "/courses?checked_units%5B%5D=2&selected_categories%5B%5D=2&selected_status%5B%5D=Open" for 127.0.0.1 at 2015-03-12 21:15:49 -0300
+Processing by CoursesController#index as HTML
+  Parameters: {"checked_units"=>["2"], "selected_categories"=>["2"], "selected_status"=>["Open"]}
+  [1m[36mCourse Load (0.2ms)[0m  [1mSELECT "courses".* FROM "courses" [0m
+Redirected to http://localhost:3000/courses?checked_units%5B%5D=2&selected_categories%5B%5D=2&selected_status%5B%5D=Open
+Completed 302 Found in 1.8ms (ActiveRecord: 0.2ms)
+
+
+Started GET "/courses?checked_units%5B%5D=2&selected_categories%5B%5D=2&selected_status%5B%5D=Open" for 127.0.0.1 at 2015-03-12 21:15:49 -0300
+Processing by CoursesController#index as HTML
+  Parameters: {"checked_units"=>["2"], "selected_categories"=>["2"], "selected_status"=>["Open"]}
+  [1m[35mCourse Load (0.2ms)[0m  SELECT "courses".* FROM "courses" 
+Redirected to http://localhost:3000/courses?checked_units%5B%5D=2&selected_categories%5B%5D=2&selected_status%5B%5D=Open
+Completed 302 Found in 2.2ms (ActiveRecord: 0.2ms)
+
+
+Started GET "/courses?checked_units%5B%5D=2&selected_categories%5B%5D=2&selected_status%5B%5D=Open" for 127.0.0.1 at 2015-03-12 21:15:50 -0300
+Processing by CoursesController#index as HTML
+  Parameters: {"checked_units"=>["2"], "selected_categories"=>["2"], "selected_status"=>["Open"]}
+  [1m[36mCourse Load (0.2ms)[0m  [1mSELECT "courses".* FROM "courses" [0m
+Redirected to http://localhost:3000/courses?checked_units%5B%5D=2&selected_categories%5B%5D=2&selected_status%5B%5D=Open
+Completed 302 Found in 2.0ms (ActiveRecord: 0.2ms)
+
+
+Started GET "/courses?checked_units%5B%5D=2&selected_categories%5B%5D=2&selected_status%5B%5D=Open" for 127.0.0.1 at 2015-03-12 21:15:50 -0300
+Processing by CoursesController#index as HTML
+  Parameters: {"checked_units"=>["2"], "selected_categories"=>["2"], "selected_status"=>["Open"]}
+  [1m[35mCourse Load (0.5ms)[0m  SELECT "courses".* FROM "courses" 
+Redirected to http://localhost:3000/courses?checked_units%5B%5D=2&selected_categories%5B%5D=2&selected_status%5B%5D=Open
+Completed 302 Found in 10.5ms (ActiveRecord: 0.5ms)
+
+
+Started GET "/courses?checked_units%5B%5D=2&selected_categories%5B%5D=2&selected_status%5B%5D=Open" for 127.0.0.1 at 2015-03-12 21:15:50 -0300
+Processing by CoursesController#index as HTML
+  Parameters: {"checked_units"=>["2"], "selected_categories"=>["2"], "selected_status"=>["Open"]}
+  [1m[36mCourse Load (0.4ms)[0m  [1mSELECT "courses".* FROM "courses" [0m
+Redirected to http://localhost:3000/courses?checked_units%5B%5D=2&selected_categories%5B%5D=2&selected_status%5B%5D=Open
+Completed 302 Found in 9.2ms (ActiveRecord: 0.4ms)
+
+
+Started GET "/courses?checked_units%5B%5D=2&selected_categories%5B%5D=2&selected_status%5B%5D=Open" for 127.0.0.1 at 2015-03-12 21:15:50 -0300
+Processing by CoursesController#index as HTML
+  Parameters: {"checked_units"=>["2"], "selected_categories"=>["2"], "selected_status"=>["Open"]}
+  [1m[35mCourse Load (0.3ms)[0m  SELECT "courses".* FROM "courses" 
+Redirected to http://localhost:3000/courses?checked_units%5B%5D=2&selected_categories%5B%5D=2&selected_status%5B%5D=Open
+Completed 302 Found in 1.9ms (ActiveRecord: 0.3ms)
+
+
+Started GET "/courses?checked_units%5B%5D=2&selected_categories%5B%5D=2&selected_status%5B%5D=Open" for 127.0.0.1 at 2015-03-12 21:15:50 -0300
+Processing by CoursesController#index as HTML
+  Parameters: {"checked_units"=>["2"], "selected_categories"=>["2"], "selected_status"=>["Open"]}
+  [1m[36mCourse Load (0.3ms)[0m  [1mSELECT "courses".* FROM "courses" [0m
+Redirected to http://localhost:3000/courses?checked_units%5B%5D=2&selected_categories%5B%5D=2&selected_status%5B%5D=Open
+Completed 302 Found in 2.1ms (ActiveRecord: 0.3ms)
+
+
+Started GET "/courses?checked_units%5B%5D=2&selected_categories%5B%5D=2&selected_status%5B%5D=Open" for 127.0.0.1 at 2015-03-12 21:15:50 -0300
+Processing by CoursesController#index as HTML
+  Parameters: {"checked_units"=>["2"], "selected_categories"=>["2"], "selected_status"=>["Open"]}
+  [1m[35mCourse Load (0.3ms)[0m  SELECT "courses".* FROM "courses" 
+Redirected to http://localhost:3000/courses?checked_units%5B%5D=2&selected_categories%5B%5D=2&selected_status%5B%5D=Open
+Completed 302 Found in 2.1ms (ActiveRecord: 0.3ms)
+
+
+Started GET "/courses?checked_units%5B%5D=2&selected_categories%5B%5D=2&selected_status%5B%5D=Open" for 127.0.0.1 at 2015-03-12 21:15:50 -0300
+Processing by CoursesController#index as HTML
+  Parameters: {"checked_units"=>["2"], "selected_categories"=>["2"], "selected_status"=>["Open"]}
+  [1m[36mCourse Load (0.3ms)[0m  [1mSELECT "courses".* FROM "courses" [0m
+Redirected to http://localhost:3000/courses?checked_units%5B%5D=2&selected_categories%5B%5D=2&selected_status%5B%5D=Open
+Completed 302 Found in 2.3ms (ActiveRecord: 0.3ms)
+
+
+Started GET "/courses?checked_units%5B%5D=2&selected_categories%5B%5D=2&selected_status%5B%5D=Open" for 127.0.0.1 at 2015-03-12 21:15:50 -0300
+Processing by CoursesController#index as HTML
+  Parameters: {"checked_units"=>["2"], "selected_categories"=>["2"], "selected_status"=>["Open"]}
+  [1m[35mCourse Load (0.3ms)[0m  SELECT "courses".* FROM "courses" 
+Redirected to http://localhost:3000/courses?checked_units%5B%5D=2&selected_categories%5B%5D=2&selected_status%5B%5D=Open
+Completed 302 Found in 2.5ms (ActiveRecord: 0.3ms)
+
+
+Started GET "/courses?checked_units%5B%5D=2&selected_categories%5B%5D=2&selected_status%5B%5D=Open" for 127.0.0.1 at 2015-03-12 21:15:50 -0300
+Processing by CoursesController#index as HTML
+  Parameters: {"checked_units"=>["2"], "selected_categories"=>["2"], "selected_status"=>["Open"]}
+  [1m[36mCourse Load (0.3ms)[0m  [1mSELECT "courses".* FROM "courses" [0m
+Redirected to http://localhost:3000/courses?checked_units%5B%5D=2&selected_categories%5B%5D=2&selected_status%5B%5D=Open
+Completed 302 Found in 3.3ms (ActiveRecord: 0.3ms)
+
+
+Started GET "/courses?checked_units%5B%5D=2&selected_categories%5B%5D=2&selected_status%5B%5D=Open" for 127.0.0.1 at 2015-03-12 21:15:50 -0300
+Processing by CoursesController#index as HTML
+  Parameters: {"checked_units"=>["2"], "selected_categories"=>["2"], "selected_status"=>["Open"]}
+  [1m[35mCourse Load (1.5ms)[0m  SELECT "courses".* FROM "courses" 
+Redirected to http://localhost:3000/courses?checked_units%5B%5D=2&selected_categories%5B%5D=2&selected_status%5B%5D=Open
+Completed 302 Found in 3.2ms (ActiveRecord: 1.5ms)
+
+
+Started GET "/courses?checked_units%5B%5D=2&selected_categories%5B%5D=2&selected_status%5B%5D=Open" for 127.0.0.1 at 2015-03-12 21:15:50 -0300
+Processing by CoursesController#index as HTML
+  Parameters: {"checked_units"=>["2"], "selected_categories"=>["2"], "selected_status"=>["Open"]}
+  [1m[36mCourse Load (0.3ms)[0m  [1mSELECT "courses".* FROM "courses" [0m
+Redirected to http://localhost:3000/courses?checked_units%5B%5D=2&selected_categories%5B%5D=2&selected_status%5B%5D=Open
+Completed 302 Found in 3.7ms (ActiveRecord: 0.3ms)
+
+
+Started GET "/courses?checked_units%5B%5D=2&selected_categories%5B%5D=2&selected_status%5B%5D=Open" for 127.0.0.1 at 2015-03-12 21:15:50 -0300
+Processing by CoursesController#index as HTML
+  Parameters: {"checked_units"=>["2"], "selected_categories"=>["2"], "selected_status"=>["Open"]}
+  [1m[35mCourse Load (0.3ms)[0m  SELECT "courses".* FROM "courses" 
+Redirected to http://localhost:3000/courses?checked_units%5B%5D=2&selected_categories%5B%5D=2&selected_status%5B%5D=Open
+Completed 302 Found in 2.6ms (ActiveRecord: 0.3ms)
+
+
+Started GET "/courses?checked_units%5B%5D=2&selected_categories%5B%5D=2&selected_status%5B%5D=Open" for 127.0.0.1 at 2015-03-12 21:15:50 -0300
+Processing by CoursesController#index as HTML
+  Parameters: {"checked_units"=>["2"], "selected_categories"=>["2"], "selected_status"=>["Open"]}
+  [1m[36mCourse Load (0.3ms)[0m  [1mSELECT "courses".* FROM "courses" [0m
+Redirected to http://localhost:3000/courses?checked_units%5B%5D=2&selected_categories%5B%5D=2&selected_status%5B%5D=Open
+Completed 302 Found in 6.4ms (ActiveRecord: 0.3ms)
+
+
+Started GET "/courses?checked_units%5B%5D=2&selected_categories%5B%5D=2&selected_status%5B%5D=Open" for 127.0.0.1 at 2015-03-12 21:15:52 -0300
+Processing by CoursesController#index as HTML
+  Parameters: {"checked_units"=>["2"], "selected_categories"=>["2"], "selected_status"=>["Open"]}
+  [1m[35mCourse Load (0.5ms)[0m  SELECT "courses".* FROM "courses" 
+Redirected to http://localhost:3000/courses?checked_units%5B%5D=2&selected_categories%5B%5D=2&selected_status%5B%5D=Open
+Completed 302 Found in 7.5ms (ActiveRecord: 0.5ms)
+
+
+Started GET "/courses?checked_units%5B%5D=2&selected_categories%5B%5D=2&selected_status%5B%5D=Open" for 127.0.0.1 at 2015-03-12 21:15:52 -0300
+Processing by CoursesController#index as HTML
+  Parameters: {"checked_units"=>["2"], "selected_categories"=>["2"], "selected_status"=>["Open"]}
+  [1m[36mCourse Load (0.3ms)[0m  [1mSELECT "courses".* FROM "courses" [0m
+Redirected to http://localhost:3000/courses?checked_units%5B%5D=2&selected_categories%5B%5D=2&selected_status%5B%5D=Open
+Completed 302 Found in 9.7ms (ActiveRecord: 0.3ms)
+
+
+Started GET "/courses?checked_units%5B%5D=2&selected_categories%5B%5D=2&selected_status%5B%5D=Open" for 127.0.0.1 at 2015-03-12 21:15:52 -0300
+Processing by CoursesController#index as HTML
+  Parameters: {"checked_units"=>["2"], "selected_categories"=>["2"], "selected_status"=>["Open"]}
+  [1m[35mCourse Load (0.3ms)[0m  SELECT "courses".* FROM "courses" 
+Redirected to http://localhost:3000/courses?checked_units%5B%5D=2&selected_categories%5B%5D=2&selected_status%5B%5D=Open
+Completed 302 Found in 3.0ms (ActiveRecord: 0.3ms)
+
+
+Started GET "/courses?checked_units%5B%5D=2&selected_categories%5B%5D=2&selected_status%5B%5D=Open" for 127.0.0.1 at 2015-03-12 21:15:52 -0300
+Processing by CoursesController#index as HTML
+  Parameters: {"checked_units"=>["2"], "selected_categories"=>["2"], "selected_status"=>["Open"]}
+  [1m[36mCourse Load (0.3ms)[0m  [1mSELECT "courses".* FROM "courses" [0m
+Redirected to http://localhost:3000/courses?checked_units%5B%5D=2&selected_categories%5B%5D=2&selected_status%5B%5D=Open
+Completed 302 Found in 2.2ms (ActiveRecord: 0.3ms)
+
+
+Started GET "/courses?checked_units%5B%5D=2&selected_categories%5B%5D=2&selected_status%5B%5D=Open" for 127.0.0.1 at 2015-03-12 21:15:53 -0300
+Processing by CoursesController#index as HTML
+  Parameters: {"checked_units"=>["2"], "selected_categories"=>["2"], "selected_status"=>["Open"]}
+  [1m[35mCourse Load (0.6ms)[0m  SELECT "courses".* FROM "courses" 
+Redirected to http://localhost:3000/courses?checked_units%5B%5D=2&selected_categories%5B%5D=2&selected_status%5B%5D=Open
+Completed 302 Found in 3.3ms (ActiveRecord: 0.6ms)
+
+
+Started GET "/courses?checked_units%5B%5D=2&selected_categories%5B%5D=2&selected_status%5B%5D=Open" for 127.0.0.1 at 2015-03-12 21:15:53 -0300
+Processing by CoursesController#index as HTML
+  Parameters: {"checked_units"=>["2"], "selected_categories"=>["2"], "selected_status"=>["Open"]}
+  [1m[36mCourse Load (0.3ms)[0m  [1mSELECT "courses".* FROM "courses" [0m
+Redirected to http://localhost:3000/courses?checked_units%5B%5D=2&selected_categories%5B%5D=2&selected_status%5B%5D=Open
+Completed 302 Found in 4.1ms (ActiveRecord: 0.3ms)
+
+
+Started GET "/courses?checked_units%5B%5D=2&selected_categories%5B%5D=2&selected_status%5B%5D=Open" for 127.0.0.1 at 2015-03-12 21:15:53 -0300
+Processing by CoursesController#index as HTML
+  Parameters: {"checked_units"=>["2"], "selected_categories"=>["2"], "selected_status"=>["Open"]}
+  [1m[35mCourse Load (0.5ms)[0m  SELECT "courses".* FROM "courses" 
+Redirected to http://localhost:3000/courses?checked_units%5B%5D=2&selected_categories%5B%5D=2&selected_status%5B%5D=Open
+Completed 302 Found in 3.5ms (ActiveRecord: 0.5ms)
+
+
+Started GET "/courses?checked_units%5B%5D=2&selected_categories%5B%5D=2&selected_status%5B%5D=Open" for 127.0.0.1 at 2015-03-12 21:15:53 -0300
+Processing by CoursesController#index as HTML
+  Parameters: {"checked_units"=>["2"], "selected_categories"=>["2"], "selected_status"=>["Open"]}
+  [1m[36mCourse Load (0.4ms)[0m  [1mSELECT "courses".* FROM "courses" [0m
+Redirected to http://localhost:3000/courses?checked_units%5B%5D=2&selected_categories%5B%5D=2&selected_status%5B%5D=Open
+Completed 302 Found in 3.5ms (ActiveRecord: 0.4ms)
+
+
+Started GET "/courses?checked_units%5B%5D=2&selected_categories%5B%5D=2&selected_status%5B%5D=Open" for 127.0.0.1 at 2015-03-12 21:15:53 -0300
+Processing by CoursesController#index as HTML
+  Parameters: {"checked_units"=>["2"], "selected_categories"=>["2"], "selected_status"=>["Open"]}
+  [1m[35mCourse Load (0.2ms)[0m  SELECT "courses".* FROM "courses" 
+Redirected to http://localhost:3000/courses?checked_units%5B%5D=2&selected_categories%5B%5D=2&selected_status%5B%5D=Open
+Completed 302 Found in 2.8ms (ActiveRecord: 0.2ms)
+
+
+Started GET "/courses?checked_units%5B%5D=2&selected_categories%5B%5D=2&selected_status%5B%5D=Open" for 127.0.0.1 at 2015-03-12 21:15:53 -0300
+Processing by CoursesController#index as HTML
+  Parameters: {"checked_units"=>["2"], "selected_categories"=>["2"], "selected_status"=>["Open"]}
+  [1m[36mCourse Load (0.2ms)[0m  [1mSELECT "courses".* FROM "courses" [0m
+Redirected to http://localhost:3000/courses?checked_units%5B%5D=2&selected_categories%5B%5D=2&selected_status%5B%5D=Open
+Completed 302 Found in 1.4ms (ActiveRecord: 0.2ms)
+
+
+Started GET "/courses?checked_units%5B%5D=2&selected_categories%5B%5D=2&selected_status%5B%5D=Open" for 127.0.0.1 at 2015-03-12 21:15:53 -0300
+Processing by CoursesController#index as HTML
+  Parameters: {"checked_units"=>["2"], "selected_categories"=>["2"], "selected_status"=>["Open"]}
+  [1m[35mCourse Load (0.5ms)[0m  SELECT "courses".* FROM "courses" 
+Redirected to http://localhost:3000/courses?checked_units%5B%5D=2&selected_categories%5B%5D=2&selected_status%5B%5D=Open
+Completed 302 Found in 14.5ms (ActiveRecord: 0.5ms)
+
+
+Started GET "/courses?checked_units%5B%5D=2&selected_categories%5B%5D=2&selected_status%5B%5D=Open" for 127.0.0.1 at 2015-03-12 21:15:53 -0300
+Processing by CoursesController#index as HTML
+  Parameters: {"checked_units"=>["2"], "selected_categories"=>["2"], "selected_status"=>["Open"]}
+  [1m[36mCourse Load (0.3ms)[0m  [1mSELECT "courses".* FROM "courses" [0m
+Redirected to http://localhost:3000/courses?checked_units%5B%5D=2&selected_categories%5B%5D=2&selected_status%5B%5D=Open
+Completed 302 Found in 3.8ms (ActiveRecord: 0.3ms)
+
+
+Started GET "/courses?checked_units%5B%5D=2&selected_categories%5B%5D=2&selected_status%5B%5D=Open" for 127.0.0.1 at 2015-03-12 21:15:53 -0300
+Processing by CoursesController#index as HTML
+  Parameters: {"checked_units"=>["2"], "selected_categories"=>["2"], "selected_status"=>["Open"]}
+  [1m[35mCourse Load (0.4ms)[0m  SELECT "courses".* FROM "courses" 
+Redirected to http://localhost:3000/courses?checked_units%5B%5D=2&selected_categories%5B%5D=2&selected_status%5B%5D=Open
+Completed 302 Found in 4.3ms (ActiveRecord: 0.4ms)
+
+
+Started GET "/courses?checked_units%5B%5D=2&selected_categories%5B%5D=2&selected_status%5B%5D=Open" for 127.0.0.1 at 2015-03-12 21:15:53 -0300
+Processing by CoursesController#index as HTML
+  Parameters: {"checked_units"=>["2"], "selected_categories"=>["2"], "selected_status"=>["Open"]}
+  [1m[36mCourse Load (3.6ms)[0m  [1mSELECT "courses".* FROM "courses" [0m
+Redirected to http://localhost:3000/courses?checked_units%5B%5D=2&selected_categories%5B%5D=2&selected_status%5B%5D=Open
+Completed 302 Found in 5.8ms (ActiveRecord: 3.6ms)
+
+
+Started GET "/courses?checked_units%5B%5D=2&selected_categories%5B%5D=2&selected_status%5B%5D=Open" for 127.0.0.1 at 2015-03-12 21:15:53 -0300
+Processing by CoursesController#index as HTML
+  Parameters: {"checked_units"=>["2"], "selected_categories"=>["2"], "selected_status"=>["Open"]}
+  [1m[35mCourse Load (0.3ms)[0m  SELECT "courses".* FROM "courses" 
+Redirected to http://localhost:3000/courses?checked_units%5B%5D=2&selected_categories%5B%5D=2&selected_status%5B%5D=Open
+Completed 302 Found in 3.2ms (ActiveRecord: 0.3ms)
+
+
+Started GET "/courses?checked_units%5B%5D=2&selected_categories%5B%5D=2&selected_status%5B%5D=Open" for 127.0.0.1 at 2015-03-12 21:15:53 -0300
+Processing by CoursesController#index as HTML
+  Parameters: {"checked_units"=>["2"], "selected_categories"=>["2"], "selected_status"=>["Open"]}
+  [1m[36mCourse Load (0.3ms)[0m  [1mSELECT "courses".* FROM "courses" [0m
+Redirected to http://localhost:3000/courses?checked_units%5B%5D=2&selected_categories%5B%5D=2&selected_status%5B%5D=Open
+Completed 302 Found in 6.6ms (ActiveRecord: 0.3ms)
+
+
+Started GET "/courses?checked_units%5B%5D=2&selected_categories%5B%5D=2&selected_status%5B%5D=Open" for 127.0.0.1 at 2015-03-12 21:15:53 -0300
+Processing by CoursesController#index as HTML
+  Parameters: {"checked_units"=>["2"], "selected_categories"=>["2"], "selected_status"=>["Open"]}
+  [1m[35mCourse Load (0.3ms)[0m  SELECT "courses".* FROM "courses" 
+Redirected to http://localhost:3000/courses?checked_units%5B%5D=2&selected_categories%5B%5D=2&selected_status%5B%5D=Open
+Completed 302 Found in 3.5ms (ActiveRecord: 0.3ms)
+
+
+Started GET "/courses?checked_units%5B%5D=2&selected_categories%5B%5D=2&selected_status%5B%5D=Open" for 127.0.0.1 at 2015-03-12 21:15:53 -0300
+Processing by CoursesController#index as HTML
+  Parameters: {"checked_units"=>["2"], "selected_categories"=>["2"], "selected_status"=>["Open"]}
+  [1m[36mCourse Load (0.3ms)[0m  [1mSELECT "courses".* FROM "courses" [0m
+Redirected to http://localhost:3000/courses?checked_units%5B%5D=2&selected_categories%5B%5D=2&selected_status%5B%5D=Open
+Completed 302 Found in 2.4ms (ActiveRecord: 0.3ms)
+
+
+Started GET "/courses?checked_units%5B%5D=2&selected_categories%5B%5D=2&selected_status%5B%5D=Open" for 127.0.0.1 at 2015-03-12 21:15:53 -0300
+Processing by CoursesController#index as HTML
+  Parameters: {"checked_units"=>["2"], "selected_categories"=>["2"], "selected_status"=>["Open"]}
+  [1m[35mCourse Load (2.5ms)[0m  SELECT "courses".* FROM "courses" 
+Redirected to http://localhost:3000/courses?checked_units%5B%5D=2&selected_categories%5B%5D=2&selected_status%5B%5D=Open
+Completed 302 Found in 8.2ms (ActiveRecord: 2.5ms)
+
+
+Started GET "/courses?checked_units%5B%5D=2&selected_categories%5B%5D=2&selected_status%5B%5D=Open" for 127.0.0.1 at 2015-03-12 21:15:53 -0300
+Processing by CoursesController#index as HTML
+  Parameters: {"checked_units"=>["2"], "selected_categories"=>["2"], "selected_status"=>["Open"]}
+  [1m[36mCourse Load (0.3ms)[0m  [1mSELECT "courses".* FROM "courses" [0m
+Redirected to http://localhost:3000/courses?checked_units%5B%5D=2&selected_categories%5B%5D=2&selected_status%5B%5D=Open
+Completed 302 Found in 2.4ms (ActiveRecord: 0.3ms)
+
+
+Started GET "/courses?checked_units%5B%5D=2&selected_categories%5B%5D=2&selected_status%5B%5D=Open" for 127.0.0.1 at 2015-03-12 21:15:53 -0300
+Processing by CoursesController#index as HTML
+  Parameters: {"checked_units"=>["2"], "selected_categories"=>["2"], "selected_status"=>["Open"]}
+  [1m[35mCourse Load (0.3ms)[0m  SELECT "courses".* FROM "courses" 
+Redirected to http://localhost:3000/courses?checked_units%5B%5D=2&selected_categories%5B%5D=2&selected_status%5B%5D=Open
+Completed 302 Found in 2.3ms (ActiveRecord: 0.3ms)
+
+
+Started GET "/courses?checked_units%5B%5D=2&selected_categories%5B%5D=2&selected_status%5B%5D=Open" for 127.0.0.1 at 2015-03-12 21:16:48 -0300
+Connecting to database specified by database.yml
+Processing by CoursesController#index as HTML
+  Parameters: {"checked_units"=>["2"], "selected_categories"=>["2"], "selected_status"=>["Open"]}
+  [1m[36mCourse Load (0.1ms)[0m  [1mSELECT "courses".* FROM "courses" [0m
+  Rendered courses/_search.html.erb (1.2ms)
+  Rendered courses/index.html.erb within layouts/application (20.9ms)
+Completed 200 OK in 168.2ms (Views: 109.2ms | ActiveRecord: 2.8ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2015-03-12 21:16:49 -0300
+Served asset /application.css - 304 Not Modified (24ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2015-03-12 21:16:49 -0300
+Served asset /jquery.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2015-03-12 21:16:49 -0300
+Served asset /scaffolds.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/courses.css?body=1" for 127.0.0.1 at 2015-03-12 21:16:49 -0300
+Served asset /courses.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/bootstrap.css?body=1" for 127.0.0.1 at 2015-03-12 21:16:49 -0300
+Served asset /bootstrap.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/bootstrap.min.css?body=1" for 127.0.0.1 at 2015-03-12 21:16:49 -0300
+Served asset /bootstrap.min.css - 304 Not Modified (28ms)
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2015-03-12 21:16:49 -0300
+Served asset /bootstrap.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/bootstrap.min.js?body=1" for 127.0.0.1 at 2015-03-12 21:16:49 -0300
+Served asset /bootstrap.min.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/courses.js?body=1" for 127.0.0.1 at 2015-03-12 21:16:49 -0300
+Served asset /courses.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2015-03-12 21:16:49 -0300
+Served asset /jquery_ujs.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2015-03-12 21:16:49 -0300
+Served asset /application.js - 304 Not Modified (4ms)
+
+
+Started GET "/courses?checked_units%5B%5D=2&selected_categories%5B%5D=2&selected_status%5B%5D=Open" for 127.0.0.1 at 2015-03-12 21:46:22 -0300
+Connecting to database specified by database.yml
+Processing by CoursesController#index as HTML
+  Parameters: {"checked_units"=>["2"], "selected_categories"=>["2"], "selected_status"=>["Open"]}
+  [1m[36mCourse Load (0.1ms)[0m  [1mSELECT "courses".* FROM "courses" [0m
+Completed 500 Internal Server Error in 44.3ms
+
+NoMethodError (undefined method `times' for #<Class:0xa189aac>):
+  app/models/course.rb:5:in `all_attributes'
+  app/controllers/courses_controller.rb:6:in `index'
+
+
+  Rendered /home/saasbook/.rvm/gems/ruby-1.9.3-p448/gems/actionpack-3.2.16/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.6ms)
+  Rendered /home/saasbook/.rvm/gems/ruby-1.9.3-p448/gems/actionpack-3.2.16/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (0.8ms)
+  Rendered /home/saasbook/.rvm/gems/ruby-1.9.3-p448/gems/actionpack-3.2.16/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (25.7ms)
+
+
+Started GET "/courses?checked_units%5B%5D=2&selected_categories%5B%5D=2&selected_status%5B%5D=Open" for 127.0.0.1 at 2015-03-12 21:46:48 -0300
+Connecting to database specified by database.yml
+Processing by CoursesController#index as HTML
+  Parameters: {"checked_units"=>["2"], "selected_categories"=>["2"], "selected_status"=>["Open"]}
+  [1m[36mCourse Load (0.1ms)[0m  [1mSELECT "courses".* FROM "courses" [0m
+Completed 500 Internal Server Error in 58.8ms
+
+NoMethodError (undefined method `each' for nil:NilClass):
+  app/controllers/courses_controller.rb:20:in `index'
+
+
+  Rendered /home/saasbook/.rvm/gems/ruby-1.9.3-p448/gems/actionpack-3.2.16/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.1ms)
+  Rendered /home/saasbook/.rvm/gems/ruby-1.9.3-p448/gems/actionpack-3.2.16/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.0ms)
+  Rendered /home/saasbook/.rvm/gems/ruby-1.9.3-p448/gems/actionpack-3.2.16/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (11.9ms)
+
+
+Started GET "/courses?checked_units%5B%5D=2&selected_categories%5B%5D=2&selected_status%5B%5D=Open" for 127.0.0.1 at 2015-03-12 21:47:33 -0300
+Connecting to database specified by database.yml
+Processing by CoursesController#index as HTML
+  Parameters: {"checked_units"=>["2"], "selected_categories"=>["2"], "selected_status"=>["Open"]}
+  [1m[36mCourse Load (0.1ms)[0m  [1mSELECT "courses".* FROM "courses" [0m
+  Rendered courses/_search.html.erb (1.3ms)
+  Rendered courses/index.html.erb within layouts/application (30.4ms)
+Completed 500 Internal Server Error in 112.4ms
+
+ActionView::Template::Error (undefined method `[]' for nil:NilClass):
+    4: <%= form_for(courses_path, method: :get, id: 'units_form') do -%>
+    5:   <%= render :partial => 'search' %>
+    6:   <b>Units</b>
+    7:   <% @all[:units].each do |unit| %>
+    8:     <%= check_box_tag 'checked_units[]', unit, @session[:unit[unit]], id: unit%>
+    9:       <%= h unit%>
+    10:     <% end %>
+  app/views/courses/index.html.erb:7:in `block (2 levels) in _app_views_courses_index_html_erb___351855907_76516990'
+  app/views/courses/index.html.erb:6:in `each'
+  app/views/courses/index.html.erb:6:in `block in _app_views_courses_index_html_erb___351855907_76516990'
+  app/views/courses/index.html.erb:4:in `_app_views_courses_index_html_erb___351855907_76516990'
+
+
+  Rendered /home/saasbook/.rvm/gems/ruby-1.9.3-p448/gems/actionpack-3.2.16/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.2ms)
+  Rendered /home/saasbook/.rvm/gems/ruby-1.9.3-p448/gems/actionpack-3.2.16/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (0.9ms)
+  Rendered /home/saasbook/.rvm/gems/ruby-1.9.3-p448/gems/actionpack-3.2.16/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (8.3ms)
+
+
+Started GET "/courses?checked_units%5B%5D=2&selected_categories%5B%5D=2&selected_status%5B%5D=Open" for 127.0.0.1 at 2015-03-12 21:48:27 -0300
+Connecting to database specified by database.yml
+Processing by CoursesController#index as HTML
+  Parameters: {"checked_units"=>["2"], "selected_categories"=>["2"], "selected_status"=>["Open"]}
+  [1m[36mCourse Load (0.1ms)[0m  [1mSELECT "courses".* FROM "courses" [0m
+  Rendered courses/_search.html.erb (1.2ms)
+  Rendered courses/index.html.erb within layouts/application (29.0ms)
+Completed 500 Internal Server Error in 111.0ms
+
+ActionView::Template::Error (undefined method `each' for nil:NilClass):
+    3: <p><%= params %></p>
+    4: <%= form_for(courses_path, method: :get, id: 'units_form') do -%>
+    5:   <%= render :partial => 'search' %>
+    6:   <b>Units</b>
+    7:   <% @all[:unit].each do |unit| %>
+    8:     <%= check_box_tag 'checked_units[]', unit, @session[:unit[unit]], id: unit%>
+    9:       <%= h unit%>
+  app/views/courses/index.html.erb:6:in `block in _app_views_courses_index_html_erb___89879564_79598880'
+  app/views/courses/index.html.erb:4:in `_app_views_courses_index_html_erb___89879564_79598880'
+
+
+  Rendered /home/saasbook/.rvm/gems/ruby-1.9.3-p448/gems/actionpack-3.2.16/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.1ms)
+  Rendered /home/saasbook/.rvm/gems/ruby-1.9.3-p448/gems/actionpack-3.2.16/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (0.9ms)
+  Rendered /home/saasbook/.rvm/gems/ruby-1.9.3-p448/gems/actionpack-3.2.16/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (7.4ms)
+
+
+Started GET "/courses?checked_units%5B%5D=2&selected_categories%5B%5D=2&selected_status%5B%5D=Open" for 127.0.0.1 at 2015-03-12 21:51:44 -0300
+Connecting to database specified by database.yml
+Processing by CoursesController#index as HTML
+  Parameters: {"checked_units"=>["2"], "selected_categories"=>["2"], "selected_status"=>["Open"]}
+  [1m[36mCourse Load (0.1ms)[0m  [1mSELECT "courses".* FROM "courses" [0m
+  Rendered courses/_search.html.erb (1.3ms)
+  Rendered courses/index.html.erb within layouts/application (28.6ms)
+Completed 500 Internal Server Error in 99.3ms
+
+ActionView::Template::Error (undefined method `[]' for nil:NilClass):
+    4: <%= form_for(courses_path, method: :get, id: 'units_form') do -%>
+    5:   <%= render :partial => 'search' %>
+    6:   <b>Units</b>
+    7:   <% @all[:units].each do |unit| %>
+    8:     <%= check_box_tag 'checked_units[]', unit, @session[:units[unit]], id: unit%>
+    9:       <%= h unit%>
+    10:     <% end %>
+  app/views/courses/index.html.erb:7:in `block (2 levels) in _app_views_courses_index_html_erb___1034046691_84959580'
+  app/views/courses/index.html.erb:6:in `each'
+  app/views/courses/index.html.erb:6:in `block in _app_views_courses_index_html_erb___1034046691_84959580'
+  app/views/courses/index.html.erb:4:in `_app_views_courses_index_html_erb___1034046691_84959580'
+
+
+  Rendered /home/saasbook/.rvm/gems/ruby-1.9.3-p448/gems/actionpack-3.2.16/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.1ms)
+  Rendered /home/saasbook/.rvm/gems/ruby-1.9.3-p448/gems/actionpack-3.2.16/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (0.9ms)
+  Rendered /home/saasbook/.rvm/gems/ruby-1.9.3-p448/gems/actionpack-3.2.16/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (7.0ms)
+
+
+Started GET "/courses?checked_units%5B%5D=2&selected_categories%5B%5D=2&selected_status%5B%5D=Open" for 127.0.0.1 at 2015-03-12 21:55:36 -0300
+Connecting to database specified by database.yml
+Processing by CoursesController#index as HTML
+  Parameters: {"checked_units"=>["2"], "selected_categories"=>["2"], "selected_status"=>["Open"]}
+  [1m[36mCourse Load (0.1ms)[0m  [1mSELECT "courses".* FROM "courses" [0m
+  Rendered courses/_search.html.erb (1.7ms)
+  Rendered courses/index.html.erb within layouts/application (38.0ms)
+Completed 500 Internal Server Error in 121.3ms
+
+ActionView::Template::Error (undefined local variable or method `day' for #<#<Class:0x945eddc>:0x945d874>):
+    10:     <% end %>
+    11:   <b>Categories</b>
+    12:   <%= select_tag 'selected_categories[]', options_for_select(@all[:category])%>
+    13:   <b>Days</b>
+    14:   <% @all[day].each do |day| %>
+    15:     <%= check_box_tag 'checked_days[]', day, false, id: day%>
+    16:       <%= h day%>
+  app/views/courses/index.html.erb:13:in `block in _app_views_courses_index_html_erb__503583686_77643360'
+  app/views/courses/index.html.erb:4:in `_app_views_courses_index_html_erb__503583686_77643360'
+
+
+  Rendered /home/saasbook/.rvm/gems/ruby-1.9.3-p448/gems/actionpack-3.2.16/lib/action_dispatch/middleware/templates/rescues/_trace.erb (15.7ms)
+  Rendered /home/saasbook/.rvm/gems/ruby-1.9.3-p448/gems/actionpack-3.2.16/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.1ms)
+  Rendered /home/saasbook/.rvm/gems/ruby-1.9.3-p448/gems/actionpack-3.2.16/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (22.4ms)
+
+
+Started GET "/courses?checked_units%5B%5D=2&selected_categories%5B%5D=2&selected_status%5B%5D=Open" for 127.0.0.1 at 2015-03-12 21:56:33 -0300
+Connecting to database specified by database.yml
+Processing by CoursesController#index as HTML
+  Parameters: {"checked_units"=>["2"], "selected_categories"=>["2"], "selected_status"=>["Open"]}
+  [1m[36mCourse Load (0.1ms)[0m  [1mSELECT "courses".* FROM "courses" [0m
+  Rendered courses/_search.html.erb (1.3ms)
+  Rendered courses/index.html.erb within layouts/application (37.1ms)
+Completed 500 Internal Server Error in 120.1ms
+
+ActionView::Template::Error (undefined local variable or method `days' for #<#<Class:0xb057a70>:0xb056508>):
+    10:     <% end %>
+    11:   <b>Categories</b>
+    12:   <%= select_tag 'selected_categories[]', options_for_select(@all[:category])%>
+    13:   <b>Days</b>
+    14:   <% @all[days].each do |day| %>
+    15:     <%= check_box_tag 'checked_days[]', day, false, id: day%>
+    16:       <%= h day%>
+  app/views/courses/index.html.erb:13:in `block in _app_views_courses_index_html_erb__952618403_92308690'
+  app/views/courses/index.html.erb:4:in `_app_views_courses_index_html_erb__952618403_92308690'
+
+
+  Rendered /home/saasbook/.rvm/gems/ruby-1.9.3-p448/gems/actionpack-3.2.16/lib/action_dispatch/middleware/templates/rescues/_trace.erb (15.4ms)
+  Rendered /home/saasbook/.rvm/gems/ruby-1.9.3-p448/gems/actionpack-3.2.16/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.0ms)
+  Rendered /home/saasbook/.rvm/gems/ruby-1.9.3-p448/gems/actionpack-3.2.16/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (22.5ms)
+
+
+Started GET "/courses?checked_units%5B%5D=2&selected_categories%5B%5D=2&selected_status%5B%5D=Open" for 127.0.0.1 at 2015-03-12 21:56:34 -0300
+Processing by CoursesController#index as HTML
+  Parameters: {"checked_units"=>["2"], "selected_categories"=>["2"], "selected_status"=>["Open"]}
+  [1m[35mCourse Load (7.5ms)[0m  SELECT "courses".* FROM "courses" 
+  Rendered courses/_search.html.erb (1.4ms)
+  Rendered courses/index.html.erb within layouts/application (18.3ms)
+Completed 500 Internal Server Error in 29.3ms
+
+ActionView::Template::Error (undefined local variable or method `days' for #<#<Class:0xb057a70>:0xb023158>):
+    10:     <% end %>
+    11:   <b>Categories</b>
+    12:   <%= select_tag 'selected_categories[]', options_for_select(@all[:category])%>
+    13:   <b>Days</b>
+    14:   <% @all[days].each do |day| %>
+    15:     <%= check_box_tag 'checked_days[]', day, false, id: day%>
+    16:       <%= h day%>
+  app/views/courses/index.html.erb:13:in `block in _app_views_courses_index_html_erb__952618403_92308690'
+  app/views/courses/index.html.erb:4:in `_app_views_courses_index_html_erb__952618403_92308690'
+
+
+  Rendered /home/saasbook/.rvm/gems/ruby-1.9.3-p448/gems/actionpack-3.2.16/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.3ms)
+  Rendered /home/saasbook/.rvm/gems/ruby-1.9.3-p448/gems/actionpack-3.2.16/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (0.9ms)
+  Rendered /home/saasbook/.rvm/gems/ruby-1.9.3-p448/gems/actionpack-3.2.16/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (8.0ms)
+
+
+Started GET "/courses?checked_units%5B%5D=2&selected_categories%5B%5D=2&selected_status%5B%5D=Open" for 127.0.0.1 at 2015-03-12 21:56:59 -0300
+Connecting to database specified by database.yml
+Processing by CoursesController#index as HTML
+  Parameters: {"checked_units"=>["2"], "selected_categories"=>["2"], "selected_status"=>["Open"]}
+  [1m[36mCourse Load (0.1ms)[0m  [1mSELECT "courses".* FROM "courses" [0m
+  Rendered courses/_search.html.erb (1.6ms)
+  Rendered courses/index.html.erb within layouts/application (32.6ms)
+Completed 200 OK in 128.7ms (Views: 72.0ms | ActiveRecord: 3.2ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2015-03-12 21:57:00 -0300
+Served asset /application.css - 304 Not Modified (40ms)
+
+
+Started GET "/assets/bootstrap.min.css?body=1" for 127.0.0.1 at 2015-03-12 21:57:00 -0300
+Served asset /bootstrap.min.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/bootstrap.css?body=1" for 127.0.0.1 at 2015-03-12 21:57:00 -0300
+Served asset /bootstrap.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/bootstrap.min.js?body=1" for 127.0.0.1 at 2015-03-12 21:57:00 -0300
+Served asset /bootstrap.min.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/courses.css?body=1" for 127.0.0.1 at 2015-03-12 21:57:00 -0300
+Served asset /courses.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2015-03-12 21:57:00 -0300
+Served asset /jquery_ujs.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2015-03-12 21:57:00 -0300
+Served asset /jquery.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2015-03-12 21:57:00 -0300
+Served asset /scaffolds.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2015-03-12 21:57:00 -0300
+Served asset /bootstrap.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2015-03-12 21:57:00 -0300
+Served asset /application.js - 304 Not Modified (11ms)
+
+
+Started GET "/assets/courses.js?body=1" for 127.0.0.1 at 2015-03-12 21:57:00 -0300
+Served asset /courses.js - 304 Not Modified (1ms)
+
+
+Started GET "/courses?checked_units%5B%5D=2&selected_categories%5B%5D=2&selected_status%5B%5D=Open" for 127.0.0.1 at 2015-03-12 21:59:42 -0300
+Processing by CoursesController#index as HTML
+  Parameters: {"checked_units"=>["2"], "selected_categories"=>["2"], "selected_status"=>["Open"]}
+  [1m[35mCourse Load (0.5ms)[0m  SELECT "courses".* FROM "courses" 
+  Rendered courses/_search.html.erb (8.1ms)
+  Rendered courses/index.html.erb within layouts/application (31.8ms)
+Completed 200 OK in 64.1ms (Views: 55.9ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2015-03-12 21:59:42 -0300
+Served asset /application.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/bootstrap.min.css?body=1" for 127.0.0.1 at 2015-03-12 21:59:42 -0300
+Served asset /bootstrap.min.css - 304 Not Modified (3ms)
+
+
+Started GET "/assets/bootstrap.css?body=1" for 127.0.0.1 at 2015-03-12 21:59:42 -0300
+Served asset /bootstrap.css - 304 Not Modified (5ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2015-03-12 21:59:42 -0300
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2015-03-12 21:59:42 -0300
+Served asset /scaffolds.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/courses.css?body=1" for 127.0.0.1 at 2015-03-12 21:59:42 -0300
+Served asset /courses.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2015-03-12 21:59:42 -0300
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/courses.js?body=1" for 127.0.0.1 at 2015-03-12 21:59:42 -0300
+Served asset /courses.js - 304 Not Modified (49ms)
+
+
+Started GET "/assets/bootstrap.min.js?body=1" for 127.0.0.1 at 2015-03-12 21:59:42 -0300
+Served asset /bootstrap.min.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2015-03-12 21:59:42 -0300
+Served asset /bootstrap.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2015-03-12 21:59:42 -0300
+Served asset /application.js - 304 Not Modified (0ms)
+
+
+Started GET "/courses?checked_units%5B%5D=2&selected_categories%5B%5D=2&selected_status%5B%5D=Open" for 127.0.0.1 at 2015-03-12 21:59:42 -0300
+Processing by CoursesController#index as HTML
+  Parameters: {"checked_units"=>["2"], "selected_categories"=>["2"], "selected_status"=>["Open"]}
+  [1m[36mCourse Load (0.6ms)[0m  [1mSELECT "courses".* FROM "courses" [0m
+  Rendered courses/_search.html.erb (6.6ms)
+  Rendered courses/index.html.erb within layouts/application (33.4ms)
+Completed 200 OK in 65.4ms (Views: 56.7ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2015-03-12 21:59:43 -0300
+Served asset /application.css - 304 Not Modified (15ms)
+
+
+Started GET "/assets/bootstrap.min.css?body=1" for 127.0.0.1 at 2015-03-12 21:59:43 -0300
+Served asset /bootstrap.min.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2015-03-12 21:59:43 -0300
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2015-03-12 21:59:43 -0300
+Served asset /scaffolds.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/courses.css?body=1" for 127.0.0.1 at 2015-03-12 21:59:43 -0300
+Served asset /courses.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.css?body=1" for 127.0.0.1 at 2015-03-12 21:59:43 -0300
+Served asset /bootstrap.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2015-03-12 21:59:43 -0300
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.min.js?body=1" for 127.0.0.1 at 2015-03-12 21:59:43 -0300
+Served asset /bootstrap.min.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/courses.js?body=1" for 127.0.0.1 at 2015-03-12 21:59:43 -0300
+Served asset /courses.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2015-03-12 21:59:43 -0300
+Served asset /bootstrap.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2015-03-12 21:59:43 -0300
+Served asset /application.js - 304 Not Modified (0ms)

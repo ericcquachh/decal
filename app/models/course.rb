@@ -1,5 +1,9 @@
 class Course < ActiveRecord::Base
   attr_accessible :category, :status, :days, :time, :title, :units
+
+  def self.all_attributes
+    {:category => self.categories, :status => self.statuses, :days => self.days, :time => self.times, :units => self.units}
+  end
   
   def self.categories
     ["Computer Science", "Fitness", "Business", "Languages", "Cognitive Science", "All"]
@@ -15,6 +19,10 @@ class Course < ActiveRecord::Base
 
   def self.days
     ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]
+  end
+
+  def self.times
+    []
   end
 
   def self.search(input)

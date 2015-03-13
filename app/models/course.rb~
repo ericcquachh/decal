@@ -1,6 +1,9 @@
 class Course < ActiveRecord::Base
   attr_accessible :category, :status, :days, :time, :title, :units
-<<<<<<< HEAD
+
+  def self.all_attributes
+    {:category => self.categories, :status => self.statuses, :days => self.days, :time => self.times, :units => self.units}
+  end
   
   def self.categories
     ["Computer Science", "Fitness", "Business", "Languages", "Cognitive Science", "All"]
@@ -18,11 +21,12 @@ class Course < ActiveRecord::Base
     ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]
   end
 
-=======
+  def times
+    []
+  end
 
   def self.search(input)
   	broad_search_condition = "%" + input + "%"
   	find(:all, :conditions => ['title LIKE ?', broad_search_condition])
   end
->>>>>>> dd17ee1fac3ed50b9207ae464b8cefe992fda563
 end

@@ -11,7 +11,7 @@
   <b>Categories</b>
   <%= select_tag 'selected_categories[]', options_for_select(@all[:category])%>
   <b>Days</b>
-  <% @all[:days].each do |day| %>
+  <% @all[days].each do |day| %>
     <%= check_box_tag 'checked_days[]', day, false, id: day%>
       <%= h day%>
     <% end %>
