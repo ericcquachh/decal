@@ -11,7 +11,7 @@ describe CoursesController do
     course.title == "Vacuum Cleaner"
     another_course = Course.where(category: "Politics")
     another_course.each do |course|
-      check_var = 0
+      check_var = 0 
       if course.title == "Kim Jong Un: Our Dear Leader"
         check_var = 1
       end
