@@ -4,9 +4,9 @@ class Course < ActiveRecord::Base
   def self.all_attributes
     {:category => self.categories, :status => self.statuses, :days => self.days, :time => self.times, :units => self.units}
   end
-  
+
   def self.categories
-    ["Computer Science", "Fitness", "Business", "Languages", "Cognitive Science", "All"]
+    ["All", "Computer Science", "Fitness", "Business", "Languages", "Cognitive Science"]
   end
 
   def self.units
@@ -14,14 +14,14 @@ class Course < ActiveRecord::Base
   end
 
   def self.statuses
-    ["Open", "Full", "All"]
+    ["All", "Full", "Open"]
   end
 
   def self.days
     ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]
   end
 
-  def times
+  def self.times
     []
   end
 

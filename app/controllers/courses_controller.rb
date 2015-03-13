@@ -4,32 +4,33 @@ class CoursesController < ApplicationController
   def index
     @courses = Course.all
     @all = Course.all_attributes
-    Course.accessible_attributes.each do |attribute|
-      session[attribute] ||= @all[attribute]
+    @attributes = @all.keys
+
+    @attributes.each do |attribute|
+      session[attribute] = @all[attribute]
     end
-    Course.accessible_attributes.each do |attribute|
-      if params[attribute]
-        session[attribute] = params[attribute]
+    @attributes.each do |attribute|
+      if params[attribute] && params[attribute] != 'All'
+        if attribute == :days || attribute == :units
+          session[attribute] = params[attribute].keys
+        else
+          session[attribute] = params[attribute]
+        end
       end
     end
 
-    #if params[:search_field]
-    #  @courses = Course.search(params[:search_field])
-    #end
+    @courses = Course.find(:all,:order => session[:title], :conditions => {:category => session[:category], :status => session[:status], 
+    :units => session[:units]})
 
-    #@all_units.each { |unit|
-    #  if params[:checked_units]
-    #    @selected_units[unit] = params[:checked_units].include?(unit)
-    #  else
-    #    @selected_units[unit] = false
-    #  end
-    #}
- 
-
-    # respond_to do |format|
-    #   format.html # index.html.erb
-    #   format.json { render json: @courses }
-    # end
+    if params[:search_field]
+      new_courses_array = []
+      @courses.each do |course|
+        if course.title.downcase.include? params[:search_field].downcase
+          new_courses_array.push(course)
+        end
+      end
+      @courses = new_courses_array
+    end
   end
 
   # GET /courses/1

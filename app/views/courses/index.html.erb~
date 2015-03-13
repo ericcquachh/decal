@@ -1,7 +1,6 @@
 <h1>Listing Courses</h1>
 <p><%= params %></p>
 <p><%= session %></p>
-<p><%= @attributes %></p>
 <%= form_for(courses_path, method: :get, id: 'units_form') do %>
   <%= label_tag("Search for:") %>
   <%= text_field_tag(:search_field) %>
