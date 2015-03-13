@@ -11,7 +11,7 @@ class CoursesController < ApplicationController
     @attributes.each do |attribute|
       if params[attribute] && params[attribute] != 'All'
         if attribute == :days || attribute == :units
-          session[attribute] = params[attribute].keys.map {|a| a.to_s}
+          session[attribute] = params[attribute].keys
         else
           session[attribute] = params[attribute]
         end
@@ -21,13 +21,7 @@ class CoursesController < ApplicationController
     @courses = Course.find(:all, :order => session[:title], :conditions => {:category => session[:category], :status => session[:status], 
     :units => session[:units]})
     if params[:search_field]
-      new_courses_array = []
-      @courses.each do |course|
-        if course.title.downcase.include? params[:search_field].downcase
-          new_courses_array.push(course)
-        end
-      end
-      @courses = new_courses_array
+      @courses = @courses.select {|course| course.title.downcase.include? params[:search_field].downcase}
     end
   end
 

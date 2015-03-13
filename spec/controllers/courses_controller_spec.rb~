@@ -11,7 +11,7 @@ describe CoursesController do
     course.title == "Vacuum Cleaner"
     another_course = Course.where(category: "Politics")
     another_course.each do |course|
-      check_var = 0 
+      check_var = 0
       if course.title == "Kim Jong Un: Our Dear Leader"
         check_var = 1
       end
@@ -32,7 +32,7 @@ describe CoursesController do
       course2 = Course.find_by_title("Ballmer Peak")
       course3 = Course.find_by_title("The Communist Manifesto")
       course4 = Course.find_by_title("Kim Jong Un: Our Dear CEO")
-      get :index, {:category => "All", :status => "All"}
+      get :index, {:category => "All"}
       response.should render_template 'index'
       assigns(:courses).should == [course1, course2, course3, course4]
     end
@@ -42,7 +42,7 @@ describe CoursesController do
       course2 = Course.find_by_title("Ballmer Peak")
       course3 = Course.find_by_title("The Communist Manifesto")
       course4 = Course.find_by_title("Kim Jong Un: Our Dear CEO")
-      get :index, {:category => "Business"}
+      get :index, {:category => "Business", :status => "All"}
       assigns(:courses).should == [course3, course4]      
     end
 

@@ -10,8 +10,7 @@ group :development, :test do
   gem 'cucumber-rails', :require => false
 
   gem 'rspec-rails', '~> 2.14.0'
-  gem 'simplecov', :require => false, :group => :test
-  'rake'
+  gem 'simplecov'
 end
 
 
@@ -24,7 +23,7 @@ group :assets do
 
   gem 'therubyracer'
   gem 'sass-rails'
-  #gem 'coffee-rails'
+  gem 'coffee-rails'
 
     #bootstrap (installed without gem)
   #gem 'bootstrap-sass', '~> 3.2.0'
