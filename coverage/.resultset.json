@@ -1,24 +1,25 @@
 {
   "Cucumber Features": {
     "coverage": {
-      "/Users/briantruong626/Desktop/cs169/decal/app/controllers/application_controller.rb": [
+      "/Users/felixliu/Documents/decal/app/controllers/application_controller.rb": [
         1,
         1,
         null
       ],
-      "/Users/briantruong626/Desktop/cs169/decal/app/helpers/application_helper.rb": [
+      "/Users/felixliu/Documents/decal/app/helpers/application_helper.rb": [
         1,
         null
       ],
-      "/Users/briantruong626/Desktop/cs169/decal/app/helpers/courses_helper.rb": [
+      "/Users/felixliu/Documents/decal/app/helpers/courses_helper.rb": [
         1,
         null
       ],
-      "/Users/briantruong626/Desktop/cs169/decal/app/controllers/courses_controller.rb": [
+      "/Users/felixliu/Documents/decal/app/controllers/courses_controller.rb": [
         1,
         null,
         null,
         1,
+<<<<<<< HEAD
         12,
         12,
         12,
@@ -26,9 +27,36 @@
         null,
         12,
         4,
+=======
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        null,
+        1,
+        0,
+        null,
+        null,
+        1,
+        0,
+        0,
+>>>>>>> 8104eadb10f1ecbe95dfa5355fff08a1bde47db0
         null,
         null,
         null,
+<<<<<<< HEAD
+=======
+        1,
+        0,
+        0,
+        0,
+>>>>>>> 8104eadb10f1ecbe95dfa5355fff08a1bde47db0
         null,
         null,
         null,
@@ -53,9 +81,14 @@
         0,
         null,
         null,
+<<<<<<< HEAD
         12,
+=======
+>>>>>>> 8104eadb10f1ecbe95dfa5355fff08a1bde47db0
         1,
+        0,
         null,
+<<<<<<< HEAD
         null,
         12,
         2,
@@ -64,11 +97,16 @@
         null,
         1,
         null,
+=======
+        0,
+        0,
+>>>>>>> 8104eadb10f1ecbe95dfa5355fff08a1bde47db0
         0,
         null,
         null,
         null,
         null,
+<<<<<<< HEAD
         null,
         null,
         12,
@@ -115,17 +153,44 @@
         null,
         null,
         null,
+=======
+        1,
+        0,
+        0,
+        0,
+        0,
+>>>>>>> 8104eadb10f1ecbe95dfa5355fff08a1bde47db0
         null,
         null,
         null,
         null,
+<<<<<<< HEAD
+        null,
+        null,
+=======
+        1,
+        0,
+        null,
+        null,
+        1,
+        4,
+        0,
+>>>>>>> 8104eadb10f1ecbe95dfa5355fff08a1bde47db0
         null,
         null,
         null,
         null,
+<<<<<<< HEAD
         null,
+=======
+        1,
+        1,
         null,
-        null,
+        1,
+        5,
+        1,
+        1,
+>>>>>>> 8104eadb10f1ecbe95dfa5355fff08a1bde47db0
         null,
         null,
         null,
@@ -206,11 +271,12 @@
         null,
         null
       ],
-      "/Users/briantruong626/Desktop/cs169/decal/app/models/course.rb": [
+      "/Users/felixliu/Documents/decal/app/models/course.rb": [
         1,
         1,
         null,
         1,
+<<<<<<< HEAD
         4,
         4,
         null,
@@ -225,10 +291,18 @@
         null,
         1,
         12,
+=======
+        0,
+        0,
+>>>>>>> 8104eadb10f1ecbe95dfa5355fff08a1bde47db0
         null,
         null
       ]
     },
+<<<<<<< HEAD
     "timestamp": 1426219253
+=======
+    "timestamp": 1426206215
+>>>>>>> 8104eadb10f1ecbe95dfa5355fff08a1bde47db0
   }
 }

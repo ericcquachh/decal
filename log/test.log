@@ -5790,6 +5790,258 @@ Processing by CoursesController#index as HTML
 Completed 200 OK in 19.6ms (Views: 11.6ms | ActiveRecord: 0.6ms)
   [1m[36m (1.5ms)[0m  [1mrollback transaction[0m
 Connecting to database specified by database.yml
+<<<<<<< HEAD
+  [1m[36m (0.2ms)[0m  [1mbegin transaction[0m
+  Rendered courses/index.html.erb (32.0ms)
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  Rendered courses/_form.html.erb (9.8ms)
+  [1m[35m (0.0ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+Started GET "/courses" for 127.0.0.1 at 2015-03-12 16:59:03 -0700
+Processing by CoursesController#index as HTML
+  [1m[35mCourse Load (0.1ms)[0m  SELECT "courses".* FROM "courses" 
+Completed 200 OK in 5.2ms (Views: 4.2ms | ActiveRecord: 0.1ms)
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (7.2ms)[0m  INSERT INTO "courses" ("category", "created_at", "days", "status", "time", "title", "units", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)  [["category", nil], ["created_at", Thu, 12 Mar 2015 23:59:03 UTC +00:00], ["days", nil], ["status", nil], ["time", nil], ["title", "MyString"], ["units", nil], ["updated_at", Thu, 12 Mar 2015 23:59:03 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Processing by CoursesController#update as HTML
+  Parameters: {"course"=>{"title"=>"invalid value"}, "id"=>"1"}
+  [1m[35mCourse Load (0.2ms)[0m  SELECT "courses".* FROM "courses" WHERE "courses"."id" = ? LIMIT 1  [["id", "1"]]
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+Completed 200 OK in 4.6ms (Views: 1.2ms | ActiveRecord: 0.3ms)
+  [1m[36m (0.6ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "courses" ("category", "created_at", "days", "status", "time", "title", "units", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)  [["category", nil], ["created_at", Thu, 12 Mar 2015 23:59:03 UTC +00:00], ["days", nil], ["status", nil], ["time", nil], ["title", "MyString"], ["units", nil], ["updated_at", Thu, 12 Mar 2015 23:59:03 UTC +00:00]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Processing by CoursesController#update as HTML
+  Parameters: {"course"=>{"title"=>"invalid value"}, "id"=>"1"}
+  [1m[35mCourse Load (0.1ms)[0m  SELECT "courses".* FROM "courses" WHERE "courses"."id" = ? LIMIT 1  [["id", "1"]]
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+Completed 200 OK in 2.5ms (Views: 0.7ms | ActiveRecord: 0.2ms)
+  [1m[36m (0.4ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "courses" ("category", "created_at", "days", "status", "time", "title", "units", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)  [["category", nil], ["created_at", Thu, 12 Mar 2015 23:59:03 UTC +00:00], ["days", nil], ["status", nil], ["time", nil], ["title", "MyString"], ["units", nil], ["updated_at", Thu, 12 Mar 2015 23:59:03 UTC +00:00]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Processing by CoursesController#update as HTML
+  Parameters: {"course"=>{"title"=>"MyString"}, "id"=>"1"}
+  [1m[35mCourse Load (0.0ms)[0m  SELECT "courses".* FROM "courses" WHERE "courses"."id" = ? LIMIT 1  [["id", "1"]]
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+Redirected to http://test.host/courses/1
+Completed 302 Found in 2.0ms (ActiveRecord: 0.1ms)
+  [1m[36m (0.4ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "courses" ("category", "created_at", "days", "status", "time", "title", "units", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)  [["category", nil], ["created_at", Thu, 12 Mar 2015 23:59:03 UTC +00:00], ["days", nil], ["status", nil], ["time", nil], ["title", "MyString"], ["units", nil], ["updated_at", Thu, 12 Mar 2015 23:59:03 UTC +00:00]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Processing by CoursesController#update as HTML
+  Parameters: {"course"=>{"title"=>"MyString"}, "id"=>"1"}
+  [1m[35mCourse Load (0.0ms)[0m  SELECT "courses".* FROM "courses" WHERE "courses"."id" = ? LIMIT 1  [["id", "1"]]
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+Redirected to http://test.host/courses/1
+Completed 302 Found in 1.8ms (ActiveRecord: 0.1ms)
+  [1m[36m (0.4ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "courses" ("category", "created_at", "days", "status", "time", "title", "units", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)  [["category", nil], ["created_at", Thu, 12 Mar 2015 23:59:03 UTC +00:00], ["days", nil], ["status", nil], ["time", nil], ["title", "MyString"], ["units", nil], ["updated_at", Thu, 12 Mar 2015 23:59:03 UTC +00:00]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Processing by CoursesController#update as HTML
+  Parameters: {"course"=>{"title"=>"MyString"}, "id"=>"1"}
+  [1m[35mCourse Load (0.0ms)[0m  SELECT "courses".* FROM "courses" WHERE "courses"."id" = ? LIMIT 1  [["id", "1"]]
+Completed 200 OK in 1.6ms (Views: 0.6ms | ActiveRecord: 0.0ms)
+  [1m[36m (0.4ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "courses" ("category", "created_at", "days", "status", "time", "title", "units", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)  [["category", nil], ["created_at", Thu, 12 Mar 2015 23:59:03 UTC +00:00], ["days", nil], ["status", nil], ["time", nil], ["title", "MyString"], ["units", nil], ["updated_at", Thu, 12 Mar 2015 23:59:03 UTC +00:00]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Processing by CoursesController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mCourse Load (0.1ms)[0m  SELECT "courses".* FROM "courses" WHERE "courses"."id" = ? LIMIT 1  [["id", "1"]]
+Completed 200 OK in 2.9ms (Views: 1.7ms | ActiveRecord: 0.1ms)
+  [1m[36m (0.4ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "courses" ("category", "created_at", "days", "status", "time", "title", "units", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)  [["category", nil], ["created_at", Thu, 12 Mar 2015 23:59:03 UTC +00:00], ["days", nil], ["status", nil], ["time", nil], ["title", "MyString"], ["units", nil], ["updated_at", Thu, 12 Mar 2015 23:59:03 UTC +00:00]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Processing by CoursesController#index as HTML
+  [1m[35mCourse Load (0.1ms)[0m  SELECT "courses".* FROM "courses" 
+Completed 200 OK in 1.2ms (Views: 0.6ms | ActiveRecord: 0.1ms)
+  [1m[36m (0.5ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "courses" ("category", "created_at", "days", "status", "time", "title", "units", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)  [["category", nil], ["created_at", Thu, 12 Mar 2015 23:59:03 UTC +00:00], ["days", nil], ["status", nil], ["time", nil], ["title", "MyString"], ["units", nil], ["updated_at", Thu, 12 Mar 2015 23:59:03 UTC +00:00]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Processing by CoursesController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mCourse Load (0.0ms)[0m  SELECT "courses".* FROM "courses" WHERE "courses"."id" = ? LIMIT 1  [["id", "1"]]
+Completed 200 OK in 1.8ms (Views: 0.8ms | ActiveRecord: 0.0ms)
+  [1m[36m (0.4ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+Processing by CoursesController#create as HTML
+  Parameters: {"course"=>{"title"=>"invalid value"}}
+Completed 200 OK in 2.6ms (Views: 1.7ms | ActiveRecord: 0.0ms)
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+Processing by CoursesController#create as HTML
+  Parameters: {"course"=>{"title"=>"invalid value"}}
+Completed 200 OK in 1.2ms (Views: 0.6ms | ActiveRecord: 0.0ms)
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+Processing by CoursesController#create as HTML
+  Parameters: {"course"=>{"title"=>"MyString"}}
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "courses" ("category", "created_at", "days", "status", "time", "title", "units", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)  [["category", nil], ["created_at", Thu, 12 Mar 2015 23:59:03 UTC +00:00], ["days", nil], ["status", nil], ["time", nil], ["title", "MyString"], ["units", nil], ["updated_at", Thu, 12 Mar 2015 23:59:03 UTC +00:00]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://test.host/courses/1
+Completed 302 Found in 1.9ms (ActiveRecord: 0.4ms)
+  [1m[35mCourse Load (0.1ms)[0m  SELECT "courses".* FROM "courses" ORDER BY "courses"."id" DESC LIMIT 1
+  [1m[36m (0.3ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+Processing by CoursesController#create as HTML
+  Parameters: {"course"=>{"title"=>"MyString"}}
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "courses" ("category", "created_at", "days", "status", "time", "title", "units", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)  [["category", nil], ["created_at", Thu, 12 Mar 2015 23:59:03 UTC +00:00], ["days", nil], ["status", nil], ["time", nil], ["title", "MyString"], ["units", nil], ["updated_at", Thu, 12 Mar 2015 23:59:03 UTC +00:00]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://test.host/courses/1
+Completed 302 Found in 1.5ms (ActiveRecord: 0.3ms)
+  [1m[35m (0.4ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "courses" 
+Processing by CoursesController#create as HTML
+  Parameters: {"course"=>{"title"=>"MyString"}}
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.6ms)[0m  INSERT INTO "courses" ("category", "created_at", "days", "status", "time", "title", "units", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)  [["category", nil], ["created_at", Thu, 12 Mar 2015 23:59:03 UTC +00:00], ["days", nil], ["status", nil], ["time", nil], ["title", "MyString"], ["units", nil], ["updated_at", Thu, 12 Mar 2015 23:59:03 UTC +00:00]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://test.host/courses/1
+Completed 302 Found in 2.5ms (ActiveRecord: 0.7ms)
+  [1m[35m (0.0ms)[0m  SELECT COUNT(*) FROM "courses" 
+  [1m[36m (0.4ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "courses" ("category", "created_at", "days", "status", "time", "title", "units", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)  [["category", nil], ["created_at", Thu, 12 Mar 2015 23:59:03 UTC +00:00], ["days", nil], ["status", nil], ["time", nil], ["title", "MyString"], ["units", nil], ["updated_at", Thu, 12 Mar 2015 23:59:03 UTC +00:00]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Processing by CoursesController#destroy as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mCourse Load (0.0ms)[0m  SELECT "courses".* FROM "courses" WHERE "courses"."id" = ? LIMIT 1  [["id", "1"]]
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.9ms)[0m  DELETE FROM "courses" WHERE "courses"."id" = ?  [["id", 1]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://test.host/courses
+Completed 302 Found in 3.0ms (ActiveRecord: 1.0ms)
+  [1m[35m (0.5ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "courses" ("category", "created_at", "days", "status", "time", "title", "units", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["category", nil], ["created_at", Thu, 12 Mar 2015 23:59:03 UTC +00:00], ["days", nil], ["status", nil], ["time", nil], ["title", "MyString"], ["units", nil], ["updated_at", Thu, 12 Mar 2015 23:59:03 UTC +00:00]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSELECT COUNT(*) FROM "courses" [0m
+Processing by CoursesController#destroy as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mCourse Load (0.0ms)[0m  SELECT "courses".* FROM "courses" WHERE "courses"."id" = ? LIMIT 1  [["id", "1"]]
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  DELETE FROM "courses" WHERE "courses"."id" = ?  [["id", 1]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://test.host/courses
+Completed 302 Found in 1.3ms (ActiveRecord: 0.3ms)
+  [1m[35m (0.0ms)[0m  SELECT COUNT(*) FROM "courses" 
+  [1m[36m (0.6ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+Processing by CoursesController#new as HTML
+Completed 200 OK in 1.2ms (Views: 0.7ms | ActiveRecord: 0.0ms)
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  Rendered courses/_form.html.erb (3.6ms)
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+Connecting to database specified by database.yml
+  [1m[36m (0.2ms)[0m  [1mbegin transaction[0m
+  Rendered courses/index.html.erb (25.3ms)
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+Started GET "/courses" for 127.0.0.1 at 2015-03-12 17:00:18 -0700
+Processing by CoursesController#index as HTML
+  [1m[35mCourse Load (0.1ms)[0m  SELECT "courses".* FROM "courses" 
+Completed 200 OK in 4.4ms (Views: 3.6ms | ActiveRecord: 0.1ms)
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  Rendered courses/_form.html.erb (4.9ms)
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  Rendered courses/_form.html.erb (2.6ms)
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+Connecting to database specified by database.yml
+  [1m[36m (0.2ms)[0m  [1mbegin transaction[0m
+  Rendered courses/index.html.erb (5.3ms)
+  [1m[35m (0.1ms)[0m  rollback transaction
+Connecting to database specified by database.yml
+  [1m[36m (0.2ms)[0m  [1mbegin transaction[0m
+  Rendered courses/index.html.erb (26.8ms)
+  [1m[35m (0.1ms)[0m  rollback transaction
+Connecting to database specified by database.yml
+  [1m[36m (0.3ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  rollback transaction
+Connecting to database specified by database.yml
+  [1m[36m (0.2ms)[0m  [1mbegin transaction[0m
+  Rendered courses/index.html.erb (23.5ms)
+  [1m[35m (0.1ms)[0m  rollback transaction
+Connecting to database specified by database.yml
+  [1m[36m (0.2ms)[0m  [1mbegin transaction[0m
+  Rendered courses/index.html.erb (23.7ms)
+  [1m[35m (0.1ms)[0m  rollback transaction
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+  [1m[36m (0.3ms)[0m  [1mbegin transaction[0m
+  Rendered courses/_form.html.erb (4.8ms)
+  Rendered courses/edit.html.erb (8.9ms)
+  [1m[35m (0.1ms)[0m  rollback transaction
+Connecting to database specified by database.yml
+  [1m[36m (0.2ms)[0m  [1mbegin transaction[0m
+  Rendered courses/_form.html.erb (4.9ms)
+  Rendered courses/edit.html.erb (8.9ms)
+  [1m[35m (0.1ms)[0m  rollback transaction
+Connecting to database specified by database.yml
+  [1m[36m (0.2ms)[0m  [1mbegin transaction[0m
+  Rendered courses/index.html.erb (5.4ms)
+  [1m[35m (0.0ms)[0m  rollback transaction
+=======
   [1m[36m (0.4ms)[0m  [1mbegin transaction[0m
   [1m[35m (0.0ms)[0m  commit transaction
   [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
@@ -6044,6 +6296,7 @@ Processing by CoursesController#index as HTML
   Rendered courses/index.html.erb within layouts/application (6.6ms)
 Completed 200 OK in 9.3ms (Views: 8.0ms | ActiveRecord: 0.1ms)
   [1m[35m (2.9ms)[0m  rollback transaction
+<<<<<<< HEAD
 Connecting to database specified by database.yml
   [1m[36m (0.4ms)[0m  [1mbegin transaction[0m
   [1m[35m (0.0ms)[0m  commit transaction
@@ -6281,10 +6534,14 @@ Processing by CoursesController#index as HTML
 Completed 200 OK in 4.5ms (Views: 3.4ms | ActiveRecord: 0.2ms)
   [1m[35m (1.6ms)[0m  rollback transaction
 Connecting to database specified by database.yml
+=======
+>>>>>>> dd17ee1fac3ed50b9207ae464b8cefe992fda563
+>>>>>>> 8104eadb10f1ecbe95dfa5355fff08a1bde47db0
 Connecting to database specified by database.yml
   [1m[36m (0.3ms)[0m  [1mbegin transaction[0m
   [1m[35m (0.0ms)[0m  commit transaction
   [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+<<<<<<< HEAD
   [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
   [1m[36mSQL (56.7ms)[0m  [1mINSERT INTO "courses" ("category", "created_at", "days", "status", "time", "title", "units", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["category", "Cognitive Science"], ["created_at", Fri, 13 Mar 2015 03:51:18 UTC +00:00], ["days", nil], ["status", "Open"], ["time", "TuTh 5PM-6PM"], ["title", "Quantum Consciousness"], ["units", "2"], ["updated_at", Fri, 13 Mar 2015 03:51:18 UTC +00:00]]
   [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
@@ -6745,3 +7002,30 @@ Processing by CoursesController#index as HTML
   Rendered courses/index.html.erb within layouts/application (6.3ms)
 Completed 200 OK in 8.8ms (Views: 7.6ms | ActiveRecord: 0.2ms)
   [1m[35m (1.3ms)[0m  rollback transaction
+=======
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (11.2ms)[0m  [1mINSERT INTO "courses" ("category", "created_at", "days", "status", "time", "title", "units", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["category", "Cognitive Science"], ["created_at", Fri, 13 Mar 2015 00:23:35 UTC +00:00], ["days", nil], ["status", "Open"], ["time", "TuTh 5PM-6PM"], ["title", "Quantum Consciousness"], ["units", "2"], ["updated_at", Fri, 13 Mar 2015 00:23:35 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (1.0ms)[0m  INSERT INTO "courses" ("category", "created_at", "days", "status", "time", "title", "units", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)  [["category", "Languages"], ["created_at", Fri, 13 Mar 2015 00:23:35 UTC +00:00], ["days", nil], ["status", "Full"], ["time", "MW 5PM-6:30PM"], ["title", "Taiwanese Language"], ["units", "1"], ["updated_at", Fri, 13 Mar 2015 00:23:35 UTC +00:00]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "courses" ("category", "created_at", "days", "status", "time", "title", "units", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["category", "Computer Science"], ["created_at", Fri, 13 Mar 2015 00:23:35 UTC +00:00], ["days", nil], ["status", "Full"], ["time", "MWF 6PM-8PM"], ["title", "Python on Crack"], ["units", "3"], ["updated_at", Fri, 13 Mar 2015 00:23:35 UTC +00:00]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "courses" ("category", "created_at", "days", "status", "time", "title", "units", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)  [["category", "Computer Science"], ["created_at", Fri, 13 Mar 2015 00:23:35 UTC +00:00], ["days", nil], ["status", "Full"], ["time", "MW 7PM-8PM"], ["title", "Ruby on Rails"], ["units", "2"], ["updated_at", Fri, 13 Mar 2015 00:23:35 UTC +00:00]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "courses" ("category", "created_at", "days", "status", "time", "title", "units", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["category", "Fitness"], ["created_at", Fri, 13 Mar 2015 00:23:35 UTC +00:00], ["days", nil], ["status", "Open"], ["time", "W 8PM-9PM"], ["title", "Max Interval Training"], ["units", "1"], ["updated_at", Fri, 13 Mar 2015 00:23:35 UTC +00:00]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "courses" ("category", "created_at", "days", "status", "time", "title", "units", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)  [["category", "Business"], ["created_at", Fri, 13 Mar 2015 00:23:35 UTC +00:00], ["days", nil], ["status", "Full"], ["time", "TuTh 6PM-7PM"], ["title", "Introduction to Banking"], ["units", "2"], ["updated_at", Fri, 13 Mar 2015 00:23:35 UTC +00:00]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/courses" for 127.0.0.1 at 2015-03-12 17:23:35 -0700
+Processing by CoursesController#index as HTML
+  [1m[35mCourse Load (0.1ms)[0m  SELECT "courses".* FROM "courses" 
+  Rendered courses/_search.html.erb (1.2ms)
+  Rendered courses/index.html.erb within layouts/application (16.6ms)
+Completed 200 OK in 54.3ms (Views: 52.8ms | ActiveRecord: 0.1ms)
+  [1m[36m (0.6ms)[0m  [1mrollback transaction[0m
+>>>>>>> 8104eadb10f1ecbe95dfa5355fff08a1bde47db0
