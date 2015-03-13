@@ -18,9 +18,8 @@ class CoursesController < ApplicationController
       end
     end
 
-    @courses = Course.find(:all,:order => session[:title], :conditions => {:category => session[:category], :status => session[:status], 
+    @courses = Course.find(:all, :order => session[:title], :conditions => {:category => session[:category], :status => session[:status], 
     :units => session[:units]})
-
     if params[:search_field]
       new_courses_array = []
       @courses.each do |course|

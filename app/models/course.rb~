@@ -6,7 +6,7 @@ class Course < ActiveRecord::Base
   end
 
   def self.categories
-    ["All", "Computer Science", "Fitness", "Business", "Languages", "Cognitive Science"]
+    ["Computer Science", "Fitness", "Business", "Languages", "Cognitive Science", "All"]
   end
 
   def self.units
@@ -14,7 +14,7 @@ class Course < ActiveRecord::Base
   end
 
   def self.statuses
-    ["All", "Full", "Open"]
+    ["Full", "Open", "All"]
   end
 
   def self.days
@@ -23,10 +23,5 @@ class Course < ActiveRecord::Base
 
   def self.times
     []
-  end
-
-  def self.search(input)
-  	broad_search_condition = "%" + input + "%"
-  	find(:all, :conditions => ['title LIKE ?', broad_search_condition])
   end
 end

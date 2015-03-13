@@ -1,8 +1,8 @@
-Feature: display list of courses filtered by catagory
+Feature: display list of courses filtered by units
  
   As a student
   So that I can decide what courses to enroll in
-  I want to see courses matching only from certain categories
+  I want to see courses matching only with certain units
 
 Background: courses have been added to database
 
@@ -17,10 +17,15 @@ Background: courses have been added to database
 
   And I am on the Decal courses page
   And I set everything to default
-
-Scenario: restrict to title with 'Computer Science' category
-  When I select the following categories: Computer Science
   And I press "Search"
-  Then I should see "Python on Crack" 
-  And I should see "Ruby on Rails"
-  And I should not see "Introduction to Banking"
+
+Scenario: restrict to title with '2' or '3" units
+  When I check the following units: 2, 3
+  And I uncheck the following units: 1, 4
+  And I press "Search"
+  Then I should see "Quantum Consciousness" 
+  And I should see "Python on Crack"  
+  And I should see "Ruby on Rails"   
+  And I should see "Introduction to Banking" 
+  And I should not see "Max Interval Training"
+  And I should not see "Taiwanese Language"

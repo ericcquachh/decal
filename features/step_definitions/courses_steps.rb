@@ -5,6 +5,13 @@ Given /the following courses exist/ do |courses_table|
   end
 end
 
+And /I set everything to default/ do
+  select("All", :from => "category")
+  select("All", :from => "status")
+  (1..4).each {|i| uncheck "units[#{i.to_s}]"}
+  Course.days.each {|d| uncheck "days[#{d}]"}
+end
+
 Then /I should see "(.*)" before "(.*)"/ do |e1, e2|
   assert page.body.index(e1) < page.body.index(e2)
 end

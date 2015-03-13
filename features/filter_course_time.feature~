@@ -16,9 +16,11 @@ Background: courses have been added to database
   | Introduction to Banking  | Business           | 2     | TuTh 6PM-7PM    | Full   |
 
   And I am on the Decal courses page
+  And I set everything to default
+  And I press "Search"
 
 Scenario: restrict to courses with "Tuesday" time
-  When I check the following days: Tuesday
+  When I check the following days_of_week: Tuesday
   And I press "Search"
   Then I should see "Quantum Consciousness" 
   And I should see "Introduction to Banking"   
