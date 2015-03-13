@@ -19,29 +19,90 @@
         null,
         null,
         1,
+<<<<<<< HEAD
         13,
         13,
+=======
+        14,
+        14,
+        14,
+        14,
+>>>>>>> f7050859545fbf615d3d07073f2361d10e94fbb2
         null,
         13,
         78,
         null,
+<<<<<<< HEAD
         13,
         78,
         5,
+=======
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        14,
+        14,
+        14,
+        14,
+        null,
+        14,
+        4,
+        null,
+        null,
+        14,
+        0,
+        null,
+        null,
+        14,
+        1,
+        null,
+        null,
+        14,
+>>>>>>> f7050859545fbf615d3d07073f2361d10e94fbb2
         2,
         null,
         3,
         null,
+<<<<<<< HEAD
         null,
+=======
+        1,
+        null,
+        0,
+        null,
+        null,
+        null,
+        14,
+        2,
+        2,
+        null,
+        14,
+>>>>>>> f7050859545fbf615d3d07073f2361d10e94fbb2
         null,
         null,
         13,
         null,
+<<<<<<< HEAD
         13,
         5,
         5,
         20,
         15,
+=======
+        14,
+        4,
+        4,
+        14,
+        9,
+>>>>>>> f7050859545fbf615d3d07073f2361d10e94fbb2
         null,
         null,
         5,
@@ -137,6 +198,7 @@
         null,
         null,
         1,
+<<<<<<< HEAD
         13,
         null,
         null,
@@ -146,10 +208,25 @@
         null,
         1,
         13,
+=======
+        14,
+        null,
+        null,
+        1,
+        14,
+        null,
+        null,
+        1,
+        14,
+>>>>>>> f7050859545fbf615d3d07073f2361d10e94fbb2
         null,
         null
       ]
     },
+<<<<<<< HEAD
     "timestamp": 1426247936
+=======
+    "timestamp": 1426254453
+>>>>>>> f7050859545fbf615d3d07073f2361d10e94fbb2
   }
 }

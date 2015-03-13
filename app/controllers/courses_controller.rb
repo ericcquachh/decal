@@ -6,7 +6,7 @@ class CoursesController < ApplicationController
     @attributes = @all.keys
 
     @attributes.each do |attribute|
-      session[attribute] ||= @all[attribute]
+      session[attribute] = @all[attribute]
     end
     @attributes.each do |attribute|
       if params[attribute] && params[attribute] != 'All'

@@ -2,7 +2,7 @@ class Course < ActiveRecord::Base
   attr_accessible :category, :status, :days, :time, :title, :units
 
   def self.all_attributes
-    {:category => self.categories, :status => self.statuses, :days => self.days, :time => self.times, :units => self.units}
+    {:title => nil, :category => self.categories, :status => self.statuses, :days => self.days, :time => self.times, :units => self.units}
   end
 
   def self.categories
