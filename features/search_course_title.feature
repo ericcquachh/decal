@@ -18,7 +18,7 @@ Background: courses have been added to database
   And I am on the Decal courses page
 
 Scenario: restrict to title containing 'Python' in title
-  When I search the following title: Python
+  When I fill in "search_field" with "Python"
   And I press "Search"
   Then I should see "Python on Crack"
   And I should not see "Ruby on Rails"

@@ -5,10 +5,6 @@ Given /the following courses exist/ do |courses_table|
   end
 end
 
-When /I search the following title: (.*)/ do |search_field|
-  puts search_field
-end
-
 Then /I should see "(.*)" before "(.*)"/ do |e1, e2|
   assert page.body.index(e1) < page.body.index(e2)
 end
@@ -27,7 +23,7 @@ end
 
 When /I (un)?check the following units: (.*)/ do |uncheck, unit_list|
   unit_list.split(/[\s,]+/).each do |unit|
-    uncheck ? check(unit) : check(unit)
+    uncheck ? uncheck(unit) : check(unit)
   end
 end
 

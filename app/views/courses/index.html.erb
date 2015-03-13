@@ -1,11 +1,15 @@
 <h1>Listing Courses</h1>
 <p><%= params %></p>
+<<<<<<< HEAD
 <p><%= session %></p>
 <p><%= @attributes %></p>
+=======
+>>>>>>> e78d6429ad1e21c36a9cbd2f171f88f1462dd49c
 <%= form_for(courses_path, method: :get, id: 'units_form') do %>
   <%= label_tag("Search for:") %>
   <%= text_field_tag(:search_field) %>
   <%= label_tag("Units:") %>
+<<<<<<< HEAD
   <% @all[:units].each do |unit| %>
     <%= check_box_tag "units[#{unit}]", 1, session[:units[unit]] || !session[:units], id: unit %>
     <%= unit%>
@@ -19,6 +23,16 @@
   <% end %>
   <%= label_tag("Course Status:") %>
   <%= select_tag 'status', options_for_select(@all[:status], session[:status])%>
+=======
+  <% @all_units.each do |unit| %>
+    <%= check_box_tag "checked_units[#{unit}]", 1, @selected_units.size == 0 || @selected_units[unit], id: unit %>
+    <%= unit%>
+  <% end %>
+  <%= label_tag("Categories:") %>
+  <%= select_tag 'selected_categories', options_for_select(@all_categories, @selected_category)%>
+  <%= label_tag("Course Status:") %>
+  <%= select_tag 'selected_status', options_for_select(@all_status, @selected_status)%>
+>>>>>>> e78d6429ad1e21c36a9cbd2f171f88f1462dd49c
   <%= submit_tag "Search" %>
 <% end %>
 

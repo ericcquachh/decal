@@ -3,6 +3,7 @@ class CoursesController < ApplicationController
   # GET /courses.json
   def index
     @courses = Course.all
+<<<<<<< HEAD
     @all = Course.all_attributes
     @attributes = @all.keys
 
@@ -18,7 +19,10 @@ class CoursesController < ApplicationController
         end
       end
     end
-    @courses = Course.find(:all,:order => session[:title], :conditions => {:category => session[:category], :status => session[:status], :units => session[:units]})
+
+    @courses = Course.find(:all,:order => session[:title], :conditions => {:category => session[:category], :status => session[:status], 
+    :units => session[:units]})
+
     if params[:search_field]
       new_courses_array = []
       @courses.each do |course|
@@ -28,6 +32,69 @@ class CoursesController < ApplicationController
       end
       @courses = new_courses_array
     end
+=======
+    @all_units = Course.units
+    @all_categories = Course.categories
+    @all_status = Course.statuses
+
+    # if params[:title] == 'title'
+    #   session[:title] = params[:title]
+    #   @courses = Course.all(:order => "title ASC")
+    # elsif session.has_key?(:title)
+    #   params[:title] = session[:title]
+    #   @existing_session = true
+    # end
+
+    # if @existing_session
+    #   redirect_to courses_path(:title => params[:title], :checked_units => params[:checked_units], :selected_categories => params[:checked_units], :selected_status => params[:selected_status])
+    # end
+
+    @selected_units = params[:checked_units] || session[:checked_units] || Hash.new
+    @selected_category = params[:selected_categories] || session[:selected_categories] ||  "All"
+    @selected_status = params[:selected_status] || session[:selected_status] || "All"
+    @sort_title = params[:title] || session[:title] || nil
+
+    if params[:checked_units] != session[:checked_units]
+      session[:checked_units] = @selected_units
+    end
+
+    if @selected_category != "All" and (params[:selected_category] != session[:selected_category])
+      session[:selected_category] = @selected_category
+    end
+
+    if @selected_status != "All" and (params[:selected_status] != session[:selected_status])
+      session[:selected_status] = @selected_status
+    end
+
+    if @selected_category == "All" and @selected_status == "All" and @selected_units.size != 0
+      @courses = Course.where(:units => (@selected_units.keys))
+    elsif @selected_category == "All" and @selected_status != "All"
+      @courses = Course.where(:units => (@selected_units.keys), :status => @selected_status)
+    elsif @selected_category != "All" and @selected_status == "All"
+      @courses = Course.where(:units => (@selected_units.keys), :category => @selected_category)
+    elsif @selected_category != "All" and @selected_status != "All"
+      @courses = Course.where(:units => (@selected_units.keys), :category => @selected_category, :status => @selected_status)
+    end
+
+    # function for sorting the title
+    if @sort_title
+      if params[:title] != session[:title]
+        session[:title] = @sort_title
+      end
+      @courses.sort_by!{ |course| course.title.downcase }
+    end
+
+    # function for searching
+    if params[:search_field]
+      new_courses_array = []
+      @courses.each do |course|
+        if course.title.downcase.include? params[:search_field].downcase
+          new_courses_array.push(course)
+        end
+      end
+      @courses = new_courses_array
+    end
+>>>>>>> e78d6429ad1e21c36a9cbd2f171f88f1462dd49c
   end
 
   # GET /courses/1
