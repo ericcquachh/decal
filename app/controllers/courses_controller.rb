@@ -50,71 +50,24 @@ class CoursesController < ApplicationController
       @courses = Course.where(:units => (@selected_units.keys), :category => @selected_category, :status => @selected_status)
     end
 
-    # if params[:title] == 'title'
-    #   session[:title] = @sort_title
-    #   @courses.sort_by!{ |course| course.title.downcase }
-    # end
+    # function for sorting the title
     if @sort_title
       if params[:title] != session[:title]
         session[:title] = @sort_title
       end
       @courses.sort_by!{ |course| course.title.downcase }
     end
-    # @memberships.sort_by!{ |m| m.group.name.downcase }
 
-    # if params[:checked_units]
-    #   @selected_categories = params[:checked_units]
-    #   session[:checked_units] = params[:checked_units]
-    #   @courses = @courses.find_all{|u| params[:checked_units].include?(u.units)}
-    # elsif session.has_key?(:checked_units)
-    #   params[:checked_units] = session[:checked_units]
-    #   @existing_session = true
-    # end
-
-    # if params[:selected_categories]
-    #   session[:selected_categories] = params[:selected_categories]
-    #   #currently a hacky way to support selecting just ONE category. Need to alter cucumber to this OR enable multiple selecting (Easy)
-    #   @selected_category = params[:selected_categories][0]
-    #   if params[:selected_categories][0] != "All"
-    #     @courses = @courses.find_all{|c| params[:selected_categories].include?(c.category)}
-    #   end
-    # elsif session.has_key?(:selected_categories)
-    #   params[:selected_categories] = session[:selected_categories]
-    #   @existing_session = true
-    # end
-
-    # if params[:selected_status]
-    #   session[:selected_status] = params[:selected_status]
-    #   @selected_status = params[:selected_status]
-    #   if params[:selected_status][0] != "All"
-    #     @courses = @courses.find_all{|c| params[:selected_status].include?(c.status)}
-    #   end
-    # elsif session.has_key?(:selected_status)
-    #   params[:selected_status] = session[:selected_status]
-    #   @existing_session = true
-    # end
-
-    # @all_units.each { |unit|
-    #   if params[:checked_units]
-    #     @selected_units[unit] = params[:checked_units].include?(unit)
-    #   else
-    #     @selected_units[unit] = false
-    #   end
-    # }
-
-    # @selected_categories = params[:selected_categories]
-    # @selected_status = params[:selected_status]
-  
-    # if session.empty?
-    #   @all_units.each { |unit| @selected_units[unit] = true}
-    #   @selected_categories = @all_categories
-    #   @selected_status = "All"
-    # end
-
-    # respond_to do |format|
-    #   format.html # index.html.erb
-    #   format.json { render json: @courses }
-    # end
+    # function for searching
+    if params[:search_field]
+      new_courses_array = []
+      @courses.each do |course|
+        if course.title.downcase.include? params[:search_field].downcase
+          new_courses_array.push(course)
+        end
+      end
+      @courses = new_courses_array
+    end
   end
 
   # GET /courses/1
