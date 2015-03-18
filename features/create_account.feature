@@ -3,7 +3,7 @@ Feature: Create an account
 	So I can favorite a course
 	I want to create an account
 
-Background:
+Background: student has not made an account
 	Given I am on the home page
 
 Scenario: Successfully create an account

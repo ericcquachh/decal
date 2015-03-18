@@ -3,14 +3,15 @@ Feature: Add New Section to Course
 	So my course can have a section
 	I want to add a section to my course
 
-Background: 
+Background: facilitator has logged in
 
 	Given the following users exist:
     | profile_id | email                      | name           | password     | 
     | 1          | markmiyashita@berkeley.edu | Mark Miyashita | ilovepython  | 
     | 2          | yunpark@berkeley.edu       | Yun Park       | iheartpython | 
 
-    Given I am logged in as "yunpark@berkeley.edu" with pass "iheartpython"
+    Given I am logged in as "yunpark@berkeley.edu" with password "iheartpython"
+    Then I should be on my account page
 	Then I press "Python on Crack"
 
 Scenario: Successfully add section
