@@ -1,4 +1,4 @@
-Feature: Become a Facilitator for Existing Course
+Feature: Facilitate an Existing Course
 	As a facilitator
 	So I can edit an existing course
 	I want to become a facilitator for that existing course
