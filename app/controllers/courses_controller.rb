@@ -7,18 +7,6 @@ class CoursesController < ApplicationController
     @all_categories = Course.categories
     @all_status = Course.statuses
 
-    # if params[:title] == 'title'
-    #   session[:title] = params[:title]
-    #   @courses = Course.all(:order => "title ASC")
-    # elsif session.has_key?(:title)
-    #   params[:title] = session[:title]
-    #   @existing_session = true
-    # end
-
-    # if @existing_session
-    #   redirect_to courses_path(:title => params[:title], :checked_units => params[:checked_units], :selected_categories => params[:checked_units], :selected_status => params[:selected_status])
-    # end
-
     @selected_units = params[:checked_units] || session[:checked_units] || Hash.new
     @selected_category = params[:selected_categories] || session[:selected_categories] ||  "All"
     @selected_status = params[:selected_status] || session[:selected_status] || "All"

@@ -51041,3 +51041,55 @@ Served asset /courses.js - 304 Not Modified (1ms)
 
 Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2015-03-12 22:57:48 -0700
 Served asset /application.js - 304 Not Modified (6ms)
+
+
+Started GET "/" for 127.0.0.1 at 2015-03-31 13:46:02 -0700
+Connecting to database specified by database.yml
+Processing by CoursesController#index as HTML
+  [1m[36mCourse Load (0.1ms)[0m  [1mSELECT "courses".* FROM "courses" [0m
+  Rendered courses/index.html.erb within layouts/application (9.7ms)
+Completed 200 OK in 1012.6ms (Views: 896.0ms | ActiveRecord: 6.1ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2015-03-31 13:46:04 -0700
+Served asset /application.css - 200 OK (6ms)
+
+
+Started GET "/assets/bootstrap.min.css?body=1" for 127.0.0.1 at 2015-03-31 13:46:04 -0700
+Served asset /bootstrap.min.css - 200 OK (2ms)
+
+
+Started GET "/assets/bootstrap.css?body=1" for 127.0.0.1 at 2015-03-31 13:46:04 -0700
+Served asset /bootstrap.css - 200 OK (2ms)
+
+
+Started GET "/assets/courses.css?body=1" for 127.0.0.1 at 2015-03-31 13:46:04 -0700
+Served asset /courses.css - 200 OK (2ms)
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2015-03-31 13:46:04 -0700
+Served asset /scaffolds.css - 200 OK (2ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2015-03-31 13:46:04 -0700
+Served asset /jquery.js - 200 OK (3ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2015-03-31 13:46:04 -0700
+Served asset /jquery_ujs.js - 200 OK (3ms)
+
+
+Started GET "/assets/bootstrap.min.js?body=1" for 127.0.0.1 at 2015-03-31 13:46:04 -0700
+Served asset /bootstrap.min.js - 200 OK (33ms)
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2015-03-31 13:46:04 -0700
+Served asset /bootstrap.js - 200 OK (1ms)
+
+
+Started GET "/assets/courses.js?body=1" for 127.0.0.1 at 2015-03-31 13:46:04 -0700
+Served asset /courses.js - 200 OK (2ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2015-03-31 13:46:04 -0700
+Served asset /application.js - 200 OK (5ms)
