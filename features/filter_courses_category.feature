@@ -16,6 +16,7 @@ Background: courses have been added to database
   | Introduction to Banking  | Business           | 2     | TuTh 6PM-7PM    | Full   |
 
   And I am on the Decal courses page
+  And I set everything to default
 
 Scenario: restrict to title with 'Computer Science' category
   When I select the following categories: Computer Science

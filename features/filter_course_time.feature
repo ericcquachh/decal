@@ -16,16 +16,11 @@ Background: courses have been added to database
   | Introduction to Banking  | Business           | 2     | TuTh 6PM-7PM    | Full   |
 
   And I am on the Decal courses page
+  And I set everything to default
 
 Scenario: restrict to courses with "Tuesday" time
   When I check the following days_of_week: Tuesday
   And I press "Search"
   Then I should see "Quantum Consciousness" 
   And I should see "Introduction to Banking"   
-
-Scenario: restrict to courses with starting time "8PM" and ending time "9PM"
-  When I select the following starting_time: 8PM
-  When I select the following ending_time: 9PM
-  And I press "Search"
-  Then I should see "Max Interval Training" 
  

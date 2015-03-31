@@ -1,14 +1,15 @@
 #comment used to test initial git push
 Given /the following courses exist/ do |courses_table|
   courses_table.hashes.each do |course|
-    input_course = Course.new
-    input_course.title = course["title"]
-    input_course.category = course["category"]
-    input_course.units = course["units"]
-    input_course.time = course["time"]
-    input_course.status = course["status"]
-    input_course.save
+    Course.create!(course)
   end
+end
+
+And /I set everything to default/ do
+  select("All", :from => "category")
+  select("All", :from => "status")
+  (1..4).each {|i| uncheck "units[#{i.to_s}]"}
+  Course.days.each {|d| uncheck "days[#{d}]"}
 end
 
 Then /I should see "(.*)" before "(.*)"/ do |e1, e2|
@@ -35,7 +36,7 @@ end
 
 When /I (un)?check the following days_of_week: (.*)/ do |uncheck, days_list|
   days_list.split(",").each do |day|
-    day = "days_of_week_#{day.strip}"
+    day = "days[#{day.strip}]"
     uncheck ? uncheck(day) : check(day)
   end
 end

@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-
+ 
 ruby '1.9.3'
 gem 'rails', '3.2.16'
 
@@ -10,8 +10,7 @@ group :development, :test do
   gem 'cucumber-rails', :require => false
 
   gem 'rspec-rails', '~> 2.14.0'
-  gem 'simplecov', :require => false, :group => :test
-
+  gem 'simplecov'
 end
 
 
@@ -24,7 +23,7 @@ group :assets do
 
   gem 'therubyracer'
   gem 'sass-rails'
-  #gem 'coffee-rails'
+  gem 'coffee-rails'
 
     #bootstrap (installed without gem)
   #gem 'bootstrap-sass', '~> 3.2.0'

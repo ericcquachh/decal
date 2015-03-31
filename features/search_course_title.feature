@@ -16,6 +16,7 @@ Background: courses have been added to database
   | Introduction to Banking  | Business           | 2     | TuTh 6PM-7PM    | Full   |
 
   And I am on the Decal courses page
+  And I set everything to default
 
 Scenario: restrict to title containing 'Python' in title
   When I fill in "search_field" with "Python"
