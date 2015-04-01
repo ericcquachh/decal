@@ -1,3 +1,9 @@
+<style>
+  .inner {
+    display: inline-block;
+  }
+</style>
+
 <h1>COURSES</h1>
   <form class="form-inline">
   <p> <%= session %> </p>
@@ -31,9 +37,22 @@
       <% end %>
 
       <br></br>
+      <div>
+        <div class="inner">
+          <%= button_to 'promote', promote_path, {:class => "btn btn-primary"} %>
+        </div>
+        <div class="inner">
+          <%= button_to 'demote', demote_path, {:class => "btn btn-primary"} %>
+        </div>
+      </div>
 
-      <%= button_to 'promote', promote_path %>
-      <%= button_to 'demote', demote_path %>
+      <br>
+
+      <% if current_user.try(:facilitator?) %>
+        <%= button_to 'New Course', new_course_path, {:class => "btn btn-primary"} %>
+      <% end %>
+
+      <br>
 
       <table class="table table-hover">
         <tr>
@@ -67,6 +86,3 @@
     </div>
   </form>
   <br />
-
-  <%= link_to 'New Course', new_course_path %>
-

@@ -27,8 +27,10 @@ class CoursesController < ApplicationController
       end
     end
 
-    @courses = Course.find(:all, :order => session[:title], :conditions => {:category => session[:category], :status => session[:status], 
-    :units => session[:units]})
+    # @courses = Course.find(:all, :order => session[:title], :conditions => {:category => session[:category], :status => session[:status], 
+    # :units => session[:units]})
+
+    @courses = Course.find(:all, :order => session[:title])
 
     if params[:search_field]
       @courses = @courses.select {|course| course.title.downcase.include? params[:search_field].downcase}
@@ -61,6 +63,8 @@ class CoursesController < ApplicationController
   def new
     @course = Course.new
 
+
+
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @course }
@@ -75,29 +79,22 @@ class CoursesController < ApplicationController
   # POST /courses
   # POST /courses.json
   def create
-    @course = Course.new(params[:course])
-
-    respond_to do |format|
-      if @course.save
-        format.html { redirect_to @course, notice: 'Course was successfully created.' }
-        format.json { render json: @course, status: :created, location: @course }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @course.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  def addsection
-    @section = Section.new
-  end
-
-  def updatesection
-    @section = Section.new(params[:section])
-    @section.course = Course.find(params[:id])
-    @section.save!
+    # @course = Course.new(params[:course])
+    current_user.courses.create(params[:course])
+    current_user.save!
     redirect_to :root, :notice => params
   end
+
+  # def addsection
+  #   @section = Section.new
+  # end
+
+  # def updatesection
+  #   @section = Section.new(params[:section])
+  #   @section.course = Course.find(params[:id])
+  #   @section.save!
+  #   redirect_to :root, :notice => params
+  # end
 
   # PUT /courses/1
   # PUT /courses/1.json
