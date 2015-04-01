@@ -43,7 +43,6 @@ ActiveRecord::Schema.define(:version => 20150401062147) do
     t.string   "first_name"
     t.string   "last_name"
     t.string   "class_level"
-    t.string   "access"
     t.boolean  "facilitator",            :default => false
   end
 
