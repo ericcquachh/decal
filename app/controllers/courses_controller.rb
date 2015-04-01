@@ -42,7 +42,7 @@ class CoursesController < ApplicationController
 
   def demote
     current_user.update_attribute :facilitator, false
-    redirect_to :root, notice: "User demoted to facilitator"
+    redirect_to :root, notice: "User demoted to basic user"
   end
 
   # GET /courses/1

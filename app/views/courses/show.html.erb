@@ -4,34 +4,40 @@
   <h1><%= @course.title %></h1>
 </p>
 
-<div class="section">
-  <p>
-    <b>Category:</b>
-    <%= @course.category %>
-  </p>
+<table class="std">
+  <thead>
+    <tr>
+      <th>Section</th>
+      <th>Facilitator</th>
+      <th>Size</th>
+      <th>Location</th>
+      <th>Time</th>
+      <th>Starts</th>
+      <th>Status</th>
+      <th>
+        <abbr title="Course Control Numbers">CCNs</abbr>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>DeCal Program</td>
+      <td>-</td>
+      <td>20</td>
+      <td>TBA</td>
+      <td>TBA</td>
+      <td>1/20</td>
+      <td>-</td>
+      <td>-</td>
+    </tr>
+  </tbody>
+</table>
 
-  <p>
-    <b>Units:</b>
-    <%= @course.units %>
-  </p>
+<br/><br/>
 
-  <p>
-    <b>Days:</b>
-    <%= @course.days %>
-  </p>
-
-  <p>
-    <b>Time:</b>
-    <%= @course.time %>
-  </p>
-
-  <p>
-    <b>Status:</b>
-    <%= @course.status %>
-  </p>
-
-</div>
-
-
+<% if current_user.try(:facilitator?) %>
+  <%= render 'sectionform' %>
+<% end %>
+<br/>
 <%= link_to 'Edit', edit_course_path(@course) %> |
 <%= link_to 'Back', courses_path %>
