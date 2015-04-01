@@ -32,6 +32,9 @@
 
       <br></br>
 
+      <%= button_to 'promote', promote_path %>
+      <%= button_to 'demote', demote_path %>
+
       <table class="table table-hover">
         <tr>
           <th><%= link_to 'Course Title ▼' , courses_path(:title => "title") %></th>
@@ -47,15 +50,17 @@
 
       <% @courses.each do |course| %>
         <tr>
-          <td><%= course.title %></td>
+          <td><%= link_to course.title, course, {:style=>'font-size: 120%;'} %></td>
           <td><%= course.category %></td>
           <td><%= course.units %></td>
           <td><%= course.days %></td>
           <td><%= course.time %></td>
           <td><%= course.status %></td>
-          <td><%= link_to 'Show', course %></td>
-          <td><%= link_to 'Edit', edit_course_path(course) %></td>
-          <td><%= link_to 'Destroy', course, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <% if current_user.try(:facilitator?) %>
+            <td><%= link_to 'Show', course %></td>
+            <td><%= link_to 'Edit', edit_course_path(course) %></td>
+            <td><%= link_to 'Destroy', course, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <% end %>
         </tr>
       <% end %>
       </table>

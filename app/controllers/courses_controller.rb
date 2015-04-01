@@ -1,6 +1,15 @@
 class CoursesController < ApplicationController
   # GET /courses
   # GET /courses.json
+
+  before_filter :authorize, :except => [:index, :show]
+
+  def authorize
+    if current_user.nil? || !(user_signed_in?)
+      redirect_to :root, notice: 'make sure you login fool'
+    end
+  end
+
   def index
     @all = Course.all_attributes
     @attributes = @all.keys
@@ -24,6 +33,16 @@ class CoursesController < ApplicationController
     if params[:search_field]
       @courses = @courses.select {|course| course.title.downcase.include? params[:search_field].downcase}
     end
+  end
+
+  def promote
+    current_user.update_attribute :facilitator, true
+    redirect_to :root, notice: "User promoted to facilitator"
+  end
+
+  def demote
+    current_user.update_attribute :facilitator, false
+    redirect_to :root, notice: "User demoted to facilitator"
   end
 
   # GET /courses/1
