@@ -1,17 +1,19 @@
 Decal::Application.routes.draw do
 
-  devise_for :users, :controllers =>{:omniauth_callbacks => "omniauth_callbacks", :registrations=>"registrations" }
+    devise_for :users, :controllers =>{:omniauth_callbacks => "omniauth_callbacks", :registrations=>"registrations" }
 
-  resources :courses do
-  	resources :sections
-  end
+    resources :courses do
+        resources :sections
+    end
 
-  match 'promote' => 'courses#promote'
-  match 'demote' => 'courses#demote'
+    resources :dashboard
 
-  # match '/courses/:id/addsection' => 'courses#addsection', :as => :add_section, :via => :get
-  # match '/courses/:id/updatesection' => 'courses#updatesection', :as => :update_section, :via => :post
+    match 'promote' => 'courses#promote'
+    match 'demote' => 'courses#demote'
 
-  root :to => 'courses#index'
+    # match '/courses/:id/addsection' => 'courses#addsection', :as => :add_section, :via => :get
+    # match '/courses/:id/updatesection' => 'courses#updatesection', :as => :update_section, :via => :post
+
+    root :to => 'courses#index'
 
 end
