@@ -15,3 +15,9 @@
  *= require_tree .
  */
 
+.section {
+	border-style: solid;
+	border-width: 1px;
+	padding-left: 5px;
+	padding-top: 5px;
+}

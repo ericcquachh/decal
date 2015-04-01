@@ -1,5 +1,5 @@
 class Course < ActiveRecord::Base
-  attr_accessible :category, :status, :days, :time, :title, :units
+  attr_accessible :category, :status, :days, :time, :title, :units, :uid
 
   def self.all_attributes
     {:title => nil, :category => self.categories, :status => self.statuses, :days => self.days, :time => self.times, :units => self.units}
@@ -23,5 +23,8 @@ class Course < ActiveRecord::Base
 
   def self.times
     []
+  end
+
+  def self.uid
   end
 end

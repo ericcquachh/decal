@@ -1,34 +1,36 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <b>Title:</b>
-  <%= @course.title %>
+  <h1><%= @course.title %></h1>
 </p>
 
-<p>
-  <b>Category:</b>
-  <%= @course.category %>
-</p>
+<div class="section">
+  <p>
+    <b>Category:</b>
+    <%= @course.category %>
+  </p>
 
-<p>
-  <b>Units:</b>
-  <%= @course.units %>
-</p>
+  <p>
+    <b>Units:</b>
+    <%= @course.units %>
+  </p>
 
-<p>
-  <b>Days:</b>
-  <%= @course.days %>
-</p>
+  <p>
+    <b>Days:</b>
+    <%= @course.days %>
+  </p>
 
-<p>
-  <b>Time:</b>
-  <%= @course.time %>
-</p>
+  <p>
+    <b>Time:</b>
+    <%= @course.time %>
+  </p>
 
-<p>
-  <b>Status:</b>
-  <%= @course.status %>
-</p>
+  <p>
+    <b>Status:</b>
+    <%= @course.status %>
+  </p>
+
+</div>
 
 
 <%= link_to 'Edit', edit_course_path(@course) %> |

@@ -11,7 +11,7 @@ describe CoursesController do
     course.title == "Vacuum Cleaner"
     another_course = Course.where(category: "Politics")
     another_course.each do |course|
-      check_var = 0 
+      check_var = 0
       if course.title == "Kim Jong Un: Our Dear Leader"
         check_var = 1
       end
@@ -43,7 +43,7 @@ describe CoursesController do
       course3 = Course.find_by_title("The Communist Manifesto")
       course4 = Course.find_by_title("Kim Jong Un: Our Dear CEO")
       get :index, {:category => "Business"}
-      assigns(:courses).should == [course3, course4]      
+      assigns(:courses).should == [course3, course4]
     end
 
     it 'should filter by status' do
@@ -52,7 +52,7 @@ describe CoursesController do
       course3 = Course.find_by_title("The Communist Manifesto")
       course4 = Course.find_by_title("Kim Jong Un: Our Dear CEO")
       get :index, {:status => "Open"}
-      assigns(:courses).should == [course2, course4]      
+      assigns(:courses).should == [course2, course4]
     end
 
     it 'should filter by units' do
@@ -61,54 +61,68 @@ describe CoursesController do
       course3 = Course.find_by_title("The Communist Manifesto")
       course4 = Course.find_by_title("Kim Jong Un: Our Dear CEO")
       get :index, {:units => {"3" => nil}}
-      assigns(:courses).should == [course2, course3]      
+      assigns(:courses).should == [course2, course3]
     end
 
   end
 
-  describe 'other CRUD actions' do
-    before :each do
-      course = Course.create(title: "Python on Crack", category: "Computer Science", status: "Open", units: "3")
-      put :update, {:id => 1, :title => "Intro to Python"} 
-    end
+  describe 'relationships between users and courses' do
 
-    it "should update" do
-      course = Course.find(1)
-      course.title == "Intro to Python"
-    end
-
-    it "should be redirected to the course page" do
-      response.should redirect_to course_path(1)
-    end
-
-    it "should remove the course from the database" do
-      delete :destroy, {:id => 1}
-      begin
-        course = Course.find(1)
-      rescue ActiveRecord::RecordNotFound
-        true
+    it 'should be a sanity check' do
+      user = User.create!(email: 'akhilnambiar@berkeley.edu', password: 'awefjiol')
+      user.courses.create(title: "Flirting in French", category: "Languages", units: "2", status: "Full", uid: "test")
+      user.courses.create(title: "Flirting", category: "Languages", units: "2", status: "Full", uid: "something else")
+      user.courses.each do |course|
+        course.units == 2
       end
+      # user.courses.create(title: "Flirting in French", category: "Languages", units: "2", status: "Full", uid: "test")
     end
-
-    it "should show the course if found in the database" do
-      course = Course.create(title: "Intro to Banking", category: "Business", status: "Full", units: "2")
-      get :show, {:id => 1}
-    end
-
-    it "should redirect to edit page when editing a course" do
-      course = Course.create(title: "Intro to Banking", category: "Business", status: "Full", units: "2")
-      get :edit, {:id => 1}
-      response.should render_template 'edit'
-    end
-
-    it "should make a new course" do
-      get :new
-      response.should render_template 'new'
-      course = Course.new(title: "Flirting in French", category: "Languages", status: "Full", units: "1")
-      post :create, {:course => course}
-      response.should redirect_to course_path(2)
   end
 
-  end
+
+  # describe 'other CRUD actions' do
+  #   before :each do
+  #     course = Course.create(title: "Python on Crack", category: "Computer Science", status: "Open", units: "3")
+  #     put :update, {:id => 1, :title => "Intro to Python"}
+  #   end
+
+  #   it "should update" do
+  #     course = Course.find(1)
+  #     course.title == "Intro to Python"
+  #   end
+
+  #   it "should be redirected to the course page" do
+  #     response.should redirect_to course_path(1)
+  #   end
+
+  #   it "should remove the course from the database" do
+  #     delete :destroy, {:id => 1}
+  #     begin
+  #       course = Course.find(1)
+  #     rescue ActiveRecord::RecordNotFound
+  #       true
+  #     end
+  #   end
+
+  #   it "should show the course if found in the database" do
+  #     course = Course.create(title: "Intro to Banking", category: "Business", status: "Full", units: "2")
+  #     get :show, {:id => 1}
+  #   end
+
+  #   it "should redirect to edit page when editing a course" do
+  #     course = Course.create(title: "Intro to Banking", category: "Business", status: "Full", units: "2")
+  #     get :edit, {:id => 1}
+  #     response.should render_template 'edit'
+  #   end
+
+  #   it "should make a new course" do
+  #     get :new
+  #     response.should render_template 'new'
+  #     course = Course.new(title: "Flirting in French", category: "Languages", status: "Full", units: "1")
+  #     post :create, {:course => course}
+  #     response.should redirect_to course_path(2)
+  # end
+
+  # end
 
 end
