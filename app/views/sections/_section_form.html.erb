@@ -13,10 +13,10 @@
 
   <div class="box">
     <%= field_set_tag 'WHEN AND WHERE IS IT?' do %>
-      <div><%= f.label :first_day, 'First Day of Class (In MM-DD-YYYY format, like this: 11-29-2012): ', :class => 'field'  %><%= f.text_field :first_day, :size => 20 %></div><br/>
+      <div><%= f.label :first_day, 'First Day of Class (In MM/DD/YYYY format, like this: 11/29/2012): ', :class => 'field'  %><%= f.text_field :first_day, :size => 20 %></div><br/>
       <div><%= f.label :location, 'Where is it? (Like this: 320 Eshleman or 216 Dwinelle): ', :class => 'field'  %><%= f.text_field :location, :size => 15 %></div><br/>
       <b>Class every...</b>
-      <table class="std">
+      <table class="std2">
         <tr>
           <td><%= check_box_tag(:monday) %></td>
           <td><%= check_box_tag(:tuesday) %></td>
@@ -32,8 +32,8 @@
           <td>Friday</td>
         </tr>
       </table><br/>
-      <div><%= label_tag :start_time, 'Start from: ', :class => 'field'  %><%= time_select 'start', 'start_time', {:ampm => true} %></div><br/>
-      <div><%= label_tag :start_time, 'Ends At: ', :class => 'field'  %><%= time_select 'end', 'end_time', {:ampm => true} %></div><br/>
+      <div><%= f.label :start_time, 'Start from: ', :class => 'field'  %><%= f.time_select :start_time, {:minute_step => 15, :ampm => true, :ignore_date => true} %></div><br/>
+      <div><%= f.label :end_time, 'Ends At: ', :class => 'field'  %><%= f.time_select :end_time, {:minute_step => 15, :ampm => true, :ignore_date => true} %></div><br/>
 
     <% end %>
   </div><br/>

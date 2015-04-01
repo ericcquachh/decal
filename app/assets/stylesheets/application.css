@@ -36,7 +36,13 @@
 .std {
 	margin-top: 16px;
 	font-family: Verdana, sans-serif;
-	width: 47em;
+	width: 55em;
+}
+
+.std2 {
+	margin-top: 16px;
+	font-family: Verdana, sans-serif;
+	width: 95%;
 }
 
 td, th {
