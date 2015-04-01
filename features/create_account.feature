@@ -1,5 +1,4 @@
 Feature: Create an account
-
 	As a student
 	So I can favorite a course
 	I want to create an account
@@ -9,9 +8,8 @@ Background: student has not made an account
 	Given PENDING: I am on the login page
 
 Scenario: Successfully create an account
-
 	Then I press "Create An Account"
-	And I fill “first_name” with “Mark"
+	And I fill “first_name” with "Mark"
 	And I fill "last_name" with "Miyashita"
 	And I fill "password" with "ilikepython"
 	And I fill "email" with "markmiyashita@berkeley.edu"
