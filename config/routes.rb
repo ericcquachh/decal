@@ -7,6 +7,9 @@ Decal::Application.routes.draw do
   match 'promote' => 'courses#promote'
   match 'demote' => 'courses#demote'
 
+  match '/courses/:id/addsection' => 'courses#addsection', :as => :add_section, :via => :get
+  match '/courses/:id/updatesection' => 'courses#updatesection', :as => :update_section, :via => :post
+
   root :to => 'courses#index'
 
 end

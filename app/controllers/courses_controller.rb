@@ -88,6 +88,17 @@ class CoursesController < ApplicationController
     end
   end
 
+  def addsection
+    @section = Section.new
+  end
+
+  def updatesection
+    @section = Section.new(params[:section])
+    @section.course = Course.find(params[:id])
+    @section.save!
+    redirect_to :root, :notice => params
+  end
+
   # PUT /courses/1
   # PUT /courses/1.json
   def update

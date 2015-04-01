@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150401062147) do
+ActiveRecord::Schema.define(:version => 20150401103716) do
 
   create_table "courses", :force => true do |t|
     t.string   "title"
@@ -23,6 +23,21 @@ ActiveRecord::Schema.define(:version => 20150401062147) do
     t.datetime "updated_at", :null => false
     t.string   "days"
     t.string   "uid"
+  end
+
+  create_table "sections", :force => true do |t|
+    t.string   "section_title"
+    t.string   "facilitator"
+    t.integer  "size"
+    t.integer  "ccn_ld"
+    t.integer  "ccn_ud"
+    t.boolean  "ccn_publish"
+    t.boolean  "status"
+    t.string   "first_day"
+    t.string   "location"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+    t.integer  "course_id"
   end
 
   create_table "users", :force => true do |t|
@@ -44,6 +59,7 @@ ActiveRecord::Schema.define(:version => 20150401062147) do
     t.string   "last_name"
     t.string   "class_level"
     t.boolean  "facilitator",            :default => false
+    t.string   "access"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

@@ -4,40 +4,91 @@
   <h1><%= @course.title %></h1>
 </p>
 
-<table class="std">
-  <thead>
-    <tr>
-      <th>Section</th>
-      <th>Facilitator</th>
-      <th>Size</th>
-      <th>Location</th>
-      <th>Time</th>
-      <th>Starts</th>
-      <th>Status</th>
-      <th>
-        <abbr title="Course Control Numbers">CCNs</abbr>
-      </th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>DeCal Program</td>
-      <td>-</td>
-      <td>20</td>
-      <td>TBA</td>
-      <td>TBA</td>
-      <td>1/20</td>
-      <td>-</td>
-      <td>-</td>
-    </tr>
-  </tbody>
-</table>
+<%= @course.sections %>
 
-<br/><br/>
-
-<% if current_user.try(:facilitator?) %>
-  <%= render 'sectionform' %>
+<% if @course.sections %>
+  <table class="std">
+    <thead>
+      <tr>
+        <th>Section</th>
+        <th>Facilitator</th>
+        <th>Size</th>
+        <th>Location</th>
+        <th>Time</th>
+        <th>Starts</th>
+        <th>Status</th>
+        <th>
+          <abbr title="Course Control Numbers">CCNs</abbr>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @course.sections.each do |section| %>
+        <tr>
+          <td>
+            <% if !section.section_title.blank? %>
+              <%= section.section_title %>
+            <% else %>
+              <%= '--' %>
+            <% end %>
+          </td>
+          <td>
+            <% if !section.facilitator.blank? %>
+              <%= section.facilitator %>
+            <% else %>
+              <%= '--' %>
+            <% end %>
+          </td>
+          <td>
+            <% if !section.size.blank? %>
+              <%= section.size %>
+            <% else %>
+              <%= '--' %>
+            <% end %>
+          </td>
+          <td>
+            <% if !section.location.blank? %>
+              <%= section.location %>
+            <% else %>
+              <%= '--' %>
+            <% end %>
+          </td>
+          <td>
+            <% if !section.first_day.blank? %>
+              <%= section.first_day %>
+            <% else %>
+              <%= '--' %>
+            <% end %>
+          </td>
+          <td>
+            <% if !section.first_day.blank? %>
+              <%= section.first_day %>
+            <% else %>
+              <%= '--' %>
+            <% end %>
+          </td>
+          <td>
+            <% if !section.status.blank? %>
+              <%= section.status %>
+            <% else %>
+              <%= '--' %>
+            <% end %>
+          </td>
+          <td>
+            <% if !section.ccn_ld.blank? %>
+              <%= section.ccn_ld %>
+            <% else %>
+              <%= '--' %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <h3>No section has been created for this course yet</h3>
 <% end %>
-<br/>
+<br/><br/>
 <%= link_to 'Edit', edit_course_path(@course) %> |
-<%= link_to 'Back', courses_path %>
+<%= link_to 'Back', courses_path %> |
+<%= link_to 'Add Section', add_section_path %>

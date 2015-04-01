@@ -1,5 +1,7 @@
 class Course < ActiveRecord::Base
   attr_accessible :category, :status, :days, :time, :title, :units, :uid
+  has_many :sections
+
 
   def self.all_attributes
     {:title => nil, :category => self.categories, :status => self.statuses, :days => self.days, :time => self.times, :units => self.units}
