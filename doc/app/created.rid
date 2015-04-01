@@ -1,0 +1,11 @@
+Sun, 22 Mar 2015 15:23:29 -0700
+doc/README_FOR_APP	Wed, 04 Mar 2015 13:43:06 -0800
+app/controllers/application_controller.rb	Wed, 04 Mar 2015 13:43:06 -0800
+app/controllers/courses_controller.rb	Fri, 13 Mar 2015 15:38:09 -0700
+app/controllers/omniauth_callbacks_controller.rb	Sun, 22 Mar 2015 14:21:41 -0700
+app/controllers/registrations_controller.rb	Sun, 22 Mar 2015 14:21:41 -0700
+app/helpers/application_helper.rb	Wed, 04 Mar 2015 13:43:06 -0800
+app/helpers/courses_helper.rb	Tue, 10 Mar 2015 18:21:46 -0700
+app/helpers/omniauth_callbacks_helper.rb	Sun, 22 Mar 2015 14:21:41 -0700
+app/models/course.rb	Fri, 13 Mar 2015 10:04:49 -0700
+app/models/user.rb	Sun, 22 Mar 2015 14:21:41 -0700
