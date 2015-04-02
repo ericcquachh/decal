@@ -27,6 +27,7 @@ class CoursesController < ApplicationController
       end
     end
 
+    #this does not work when you don't put in information about category, status, and units
     @courses = Course.find(:all, :order => session[:title], :conditions => {:category => session[:category], :status => session[:status], 
     :units => session[:units]})
 
