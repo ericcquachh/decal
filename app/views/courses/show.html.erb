@@ -112,6 +112,7 @@
       <br/><br/>
     <% end %>
   <% end %>
+  <%= link_to 'Uploads',  course_uploads_path(@course.id)%>
 </div>
 <%= link_to 'Edit', edit_course_path(@course) %> |
 <%= link_to 'Back', courses_path %>
