@@ -1,7 +1,12 @@
 class Course < ActiveRecord::Base
   attr_accessible :category, :status, :days, :time, :title, :units, :uid
   has_many :sections
+  has_many :uploads
 
+  validates :title, :presence => true
+  validates :units, :presence => true
+  validates :status, :presence => true
+  validates :category, :presence => true
 
   def self.all_attributes
     {:title => nil, :category => self.categories, :status => self.statuses, :days => self.days, :time => self.times, :units => self.units}

@@ -27,10 +27,11 @@ class CoursesController < ApplicationController
       end
     end
 
-    # @courses = Course.find(:all, :order => session[:title], :conditions => {:category => session[:category], :status => session[:status], 
-    # :units => session[:units]})
+    #this does not work when you don't put in information about category, status, and units
+    @courses = Course.find(:all, :order => session[:title], :conditions => {:category => session[:category], :status => session[:status], 
+    :units => session[:units]})
 
-    @courses = Course.find(:all, :order => session[:title])
+    # @courses = Course.find(:all, :order => session[:title])
 
     if params[:search_field]
       @courses = @courses.select {|course| course.title.downcase.include? params[:search_field].downcase}
@@ -58,7 +59,7 @@ class CoursesController < ApplicationController
     end
   end
 
-  # GET /courses/new
+  # GET /courses/new  
   # GET /courses/new.json
   def new
     @course = Course.new
@@ -80,21 +81,14 @@ class CoursesController < ApplicationController
   # POST /courses.json
   def create
     # @course = Course.new(params[:course])
-    current_user.courses.create(params[:course])
-    current_user.save!
-    redirect_to :root, :notice => params
+    if current_user.courses.create(params[:course]).valid?
+      current_user.save!
+      redirect_to :root, :notice => params
+    else
+      #need to persist data across redirect
+      redirect_to new_course_path, :notice => "you must fill in title, category, status, and unit fields"
+    end 
   end
-
-  # def addsection
-  #   @section = Section.new
-  # end
-
-  # def updatesection
-  #   @section = Section.new(params[:section])
-  #   @section.course = Course.find(params[:id])
-  #   @section.save!
-  #   redirect_to :root, :notice => params
-  # end
 
   # PUT /courses/1
   # PUT /courses/1.json

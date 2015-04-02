@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150401230109) do
+ActiveRecord::Schema.define(:version => 20150402201729) do
 
   create_table "courses", :force => true do |t|
     t.string   "title"
@@ -19,10 +19,14 @@ ActiveRecord::Schema.define(:version => 20150401230109) do
     t.string   "units"
     t.string   "time"
     t.string   "status"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",            :null => false
+    t.datetime "updated_at",            :null => false
     t.string   "days"
     t.string   "uid"
+    t.string   "syllabus_file_name"
+    t.string   "syllabus_content_type"
+    t.integer  "syllabus_file_size"
+    t.datetime "syllabus_updated_at"
   end
 
   create_table "sections", :force => true do |t|
@@ -40,6 +44,14 @@ ActiveRecord::Schema.define(:version => 20150401230109) do
     t.integer  "course_id"
     t.string   "start_time"
     t.string   "end_time"
+  end
+
+  create_table "uploads", :force => true do |t|
+    t.string   "name"
+    t.string   "attachment"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.integer  "course_id"
   end
 
   create_table "users", :force => true do |t|
