@@ -9,7 +9,7 @@
 <% end %>
 
 <div class="well">
-  <%= form_for(@upload, html: { multipart: true }, url: course_uploads_path) do |f| %>
+  <%= form_for(@upload, html: { multipart: true }, url: course_uploads_path(@course)) do |f| %>
     <%= f.label :name %>
     <%= f.text_field :name %>
     <%= f.label :attachment %>

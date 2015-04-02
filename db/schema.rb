@@ -19,14 +19,10 @@ ActiveRecord::Schema.define(:version => 20150402201729) do
     t.string   "units"
     t.string   "time"
     t.string   "status"
-    t.datetime "created_at",            :null => false
-    t.datetime "updated_at",            :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
     t.string   "days"
     t.string   "uid"
-    t.string   "syllabus_file_name"
-    t.string   "syllabus_content_type"
-    t.integer  "syllabus_file_size"
-    t.datetime "syllabus_updated_at"
   end
 
   create_table "sections", :force => true do |t|
