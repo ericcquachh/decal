@@ -121,9 +121,11 @@
     </div>
   <% end %>
   <br />
-  <%= button_to "New Upload", {:controller => :uploads, :action => 'new', :course_id => @course.id}, :method => :get %>
-  <br />
-  <br />
+  <% if current_user.try(:facilitator?) %>
+    <%= button_to "New Upload", {:controller => :uploads, :action => 'new', :course_id => @course.id}, :method => :get %>
+    <br />
+    <br />
+  <% end %>
   <table class="std">
     <thead>
       <tr>
