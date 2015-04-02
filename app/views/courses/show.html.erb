@@ -113,5 +113,38 @@
     <% end %>
   <% end %>
 </div>
+<div class="uploads">
+  <%= link_to 'Uploads',  course_uploads_path(@course.id)%>
+  <% if !flash[:notice].blank? %>
+    <div class="alert alert-info">
+    <%= flash[:notice] %>
+    </div>
+  <% end %>
+  <br />
+  <% if current_user.try(:facilitator?) %>
+    <%= button_to "New Upload", {:controller => :uploads, :action => 'new', :course_id => @course.id}, :method => :get %>
+    <br />
+    <br />
+  <% end %>
+  <table class="std">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Download Link</th>
+        <th>&nbsp;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @course.uploads.each do |upload| %>
+        <tr>
+          <td><%= upload.name %></td>
+          <td><%= link_to "Download Upload", upload.attachment_url %></td>
+          <td><%= button_to "Delete", {:controller => :uploads, :action => 'destroy', :id => upload.id, :course_id => @course.id }, :method => :delete, "onclick" => "javascript:return confirm('Are you absolutely sure you want to delete?')" %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+<br/>
 <%= link_to 'Edit', edit_course_path(@course) %> |
 <%= link_to 'Back', courses_path %>
