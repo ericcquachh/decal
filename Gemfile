@@ -29,6 +29,7 @@ group :assets do
   gem 'omniauth-google-oauth2' 
   gem 'carrierwave', '~> 0.10.0'
   gem 'strong_parameters'
+  gem 'fog-aws'
 
     #bootstrap (installed without gem)
   #gem 'bootstrap-sass', '~> 3.2.0'

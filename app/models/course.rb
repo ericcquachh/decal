@@ -1,6 +1,7 @@
 class Course < ActiveRecord::Base
   attr_accessible :category, :status, :days, :time, :title, :units, :uid
   has_many :sections
+  has_many :uploads
 
   validates :title, :presence => true
   validates :units, :presence => true
