@@ -31,4 +31,4 @@ class UploadsController < ApplicationController
 #   def upload_params
 #     params.require(:upload).permit(:name, :attachment)
 #   end
-# end
+end
