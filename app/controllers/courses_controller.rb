@@ -81,9 +81,12 @@ class CoursesController < ApplicationController
   # POST /courses.json
   def create
     # @course = Course.new(params[:course])
-    current_user.courses.create(params[:course])
-    current_user.save!
-    redirect_to :root, :notice => params
+    if current_user.courses.create(params[:course]).valid?
+      current_user.save!
+      redirect_to :root, :notice => params
+    else
+      redirect_to new_course_path, :notice => "you must fill in category, status, and unit fields"
+    end 
   end
 
   # def addsection
