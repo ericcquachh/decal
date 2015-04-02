@@ -7,6 +7,7 @@ Decal::Application.routes.draw do
     end
 
     resources :dashboard
+    delete '/dashboard', to: 'dashboard#delete', as: 'dashboard'
 
     match 'promote' => 'courses#promote'
     match 'demote' => 'courses#demote'
