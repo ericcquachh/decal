@@ -5,9 +5,7 @@ class CoursesController < ApplicationController
     @all = Course.all_attributes
     @attributes = @all.keys
 
-    @attributes.each do |attribute|
-      session[attribute] = @all[attribute]
-    end
+    @attributes.each {|attribute| session[attribute] = @all[attribute]}
     @attributes.each do |attribute|
       if params[attribute] && params[attribute] != 'All'
         if attribute == :days || attribute == :units
