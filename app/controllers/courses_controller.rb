@@ -27,10 +27,10 @@ class CoursesController < ApplicationController
       end
     end
 
-    # @courses = Course.find(:all, :order => session[:title], :conditions => {:category => session[:category], :status => session[:status], 
-    # :units => session[:units]})
+    @courses = Course.find(:all, :order => session[:title], :conditions => {:category => session[:category], :status => session[:status], 
+    :units => session[:units]})
 
-    @courses = Course.find(:all, :order => session[:title])
+    # @courses = Course.find(:all, :order => session[:title])
 
     if params[:search_field]
       @courses = @courses.select {|course| course.title.downcase.include? params[:search_field].downcase}
@@ -58,7 +58,7 @@ class CoursesController < ApplicationController
     end
   end
 
-  # GET /courses/new
+  # GET /courses/new  
   # GET /courses/new.json
   def new
     @course = Course.new

@@ -49,7 +49,7 @@
       <br>
 
       <% if current_user.try(:facilitator?) %>
-        <%= button_to 'New Course', new_course_path, {:class => "btn btn-primary"} %>
+        <%= link_to 'New Course', new_course_path, {:class => "btn btn-primary"} %>
       <% end %>
 
       <br>
