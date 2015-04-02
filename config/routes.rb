@@ -1,10 +1,11 @@
 Decal::Application.routes.draw do
+  devise_for :users, :controllers =>{:omniauth_callbacks => "omniauth_callbacks", :registrations=>"registrations" }
 
-    devise_for :users, :controllers =>{:omniauth_callbacks => "omniauth_callbacks", :registrations=>"registrations" }
+  resources :courses do
+      resources :sections
+      resources :uploads, only: [:index, :new, :create, :destroy]
+  end
 
-    resources :courses do
-        resources :sections
-    end
 
     # paths for dashboard
     resources :dashboard
@@ -13,12 +14,12 @@ Decal::Application.routes.draw do
     delete '/dashboard', to: 'dashboard#delete', as: 'dashboard'
     # get '/dashboard/existing', to: 'dashboard#show', as: 'dashboard_existing'
 
-    match 'promote' => 'courses#promote'
-    match 'demote' => 'courses#demote'
+  match 'promote' => 'courses#promote'
+  match 'demote' => 'courses#demote'
 
-    # match '/courses/:id/addsection' => 'courses#addsection', :as => :add_section, :via => :get
-    # match '/courses/:id/updatesection' => 'courses#updatesection', :as => :update_section, :via => :post
+  # match '/courses/:id/addsection' => 'courses#addsection', :as => :add_section, :via => :get
+  # match '/courses/:id/updatesection' => 'courses#updatesection', :as => :update_section, :via => :post
 
-    root :to => 'courses#index'
+  root :to => 'courses#index'
 
 end
