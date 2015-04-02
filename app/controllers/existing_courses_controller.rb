@@ -1,6 +1,10 @@
 class ExistingCoursesController < ApplicationController
 	def index
-		@courses = Course.where("uid is not ?", current_user.id)
+	    if current_user.nil? || !(user_signed_in?)
+	    	redirect_to :root, notice: 'make sure you login fool'
+	    else
+			@courses = Course.where("uid is not ?", current_user.id)
+	    end
 	end
 
 	def create
