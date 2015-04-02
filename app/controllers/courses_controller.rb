@@ -85,20 +85,10 @@ class CoursesController < ApplicationController
       current_user.save!
       redirect_to :root, :notice => params
     else
-      redirect_to new_course_path, :notice => "you must fill in category, status, and unit fields"
+      #need to persist data across redirect
+      redirect_to new_course_path, :notice => "you must fill in title, category, status, and unit fields"
     end 
   end
-
-  # def addsection
-  #   @section = Section.new
-  # end
-
-  # def updatesection
-  #   @section = Section.new(params[:section])
-  #   @section.course = Course.find(params[:id])
-  #   @section.save!
-  #   redirect_to :root, :notice => params
-  # end
 
   # PUT /courses/1
   # PUT /courses/1.json
