@@ -1,3 +1,9 @@
+<style>
+  .inner {
+    display: inline-block;
+  }
+</style>
+
 <h1>COURSES</h1>
   <form class="form-inline">
   <p> <%= session %> </p>
@@ -31,6 +37,22 @@
       <% end %>
 
       <br></br>
+      <div>
+        <div class="inner">
+          <%= button_to 'promote', promote_path, {:class => "btn btn-primary"} %>
+        </div>
+        <div class="inner">
+          <%= button_to 'demote', demote_path, {:class => "btn btn-primary"} %>
+        </div>
+      </div>
+
+      <br>
+
+      <% if current_user.try(:facilitator?) %>
+        <%= link_to 'New Course', new_course_path, {:class => "btn btn-primary"} %>
+      <% end %>
+
+      <br>
 
       <table class="table table-hover">
         <tr>
@@ -47,21 +69,20 @@
 
       <% @courses.each do |course| %>
         <tr>
-          <td><%= course.title %></td>
+          <td><%= link_to course.title, course, {:style=>'font-size: 120%;'} %></td>
           <td><%= course.category %></td>
           <td><%= course.units %></td>
           <td><%= course.days %></td>
           <td><%= course.time %></td>
           <td><%= course.status %></td>
-          <td><%= link_to 'Show', course %></td>
-          <td><%= link_to 'Edit', edit_course_path(course) %></td>
-          <td><%= link_to 'Destroy', course, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <% if current_user.try(:facilitator?) %>
+            <td><%= link_to 'Show', course %></td>
+            <td><%= link_to 'Edit', edit_course_path(course) %></td>
+            <td><%= link_to 'Destroy', course, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <% end %>
         </tr>
       <% end %>
       </table>
     </div>
   </form>
   <br />
-
-  <%= link_to 'New Course', new_course_path %>
-

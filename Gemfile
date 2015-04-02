@@ -23,7 +23,10 @@ group :assets do
 
   gem 'therubyracer'
   gem 'sass-rails'
-  gem 'coffee-rails'
+ # gem 'coffee-rails'
+  gem 'devise'
+  gem 'omniauth'
+  gem 'omniauth-google-oauth2' 
 
     #bootstrap (installed without gem)
   #gem 'bootstrap-sass', '~> 3.2.0'

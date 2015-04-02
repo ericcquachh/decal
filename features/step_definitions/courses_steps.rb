@@ -54,3 +54,14 @@ When /I (un)?select the following ending_time: (.*)/ do |unselect, ending_time_l
     unselect ? unselect(ending_time) : select(ending_time)
   end
 end
+
+#Felix's step for facilitate_course
+Given(/^the following users exist:$/) do |table|
+  puts table
+  # table is a Cucumber::Ast::Table
+end
+
+Then(/^I should see the course page$/) do
+  puts "yayyy"
+end
+

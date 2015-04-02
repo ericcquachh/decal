@@ -20,7 +20,7 @@ Scenario: Successfully add section
 	Then I should be on the add section page
 	When I fill in “section_title” with “Section 1”
 	And I fill “ccn_ld” with “123456”
-	And I fill “cc_ud” with “234567”
+	And I fill “ccn_ud” with “234567”
 	And I select the following ccn_visibility: No
 	And I fill in “class_size” with "20"
 	And I select the following status: Full

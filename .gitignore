@@ -2,3 +2,5 @@
 tmp/
 log/
 coverage/
+doc/
+db/development.sqlite3

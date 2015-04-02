@@ -15,3 +15,70 @@
  *= require_tree .
  */
 
+.box {
+	border-style: solid;
+	border-width: 1px;
+	padding-left: 15px;
+	padding-top: 15px;
+	padding-bottom: 15px;
+	padding-right: 15px;
+}
+
+.std thead {
+	text-transform: : uppercase;
+	background-color: #30678E;
+	font-size: x-small;
+	color: white;
+	padding: 4px;
+	letter-spacing: 1px;
+}
+
+.std {
+	margin-top: 16px;
+	font-family: Verdana, sans-serif;
+	width: 55em;
+}
+
+.std2 {
+	margin-top: 16px;
+	font-family: Verdana, sans-serif;
+	width: 95%;
+}
+
+td, th {
+	text-align: center;
+	display: table-cell;
+	vertical-align: inherit;
+}
+
+thead {
+	text-align: center;
+	display: table-header-group;
+	vertical-align: middle;
+	border-color: inherit;
+}
+
+table {
+	padding-bottom: 5px;
+}
+
+.field {
+	width: 50%;
+	float: left;
+	text-align: left;
+}
+
+/*input {
+	width: 30%;
+}*/
+
+/*    <table>
+      <tbody>
+        <tr>
+          <td><%= label_tag :section_title, 'Section Title (e.g. "Section 1" or "Beginner"): ' %><%= text_field_tag :section_title %></td>
+        </tr>
+        <tr>
+          <td><%= label_tag :ccn_lower, 'CCN (Lower Division): ' %><%= text_field_tag :ccn_lower %></td>
+        </tr>
+      </tbody>
+    </table>*/
