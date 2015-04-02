@@ -15,6 +15,7 @@ class Course < ActiveRecord::Base
     ["Computer Science", "Fitness", "Business", "Languages", "Cognitive Science", "All"]
   end
 
+
   def self.units
     ["1", "2", "3", "4"]
   end

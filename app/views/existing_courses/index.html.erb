@@ -1,0 +1,6 @@
+<% if current_user.try(:facilitator?) %>
+	<h1> Courses You Don't Facilitate </h1>
+	<%= render 'existing_form' %>
+<% else %>
+	<h1> You Aren't A Facilitator </h1>
+<% end %>
