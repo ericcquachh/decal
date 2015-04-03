@@ -3,7 +3,7 @@ class ExistingCoursesController < ApplicationController
 	    if current_user.nil? || !(user_signed_in?)
 	    	redirect_to :root, notice: 'make sure you login fool'
 	    else
-			@courses = Course.where("uid is not ?", current_user.id)
+			@courses = Course.where("uid != ?", current_user.id)
 	    end
 	end
 
