@@ -1,0 +1,8 @@
+class RemoveDaysFromCourses < ActiveRecord::Migration
+  def up
+    remove_column :courses, :days
+  end
+
+  def down
+  end
+end

@@ -8,7 +8,7 @@ class Course < ActiveRecord::Base
   validates :category, :presence => true
 
   def self.all_attributes
-    {:title => nil, :category => self.categories, :status => self.statuses, :units => self.units}
+    {:title => nil, :category => self.categories, :status => self.statuses, :days => self.days, :time => self.times, :units => self.units}
   end
 
   def self.categories
@@ -21,6 +21,14 @@ class Course < ActiveRecord::Base
 
   def self.statuses
     ["Full", "Open", "All"]
+  end
+
+  def self.days
+    ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]
+  end
+
+  def self.times
+    []
   end
 
   def self.uid

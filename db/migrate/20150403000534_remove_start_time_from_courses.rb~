@@ -1,0 +1,10 @@
+class RemoveStartTimeFromCourses < ActiveRecord::Migration
+  def up
+    remove_column :courses, :end_time
+    remove_column :courses, :start_time
+    remove_column :courses, :date
+  end
+
+  def down
+  end
+end

@@ -23,20 +23,13 @@
         <%= label_tag("Categories:") %>
         <%= select_tag 'category', options_for_select(@all[:category], session[:category]), :class => 'form-control'%>
         <br></br>
-        <%= label_tag("Date:") %>
+        <%= label_tag("Time:") %>
         <tr>
           <td><%= check_box_tag(:monday) %></td>
           <td><%= check_box_tag(:tuesday) %></td>
           <td><%= check_box_tag(:wednesday) %></td>
           <td><%= check_box_tag(:thursday) %></td>
           <td><%= check_box_tag(:friday) %></td>
-        </tr>
-        <tr>
-          <td>Monday</td>
-          <td>Tuesday</td>
-          <td>Wednesday</td>
-          <td>Thursday</td>
-          <td>Friday</td>
         </tr>
        <%= label_tag ("Start after:") %>
        <%= time_select :start_time, {:minute_step => 15, :ampm => true, :ignore_date => true}%>
