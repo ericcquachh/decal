@@ -8,9 +8,9 @@
 			<td><%= course.days %></td>
 			<td><%= course.time %></td>
 			<td><%= course.status %></td>
-			<td><%= link_to 'Show', course %></td>
+			<!-- <td><%= link_to 'Show', course %></td> -->
 			<td><%= link_to 'Edit', edit_course_path(course) %></td>
-			<td><%= link_to 'Destroy', dashboard_path(:id => course.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+<!-- 			<td><%= link_to 'Destroy', dashboard_path(:id => course.id), method: :delete, data: { confirm: 'Are you sure?' } %></td> -->
 			<td><%= check_box_tag(course.title) %></td>
 		<% end %>
 	</tr>

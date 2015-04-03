@@ -16,6 +16,6 @@ class ExistingCoursesController < ApplicationController
 				course.update_attributes(uid: current_user.id)
 			end
 		end
-		redirect_to existing_courses_path
+		redirect_to dashboard_index_path
 	end
 end
