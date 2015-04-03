@@ -35,6 +35,8 @@ class CoursesController < ApplicationController
     if params[:search_field]
       @courses = @courses.select {|course| course.title.downcase.include? params[:search_field].downcase}
     end
+    if params[:section] and params[:section][:days]
+    end
     if params[:section] and params[:section]['start_time(4i)']
       filter_time
       @courses = @courses.select {|course| course.sections.any? {|section| time_to_int(section.start_time) >= time_to_int(params[:section][:start_time]) and time_to_int(section.end_time) <= time_to_int(params[:section][:end_time])}}
