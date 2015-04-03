@@ -6,9 +6,9 @@ Feature: Facilitate an Existing Course
 Background: facilitator has logged in
 
 	Given the following users exist:
-    | email                      | name           | password     | 
-    | markmiyashita@berkeley.edu | Mark Miyashita | ilovepython  | 
-    | yunpark@berkeley.edu       | Yun Park       | iheartpython | 
+    | email                      | first name | last name | password     | 
+    | markmiyashita@berkeley.edu | Mark       | Miyashita | ilovepython  | 
+    | yunpark@berkeley.edu       | Yun        | Park      | iheartpython | 
 
     When I am logged in as Yun Park
     Then I should see the course page

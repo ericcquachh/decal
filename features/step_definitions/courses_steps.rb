@@ -56,8 +56,15 @@ When /I (un)?select the following ending_time: (.*)/ do |unselect, ending_time_l
 end
 
 #Felix's step for facilitate_course
-Given(/^the following users exist:$/) do |table|
-  puts table
+Given(/^the following users exist:$/) do |users_table|
+  users_table.rows_hash.each do |user|
+    input_user = User.new
+    input_user.email = user["email"]
+    input_user.first_name = user["first name"]
+    input_user.last_name = user["last name"]
+    input_user.password = user["password"]
+    input_user.save
+  end
   # table is a Cucumber::Ast::Table
 end
 
