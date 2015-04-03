@@ -3,17 +3,31 @@ class Course < ActiveRecord::Base
   has_many :sections
   has_many :uploads
 
+<<<<<<< HEAD
   validates :title, :presence => true
   validates :units, :presence => true
   validates :category, :presence => true
 
   def self.all_attributes
-    {:title => nil, :category => self.categories, :status => self.statuses, :days => self.days, :time => self.times, :units => self.units}
+    {:title => nil, :category => self.categories, :status => self.statuses, :units => self.units}
+=======
+  CATEGORIES = ["Computer Science", "Fitness", "Business", "Languages", "Cognitive Science"]
+
+  validates :title, :presence => {message: "Title is required."}
+  validates :units, :presence => {message: "Units cannot be blank."}, :numericality => {only_integer: true, :greater_than => 0, :less_than => 5, message: "Units must be integers 1-4."} 
+  validates :category, :inclusion => {in: CATEGORIES, message: "You must choose a category from the dropdown selection."}
+
+
+  def self.all_attributes
+    {:title => nil, :category => self.categories + ["All"], :status => self.statuses, :days => self.days, :time => self.times, :units => self.units}
+>>>>>>> d7b08f572ef14a4c8f835d5b0274aaeb013ec9b7
   end
 
+  # Changed to make validations work
   def self.categories
-    ["Computer Science", "Fitness", "Business", "Languages", "Cognitive Science", "All"]
+    CATEGORIES
   end
+
 
   def self.units
     ["1", "2", "3", "4"]
@@ -21,14 +35,6 @@ class Course < ActiveRecord::Base
 
   def self.statuses
     ["Full", "Open", "All"]
-  end
-
-  def self.days
-    ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]
-  end
-
-  def self.times
-    []
   end
 
   def self.uid

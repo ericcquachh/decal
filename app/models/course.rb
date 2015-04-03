@@ -3,17 +3,22 @@ class Course < ActiveRecord::Base
   has_many :sections
   has_many :uploads
 
-  validates :title, :presence => true
-  validates :units, :presence => true
-  validates :category, :presence => true
+  CATEGORIES = ["Computer Science", "Fitness", "Business", "Languages", "Cognitive Science"]
+
+  validates :title, :presence => {message: "Title is required."}
+  validates :units, :presence => {message: "Units cannot be blank."}, :numericality => {only_integer: true, :greater_than => 0, :less_than => 5, message: "Units must be integers 1-4."} 
+  validates :category, :inclusion => {in: CATEGORIES, message: "You must choose a category from the dropdown selection."}
+
 
   def self.all_attributes
-    {:title => nil, :category => self.categories, :status => self.statuses, :units => self.units}
+    {:title => nil, :category => self.categories + ["All"], :status => self.statuses, :units => self.units}
   end
 
+  # Changed to make validations work
   def self.categories
-    ["Computer Science", "Fitness", "Business", "Languages", "Cognitive Science", "All"]
+    CATEGORIES
   end
+
 
   def self.units
     ["1", "2", "3", "4"]

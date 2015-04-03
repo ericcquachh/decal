@@ -76,8 +76,8 @@
           <th>Time</th>
           <th>Status</th>
           <th></th>
-          <th></th>
-          <th></th>
+          <!-- <th></th> -->
+          <!-- <th></th> -->
         </tr>
 
       <% @courses.each do |course| %>
@@ -88,9 +88,13 @@
           <td><%= "hello" %></td>
           <td><%= course.status %></td>
           <% if current_user.try(:facilitator?) %>
-            <td><%= link_to 'Show', course %></td>
-            <td><%= link_to 'Edit', edit_course_path(course) %></td>
-            <td><%= link_to 'Destroy', course, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+<!--             <td><%= link_to 'Show', course %></td> -->
+            <% if course.uid == current_user.id %>
+              <td><%= link_to 'Edit', edit_course_path(course) %></td>
+            <% else %>
+              <td></td>
+            <% end %>
+<!--             <td><%= link_to 'Destroy', course, method: :delete, data: { confirm: 'Are you sure?' } %></td> -->
           <% end %>
         </tr>
       <% end %>

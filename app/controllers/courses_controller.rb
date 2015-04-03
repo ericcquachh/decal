@@ -79,12 +79,19 @@ class CoursesController < ApplicationController
   # POST /courses.json
   def create
     # @course = Course.new(params[:course])
-    if current_user.courses.create(params[:course]).valid?
+    @course = current_user.courses.new(params[:course])
+    if @course.valid?
       current_user.save!
+      @course.uid = current_user.id
+      @course.save!
       redirect_to :root, :notice => params
     else
+      e = "Errors: "
+      @course.errors.each do |type, msg|
+        e = e + msg + "\n"
+      end 
       #need to persist data across redirect
-      redirect_to new_course_path, :notice => "you must fill in title, category, status, and unit fields"
+      redirect_to new_course_path, :flash => {:error => e}
     end 
   end
 

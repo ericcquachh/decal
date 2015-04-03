@@ -20,7 +20,12 @@ ActiveRecord::Schema.define(:version => 20150403004759) do
     t.string   "status"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+<<<<<<< HEAD
     t.string   "uid"
+=======
+    t.string   "days"
+    t.integer  "uid"
+>>>>>>> d7b08f572ef14a4c8f835d5b0274aaeb013ec9b7
   end
 
   create_table "sections", :force => true do |t|
