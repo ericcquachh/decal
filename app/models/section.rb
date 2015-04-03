@@ -3,12 +3,8 @@ class Section < ActiveRecord::Base
   :start_time, :end_time
   belongs_to :course, :class_name => "Course", :foreign_key => "course_id"
 
-  def days
+  def self.days
     ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]
   end
 
-  def filter_time time
-    time = Time.parse(params[:section]['start_time(4i)'] + ':' + params[:section]['start_time(5i)']).strftime("%I:%M%p")
-    params[:section][:end_time] = Time.parse(params[:section]['end_time(4i)'] + ':' + params[:section]['end_time(5i)']).strftime("%I:%M%p")
-  end
 end

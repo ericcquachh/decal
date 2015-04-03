@@ -29,5 +29,6 @@ class Course < ActiveRecord::Base
   end
 
   def self.uid
+    :uid
   end
 end

@@ -5,11 +5,7 @@ class SectionsController < ApplicationController
   end
 
   def create
-    params[:section][:start_time] = filter_time params[:section][:start_time]
-    params[:section].delete 'start_time(4i)'
-    params[:section].delete 'start_time(5i)'
-    params[:section].delete 'end_time(4i)'
-    params[:section].delete 'end_time(5i)'
+    filter_time
     @section = Section.new(params[:section])
     @section.course = Course.find(params[:course_id])
     @section.save!

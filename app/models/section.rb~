@@ -7,12 +7,4 @@ class Section < ActiveRecord::Base
     ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]
   end
 
-  def filter_time
-    params[:section][:start_time] = Time.parse(params[:section]['start_time(4i)'] + ':' + params[:section]['start_time(5i)']).strftime("%I:%M%p")
-    params[:section][:end_time] = Time.parse(params[:section]['end_time(4i)'] + ':' + params[:section]['end_time(5i)']).strftime("%I:%M%p")
-    params[:section].delete 'start_time(4i)'
-    params[:section].delete 'start_time(5i)'
-    params[:section].delete 'end_time(4i)'
-    params[:section].delete 'end_time(5i)'
-  end
 end
