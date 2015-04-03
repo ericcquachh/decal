@@ -84,6 +84,7 @@ class CoursesController < ApplicationController
     @course = current_user.courses.new(params[:course])
     if @course.valid?
       current_user.save!
+      @course.uid = current_user.id
       @course.save!
       redirect_to :root, :notice => params
     else
