@@ -1,7 +1,0 @@
-class ChangeTimeToStartEndTime < ActiveRecord::Migration
-  def change
-    remove_column :course, :time
-    add_column :course, :start_time, :string
-    add_column :course, :end_time, :string
-  end
-end
