@@ -16,7 +16,7 @@ Background: facilitator has logged in
 
 Scenario: Successfully add file
 	Given I am on the course overview page
-	And I press on "Add File"
+	And I press on "Upload"
 	Then I should be on the add file page
 	And I add a file called "syllabus.pdf"
 	And I press "Upload"

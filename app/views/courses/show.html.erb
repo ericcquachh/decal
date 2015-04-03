@@ -92,7 +92,7 @@
                 <%= '--' %>
               <% end %>
             </td>
-            <% if current_user.try(:facilitator?) %>
+            <% if current_user.try(:facilitator?) and current_user.id == @course.uid %>
               <td>
                 <%= button_to "delete", {:controller => :sections, :action => 'destroy', :id => section.id, :course_id => @course.id }, :method => :delete, "onclick" => "javascript:return confirm('Are you absolutely sure you want to delete?')" %>
               </td>
@@ -101,28 +101,27 @@
         <% end %>
       </tbody>
     </table><br/>
-    <% if current_user.try(:facilitator?) %>
+    <% if current_user.try(:facilitator?) and current_user.id == @course.uid  %>
       <%= button_to 'Add Section', {:controller => :sections, :action => 'new', :course_id => @course.id}, :method => :get %>
       <br/><br/>
     <% end %>
   <% else %>
     <fieldset><legend><h5>No section has been created for this course yet</h5></legend></fieldset>
-    <% if current_user.try(:facilitator?) %>
+    <% if current_user.try(:facilitator?) and current_user.id == @course.uid  %>
       <%= button_to 'Add Section', {:controller => :sections, :action => 'new', :course_id => @course.id}, :method => :get %>
       <br/><br/>
     <% end %>
   <% end %>
 </div>
-<% if current_user.try(:facilitator?) %>
+
 <div class="uploads">
-  <%= link_to 'Uploads',  course_uploads_path(@course.id)%>
   <% if !flash[:notice].blank? %>
     <div class="alert alert-info">
     <%= flash[:notice] %>
     </div>
   <% end %>
   <br />
-  <% if current_user.try(:facilitator?) %>
+  <% if current_user.try(:facilitator?) and current_user.id == @course.uid %>
     <%= button_to "New Upload", {:controller => :uploads, :action => 'new', :course_id => @course.id}, :method => :get %>
     <br />
     <br />
@@ -140,13 +139,16 @@
         <tr>
           <td><%= upload.name %></td>
           <td><%= link_to "Download Upload", upload.attachment_url %></td>
-          <td><%= button_to "Delete", {:controller => :uploads, :action => 'destroy', :id => upload.id, :course_id => @course.id }, :method => :delete, "onclick" => "javascript:return confirm('Are you absolutely sure you want to delete?')" %></td>
+          <% if current_user.try(:facilitator?) and current_user.id == @course.uid %>
+            <td><%= button_to "Delete", {:controller => :uploads, :action => 'destroy', :id => upload.id, :course_id => @course.id }, :method => :delete, "onclick" => "javascript:return confirm('Are you absolutely sure you want to delete?')" %></td>
+          <% end %>
         </tr>
       <% end %>
     </tbody>
   </table>
 </div>
 <br/>
-<%= link_to 'Edit', edit_course_path(@course) %>
+<% if current_user.try(:facilitator?) and current_user.id == @course.uid %>
+  <%= link_to 'Edit', edit_course_path(@course) %>
 <% end %>
 <%= link_to 'Back', courses_path %>
