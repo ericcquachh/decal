@@ -1,4 +1,0 @@
-class AddDaysToSections < ActiveRecord::Migration
-  def change
-  end
-end
