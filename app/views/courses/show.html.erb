@@ -4,6 +4,17 @@
   <h1><%= @course.title %></h1>
 </p>
 
+<p>
+  <b>Category</b> <%= @course.category %><br></br>
+  <b>Units</b> <%= @course.units %><br></br>
+<% if current_user.try(:facilitator?) and current_user.id == @course.uid %>
+  <%= link_to 'Edit Course Info', edit_course_path(@course) %>
+<% end %>
+</p>
+<br/>
+<p>
+  <h2>Sections</h2>
+</p>
 <div class="sections">
   <% if !@course.sections.blank? %>
     <table class="std">
@@ -114,18 +125,17 @@
   <% end %>
 </div>
 
+
+<h2>Files</h2>
 <div class="uploads">
+  <!--
   <% if !flash[:notice].blank? %>
     <div class="alert alert-info">
     <%= flash[:notice] %>
     </div>
   <% end %>
-  <br />
-  <% if current_user.try(:facilitator?) and current_user.id == @course.uid %>
-    <%= button_to "New Upload", {:controller => :uploads, :action => 'new', :course_id => @course.id}, :method => :get %>
-    <br />
-    <br />
-  <% end %>
+  <br /> -->
+
   <table class="std">
     <thead>
       <tr>
@@ -146,9 +156,12 @@
       <% end %>
     </tbody>
   </table>
+  <br/>
+  <% if current_user.try(:facilitator?) and current_user.id == @course.uid %>
+    <%= button_to "New Upload", {:controller => :uploads, :action => 'new', :course_id => @course.id}, :method => :get %>
+    <br />
+    <br />
+  <% end %>
 </div>
 <br/>
-<% if current_user.try(:facilitator?) and current_user.id == @course.uid %>
-  <%= link_to 'Edit', edit_course_path(@course) %>
-<% end %>
 <%= link_to 'Back', courses_path %>
