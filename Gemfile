@@ -29,8 +29,9 @@ group :assets do
   gem 'omniauth-google-oauth2' 
   gem 'carrierwave', '~> 0.10.0'
   gem 'strong_parameters'
-  gem 'fog-aws'
-
+  gem 'dotenv-rails', :groups => [:development, :test]
+  gem 'fog'
+  
     #bootstrap (installed without gem)
   #gem 'bootstrap-sass', '~> 3.2.0'
   #gem 'autoprefixer-rails'
