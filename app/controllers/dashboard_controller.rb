@@ -16,7 +16,7 @@ class DashboardController < ApplicationController
 			if params[key] == "1"
 				# test.push(key)
 				course = Course.find_by_title(key)
-				course.update_attributes(uid: nil)
+				course.update_attributes(uid: -1)
 			end
 		end
 		redirect_to dashboard_path
