@@ -29,7 +29,7 @@ group :assets do
   gem 'omniauth-google-oauth2' 
   gem 'carrierwave', '~> 0.10.0'
   gem 'strong_parameters'
-  gem 'dotenv-rails', :groups => [:development, :test]
+  gem 'figaro'
   gem 'fog'
   
     #bootstrap (installed without gem)

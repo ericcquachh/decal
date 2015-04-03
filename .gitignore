@@ -4,5 +4,6 @@ log/
 coverage/
 doc/
 db/development.sqlite3
-*.env
-keys.env
+
+# Ignore application configuration
+/config/application.yml
