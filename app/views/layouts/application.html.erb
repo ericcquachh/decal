@@ -109,7 +109,8 @@
 						<% else %>
 							<%= link_to "Sign up", new_user_registration_path %>
 							<b>|</b>
-							<%= link_to "Sign in Berkeley", user_omniauth_authorize_path(:google_oauth2)%>
+							<%= link_to "Sign in with Berkeley", user_omniauth_authorize_path(:google_oauth2)%>
+							<b>|</b>
 							<%= link_to "Sign in", new_user_session_path%>
 						<% end %>
 					</div>
