@@ -5,6 +5,13 @@ def create_visitor
     :password => "testingpass", :password_confirmation => "testingpass", :facilitator=>false }
 end
 
+def create_non_facilitator
+  @non_facilitator = { :class_level=>"Senior", :first_name => "first", :last_name => "last", :email => "testing@berkeley.edu",
+    :password => "testingpass", :password_confirmation => "testingpass", :facilitator=>false }
+  @user = User.create(@non_facilitator)
+end
+
+
 def create_facilitator
   @facilitator = { :facilitator=>true, :first_name => "first", :last_name => "last", :email => "testing@berkeley.edu",
   :password => "testingpass", :password_confirmation => "testingpass" }
@@ -41,6 +48,13 @@ def sign_in
   click_button "Sign in"
 end
 
+def sign_in_non_facilitator
+  visit 'users/sign_in'
+  fill_in "user_email", :with => @non_facilitator[:email]
+  fill_in "user_password", :with => @non_facilitator[:password]
+  click_button "Sign in"
+end
+
 def sign_in_facilitator
   visit 'users/sign_in'
   fill_in "user_email", :with => @facilitator[:email]
@@ -71,6 +85,12 @@ end
 
 
 ### WHEN ###
+
+When /^I sign in as a non facilitator$/ do
+  create_non_facilitator
+  sign_in_non_facilitator
+end
+
 When /^I sign in as a facilitator$/ do
   create_facilitator
   sign_in_facilitator
