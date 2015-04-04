@@ -42,21 +42,24 @@
 
       <br></br>
       <div>
+	Promote Access:
         <div class="inner">
           <%= button_to 'promote', promote_path, {:class => "btn btn-primary"} %>
         </div>
+	<br/><br/>
+	Demote Access:
         <div class="inner">
           <%= button_to 'demote', demote_path, {:class => "btn btn-primary"} %>
         </div>
       </div>
 
-      <br>
+      <br/>
 
       <% if current_user.try(:facilitator?) %>
-        <%= link_to 'New Course', new_course_path, {:class => "btn btn-primary"} %>
+        To Add New Course: <%= link_to 'New Course', new_course_path, {:class => "btn btn-primary"} %>
       <% end %>
 
-      <br>
+      <br/><br/>
 
       <table class="table table-hover">
         <tr>
@@ -76,7 +79,7 @@
           <td><%= course.category %></td>
           <td><%= course.units %></td>
           <td><% course.section_times.each do |time| %>
-              <%= time.start_time + '-' + time.end_time %>
+              <%= time.full_time %>
           <% end %>
           <td><%= course.status %></td>
           <% if current_user.try(:facilitator?) %>

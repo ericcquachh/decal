@@ -1,4 +1,66 @@
 #comment used to test initial git push
+#course
+def mock_course
+  @mock_course = { :title=>"Test Course", :category=>"Business", :units=>"3", :status=>"Open" }
+end
+
+def create_course
+  visit 'courses/new'
+  fill_in "course_title", :with => @mock_course[:title]
+  select(@mock_course[:category], :from => "course_category")
+  fill_in "course_units", :with => @mock_course[:units]
+  select(@mock_course[:status], :from => "course_status")
+  click_button "Create Course"
+end
+
+Given /^I create a course$/ do
+  mock_course
+  create_course
+end
+
+Given /^I create a course with invalid fields$/ do
+  mock_course
+  @mock_course = @mock_course.merge(:units=>"bad units")
+  create_course
+end
+
+Given /^another facilitator has created a course$/ do
+  steps %Q{
+    Given I log out
+    When I sign in as another facilitator
+  }
+  mock_course
+  @mock_course = @mock_course.merge(:title=>"Other Course")
+  create_course
+  steps %Q{
+    Given I log out
+  }
+  @facilitator = { :facilitator=>true, :first_name => "first", :last_name => "last", :email => "facilitator@berkeley.edu",
+  :password => "testingpass", :password_confirmation => "testingpass" }
+  visit 'users/sign_in'
+  fill_in "user_email", :with => @facilitator[:email]
+  fill_in "user_password", :with => @facilitator[:password]
+  click_button "Sign in"
+
+end
+
+Then /^the page should have an error$/ do 
+  page.should have_content "Errors: Units must be integers 1-4."
+end
+
+Then /^my course should exist in home page$/ do 
+  page.should have_content "Test Course"
+end
+
+Then /^my course should not exist in home page$/ do 
+  page.should_not have_content "Test Course"
+end
+
+Then /^page should not have add course button$/ do 
+  page.should_not have_content "Add New Course"
+end
+
+
 Given /the following courses exist/ do |courses_table|
   courses_table.hashes.each do |course|
     Course.create!(course)
@@ -70,5 +132,13 @@ end
 
 Then(/^I should see the course page$/) do
   puts "yayyy"
+end
+
+Then(/^I should not see that course$/) do
+  if page.respond_to? :should
+    page.should have_no_content("Other Course")
+  else
+    assert page.has_no_content?("Other Course")
+  end
 end
 
