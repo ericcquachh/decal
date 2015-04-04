@@ -11,7 +11,7 @@
   <%= link_to 'Edit Course Info', edit_course_path(@course) %>
 <% end %>
 </p>
-
+<br/>
 <p>
   <h2>Sections</h2>
 </p>
@@ -67,8 +67,8 @@
               <% end %>
             </td>
             <td>
-              <% if !section.start_time.blank? && !section.end_time.blank? %>
-                <%= section.start_time + '-' + section.end_time %>
+              <% if section.section_time %>
+                <%= section.section_time.full_time %>
               <% else %>
                 <%= 'TBA' %>
               <% end %>
@@ -88,14 +88,14 @@
               <% end %>
             </td>
             <td>
-              <% if !section.ccn_publish.blank? %>       
+              <% if !section.ccn_publish.blank? %>
                 <% if !section.ccn_ld.blank? %>
-                  <%= section.ccn_ld %>                
+                  <%= section.ccn_ld %>
                 <% else %>
                   <%= '--' %>
                 <% end %>/
                 <% if !section.ccn_ud.blank? %>
-                  <%= section.ccn_ud %>                
+                  <%= section.ccn_ud %>
                 <% else %>
                   <%= '--' %>
                 <% end %>
@@ -148,7 +148,7 @@
       <% @course.uploads.each do |upload| %>
         <tr>
           <td><%= upload.name %></td>
-          <td><%= link_to "Download Upload", upload.attachment_url %></td>
+          <td><%= link_to "Download", upload.attachment_url %></td>
           <% if current_user.try(:facilitator?) and current_user.id == @course.uid %>
             <td><%= button_to "Delete", {:controller => :uploads, :action => 'destroy', :id => upload.id, :course_id => @course.id }, :method => :delete, "onclick" => "javascript:return confirm('Are you absolutely sure you want to delete?')" %></td>
           <% end %>

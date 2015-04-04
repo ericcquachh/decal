@@ -18,22 +18,15 @@
       <b>Class every...</b>
       <table class="std2">
         <tr>
-          <td><%= check_box_tag(:monday) %></td>
-          <td><%= check_box_tag(:tuesday) %></td>
-          <td><%= check_box_tag(:wednesday) %></td>
-          <td><%= check_box_tag(:thursday) %></td>
-          <td><%= check_box_tag(:friday) %></td>
-        </tr>
-        <tr>
-          <td>Monday</td>
-          <td>Tuesday</td>
-          <td>Wednesday</td>
-          <td>Thursday</td>
-          <td>Friday</td>
-        </tr>
+          <% Section_time.all_days.each do |day| %>
+          <%= check_box_tag "section_time[days[#{day}]]", 1, false, id: day %>
+          <%= day%>
+       <% end %>
       </table><br/>
-      <div><%= f.label "hello", 'Start from: ', :class => 'field'  %><%= time_select :section_time, :start_time, {:minute_step => 15, :ampm => true, :ignore_date => true} %></div><br/>
-      <div><%= f.label :end_time, 'Ends At: ', :class => 'field'  %><%= time_select :section_time, :end_time, {:minute_step => 15, :ampm => true, :ignore_date => true} %></div><br/>
+      <%= label_tag ("Start after:") %>
+      <%= select_tag 'section_time[start_time]', options_for_select(Section_time.all_times, "-Select Time-") %>
+      <%= label_tag ("End before:") %>
+      <%= select_tag 'section_time[end_time]', options_for_select(Section_time.all_times, "-Select Time-") %>
 
     <% end %>
   </div><br/>

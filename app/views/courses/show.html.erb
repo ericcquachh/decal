@@ -67,8 +67,8 @@
               <% end %>
             </td>
             <td>
-              <% if !section.section_time.start_time.blank? && !section.section_time.end_time.blank? %>
-                <%= section.section_time.start_time + '-' + section.section_time.end_time %>
+              <% if section.section_time.filled? %>
+                <%= section.section_time.full_time %>
               <% else %>
                 <%= 'TBA' %>
               <% end %>

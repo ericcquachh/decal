@@ -1,30 +1,48 @@
 class Section_time < ActiveRecord::Base
   attr_accessible :days, :start_time, :end_time
   belongs_to :section
-  validates :days, :presence => {message: "Days of the week are required."}
 
   def self.all_days
-    ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]
+    ["M", "Tu", "W", "Th", "F"]
   end
 
   def self.all_times
-    (0...29).map {|i| int_to_time(i * 30 + (8 * 60))}
+    ["-Select Time-"] + (0...29).map {|i| int_to_time(i * 30 + (8 * 60))}
   end
 
   def full_time
-    days + start_time + '-' + end_time
+    full = ""
+    full = days + " " if days
+    full += start_time if start_time
+    full += '-' + end_time if end_time
+    full
   end
 
   def include_day? dotw
-    Section_time.days_nerf(dotw).any? {|day| days.include? day}
+    bool = true
+    if dotw
+      bool = days_to_list.any? {|day| dotw.include? day}
+    end
+    bool
   end
 
-  def include_time? start_, end_
-    (Section_time.time_to_int(start_) < Section_time.time_to_int(start_time)) and (Section_time.time_to_int(end_) >= Section_time.time_to_int(end_time))
+  def include_time? param
+    return false if !filled?
+    if param[:start_time]
+      if (Section_time.time_to_int(param[:start_time]) > Section_time.time_to_int(start_time))
+        return false
+      end
+    end
+    if param[:end_time]
+      if (Section_time.time_to_int(param[:end_time]) < Section_time.time_to_int(end_time))
+        return false
+      end
+    end
+    include_day? param[:days]
   end
+
 
   def self.time_to_int time
-
     time =~ /(\d+):(\d+)(P)?(A)?M/
     new = $1.to_i * 60 + $2.to_i
     if $3
@@ -49,32 +67,31 @@ class Section_time < ActiveRecord::Base
     end
   end
 
-  def self.filter_time_and_date input
-    new = {}
-    new[:start_time] = Time.parse(input['start_time(4i)'] + ':' + input['start_time(5i)']).strftime("%I:%M%p")
-    new[:end_time] = Time.parse(input['end_time(4i)'] + ':' + input['end_time(5i)']).strftime("%I:%M%p")
-    if input[:days] 
-      new[:days] = input[:days].keys
+  def self.filter_section_time input
+    if input[:days]
+      input[:days] = input[:days].keys.join("")
     end
-    new
+    if input[:start_time] == '-Select Time-'
+      input.delete :start_time
+    end
+    if input[:end_time] == '-Select Time-'
+      input.delete :end_time
+    end
+    input
   end
 
-  def self.days_nerf days
+  def filled?
+    days and start_time and end_time
+  end
+
+  def days_to_list
     output = []
-    days.each do |day|
-      case day
-      when "Monday"
-        output.push("M")
-      when "Tuesday"
-        output.push("Tu")
-      when "Wednesday"
-        output.push("W")
-      when "Thursday"
-        output.push("Th")
-      when "Friday"
-        output.push("F")
-      end
-    end
+    days =~ /(M)?(Tu)?(W)?(Th)?(F)?/
+    output.push($1) if $1
+    output.push($2) if $2
+    output.push($3) if $3
+    output.push($4) if $4
+    output.push($5) if $5
     output
   end
 end

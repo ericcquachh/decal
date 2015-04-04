@@ -28,11 +28,12 @@
           <%= check_box_tag "section_time[days[#{day}]]", 1, true, id: day %>
           <%= day%>
        <% end %>
+       <br></br>
        <%= label_tag ("Start after:") %>
-       <%= time_select :section_time, :start_time , {:minute_step => 15, :ampm => true, :ignore_date => true} %>
+       <%= select_tag 'section_time[start_time]', options_for_select(Section_time.all_times, "-Select Time-") %>
        <%= label_tag ("Ends before:") %>
-       <%= time_select :section_time, :end_time, {:minute_step => 15, :ampm => true, :ignore_date => true}%>
-
+       <%= select_tag 'section_time[end_time]', options_for_select(Section_time.all_times, "-Select Time-") %>
+        
         <%= label_tag("Status:") %>
         <%= select_tag 'status', options_for_select(@all[:status], session[:status]), :class => 'form-control'%>
 
@@ -79,11 +80,15 @@
           <td><%= course.category %></td>
           <td><%= course.units %></td>
           <td><% course.section_times.each do |time| %>
-              <%= time.full_time %>
+              <% if time.filled? %>
+                <%= time.full_time %>
+              <% else %>
+                <%= 'TBA' %>
+              <% end %>
+              <br></br>
           <% end %>
           <td><%= course.status %></td>
           <% if current_user.try(:facilitator?) %>
-             <td><%= link_to 'Show', course %></td>
             <% if course.uid == current_user.id %>
               <td><%= link_to 'Edit', edit_course_path(course) %></td>
             <% else %>

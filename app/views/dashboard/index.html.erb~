@@ -10,6 +10,8 @@
 		<th>Status</th>
 		<th></th>
 		<th></th>
+		<!-- <th></th> -->
+		<!-- <th></th> -->
 	</tr>
 
 	<%= render 'dashboard_form'%>

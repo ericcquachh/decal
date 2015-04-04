@@ -7,7 +7,7 @@ class SectionsController < ApplicationController
   def create
     @section = Section.new(params[:section])
     @section.course = Course.find(params[:course_id])
-    params[:section_time] = Section_time.filter_section_time(params[:section_time])
+    params[:section_time][:days] = Section_time.filter_date(params[:section_time][:days])
     @section.section_time = Section_time.create(params[:section_time])
     
     @section.save!
