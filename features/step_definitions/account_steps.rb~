@@ -7,11 +7,6 @@ def find_user
   @user ||= User.where(:email => @visitor[:email]).first
 end
 
-def create_unconfirmed_user
-  create_visitor
-  sign_up
-  visit 'users/sign_out'
-end
 
 def create_user
   create_visitor
@@ -37,9 +32,10 @@ def sign_in
 end
 
 ### GIVEN ###
-Given /^I am not logged in$/ do
-  visit  destroy_user_session_path, method: :delete
-end
+
+#Given /^I am not logged in$/ do
+ # visit  destroy_user_session_path
+#end
 
 Given /^I am logged in$/ do
   create_user
@@ -55,9 +51,6 @@ Given /^I do not exist as a user$/ do
 
 end
 
-Given /^I exist as an unconfirmed user$/ do
-  create_unconfirmed_user
-end
 
 ### WHEN ###
 When /^I sign in with valid credentials$/ do
@@ -65,9 +58,9 @@ When /^I sign in with valid credentials$/ do
   sign_in
 end
 
-When /^I sign out$/ do
-  visit 'users/sign_out'
-end
+#When /^I sign out$/ do
+ # visit 'users/sign_out'
+#end
 
 When /^I sign up with valid user data$/ do
   create_visitor
@@ -113,9 +106,8 @@ When /^I sign in with a wrong password$/ do
 end
 
 When /^I edit my account details$/ do
-  click_link "Edit account"
-  fill_in "user_name", :with => "newname"
-  fill_in "user_current_password", :with => @visitor[:password]
+  click_link "Edit profile"
+  fill_in "class_level", :with => "Senior"
   click_button "Update"
 end
 
@@ -127,7 +119,7 @@ end
 Then /^I should be signed in$/ do
   page.should have_content "Logout"
   page.should_not have_content "Sign up"
-  page.should_not have_content "Login"
+  page.should_not have_content "Log in"
 end
 
 Then /^I should be signed out$/ do

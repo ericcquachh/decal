@@ -1,5 +1,5 @@
 def create_visitor
-  @visitor ||= { :first_name => "first", :last_name => "last", :email => "testing@berkeley.edu",
+  @visitor ||= { :class_level=>"Senior", :first_name => "first", :last_name => "last", :email => "testing@berkeley.edu",
     :password => "testingpass", :password_confirmation => "testingpass" }
 end
 
@@ -32,9 +32,10 @@ def sign_in
 end
 
 ### GIVEN ###
-Given /^I am not logged in$/ do
-  visit  destroy_user_session_path
-end
+
+#Given /^I am not logged in$/ do
+ # visit  destroy_user_session_path
+#end
 
 Given /^I am logged in$/ do
   create_user
@@ -105,9 +106,8 @@ When /^I sign in with a wrong password$/ do
 end
 
 When /^I edit my account details$/ do
-  click_link "Edit account"
-  fill_in "user_name", :with => "newname"
-  fill_in "user_current_password", :with => @visitor[:password]
+  click_link "Edit profile"
+  fill_in "user_class_level", :with => @visitor[:class_level]
   click_button "Update"
 end
 
@@ -165,7 +165,7 @@ Then /^I see an invalid login message$/ do
 end
 
 Then /^I should see an account edited message$/ do
-  page.should have_content "You updated your account successfully."
+  page.should have_content "Your account has been updated successfully."
 end
 
 Then /^I should see my name$/ do
