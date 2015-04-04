@@ -7,7 +7,7 @@ end
 
 def create_non_facilitator
   @non_facilitator = {:facilitator=>false, :class_level=>"Senior", :first_name => "first", :last_name => "last", :email => "non_facilitator@berkeley.edu",
-    :password => "testingpass", :password_confirmation => "testingpass", :facilitator=>false }
+    :password => "testingpass", :password_confirmation => "testingpass"}
   @user = User.create(@non_facilitator)
 end
 
