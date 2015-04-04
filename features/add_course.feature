@@ -5,12 +5,8 @@ Feature: Add New Course
 
 Background: facilitator has logged
 
-	Given the following users exist:
-    | profile_id | email                      | name           | password     | 
-    | 1          | markmiyashita@berkeley.edu | Mark Miyashita | ilovepython  | 
-
-    When I am on the login page
-	Then I am logged in as "markmiyashita@berkeley.edu" with password "ilovepython"
+  Given I exist as a user
+  When I sign in with valid credentials
 
 Scenario: Successfully add course
 	Given I should be on my account page
