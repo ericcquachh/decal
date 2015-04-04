@@ -24,6 +24,26 @@ Given /^I create a course with invalid fields$/ do
   create_course
 end
 
+Given /^another facilitator has created a course$/ do
+  steps %Q{
+    Given I log out
+    When I sign in as another facilitator
+  }
+  mock_course
+  @mock_course = @mock_course.merge(:title=>"Other Course")
+  create_course
+  steps %Q{
+    Given I log out
+  }
+  @facilitator = { :facilitator=>true, :first_name => "first", :last_name => "last", :email => "facilitator@berkeley.edu",
+  :password => "testingpass", :password_confirmation => "testingpass" }
+  visit 'users/sign_in'
+  fill_in "user_email", :with => @facilitator[:email]
+  fill_in "user_password", :with => @facilitator[:password]
+  click_button "Sign in"
+
+end
+
 Then /^the page should have an error$/ do 
   page.should have_content "Errors: Units must be integers 1-4."
 end
@@ -112,5 +132,13 @@ end
 
 Then(/^I should see the course page$/) do
   puts "yayyy"
+end
+
+Then(/^I should not see that course$/) do
+  if page.respond_to? :should
+    page.should have_no_content("Other Course")
+  else
+    assert page.has_no_content?("Other Course")
+  end
 end
 

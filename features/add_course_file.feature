@@ -9,16 +9,16 @@ Background: facilitator has logged in
 	
 Scenario: Successfully add file
 	Given I am on the course page for my course
+	Then I should see a "New Upload" button
 	When I press "New Upload"
-	Then I should be on the add file page
-	When I add a file called "syllabus.pdf"
-	And I press "Upload"
-	Then I should be on the course page for "Python on Crack"
-	And I should see "syllabus.pdf"
+	Then I should be on the add file page for my course
+	When I upload a file called "test.pdf"
+	Then I should be on the course page for my course
+	And I should see "test.pdf"
 
 Scenario: Facilitators can't add files to courses they don't own
-	Given I am on the facilitate page
-	And another facilitator has created a course
+	Given another facilitator has created a course
+	And I am on the facilitate page
 	Then I should not see that course
 	Given I am on the course page for that course
 	Then I should not see "New Upload"
@@ -27,7 +27,6 @@ Scenario: Users can't add file
 	Given I am on the courses page
 	And I press "demote"
 	Given I am on the course page for my course
-	When I press "New Upload"
-	Then I should not see "New Upload"
+	Then I should not see a "New Upload" button
 
 

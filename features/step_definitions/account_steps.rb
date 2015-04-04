@@ -13,7 +13,13 @@ end
 
 
 def create_facilitator
-  @facilitator = { :facilitator=>true, :first_name => "first", :last_name => "last", :email => "testing@berkeley.edu",
+  @facilitator = { :facilitator=>true, :first_name => "first", :last_name => "last", :email => "facilitator@berkeley.edu",
+  :password => "testingpass", :password_confirmation => "testingpass" }
+  @user = User.create(@facilitator)
+end
+
+def create_other_facilitator
+  @facilitator = { :facilitator=>true, :first_name => "Kevin", :last_name => "Casey", :email => "overlord@berkeley.edu",
   :password => "testingpass", :password_confirmation => "testingpass" }
   @user = User.create(@facilitator)
 end
@@ -92,6 +98,11 @@ end
 
 When /^I sign in as a facilitator$/ do
   create_facilitator
+  sign_in_facilitator
+end
+
+When /^I sign in as another facilitator$/ do
+  create_other_facilitator
   sign_in_facilitator
 end
 
