@@ -7,6 +7,8 @@ Then(/^I should not see a "(.*?)" button$/) do |arg1|
 end
 
 When(/^I upload a file called "(.*?)"$/) do |arg1|
-	attach_file(:pdf_file, File.join(RAILS_ROOT, 'features', 'upload-files', arg1))
-	
+	RAILS_ROOT = File.join(File.expand_path('../../',File.dirname(__FILE__)))
+	attach_file("upload_attachment", File.join(RAILS_ROOT, 'features', 'upload-files', arg1))
+	fill_in("upload_name", :with => "test.pdf")
+	click_button("Save")
 end
