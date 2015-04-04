@@ -19,7 +19,7 @@ Scenario: Successfully add file
 	And I own "Python on Crack"
 	Given I am on the course page for "Python on Crack"
 	Then I should see "New Upload"
-	When I press "New Upload" button
+	When I press "New Upload"
 	Then I should be on the add file page
 	When I add a file called "syllabus.pdf"
 	And I press "Upload"
@@ -28,7 +28,7 @@ Scenario: Successfully add file
 
 Scenario: Users can't add file
 	Given I am on the courses page
-	And I demote myself to a user
+	And I press "Demote"
 	Given I am on the course page for "Python on Crack"
 	Then I should not see "New Upload"
 
