@@ -39,7 +39,7 @@ class CoursesController < ApplicationController
     if params[:section_time] and params[:section_time]['start_time(4i)']
       params[:section_time] = Section_time.filter_time_and_date params[:section_time]
       if params[:section_time][:days]
-        @courses = @courses.select {|course| course.section_times.any? {|time| time.include_day? params[:section_time][:days]}}
+        #@courses = @courses.select {|course| course.section_times.any? {|time| time.include_day? params[:section_time][:days]}}
       end
       #@courses = @courses.select {|course| course.section_times.any? {|time| time.include_time? params[:section_time]}}
     end
