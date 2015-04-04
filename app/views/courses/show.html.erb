@@ -148,7 +148,7 @@
       <% @course.uploads.each do |upload| %>
         <tr>
           <td><%= upload.name %></td>
-          <td><%= link_to "Download Upload", upload.attachment_url %></td>
+          <td><%= link_to "Download", upload.attachment_url %></td>
           <% if current_user.try(:facilitator?) and current_user.id == @course.uid %>
             <td><%= button_to "Delete", {:controller => :uploads, :action => 'destroy', :id => upload.id, :course_id => @course.id }, :method => :delete, "onclick" => "javascript:return confirm('Are you absolutely sure you want to delete?')" %></td>
           <% end %>
