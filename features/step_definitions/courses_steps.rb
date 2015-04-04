@@ -2,7 +2,6 @@
 #course
 def mock_course
   @mock_course = { :title=>"Test Course", :category=>"Business", :units=>"3", :status=>"Open" }
-  @course = Course.create(@mock_course)
 end
 
 def create_course
@@ -19,8 +18,26 @@ Given /^I create a course$/ do
   create_course
 end
 
+Given /^I create a course with invalid fields$/ do
+  mock_course
+  @mock_course = @mock_course.merge(:units=>"bad units")
+  create_course
+end
+
+Then /^the page should have an error$/ do 
+  page.should have_content "Errors: Units must be integers 1-4."
+end
+
 Then /^my course should exist in home page$/ do 
   page.should have_content "Test Course"
+end
+
+Then /^my course should not exist in home page$/ do 
+  page.should_not have_content "Test Course"
+end
+
+Then /^page should not have add course button$/ do 
+  page.should_not have_content "Add New Course"
 end
 
 

@@ -6,7 +6,7 @@ def create_visitor
 end
 
 def create_non_facilitator
-  @non_facilitator = { :class_level=>"Senior", :first_name => "first", :last_name => "last", :email => "testing@berkeley.edu",
+  @non_facilitator = {:facilitator=>false, :class_level=>"Senior", :first_name => "first", :last_name => "last", :email => "non_facilitator@berkeley.edu",
     :password => "testingpass", :password_confirmation => "testingpass", :facilitator=>false }
   @user = User.create(@non_facilitator)
 end
@@ -32,7 +32,6 @@ end
 
 
 def sign_up
-
   visit 'users/sign_up'
   fill_in "user_email", :with => @visitor[:email]
   fill_in "user_password", :with => @visitor[:password]
@@ -106,9 +105,6 @@ When /^I sign in with valid credentials$/ do
   sign_in
 end
 
-#When /^I sign out$/ do
- # visit 'users/sign_out'
-#end
 
 When /^I sign up with valid user data$/ do
   create_visitor
@@ -143,6 +139,10 @@ When /^I return to the site$/ do
   visit '/'
 end
 
+When /^I return to the home page$/ do
+  visit '/'
+end
+
 When /^I sign in with a wrong email$/ do
   @visitor = @visitor.merge(:email => "wrong@example.com")
   sign_in
@@ -164,6 +164,10 @@ When /^I look at the list of users$/ do
 end
 
 ### THEN ###
+
+Then /^I log out$/ do
+  click_link "Logout"
+end
 
 Then /^I should be signed in$/ do
   page.should have_content "Logout"
