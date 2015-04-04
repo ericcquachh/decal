@@ -1,0 +1,38 @@
+class Section_Time < ActiveRecord::Base
+  attr_accessible :uid, :days, :start_time, :end_time
+  belongs_to :course, :class_name => "Course", :foreign_key => "course_id"
+
+  def self.all_days
+    ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]
+  end
+
+  def self.all_times
+   (8 to 20).each do {|i| time_to_int(i * 100)}
+  end
+
+  def self.include_day? days
+  end
+
+  def self.include_time? start_ end_
+    time_to_int
+  end
+
+  def time_to_int time
+    time =~ /(\d+):(\d+)(P)?(A)?M/
+    new = $1.to_i * 100 + $2.to_i
+    if $3
+      new + 1200
+    else 
+      new
+    end
+  end
+
+  def int_to_time int
+    pm = false
+    if int > 1200
+      int -= 1200
+      pm = true
+    end
+    (int / 100).to_s + ":" + (int % 100).to_s + ("PM" if pm else "AM") 
+  end
+end

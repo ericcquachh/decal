@@ -33,7 +33,7 @@
         </tr>
       </table><br/>
       <div><%= f.label "hello", 'Start from: ', :class => 'field'  %><%= time_select :section_time, :start_time, {:minute_step => 15, :ampm => true, :ignore_date => true} %></div><br/>
-      <div><%= f.label :end_time, 'Ends At: ', :class => 'field'  %><%= time_select :section_time, :end_time, {:minute_step => 15, :ampm => true, :ignore_date => true} %></div><br/>
+      <div><%= f.label :end_time, 'Ends At: ', :class => 'field'  %><%= f.time_select :end_time, {:minute_step => 15, :ampm => true, :ignore_date => true} %></div><br/>
 
     <% end %>
   </div><br/>

@@ -5,9 +5,9 @@ class SectionsController < ApplicationController
   end
 
   def create
-    Section.filter_time_from_params
     @section = Section.new(params[:section])
     @section.course = Course.find(params[:course_id])
+    @section.section_time = Section_time.create(Section_time.filter_time_and_date(params[:section_time]))
     @section.save!
     redirect_to course_path(params[:course_id]), :notice => params
   end
@@ -21,5 +21,6 @@ class SectionsController < ApplicationController
   def edit
     @section = Section.find(params[:id])
   end
+
 
 end

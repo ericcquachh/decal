@@ -56,8 +56,8 @@
               <% end %>
             </td>
             <td>
-              <% if !section.start_time.blank? && !section.end_time.blank? %>
-                <%= section.start_time + '-' + section.end_time %>
+              <% if !section.section_time.start_time.blank? && !section.section_time.end_time.blank? %>
+                <%= section.section_time.start_time + '-' + section.section_time.end_time %>
               <% else %>
                 <%= 'TBA' %>
               <% end %>
@@ -77,14 +77,14 @@
               <% end %>
             </td>
             <td>
-              <% if !section.ccn_publish.blank? %>       
+              <% if !section.ccn_publish.blank? %>
                 <% if !section.ccn_ld.blank? %>
-                  <%= section.ccn_ld %>                
+                  <%= section.ccn_ld %>
                 <% else %>
                   <%= '--' %>
                 <% end %>/
                 <% if !section.ccn_ud.blank? %>
-                  <%= section.ccn_ud %>                
+                  <%= section.ccn_ud %>
                 <% else %>
                   <%= '--' %>
                 <% end %>
