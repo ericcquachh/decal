@@ -1,7 +1,6 @@
 class Section_time < ActiveRecord::Base
   attr_accessible :days, :start_time, :end_time
   belongs_to :section
-  validates :days, :presence => {message: "Days of the week are required."}
 
   def self.all_days
     ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]

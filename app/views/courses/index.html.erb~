@@ -25,7 +25,7 @@
         <br></br>
         <%= label_tag("Date:") %>
         <% Section_time.all_days.each do |day| %>
-          <%= check_box_tag "section_time[#{day}]", 1, true, id: day %>
+          <%= check_box_tag "section_time[days[#{day}]]", 1, true, id: day %>
           <%= day%>
        <% end %>
        <%= label_tag ("Start after:") %>

@@ -76,7 +76,7 @@
           <td><%= course.category %></td>
           <td><%= course.units %></td>
           <td><% course.section_times.each do |time| %>
-              <%= time.start_time + '-' + time.end_time %>
+              <%= time.full_time %>
           <% end %>
           <td><%= course.status %></td>
           <% if current_user.try(:facilitator?) %>

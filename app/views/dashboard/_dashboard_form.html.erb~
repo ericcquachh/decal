@@ -5,7 +5,7 @@
 			<td><%= link_to course.title, course, {:style=>'font-size: 120%;'} %></td>
 			<td><%= course.category %></td>
 			<td><%= course.units %></td>
-			<td><%= course.section_times.each do |time| %>
+			<td><%= course.section_times.each do |time| %></td>
 			  <%= time.full_time %>
                         <% end %>
 			<td><%= course.status %></td>

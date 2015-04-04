@@ -41,7 +41,7 @@ class CoursesController < ApplicationController
       if params[:section_time][:days]
         #@courses = @courses.select {|course| course.section_times.any? {|time| time.include_day? params[:section_time][:days]}}
       end
-      #@courses = @courses.select {|course| course.section_times.any? {|time| time.include_time? params[:section_time][:start_time], params[:section_time][:end_time]}}
+      @courses = @courses.select {|course| course.section_times.any? {|time| time.include_time? params[:section_time][:start_time], params[:section_time][:end_time]}}
     end
   end
 
