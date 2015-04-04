@@ -1,19 +1,4 @@
 
-#course
-def mock_course
-  @mock_course = { :title=>"Test Course", :category=>"Business", :units=>"3", :status=>"Open" }
-  @course = Course.create(@mock_course)
-end
-
-def create_course
-  visit 'courses/new'
-  fill_in "course_title", :with => @mock_course[:title]
-  select(@mock_course[:category], :from => "course_category")
-  fill_in "course_units", :with => @mock_course[:units]
-  select(@mock_course[:status], :from => "course_status")
-  click_button "Create Course"
-end
-
 
 def create_visitor
   @visitor = { :class_level=>"Senior", :first_name => "first", :last_name => "last", :email => "testing@berkeley.edu",
@@ -84,17 +69,16 @@ Given /^I do not exist as a user$/ do
 
 end
 
-Given /^I create a course$/ do
-  mock_course
-  create_course
-end
-
-
 
 ### WHEN ###
-When /^I am logged in as a facilitator$/ do
+When /^I sign in as a facilitator$/ do
   create_facilitator
   sign_in_facilitator
+end
+
+When /^I sign in as a user$/ do
+  create_visitor
+  sign_in
 end
 
 When /^I sign in with valid credentials$/ do
@@ -160,9 +144,6 @@ When /^I look at the list of users$/ do
 end
 
 ### THEN ###
-Then /^my course should exist in home page$/ do 
-  page.should have_content "Test Course"
-end
 
 Then /^I should be signed in$/ do
   page.should have_content "Logout"

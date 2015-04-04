@@ -5,7 +5,7 @@ Feature: Add New Course
 
 Background: facilitator has logged
 
-  When I am logged in as a facilitator 
+  When I sign in as a facilitator
 
 Scenario: Facilitator successfully add valid course
   Given I create a course

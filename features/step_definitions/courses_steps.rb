@@ -1,4 +1,29 @@
 #comment used to test initial git push
+#course
+def mock_course
+  @mock_course = { :title=>"Test Course", :category=>"Business", :units=>"3", :status=>"Open" }
+  @course = Course.create(@mock_course)
+end
+
+def create_course
+  visit 'courses/new'
+  fill_in "course_title", :with => @mock_course[:title]
+  select(@mock_course[:category], :from => "course_category")
+  fill_in "course_units", :with => @mock_course[:units]
+  select(@mock_course[:status], :from => "course_status")
+  click_button "Create Course"
+end
+
+Given /^I create a course$/ do
+  mock_course
+  create_course
+end
+
+Then /^my course should exist in home page$/ do 
+  page.should have_content "Test Course"
+end
+
+
 Given /the following courses exist/ do |courses_table|
   courses_table.hashes.each do |course|
     Course.create!(course)
