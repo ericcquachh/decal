@@ -13,6 +13,48 @@ def create_course
   click_button "Create Course"
 end
 
+def mock_section
+  @mock_section = { :section_section_title=>"Test Section", :section_ccn_ld=>"123456", :section_ccn_ud=>"234566", :section_size=>"50" }
+end
+
+def mock_section
+  @mock_section = { :section_section_title=>"Test Section", :section_ccn_ld=>"123456", :section_ccn_ud=>"234566", :section_size=>"50" }
+end
+
+def create_section
+  click_link 'Test Course'
+  click_button 'Add Section'
+  fill_in "section_section_title", :with => @mock_section[:section_section_title]
+  fill_in "section_ccn_ld", :with => @mock_section[:section_ccn_ld]
+  fill_in "section_ccn_ud", :with => @mock_section[:section_ccn_ud]
+  fill_in "section_size", :with => @mock_section[:section_size]
+  click_button "Create Section"
+end
+
+Given /^I visit the course dashboard page/ do
+  visit '/dashboard'
+end
+
+When /^I click on "([^"]*)" course/ do |name|
+  visit '/courses/1'
+end
+
+Then /^I should not see "([^"]*)" button/ do |name|
+  should have_no_button name
+end
+
+Then /^I should see my new section in facilitate course page$/ do
+  page.should have_content "Test Section"
+end
+
+Then /^I visit facilitate course page$/ do
+  visit 'dashboard'
+end
+
+Then /^I create a new section$/ do
+  mock_section
+  create_section
+end
 Given /^I create a course$/ do
   mock_course
   create_course
@@ -66,6 +108,21 @@ Given /the following courses exist/ do |courses_table|
     Course.create!(course)
   end
 end
+
+
+  
+
+Given(/^these courses exist:$/) do |courses_table|
+  courses_table.hashes.each do |course|
+    input_course = Course.new
+    input_course.title = course["Title"]
+    input_course.category = course["Category"]
+    input_course.units = course["Units"]
+    input_course.status = course["Status"]
+    input_course.save
+  end
+end
+
 
 And /I set everything to default/ do
   select("All", :from => "category")
