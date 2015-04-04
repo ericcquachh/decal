@@ -16,20 +16,20 @@ Background: user has logged in
 
 Scenario: Successfully add file
 	Given I am on my facilitate page
-	Then I add an existing course "Python on Crack" to facilitate // ORRRR we can use And I own "Python on Crack"
+	And I own "Python on Crack"
 	Given I am on the course page for "Python on Crack"
 	Then I should see "New Upload"
-	When I click the "New Upload" button
+	When I press "New Upload" button
 	Then I should be on the add file page
 	When I add a file called "syllabus.pdf"
 	And I press "Upload"
-	Then I should be on the course overview page
+	Then I should be on the course page for "Python on Crack"
 	And I should see "syllabus.pdf"
 
 Scenario: Users can't add file
 	Given I am on the courses page
 	And I demote myself to a user
-	Give I am on the course page for "Python on Crack"
+	Given I am on the course page for "Python on Crack"
 	Then I should not see "New Upload"
 
 Scenario: Facilitators can't add files to courses they don't own
