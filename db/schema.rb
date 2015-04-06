@@ -19,10 +19,10 @@ ActiveRecord::Schema.define(:version => 20150402201729) do
     t.string   "units"
     t.string   "time"
     t.string   "status"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                 :null => false
+    t.datetime "updated_at",                 :null => false
     t.string   "days"
-    t.integer  "uid"
+    t.integer  "uid",        :default => -1
   end
 
   create_table "sections", :force => true do |t|

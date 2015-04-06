@@ -14,7 +14,6 @@ class DashboardController < ApplicationController
 	def create
 		params.keys.each do |key|
 			if params[key] == "1"
-				# test.push(key)
 				course = Course.find_by_title(key)
 				course.update_attributes(uid: -1)
 			end
