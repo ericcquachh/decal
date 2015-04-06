@@ -4,6 +4,7 @@ class CreateSectionTime < ActiveRecord::Migration
       t.string :days
       t.string :start_time
       t.string :end_time
+      t.string :section_id
       t.timestamps
     end
     remove_column :courses, :days
