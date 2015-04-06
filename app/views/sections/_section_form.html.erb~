@@ -18,7 +18,7 @@
       <b>Class every...</b>
       <table class="std2">
         <tr>
-          <% Section_time.all_days.each do |day| %>
+          <% Section_time.days_nerf(Section_time.all_days).each do |day| %>
           <%= check_box_tag "section_time[days[#{day}]]", 1, false, id: day %>
           <%= day%>
        <% end %>

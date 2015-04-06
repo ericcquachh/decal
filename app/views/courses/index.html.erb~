@@ -85,7 +85,6 @@
               <% else %>
                 <%= 'TBA' %>
               <% end %>
-              <br></br>
           <% end %>
           <td><%= course.status %></td>
           <% if current_user.try(:facilitator?) %>

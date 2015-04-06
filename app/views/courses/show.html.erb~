@@ -67,7 +67,7 @@
               <% end %>
             </td>
             <td>
-              <% if section.section_time.filled? %>
+              <% if section.section_time %>
                 <%= section.section_time.full_time %>
               <% else %>
                 <%= 'TBA' %>

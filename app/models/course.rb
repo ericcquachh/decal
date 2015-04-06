@@ -1,7 +1,8 @@
 class Course < ActiveRecord::Base
-  attr_accessible :category, :status, :days, :time, :title, :units, :uid
+  attr_accessible :category, :status, :title, :units, :uid
   has_many :sections
   has_many :uploads
+  has_many :section_times, through: :sections
 
   CATEGORIES = ["Computer Science", "Fitness", "Business", "Languages", "Cognitive Science"]
 
@@ -11,7 +12,7 @@ class Course < ActiveRecord::Base
 
 
   def self.all_attributes
-    {:title => nil, :category => self.categories + ["All"], :status => self.statuses, :days => self.days, :time => self.times, :units => self.units}
+    {:title => nil, :category => self.categories + ["All"], :status => self.statuses, :units => self.units}
   end
 
   # Changed to make validations work
@@ -28,14 +29,7 @@ class Course < ActiveRecord::Base
     ["Full", "Open", "All"]
   end
 
-  def self.days
-    ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]
-  end
-
-  def self.times
-    []
-  end
-
   def self.uid
+    :uid
   end
 end

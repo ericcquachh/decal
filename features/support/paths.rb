@@ -17,16 +17,15 @@ module NavigationHelpers
     # when /^the movies page$/ then '/movies'
     when /^the Decal courses page$/ then '/courses'
 
-    when /^the edit page for "(.*)"$/ then 
-      @movie = Movie.find_by_title($1)
-      edit_movie_path @movie
-    when /^the details page for "(.*)"$/ then 
-      @movie = Movie.find_by_title($1)
-      movie_path @movie
-
-    when /the Similar Movies page for "(.*)"$/ then
-      movie = Movie.find_by_title($1)
-      similar_movies_path movie
+    when /^the course page for my course$/ then course_path(Course.find_by_title('Test Course'))
+    when /^the course page for that course$/ then course_path(Course.find_by_title('Other Course'))
+    when /^the courses page$/ then '/'
+    when /^the login page$/ then '/users/sign_in'
+    when /^the add file page for "(.+)"$/ then new_course_upload_path(Course.find_by_title($1))
+    when /^the add file page for my course$/ then new_course_upload_path(Course.find_by_title('Test Course'))
+    when /^the facilitate page$/ then dashboard_index_path
+    when /^the edit page for "(.+)"$/ then edit_course_path(Course.find_by_title($1))
+    when /^the course page for "(.+)"$/ then course_path(Course.find_by_title($1))
 
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
