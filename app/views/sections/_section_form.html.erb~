@@ -1,0 +1,36 @@
+
+<%= form_for(@section, :url => course_sections_path(@course)) do |f| %>
+  <div class="box">
+    <%= field_set_tag 'GENERAL INFO' do %>
+      <div><%= f.label :section_title, 'Section Title (e.g. "Section 1" or "Beginner"): ', :class => 'field' %><%= f.text_field :section_title, :size => 35 %></div><br/>
+      <div><%= f.label :ccn_ld, 'CCN (Lower Division): ', :class => 'field'  %><%= f.text_field :ccn_ld, :size => 8 %></div><br/>
+      <div><%= f.label :ccn_ud, 'CCN (Upper Division): ', :class => 'field'  %><%= f.text_field :ccn_ud, :size => 8 %></div><br/>
+      <div><%= f.check_box(:ccn_publish) %><%= f.label(:ccn_publish, "Yes, I want to publish my CCNs! (You will probably want to leave this unchecked)", :class => 'field' ) %></div><br/><br/>
+      <div><%= f.label :size, 'Class Size (Estimate if unsure): ', :class => 'field'  %><%= f.text_field :size, :size => 5 %></div><br/>
+      <div><%= f.check_box(:status) %><%= f.label(:status, "Yes, this class is now FULL", :class => 'field' ) %></div><br/>
+    <% end %>
+  </div><br/>
+
+  <div class="box">
+    <%= field_set_tag 'WHEN AND WHERE IS IT?' do %>
+      <div><%= f.label :first_day, 'First Day of Class (In MM/DD/YYYY format, like this: 11/29/2012): ', :class => 'field'  %><%= f.text_field :first_day, :size => 20 %></div><br/>
+      <div><%= f.label :location, 'Where is it? (Like this: 320 Eshleman or 216 Dwinelle): ', :class => 'field'  %><%= f.text_field :location, :size => 15 %></div><br/>
+      <b>Class every...</b>
+      <table class="std2">
+        <tr>
+          <% Section_time.days_nerf(Section_time.all_days).each do |day| %>
+          <%= check_box_tag "section_time[days[#{day}]]", 1, false, id: day %>
+          <%= day%>
+       <% end %>
+      </table><br/>
+      <%= label_tag ("Start after:") %>
+      <%= select_tag 'section_time[start_time]', options_for_select(Section_time.all_times, "-Select Time-") %>
+      <%= label_tag ("End before:") %>
+      <%= select_tag 'section_time[end_time]', options_for_select(Section_time.all_times, "-Select Time-") %>
+
+    <% end %>
+  </div><br/>
+  <div class="submit">
+    <%= f.submit %>
+  </div>
+<% end %>

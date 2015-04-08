@@ -77,17 +77,20 @@
 						<!-- Collect the nav links, forms, and other content for toggling -->
 						<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 							<ul class="nav navbar-nav">
-								<li class="active"><a href="/courses"><b>COURSES</b> <span class="sr-only">(current)</span></a></li>
-								<li><%= link_to "FACILITATE", dashboard_index_path %></li>
+								<li><a href="/courses"><b>COURSES</b></a></li>
+								<li><a href="/dashboard"><b>FACILITATE</b></a></li>
+								<!--<li><%= link_to "FACILITATE", dashboard_index_path %></li>-->
+								<!--
 								<% if user_signed_in? %>
-								<!-- Logged in as <strong><%= current_user.email %></strong>. -->
+								Logged in as <strong><%= current_user.email %></strong>.
 								<li><%= link_to 'Edit profile', edit_user_registration_path  %></li>
 								<li><a><b>|</b></a></li>
 								<li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
 								<% else %>
 								<li><%= link_to "Sign up", new_user_registration_path %></li><li><a><b>|</b></a></li>
-								<li><%= link_to "Sign In", user_omniauth_authorize_path(:google_oauth2)%></li>
-								<% end %>
+								<li><%= link_to "@berkeley.edu Sign In", user_omniauth_authorize_path(:google_oauth2)%></li>
+								<li><%= link_to "Sign In", new_user_session_path%></li>
+								<% end %> -->
 								
 								
 							</ul>
@@ -97,7 +100,21 @@
 					</nav>
 				</header>
 				<div class="container">
-					
+					<div class="pull-right">
+						<% if user_signed_in? %>
+							Logged in as <strong><%= current_user.email %></strong>.
+							<%= link_to 'Edit profile', edit_user_registration_path  %>
+							<b>|</b>
+							<%= link_to "Logout", destroy_user_session_path, method: :delete %>
+						<% else %>
+							<%= link_to "Sign up", new_user_registration_path %>
+							<b>|</b>
+							<%= link_to "Sign in with Berkeley", user_omniauth_authorize_path(:google_oauth2)%>
+							<b>|</b>
+							<%= link_to "Sign in", new_user_session_path%>
+						<% end %>
+					</div>
+					<br>
 					<% if notice %>
 					<p class="alert alert-success"><%= notice %></p>
 					<% end %>

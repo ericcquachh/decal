@@ -13,18 +13,17 @@ class CoursesController < ApplicationController
   def index
     @all = Course.all_attributes
     @attributes = @all.keys
-
-    @attributes.each do |attribute|
-      session[attribute] = @all[attribute]
-    end
+    @attributes.each {|attribute| session[attribute] = @all[attribute]}
     @attributes.each do |attribute|
       if params[attribute] && params[attribute] != 'All'
-        if attribute == :days || attribute == :units
+        if attribute == :units
           session[attribute] = params[attribute].keys
+          params[attribute] = session[attribute]
         else
           session[attribute] = params[attribute]
         end
       end
+    
     end
 
     #this does not work when you don't put in information about category, status, and units
@@ -35,6 +34,10 @@ class CoursesController < ApplicationController
 
     if params[:search_field]
       @courses = @courses.select {|course| course.title.downcase.include? params[:search_field].downcase}
+    end
+    if params[:section_time]
+      params[:section_time] = Section_time.filter_section_time params[:section_time]
+      @courses = @courses.select {|course| course.section_times.any? {|time| time.include_time? params[:section_time]}}
     end
   end
 
@@ -81,12 +84,19 @@ class CoursesController < ApplicationController
   # POST /courses.json
   def create
     # @course = Course.new(params[:course])
-    if current_user.courses.create(params[:course]).valid?
+    @course = current_user.courses.new(params[:course])
+    if @course.valid?
       current_user.save!
+      @course.uid = current_user.id
+      @course.save!
       redirect_to :root, :notice => params
     else
+      e = "Errors: "
+      @course.errors.each do |type, msg|
+        e = e + msg + "\n"
+      end 
       #need to persist data across redirect
-      redirect_to new_course_path, :notice => "you must fill in title, category, status, and unit fields"
+      redirect_to new_course_path, :flash => {:error => e}
     end 
   end
 
@@ -117,4 +127,5 @@ class CoursesController < ApplicationController
       format.json { head :no_content }
     end
   end
+    
 end

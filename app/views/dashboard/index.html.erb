@@ -1,30 +1,15 @@
 <h1>Your Courses</h1>
+<%= link_to 'Facilitate Additional Course', existing_courses_path, {:class => "btn btn-primary"} %>
+<br><br>
 <table class="table table-hover">
 	<tr>
 		<th>Courses</th>
 		<th>Category</th>
 		<th>Units</th>
-		<th>Days</th>
 		<th>Time</th>
 		<th>Status</th>
 		<th></th>
 		<th></th>
-		<th></th>
 	</tr>
 
-	<% current_user.courses.each do |course| %>
-	<tr>
-		<% if current_user.try(:facilitator?) %>
-			<td><%= link_to course.title, course, {:style=>'font-size: 120%;'} %></td>
-			<td><%= course.category %></td>
-			<td><%= course.units %></td>
-			<td><%= course.days %></td>
-			<td><%= course.time %></td>
-			<td><%= course.status %></td>
-			<td><%= link_to 'Show', course %></td>
-			<td><%= link_to 'Edit', edit_course_path(course) %></td>
-			<td><%= link_to 'Destroy', dashboard_path(:id => course.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-		<% end %>
-	</tr>
-	<% end %>
-</table>
+	<%= render 'dashboard_form'%>

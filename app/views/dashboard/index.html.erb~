@@ -1,0 +1,17 @@
+<h1>Your Courses</h1>
+<%= link_to 'Facilitate Exisiting Course', existing_courses_path, {:class => "btn btn-primary"} %>
+<br><br>
+<table class="table table-hover">
+	<tr>
+		<th>Courses</th>
+		<th>Category</th>
+		<th>Units</th>
+		<th>Time</th>
+		<th>Status</th>
+		<th></th>
+		<th></th>
+		<!-- <th></th> -->
+		<!-- <th></th> -->
+	</tr>
+
+	<%= render 'dashboard_form'%>
