@@ -11,20 +11,20 @@ Background:
     | Can't Teach | Computer Science | 3     | Full   | kevincasey@berkeley.edu |
 
 Scenario:
-  Given I am on the course page for “XYZ”
-  When I request to facilitate “XYZ”
+  Given I am on the course page for "XYZ"
+  When I request to facilitate "XYZ"
   And I have a valid number of facilitate requests
   Then I should see a successful confirmation for the facilitate request
 
 Scenario:
-  Given I am on the course page for “XYZ”
-  And I already have a facilitate request for “XYZ”
-  When I request to facilitate “XYZ”
+  Given I am on the course page for "XYZ"
+  And I already have a facilitate request for "XYZ"
+  When I request to facilitate "XYZ"
   Then I should see an unsuccessful notice for the facilitate request
 
 Scenario:
-  Given I am on the course page for “XYZ”
+  Given I am on the course page for "XYZ"
   And I have an invalid number of facilitate requests
-  When I request to facilitate “XYZ”
-  Then the facilitate request for “XYZ” should fail
+  When I request to facilitate "XYZ"
+  Then the facilitate request for "XYZ" should fail
   And I should see an unsuccessful notice for the facilitate request

@@ -40,15 +40,15 @@ Scenario: restrict to courses with "Tuesday" time
   And I press "Search"
   Then I should see "Quantum Consciousness"
   And I should see "Introduction to Banking"
-  And I should not see “Max Interval Training”
+  And I should not see "Max Interval Training"
 
 Scenario: restrict to courses in between 5:00 pm and 6:00 pm
-  When I select 5:00PM from “start_time”
-  And I select 6:00PM from “end_time”
-  And i press “Search”
-  Then I should see “Quantum Consciousness”
-  And I should see “Taiwanese Language”
-  And I should not see “Python on Crack”
+  When I select 5:00PM from "start_time"
+  And I select 6:00PM from "end_time"
+  And i press "Search"
+  Then I should see "Quantum Consciousness"
+  And I should see "Taiwanese Language"
+  And I should not see "Python on Crack"
 
 Scenario: New fields in create form
   When I go to the new course page
