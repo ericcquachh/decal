@@ -27,7 +27,7 @@ ActiveRecord::Schema.define(:version => 20150403183050) do
     t.string   "days"
     t.string   "start_time"
     t.string   "end_time"
-    t.string   "section_id"
+    t.integer  "section_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
