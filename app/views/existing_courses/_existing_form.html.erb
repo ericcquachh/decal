@@ -18,8 +18,8 @@
 			<td><%= link_to course.title, course, {:style=>'font-size: 120%;'} %></td>
 			<td><%= course.category %></td>
 			<td><%= course.units %></td>
-			<td><%= course.days %></td>
-			<td><%= course.time %></td>
+			<td><%= course.created_at %></td>
+			<td><%= course.updated_at %></td>
 			<td><%= course.status %></td>
 			<td><%= check_box_tag(course.title) %></td>
 		<% end %>
