@@ -22,6 +22,10 @@ class Course < ActiveRecord::Base
     CATEGORIES
   end
 
+  def verify_facilitator? user_id
+    # @course.courses_users.find_by_user_id(current_user.id) != nil
+    return self.courses_users.find_by_user_id(user_id) != nil
+  end
 
   def self.units
     ["1", "2", "3", "4"]
