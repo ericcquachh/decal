@@ -13,6 +13,7 @@ CarrierWave.configure do |config|
     config.enable_processing = false
     config.root              = "#{Rails.root}/tmp"
   else
+    Fog.credentials = { :path_style => true }
     config.storage = :fog
   end
 
