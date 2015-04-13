@@ -17,7 +17,7 @@ class UploadsController < ApplicationController
   	if @upload.save
       redirect_to course_path(params[:course_id]), notice: "The upload #{@upload.name} has been uploaded."
     else
-      render "new"
+      redirect_to course_path(params[:course_id]), notice: "The upload #{@upload.name} has NOT been uploaded."
     end
   end
 
