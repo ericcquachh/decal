@@ -3,7 +3,11 @@ class ExistingCoursesController < ApplicationController
 	    if current_user.nil? || !(user_signed_in?)
 	    	redirect_to :root, notice: 'make sure you login fool'
 	    else
-			@courses = Course.where("uid != ?", current_user.id)
+	    	if current_user.courses == []
+	    		@courses = Course.all()
+	    	else
+		    	@courses = Course.where('id NOT IN (?)', current_user.courses)
+		    end
 	    end
 	end
 
@@ -11,7 +15,7 @@ class ExistingCoursesController < ApplicationController
 		params.keys.each do |key|
 			if params[key] == "1"
 				course = Course.find_by_title(key)
-				course.update_attributes(uid: current_user.id)
+				CoursesUser.create!(user_id: current_user.id, course_id: course.id)
 			end
 		end
 		redirect_to dashboard_index_path

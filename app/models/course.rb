@@ -2,8 +2,9 @@ class Course < ActiveRecord::Base
   attr_accessible :category, :status, :title, :units, :uid
   has_many :sections
   has_many :uploads
-  has_many :users
   has_many :section_times, through: :sections
+  has_many :courses_users
+  has_many :users, through: :courses_users
 
   CATEGORIES = ["Computer Science", "Fitness", "Business", "Languages", "Cognitive Science"]
 

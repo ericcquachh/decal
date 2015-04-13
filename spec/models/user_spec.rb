@@ -8,22 +8,29 @@ describe User do
 		before :each do
 			User.create!(:email => "felixliu@berkeley.edu", :password => "chickenlegs",
 			:first_name => "felix", :last_name => "liu", :facilitator => true)
+			User.create!(:email => "jamescheng@berkeley.edu", :password => "jalapenocheddar",
+			:first_name => "james", :last_name => "cheng", :facilitator => true)
 		end
 
 		it 'should see that facilitators can have multiple courses' do
 			user = User.find_by_first_name("felix")
 			course1 = Course.create!(title: "Vacuum Cleaner", category: "Business", units: "3", status: "open")
 			course2 = Course.create!(title: "Soap Opera", category: "Business", units: "3", status: "open")
-			course1.update_attributes(uid: user.id)
-			course2.update_attributes(uid: user.id)
-			user.courses << course1
-			user.courses << course2
+			CoursesUser.create!(course_id: course1.id, user_id: user.id)
+			CoursesUser.create!(course_id: course2.id, user_id: user.id)
+
 			received1 = user.courses.find_by_title("Vacuum Cleaner")
 			expect(received1).to eq(course1)
 		end
 
 		it 'should see that a course can have multiple facilitators' do
-			
+			course = Course.create!(title: "Vacuum Cleaner", category: "Business", units: "3", status: "open")
+			user1 = User.find_by_first_name("felix")
+			user2 = User.find_by_first_name("james")
+			CoursesUser.create!(course_id: course.id, user_id: user1.id)
+			CoursesUser.create!(course_id: course.id, user_id: user2.id)
+			received_user1 = course.users.find_by_first_name("felix")
+			expect(received_user1).to eq(user1)
 		end
 	end
 

@@ -7,7 +7,7 @@
 <p>
   <b>Category</b> <%= @course.category %><br></br>
   <b>Units</b> <%= @course.units %><br></br>
-<% if current_user.try(:facilitator?) and current_user.id == @course.uid %>
+<% if current_user.try(:facilitator?) and @course.courses_users.find_by_user_id(current_user.id) != nil %>
   <%= link_to 'Edit Course Info', edit_course_path(@course) %>
 <% end %>
 </p>
@@ -103,7 +103,7 @@
                 <%= '--' %>
               <% end %>
             </td>
-            <% if current_user.try(:facilitator?) and current_user.id == @course.uid %>
+            <% if current_user.try(:facilitator?) and @course.courses_users.find_by_user_id(current_user.id) != nil %>
               <td>
                 <%= button_to "delete", {:controller => :sections, :action => 'destroy', :id => section.id, :course_id => @course.id }, :method => :delete, "onclick" => "javascript:return confirm('Are you absolutely sure you want to delete?')" %>
               </td>
@@ -112,18 +112,40 @@
         <% end %>
       </tbody>
     </table><br/>
-    <% if current_user.try(:facilitator?) and current_user.id == @course.uid  %>
+    <% if current_user.try(:facilitator?) and @course.courses_users.find_by_user_id(current_user.id) != nil  %>
       <%= button_to 'Add Section', {:controller => :sections, :action => 'new', :course_id => @course.id}, :method => :get %>
       <br/><br/>
     <% end %>
   <% else %>
     <fieldset><legend><h5>No section has been created for this course yet</h5></legend></fieldset>
-    <% if current_user.try(:facilitator?) and current_user.id == @course.uid  %>
+    <% if current_user.try(:facilitator?) and @course.courses_users.find_by_user_id(current_user.id) != nil  %>
       <%= button_to 'Add Section', {:controller => :sections, :action => 'new', :course_id => @course.id}, :method => :get %>
       <br/><br/>
     <% end %>
   <% end %>
 </div>
+
+<h2> Current Facilitators </h2>
+  <table class="std">
+    <thead>
+      <tr>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Email</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @course.users.each do |user| %>
+        <tr>
+          <td><%= user.first_name %></td>
+          <td><%= user.last_name %></td>
+          <td><%= user.email %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<br/><br/>
+
 
 
 <h2>Files</h2>
@@ -149,7 +171,7 @@
         <tr>
           <td><%= upload.name %></td>
           <td><%= link_to "Download", upload.attachment_url %></td>
-          <% if current_user.try(:facilitator?) and current_user.id == @course.uid %>
+          <% if current_user.try(:facilitator?) and @course.courses_users.find_by_user_id(current_user.id) != nil %>
             <td><%= button_to "Delete", {:controller => :uploads, :action => 'destroy', :id => upload.id, :course_id => @course.id }, :method => :delete, "onclick" => "javascript:return confirm('Are you absolutely sure you want to delete?')" %></td>
           <% end %>
         </tr>
@@ -157,7 +179,7 @@
     </tbody>
   </table>
   <br/>
-  <% if current_user.try(:facilitator?) and current_user.id == @course.uid %>
+  <% if current_user.try(:facilitator?) and @course.courses_users.find_by_user_id(current_user.id) != nil %>
     <%= button_to "New Upload", {:controller => :uploads, :action => 'new', :course_id => @course.id}, :method => :get %>
     <br />
     <br />

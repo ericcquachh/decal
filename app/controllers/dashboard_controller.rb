@@ -15,7 +15,8 @@ class DashboardController < ApplicationController
 		params.keys.each do |key|
 			if params[key] == "1"
 				course = Course.find_by_title(key)
-				course.update_attributes(uid: -1)
+				relation = CoursesUser.find_by_user_id_and_course_id(current_user.id, course.id)
+				relation.destroy
 			end
 		end
 		redirect_to dashboard_path
