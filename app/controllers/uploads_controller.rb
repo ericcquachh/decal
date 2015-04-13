@@ -8,6 +8,11 @@ class UploadsController < ApplicationController
   def new
   	@upload = Upload.new
   	@course = Course.find(params[:course_id])
+    if @upload.save
+      redirect_to course_path(params[:course_id]), notice: "The upload #{@upload.name} has been uploaded."
+    else
+      redirect_to course_path(params[:course_id]), notice: "The upload #{@upload.name} has NOT been uploaded."
+    end
   end
 
   def create
