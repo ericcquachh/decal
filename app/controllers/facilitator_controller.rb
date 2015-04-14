@@ -1,9 +1,7 @@
 class FacilitatorController < ApplicationController
 	def index
-
 		#setting the instance course for the facilitator
 		@course = Course.find(params[:course].to_i)
-
 
 		#finding the user to add as facilitator
 		if params[:search_field]
@@ -18,10 +16,10 @@ class FacilitatorController < ApplicationController
 			if key.include? "@" and params[key] == "1"
 				course = Course.find(params[:course].to_i)
 				user = User.find_by_email(key)
+				user.update_attribute(:facilitator, true)
 				CoursesUser.create!(user_id: user.id, course_id: course.id)
 			end
 		end
-
 		redirect_to course_path(:id => params[:course])
 	end
 
