@@ -1,9 +1,128 @@
 #comment used to test initial git push
+#course
+def mock_course
+  @mock_course = { :title=>"Test Course", :category=>"Business", :units=>"3", :status=>"Open" }
+end
+
+def create_course
+  visit 'courses/new'
+  fill_in "course_title", :with => @mock_course[:title]
+  select(@mock_course[:category], :from => "course_category")
+  fill_in "course_units", :with => @mock_course[:units]
+  select(@mock_course[:status], :from => "course_status")
+  click_button "Create Course"
+end
+
+def mock_section
+  @mock_section = { :section_section_title=>"Test Section", :section_ccn_ld=>"123456", :section_ccn_ud=>"234566", :section_size=>"50" }
+end
+
+def mock_section
+  @mock_section = { :section_section_title=>"Test Section", :section_ccn_ld=>"123456", :section_ccn_ud=>"234566", :section_size=>"50" }
+end
+
+def create_section
+  click_link 'Test Course'
+  click_button 'Add Section'
+  fill_in "section_section_title", :with => @mock_section[:section_section_title]
+  fill_in "section_ccn_ld", :with => @mock_section[:section_ccn_ld]
+  fill_in "section_ccn_ud", :with => @mock_section[:section_ccn_ud]
+  fill_in "section_size", :with => @mock_section[:section_size]
+  click_button "Create Section"
+end
+
+Given /^I visit the course dashboard page/ do
+  visit '/dashboard'
+end
+
+When /^I click on "([^"]*)" course/ do |name|
+  visit '/courses/1'
+end
+
+Then /^I should not see "([^"]*)" button/ do |name|
+  should have_no_button name
+end
+
+Then /^I should see my new section in facilitate course page$/ do
+  page.should have_content "Test Section"
+end
+
+Then /^I visit facilitate course page$/ do
+  visit 'dashboard'
+end
+
+Then /^I create a new section$/ do
+  mock_section
+  create_section
+end
+Given /^I create a course$/ do
+  mock_course
+  create_course
+end
+
+Given /^I create a course with invalid fields$/ do
+  mock_course
+  @mock_course = @mock_course.merge(:units=>"bad units")
+  create_course
+end
+
+Given /^another facilitator has created a course$/ do
+  steps %Q{
+    Given I log out
+    When I sign in as another facilitator
+  }
+  mock_course
+  @mock_course = @mock_course.merge(:title=>"Other Course")
+  create_course
+  steps %Q{
+    Given I log out
+  }
+  @facilitator = { :facilitator=>true, :first_name => "first", :last_name => "last", :email => "facilitator@berkeley.edu",
+  :password => "testingpass", :password_confirmation => "testingpass" }
+  visit 'users/sign_in'
+  fill_in "user_email", :with => @facilitator[:email]
+  fill_in "user_password", :with => @facilitator[:password]
+  click_button "Sign in"
+
+end
+
+Then /^the page should have an error$/ do 
+  page.should have_content "Errors: Units must be integers 1-4."
+end
+
+Then /^my course should exist in home page$/ do 
+  page.should have_content "Test Course"
+end
+
+Then /^my course should not exist in home page$/ do 
+  page.should_not have_content "Test Course"
+end
+
+Then /^page should not have add course button$/ do 
+  page.should_not have_content "Add New Course"
+end
+
+
 Given /the following courses exist/ do |courses_table|
   courses_table.hashes.each do |course|
     Course.create!(course)
   end
 end
+
+
+  
+
+Given(/^these courses exist:$/) do |courses_table|
+  courses_table.hashes.each do |course|
+    input_course = Course.new
+    input_course.title = course["Title"]
+    input_course.category = course["Category"]
+    input_course.units = course["Units"]
+    input_course.status = course["Status"]
+    input_course.save
+  end
+end
+
 
 And /I set everything to default/ do
   select("All", :from => "category")
@@ -54,3 +173,29 @@ When /I (un)?select the following ending_time: (.*)/ do |unselect, ending_time_l
     unselect ? unselect(ending_time) : select(ending_time)
   end
 end
+
+#Felix's step for facilitate_course
+Given(/^the following users exist:$/) do |users_table|
+  users_table.rows_hash.each do |user|
+    input_user = User.new
+    input_user.email = user["email"]
+    input_user.first_name = user["first name"]
+    input_user.last_name = user["last name"]
+    input_user.password = user["password"]
+    input_user.save
+  end
+  # table is a Cucumber::Ast::Table
+end
+
+Then(/^I should see the course page$/) do
+  puts "yayyy"
+end
+
+Then(/^I should not see that course$/) do
+  if page.respond_to? :should
+    page.should have_no_content("Other Course")
+  else
+    assert page.has_no_content?("Other Course")
+  end
+end
+

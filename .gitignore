@@ -2,3 +2,8 @@
 tmp/
 log/
 coverage/
+doc/
+db/development.sqlite3
+
+# Ignore application configuration
+/config/application.yml

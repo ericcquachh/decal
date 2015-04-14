@@ -1,8 +1,14 @@
+<% if flash[:error] %>
+  <div id="error_explanation">
+    <%= flash.now[:error]%>
+  </div>
+<% end %>
+
 <%= form_for(@course) do |f| %>
   <% if @course.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@course.errors.count, "error") %> prohibited this course from being saved:</h2>
-
+ 
       <ul>
       <% @course.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
@@ -17,25 +23,20 @@
   </div>
   <div class="field">
     <%= f.label :category %><br />
-    <%= f.text_field :category %>
+    <%= f.select :category, options_for_select(["- Select -"] + Course.categories) %>
   </div>
   <div class="field">
     <%= f.label :units %><br />
     <%= f.text_field :units %>
   </div>
-    <div class="field">
-    <%= f.label :days %><br />
-    <%= f.text_field :days %>
-  </div>
-  <div class="field">
-    <%= f.label :time %><br />
-    <%= f.text_field :time %>
-  </div>
   <div class="field">
     <%= f.label :status %><br />
-    <%= f.text_field :status %>
+    <%= f.select :status, options_for_select(%w[Open Full]) %>
   </div>
+
+
   <div class="actions">
     <%= f.submit %>
   </div>
+
 <% end %>

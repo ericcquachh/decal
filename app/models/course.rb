@@ -1,12 +1,29 @@
 class Course < ActiveRecord::Base
-  attr_accessible :category, :status, :days, :time, :title, :units
+  attr_accessible :category, :status, :title, :units, :uid
+  has_many :sections
+  has_many :uploads
+  has_many :section_times, through: :sections
+  has_many :courses_users
+  has_many :users, through: :courses_users
+
+  CATEGORIES = ["Computer Science", "Fitness", "Business", "Languages", "Cognitive Science"]
+
+  validates :title, :presence => {message: "Title is required."}
+  validates :units, :presence => {message: "Units cannot be blank."}, :numericality => {only_integer: true, :greater_than => 0, :less_than => 5, message: "Units must be integers 1-4."} 
+  validates :category, :inclusion => {in: CATEGORIES, message: "You must choose a category from the dropdown selection."}
+
 
   def self.all_attributes
-    {:title => nil, :category => self.categories, :status => self.statuses, :days => self.days, :time => self.times, :units => self.units}
+    {:title => nil, :category => self.categories + ["All"], :status => self.statuses, :units => self.units}
   end
 
+  # Changed to make validations work
   def self.categories
-    ["Computer Science", "Fitness", "Business", "Languages", "Cognitive Science", "All"]
+    CATEGORIES
+  end
+
+  def verify_facilitator? user_id
+    return self.courses_users.find_by_user_id(user_id) != nil
   end
 
   def self.units
@@ -17,11 +34,7 @@ class Course < ActiveRecord::Base
     ["Full", "Open", "All"]
   end
 
-  def self.days
-    ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]
-  end
-
-  def self.times
-    []
+  def self.uid
+    :uid
   end
 end

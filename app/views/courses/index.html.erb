@@ -1,6 +1,13 @@
+<style>
+  .inner {
+    display: inline-block;
+  }
+</style>
+
 <h1>COURSES</h1>
   <form class="form-inline">
   <p> <%= session %> </p>
+  <p> <%= params %> </p>
     <div class="form-group">
       <%= form_for(courses_path, method: :get, id: 'units_form') do %>
 
@@ -16,13 +23,17 @@
         <%= label_tag("Categories:") %>
         <%= select_tag 'category', options_for_select(@all[:category], session[:category]), :class => 'form-control'%>
         <br></br>
-        <%= label_tag("Days:") %>
-        <% @all[:days].each do |day| %>
-          <%= check_box_tag "days[#{day}]", 1, session[:days].include?(day), id: day %>
+        <%= label_tag("Date:") %>
+        <% Section_time.all_days.each do |day| %>
+          <%= check_box_tag "section_time[days[#{day}]]", 1, true, id: day %>
           <%= day%>
-        <% end %>
-        <br></br>
-
+       <% end %>
+       <br></br>
+       <%= label_tag ("Start after:") %>
+       <%= select_tag 'section_time[start_time]', options_for_select(Section_time.all_times, "-Select Time-") %>
+       <%= label_tag ("Ends before:") %>
+       <%= select_tag 'section_time[end_time]', options_for_select(Section_time.all_times, "-Select Time-") %>
+        
         <%= label_tag("Status:") %>
         <%= select_tag 'status', options_for_select(@all[:status], session[:status]), :class => 'form-control'%>
 
@@ -31,37 +42,62 @@
       <% end %>
 
       <br></br>
+      <div>
+	Promote Access:
+        <div class="inner">
+          <%= button_to 'promote', promote_path, {:class => "btn btn-primary"} %>
+        </div>
+	<br/><br/>
+	Demote Access:
+        <div class="inner">
+          <%= button_to 'demote', demote_path, {:class => "btn btn-primary"} %>
+        </div>
+      </div>
+
+      <br/>
+
+      <% if current_user.try(:facilitator?) %>
+        To Add New Course: <%= link_to 'New Course', new_course_path, {:class => "btn btn-primary"} %>
+      <% end %>
+
+      <br/><br/>
 
       <table class="table table-hover">
         <tr>
           <th><%= link_to 'Course Title ▼' , courses_path(:title => "title") %></th>
           <th>Category</th>
           <th>Units</th>
-           <th>Days</th>
           <th>Time</th>
           <th>Status</th>
           <th></th>
-          <th></th>
-          <th></th>
+          <!-- <th></th> -->
+          <!-- <th></th> -->
         </tr>
 
       <% @courses.each do |course| %>
         <tr>
-          <td><%= course.title %></td>
+          <td><%= link_to course.title, course, {:style=>'font-size: 120%;'} %></td>
           <td><%= course.category %></td>
           <td><%= course.units %></td>
-          <td><%= course.days %></td>
-          <td><%= course.time %></td>
+          <td><% course.section_times.each do |time| %>
+              <% if time.filled? %>
+                <%= time.full_time %>
+              <% else %>
+                <%= 'TBA' %>
+              <% end %>
+              <br></br>
+          <% end %> 
           <td><%= course.status %></td>
-          <td><%= link_to 'Show', course %></td>
-          <td><%= link_to 'Edit', edit_course_path(course) %></td>
-          <td><%= link_to 'Destroy', course, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <% if current_user.try(:facilitator?) %>
+            <% if course.courses_users.find_by_user_id(current_user.id) != nil %>
+              <td><%= link_to 'Edit', edit_course_path(course) %></td>
+            <% else %>
+              <td></td>
+            <% end %>
+          <% end %>
         </tr>
       <% end %>
       </table>
     </div>
   </form>
   <br />
-
-  <%= link_to 'New Course', new_course_path %>
-

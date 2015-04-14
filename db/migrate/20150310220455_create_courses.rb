@@ -6,7 +6,6 @@ class CreateCourses < ActiveRecord::Migration
       t.string :units
       t.string :time
       t.string :status
-
       t.timestamps
     end
   end
