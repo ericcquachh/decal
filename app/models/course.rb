@@ -23,7 +23,6 @@ class Course < ActiveRecord::Base
   end
 
   def verify_facilitator? user_id
-    # @course.courses_users.find_by_user_id(current_user.id) != nil
     return self.courses_users.find_by_user_id(user_id) != nil
   end
 

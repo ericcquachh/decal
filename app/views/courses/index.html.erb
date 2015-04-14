@@ -86,7 +86,7 @@
                 <%= 'TBA' %>
               <% end %>
               <br></br>
-          <% end %>
+          <% end %> 
           <td><%= course.status %></td>
           <% if current_user.try(:facilitator?) %>
             <% if course.courses_users.find_by_user_id(current_user.id) != nil %>
