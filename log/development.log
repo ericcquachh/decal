@@ -77839,3 +77839,100 @@ Served asset /sections.js - 304 Not Modified (0ms)
 
 Started GET "/assets/uploads.js?body=1" for 127.0.0.1 at 2015-04-15 00:45:42 -0700
 Served asset /uploads.js - 304 Not Modified (0ms)
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+
+
+Started GET "/" for 127.0.0.1 at 2015-04-15 14:16:14 -0700
+Processing by CoursesController#index as HTML
+  [1m[36mCourse Load (0.7ms)[0m  [1mSELECT "courses".* FROM "courses" [0m
+  [1m[35mUser Load (0.6ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1
+  [1m[36mSection_time Load (0.6ms)[0m  [1mSELECT "section_times".* FROM "section_times" INNER JOIN "sections" ON "section_times"."section_id" = "sections"."id" WHERE "sections"."course_id" = 1[0m
+  [1m[35mCoursesUser Load (0.6ms)[0m  SELECT "courses_users".* FROM "courses_users" WHERE "courses_users"."course_id" = 1 AND "courses_users"."user_id" = 1 LIMIT 1
+  [1m[36mSection_time Load (0.2ms)[0m  [1mSELECT "section_times".* FROM "section_times" INNER JOIN "sections" ON "section_times"."section_id" = "sections"."id" WHERE "sections"."course_id" = 2[0m
+  [1m[35mCoursesUser Load (0.1ms)[0m  SELECT "courses_users".* FROM "courses_users" WHERE "courses_users"."course_id" = 2 AND "courses_users"."user_id" = 1 LIMIT 1
+  [1m[36mSection_time Load (0.1ms)[0m  [1mSELECT "section_times".* FROM "section_times" INNER JOIN "sections" ON "section_times"."section_id" = "sections"."id" WHERE "sections"."course_id" = 3[0m
+  [1m[35mCoursesUser Load (0.1ms)[0m  SELECT "courses_users".* FROM "courses_users" WHERE "courses_users"."course_id" = 3 AND "courses_users"."user_id" = 1 LIMIT 1
+  [1m[36mSection_time Load (0.1ms)[0m  [1mSELECT "section_times".* FROM "section_times" INNER JOIN "sections" ON "section_times"."section_id" = "sections"."id" WHERE "sections"."course_id" = 4[0m
+  [1m[35mCoursesUser Load (0.1ms)[0m  SELECT "courses_users".* FROM "courses_users" WHERE "courses_users"."course_id" = 4 AND "courses_users"."user_id" = 1 LIMIT 1
+  [1m[36mSection_time Load (0.1ms)[0m  [1mSELECT "section_times".* FROM "section_times" INNER JOIN "sections" ON "section_times"."section_id" = "sections"."id" WHERE "sections"."course_id" = 5[0m
+  [1m[35mCoursesUser Load (0.1ms)[0m  SELECT "courses_users".* FROM "courses_users" WHERE "courses_users"."course_id" = 5 AND "courses_users"."user_id" = 1 LIMIT 1
+  [1m[36mSection_time Load (0.1ms)[0m  [1mSELECT "section_times".* FROM "section_times" INNER JOIN "sections" ON "section_times"."section_id" = "sections"."id" WHERE "sections"."course_id" = 6[0m
+  [1m[35mCoursesUser Load (0.1ms)[0m  SELECT "courses_users".* FROM "courses_users" WHERE "courses_users"."course_id" = 6 AND "courses_users"."user_id" = 1 LIMIT 1
+  [1m[36mSection_time Load (0.1ms)[0m  [1mSELECT "section_times".* FROM "section_times" INNER JOIN "sections" ON "section_times"."section_id" = "sections"."id" WHERE "sections"."course_id" = 7[0m
+  [1m[35mCoursesUser Load (0.1ms)[0m  SELECT "courses_users".* FROM "courses_users" WHERE "courses_users"."course_id" = 7 AND "courses_users"."user_id" = 1 LIMIT 1
+  Rendered courses/index.html.erb within layouts/application (280.4ms)
+Compiled ckeditor/ckeditor.js  (35ms)  (pid 43809)
+Compiled ckeditor/init.js  (527ms)  (pid 43809)
+Compiled application.js  (582ms)  (pid 43809)
+Completed 200 OK in 1841.3ms (Views: 1704.2ms | ActiveRecord: 11.0ms)
+
+
+Started GET "/assets/courses.css?body=1" for 127.0.0.1 at 2015-04-15 14:16:16 -0700
+Served asset /courses.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/bootstrap.min.css?body=1" for 127.0.0.1 at 2015-04-15 14:16:16 -0700
+Served asset /bootstrap.min.css - 304 Not Modified (11ms)
+
+
+Started GET "/assets/bootstrap.css?body=1" for 127.0.0.1 at 2015-04-15 14:16:16 -0700
+Served asset /bootstrap.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2015-04-15 14:16:16 -0700
+Served asset /scaffolds.css - 200 OK (2ms)
+
+
+Started GET "/assets/omniauth_callbacks.css?body=1" for 127.0.0.1 at 2015-04-15 14:16:16 -0700
+Served asset /omniauth_callbacks.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/sections.css?body=1" for 127.0.0.1 at 2015-04-15 14:16:16 -0700
+Served asset /sections.css - 304 Not Modified (4ms)
+
+
+Started GET "/assets/uploads.css?body=1" for 127.0.0.1 at 2015-04-15 14:16:17 -0700
+Served asset /uploads.css - 304 Not Modified (3ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2015-04-15 14:16:17 -0700
+Served asset /jquery.js - 200 OK (2ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2015-04-15 14:16:17 -0700
+Served asset /jquery_ujs.js - 200 OK (3ms)
+
+
+Started GET "/assets/bootstrap.min.js?body=1" for 127.0.0.1 at 2015-04-15 14:16:17 -0700
+Served asset /bootstrap.min.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/ckeditor/ckeditor.js?body=1" for 127.0.0.1 at 2015-04-15 14:16:17 -0700
+Served asset /ckeditor/ckeditor.js - 304 Not Modified (176ms)
+
+
+Started GET "/assets/ckeditor/init.js?body=1" for 127.0.0.1 at 2015-04-15 14:16:17 -0700
+Served asset /ckeditor/init.js - 304 Not Modified (5ms)
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2015-04-15 14:16:17 -0700
+Served asset /bootstrap.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/omniauth_callbacks.js?body=1" for 127.0.0.1 at 2015-04-15 14:16:17 -0700
+Served asset /omniauth_callbacks.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/courses.js?body=1" for 127.0.0.1 at 2015-04-15 14:16:17 -0700
+Served asset /courses.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/sections.js?body=1" for 127.0.0.1 at 2015-04-15 14:16:17 -0700
+Served asset /sections.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/uploads.js?body=1" for 127.0.0.1 at 2015-04-15 14:16:17 -0700
+Served asset /uploads.js - 304 Not Modified (1ms)
