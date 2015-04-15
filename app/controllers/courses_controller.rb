@@ -113,7 +113,7 @@ class CoursesController < ApplicationController
       elsif @course.last_step?
         if @course.all_valid?
           @course.save
-          CoursesUser.create!(:user_id => current_user.id, :course_id => @course.id) if @course.all_valid?
+          CoursesUser.create!(:user_id => current_user.id, :course_id => @course.id)
         end
       else
         @course.next_step
