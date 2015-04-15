@@ -13,6 +13,16 @@
 </p>
 <br/>
 <p>
+  <%= field_set_tag 'About the Course' do %>
+    <div><%= @course.description.html_safe %></div>
+  <% end %>
+</p>
+<p>
+  <%= field_set_tag 'How to Enroll' do %>
+    <div><%= @course.enrollment_info.html_safe %></div>
+  <% end %>
+</p>
+<p>
   <h2>Sections</h2>
 </p>
 <div class="sections">

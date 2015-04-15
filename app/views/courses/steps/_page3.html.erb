@@ -1,0 +1,12 @@
+  <div class="box">
+    <%= field_set_tag 'WHAT IS THE COURSE LIKE?' do %>
+      <div><%= f.label :description, 'COURSE DESCRIPTION: ' %><br/>
+        A few paragraphs about your class - are there any papers or exams? What is the attendance policy? etc.<br/><br/>
+        <%= f.cktext_area :description, :cols => 40, :ckeditor => {:uiColor => '#bdc3c7', :height => 150, :toolbar => 'mini'} %>
+      </div><br/>
+      <div><%= f.label :enrollment_info, 'ENROLLMENT INFORMATION: ' %><br/>
+        What's your policy? First come, first served? Interviews? Applications? Lottery?<br/><br/>
+        <%= f.cktext_area :enrollment_info, :cols => 40, :ckeditor => {:uiColor => '#bdc3c7', :height => 150, :toolbar => 'mini'} %>
+      </div>
+    <% end %>
+  </div><br/>
