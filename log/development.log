@@ -51212,3 +51212,2199 @@ Served asset /application.js - 304 Not Modified (5ms)
 
 Started GET "/assets/branding/logo.png" for 127.0.0.1 at 2015-04-08 13:49:38 -0700
 Served asset /branding/logo.png - 304 Not Modified (1ms)
+Connecting to database specified by database.yml
+  [1m[36m (0.2ms)[0m  [1mselect sqlite_version(*)[0m
+  [1m[35m (1.3ms)[0m  CREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) 
+  [1m[36m (1.4ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35m (33.4ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations" 
+Migrating to CreateCourses (20150310220455)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.5ms)[0m  CREATE TABLE "courses" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar(255), "category" varchar(255), "units" varchar(255), "time" varchar(255), "status" varchar(255), "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20150310220455')[0m
+  [1m[35m (1.8ms)[0m  commit transaction
+Migrating to AddDaysColumnToCourses (20150311013142)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (1.1ms)[0m  ALTER TABLE "courses" ADD "days" varchar(255)
+  [1m[36m (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20150311013142')[0m
+  [1m[35m (1.5ms)[0m  commit transaction
+Migrating to DeviseCreateUsers (20150322084349)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  CREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar(255) DEFAULT '' NOT NULL, "encrypted_password" varchar(255) DEFAULT '' NOT NULL, "reset_password_token" varchar(255), "reset_password_sent_at" datetime, "remember_created_at" datetime, "sign_in_count" integer DEFAULT 0 NOT NULL, "current_sign_in_at" datetime, "last_sign_in_at" datetime, "current_sign_in_ip" varchar(255), "last_sign_in_ip" varchar(255), "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (1.0ms)[0m  [1mCREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email")[0m
+  [1m[35m (0.1ms)[0m  CREATE UNIQUE INDEX "index_users_on_reset_password_token" ON "users" ("reset_password_token")
+  [1m[36m (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20150322084349')[0m
+  [1m[35m (2.1ms)[0m  commit transaction
+Migrating to AddProviderToUsers (20150322084408)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  ALTER TABLE "users" ADD "provider" varchar(255)
+  [1m[36m (0.1ms)[0m  [1mALTER TABLE "users" ADD "uid" varchar(255)[0m
+  [1m[35m (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20150322084408')
+  [1m[36m (1.7ms)[0m  [1mcommit transaction[0m
+Migrating to AddNameToUsers (20150322092517)
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.6ms)[0m  [1mALTER TABLE "users" ADD "first_name" varchar(255)[0m
+  [1m[35m (0.2ms)[0m  ALTER TABLE "users" ADD "last_name" varchar(255)
+  [1m[36m (0.1ms)[0m  [1mALTER TABLE "users" ADD "class_level" varchar(255)[0m
+  [1m[35m (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20150322092517')
+  [1m[36m (1.7ms)[0m  [1mcommit transaction[0m
+Migrating to AddTypeToUsers (20150322104851)
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.4ms)[0m  [1mALTER TABLE "users" ADD "type" varchar(255)[0m
+  [1m[35m (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20150322104851')
+  [1m[36m (1.7ms)[0m  [1mcommit transaction[0m
+Migrating to RemoveTypeFromUsers (20150322105919)
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.5ms)[0m  [1mCREATE TEMPORARY TABLE "altered_users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar(255) DEFAULT '' NOT NULL, "encrypted_password" varchar(255) DEFAULT '' NOT NULL, "reset_password_token" varchar(255), "reset_password_sent_at" datetime, "remember_created_at" datetime, "sign_in_count" integer DEFAULT 0 NOT NULL, "current_sign_in_at" datetime, "last_sign_in_at" datetime, "current_sign_in_ip" varchar(255), "last_sign_in_ip" varchar(255), "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "provider" varchar(255), "uid" varchar(255), "first_name" varchar(255), "last_name" varchar(255), "class_level" varchar(255), "type" varchar(255)) [0m
+  [1m[35m (0.3ms)[0m  CREATE UNIQUE INDEX "temp_index_altered_users_on_reset_password_token" ON "altered_users" ("reset_password_token")
+  [1m[36m (0.1ms)[0m  [1mCREATE UNIQUE INDEX "temp_index_altered_users_on_email" ON "altered_users" ("email")[0m
+  [1m[35m (0.1ms)[0m  SELECT * FROM "users"
+  [1m[36m (0.8ms)[0m  [1mDROP TABLE "users"[0m
+  [1m[35m (0.3ms)[0m  CREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar(255) DEFAULT '' NOT NULL, "encrypted_password" varchar(255) DEFAULT '' NOT NULL, "reset_password_token" varchar(255), "reset_password_sent_at" datetime, "remember_created_at" datetime, "sign_in_count" integer DEFAULT 0 NOT NULL, "current_sign_in_at" datetime, "last_sign_in_at" datetime, "current_sign_in_ip" varchar(255), "last_sign_in_ip" varchar(255), "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "provider" varchar(255), "uid" varchar(255), "first_name" varchar(255), "last_name" varchar(255), "class_level" varchar(255)) 
+  [1m[36m (0.6ms)[0m  [1mCREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email")[0m
+  [1m[35m (0.2ms)[0m  CREATE UNIQUE INDEX "index_users_on_reset_password_token" ON "users" ("reset_password_token")
+  [1m[36m (0.1ms)[0m  [1mSELECT * FROM "altered_users"[0m
+  [1m[35m (0.2ms)[0m  DROP TABLE "altered_users"
+  [1m[36m (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20150322105919')[0m
+  [1m[35m (2.8ms)[0m  commit transaction
+Migrating to AddFacilitatorToUsers (20150331233857)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  ALTER TABLE "users" ADD "facilitator" boolean DEFAULT 'f'
+  [1m[36m (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20150331233857')[0m
+  [1m[35m (1.9ms)[0m  commit transaction
+Migrating to AddAccessToUser (20150401083946)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  ALTER TABLE "users" ADD "access" varchar(255)
+  [1m[36m (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20150401083946')[0m
+  [1m[35m (1.7ms)[0m  commit transaction
+Migrating to CreateSections (20150401085228)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  CREATE TABLE "sections" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "section_title" varchar(255), "facilitator" varchar(255), "size" integer, "ccn_ld" integer, "ccn_ud" integer, "ccn_publish" boolean, "status" boolean, "first_day" varchar(255), "location" varchar(255), "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20150401085228')[0m
+  [1m[35m (1.8ms)[0m  commit transaction
+Migrating to AddCourseIdColumnToSections (20150401103716)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  ALTER TABLE "sections" ADD "course_id" integer
+  [1m[36m (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20150401103716')[0m
+  [1m[35m (2.1ms)[0m  commit transaction
+Migrating to AddColumnSectionTimesToSection (20150401230109)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  ALTER TABLE "sections" ADD "start_time" varchar(255)
+  [1m[36m (0.1ms)[0m  [1mALTER TABLE "sections" ADD "end_time" varchar(255)[0m
+  [1m[35m (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20150401230109')
+  [1m[36m (2.0ms)[0m  [1mcommit transaction[0m
+Migrating to CreateUploads (20150402140035)
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.3ms)[0m  [1mCREATE TABLE "uploads" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "attachment" varchar(255), "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20150402140035')
+  [1m[36m (1.9ms)[0m  [1mcommit transaction[0m
+Migrating to AddCourseIdToUploads (20150402201729)
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.3ms)[0m  [1mALTER TABLE "uploads" ADD "course_id" integer[0m
+  [1m[35m (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20150402201729')
+  [1m[36m (1.9ms)[0m  [1mcommit transaction[0m
+Migrating to CreateSectionTime (20150403183050)
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.4ms)[0m  [1mCREATE TABLE "section_times" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "days" varchar(255), "start_time" varchar(255), "end_time" varchar(255), "section_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.2ms)[0m  CREATE TEMPORARY TABLE "altered_courses" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar(255), "category" varchar(255), "units" varchar(255), "time" varchar(255), "status" varchar(255), "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "days" varchar(255)) 
+  [1m[36m (0.0ms)[0m  [1mSELECT * FROM "courses"[0m
+  [1m[35m (0.3ms)[0m  DROP TABLE "courses"
+  [1m[36m (0.1ms)[0m  [1mCREATE TABLE "courses" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar(255), "category" varchar(255), "units" varchar(255), "time" varchar(255), "status" varchar(255), "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.0ms)[0m  SELECT * FROM "altered_courses"
+  [1m[36m (0.1ms)[0m  [1mDROP TABLE "altered_courses"[0m
+  [1m[35m (0.1ms)[0m  CREATE TEMPORARY TABLE "altered_courses" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar(255), "category" varchar(255), "units" varchar(255), "time" varchar(255), "status" varchar(255), "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.0ms)[0m  [1mSELECT * FROM "courses"[0m
+  [1m[35m (0.1ms)[0m  DROP TABLE "courses"
+  [1m[36m (0.1ms)[0m  [1mCREATE TABLE "courses" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar(255), "category" varchar(255), "units" varchar(255), "status" varchar(255), "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.0ms)[0m  SELECT * FROM "altered_courses"
+  [1m[36m (0.1ms)[0m  [1mDROP TABLE "altered_courses"[0m
+  [1m[35m (0.1ms)[0m  CREATE TEMPORARY TABLE "altered_sections" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "section_title" varchar(255), "facilitator" varchar(255), "size" integer, "ccn_ld" integer, "ccn_ud" integer, "ccn_publish" boolean, "status" boolean, "first_day" varchar(255), "location" varchar(255), "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "course_id" integer, "start_time" varchar(255), "end_time" varchar(255)) 
+  [1m[36m (0.1ms)[0m  [1mSELECT * FROM "sections"[0m
+  [1m[35m (0.1ms)[0m  DROP TABLE "sections"
+  [1m[36m (0.2ms)[0m  [1mCREATE TABLE "sections" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "section_title" varchar(255), "facilitator" varchar(255), "size" integer, "ccn_ld" integer, "ccn_ud" integer, "ccn_publish" boolean, "status" boolean, "first_day" varchar(255), "location" varchar(255), "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "course_id" integer, "end_time" varchar(255)) [0m
+  [1m[35m (0.0ms)[0m  SELECT * FROM "altered_sections"
+  [1m[36m (0.1ms)[0m  [1mDROP TABLE "altered_sections"[0m
+  [1m[35m (0.1ms)[0m  CREATE TEMPORARY TABLE "altered_sections" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "section_title" varchar(255), "facilitator" varchar(255), "size" integer, "ccn_ld" integer, "ccn_ud" integer, "ccn_publish" boolean, "status" boolean, "first_day" varchar(255), "location" varchar(255), "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "course_id" integer, "end_time" varchar(255)) 
+  [1m[36m (0.0ms)[0m  [1mSELECT * FROM "sections"[0m
+  [1m[35m (0.1ms)[0m  DROP TABLE "sections"
+  [1m[36m (0.1ms)[0m  [1mCREATE TABLE "sections" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "section_title" varchar(255), "facilitator" varchar(255), "size" integer, "ccn_ld" integer, "ccn_ud" integer, "ccn_publish" boolean, "status" boolean, "first_day" varchar(255), "location" varchar(255), "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "course_id" integer) [0m
+  [1m[35m (0.0ms)[0m  SELECT * FROM "altered_sections"
+  [1m[36m (0.1ms)[0m  [1mDROP TABLE "altered_sections"[0m
+  [1m[35m (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20150403183050')
+  [1m[36m (3.2ms)[0m  [1mcommit transaction[0m
+Migrating to CreateCoursesUsersJoinTable (20150413043540)
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.4ms)[0m  [1mCREATE TABLE "courses_users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "course_id" integer DEFAULT -1, "user_id" integer DEFAULT -1) [0m
+  [1m[35m (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20150413043540')
+  [1m[36m (2.2ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations" 
+Connecting to database specified by database.yml
+
+
+Started GET "/" for 127.0.0.1 at 2015-04-13 21:22:45 -0700
+Processing by CoursesController#index as HTML
+  [1m[36mCourse Load (0.1ms)[0m  [1mSELECT "courses".* FROM "courses" WHERE "courses"."category" IN ('Computer Science', 'Fitness', 'Business', 'Languages', 'Cognitive Science', 'All') AND "courses"."status" IN ('Full', 'Open', 'All') AND "courses"."units" IN ('1', '2', '3', '4')[0m
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1
+  Rendered courses/index.html.erb within layouts/application (55.8ms)
+Completed 200 OK in 900.9ms (Views: 778.7ms | ActiveRecord: 4.5ms)
+
+
+Started GET "/assets/bootstrap.min.css?body=1" for 127.0.0.1 at 2015-04-13 21:22:46 -0700
+Served asset /bootstrap.min.css - 200 OK (2ms)
+
+
+Started GET "/assets/bootstrap.css?body=1" for 127.0.0.1 at 2015-04-13 21:22:46 -0700
+Served asset /bootstrap.css - 200 OK (2ms)
+
+
+Started GET "/assets/courses.css?body=1" for 127.0.0.1 at 2015-04-13 21:22:46 -0700
+Served asset /courses.css - 200 OK (2ms)
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2015-04-13 21:22:46 -0700
+Served asset /scaffolds.css - 200 OK (1ms)
+
+
+Started GET "/assets/omniauth_callbacks.css?body=1" for 127.0.0.1 at 2015-04-13 21:22:46 -0700
+Served asset /omniauth_callbacks.css - 200 OK (2ms)
+
+
+Started GET "/assets/sections.css?body=1" for 127.0.0.1 at 2015-04-13 21:22:46 -0700
+Served asset /sections.css - 200 OK (2ms)
+
+
+Started GET "/assets/bootstrap.min.js?body=1" for 127.0.0.1 at 2015-04-13 21:22:46 -0700
+Served asset /bootstrap.min.js - 200 OK (32ms)
+
+
+Started GET "/assets/uploads.css?body=1" for 127.0.0.1 at 2015-04-13 21:22:46 -0700
+Served asset /uploads.css - 200 OK (4ms)
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2015-04-13 21:22:46 -0700
+Served asset /bootstrap.js - 200 OK (1ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2015-04-13 21:22:46 -0700
+Served asset /jquery_ujs.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2015-04-13 21:22:46 -0700
+Served asset /jquery.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/courses.js?body=1" for 127.0.0.1 at 2015-04-13 21:22:46 -0700
+Served asset /courses.js - 200 OK (1ms)
+
+
+Started GET "/assets/omniauth_callbacks.js?body=1" for 127.0.0.1 at 2015-04-13 21:22:46 -0700
+Served asset /omniauth_callbacks.js - 200 OK (1ms)
+
+
+Started GET "/assets/sections.js?body=1" for 127.0.0.1 at 2015-04-13 21:22:46 -0700
+Served asset /sections.js - 200 OK (4ms)
+
+
+Started GET "/assets/uploads.js?body=1" for 127.0.0.1 at 2015-04-13 21:22:46 -0700
+Served asset /uploads.js - 200 OK (2ms)
+
+
+Started GET "/users/auth/google_oauth2" for 127.0.0.1 at 2015-04-13 21:22:51 -0700
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2015-04-13 21:22:58 -0700
+Processing by Devise::SessionsController#new as HTML
+  Rendered users/shared/_links.html.erb (2.3ms)
+  Rendered users/sessions/new.html.erb within layouts/application (48.8ms)
+Completed 200 OK in 79.4ms (Views: 60.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2015-04-13 21:22:58 -0700
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2015-04-13 21:22:58 -0700
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started POST "/users/sign_in" for 127.0.0.1 at 2015-04-13 21:23:03 -0700
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"38199FhfgGPFD2Q8P0OPbb7SNiECmJcPNyA9ztJo7uQ=", "user"=>{"email"=>"briantruong7@gmail.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Sign in"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."email" = 'briantruong7@gmail.com' LIMIT 1[0m
+Completed 401 Unauthorized in 32.4ms
+Processing by Devise::SessionsController#new as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"38199FhfgGPFD2Q8P0OPbb7SNiECmJcPNyA9ztJo7uQ=", "user"=>{"email"=>"briantruong7@gmail.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Sign in"}
+  Rendered users/shared/_links.html.erb (0.5ms)
+  Rendered users/sessions/new.html.erb within layouts/application (2.9ms)
+Completed 200 OK in 78.3ms (Views: 11.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2015-04-13 21:23:03 -0700
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2015-04-13 21:23:03 -0700
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/users/auth/google_oauth2" for 127.0.0.1 at 2015-04-13 21:23:05 -0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2015-04-13 21:23:06 -0700
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2015-04-13 21:23:06 -0700
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2015-04-13 21:23:07 -0700
+Processing by Devise::SessionsController#new as HTML
+  Rendered users/shared/_links.html.erb (0.5ms)
+  Rendered users/sessions/new.html.erb within layouts/application (2.6ms)
+Completed 200 OK in 11.8ms (Views: 11.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_up" for 127.0.0.1 at 2015-04-13 21:23:08 -0700
+Processing by RegistrationsController#new as HTML
+  Rendered users/registrations/new.html.erb within layouts/application (2.7ms)
+Completed 200 OK in 13.4ms (Views: 12.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2015-04-13 21:23:08 -0700
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2015-04-13 21:23:08 -0700
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started POST "/users" for 127.0.0.1 at 2015-04-13 21:23:15 -0700
+Processing by RegistrationsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"38199FhfgGPFD2Q8P0OPbb7SNiECmJcPNyA9ztJo7uQ=", "user"=>{"email"=>"briantruong7@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "commit"=>"Sign up"}
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mUser Exists (0.1ms)[0m  [1mSELECT 1 AS one FROM "users" WHERE "users"."email" = 'briantruong7@gmail.com' LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT 1 AS one FROM "users" WHERE "users"."email" = 'briantruong7@gmail.com' LIMIT 1
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  Rendered users/registrations/new.html.erb within layouts/application (2.6ms)
+Completed 200 OK in 204.8ms (Views: 37.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2015-04-13 21:23:15 -0700
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2015-04-13 21:23:15 -0700
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started POST "/users" for 127.0.0.1 at 2015-04-13 21:23:26 -0700
+Processing by RegistrationsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"38199FhfgGPFD2Q8P0OPbb7SNiECmJcPNyA9ztJo7uQ=", "user"=>{"email"=>"test@berkeley.edu", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "commit"=>"Sign up"}
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mUser Exists (0.1ms)[0m  [1mSELECT 1 AS one FROM "users" WHERE "users"."email" = 'test@berkeley.edu' LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT 1 AS one FROM "users" WHERE "users"."email" = 'test@berkeley.edu' LIMIT 1
+Binary data inserted for `string` type on column `encrypted_password`
+  [1m[36mSQL (8.2ms)[0m  [1mINSERT INTO "users" ("access", "class_level", "created_at", "current_sign_in_at", "current_sign_in_ip", "email", "encrypted_password", "facilitator", "first_name", "last_name", "last_sign_in_at", "last_sign_in_ip", "provider", "remember_created_at", "reset_password_sent_at", "reset_password_token", "sign_in_count", "uid", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["access", nil], ["class_level", nil], ["created_at", Tue, 14 Apr 2015 04:23:26 UTC +00:00], ["current_sign_in_at", nil], ["current_sign_in_ip", nil], ["email", "test@berkeley.edu"], ["encrypted_password", "$2a$10$VHQ4hvfZ1TN7PB06apaDtewzUVocDt8JyoLAbe5KeedSq.Er03kKO"], ["facilitator", false], ["first_name", nil], ["last_name", nil], ["last_sign_in_at", nil], ["last_sign_in_ip", nil], ["provider", nil], ["remember_created_at", nil], ["reset_password_sent_at", nil], ["reset_password_token", nil], ["sign_in_count", 0], ["uid", nil], ["updated_at", Tue, 14 Apr 2015 04:23:26 UTC +00:00]]
+  [1m[35m (2.2ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  UPDATE "users" SET "last_sign_in_at" = '2015-04-14 04:23:26.165363', "current_sign_in_at" = '2015-04-14 04:23:26.165363', "last_sign_in_ip" = '127.0.0.1', "current_sign_in_ip" = '127.0.0.1', "sign_in_count" = 1, "updated_at" = '2015-04-14 04:23:26.166073' WHERE "users"."id" = 1
+  [1m[36m (2.0ms)[0m  [1mcommit transaction[0m
+Redirected to http://localhost:3000/
+Completed 302 Found in 92.1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2015-04-13 21:23:26 -0700
+Processing by CoursesController#index as HTML
+  [1m[35mCourse Load (0.2ms)[0m  SELECT "courses".* FROM "courses" WHERE "courses"."category" IN ('Computer Science', 'Fitness', 'Business', 'Languages', 'Cognitive Science', 'All') AND "courses"."status" IN ('Full', 'Open', 'All') AND "courses"."units" IN ('1', '2', '3', '4')
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1[0m
+  Rendered courses/index.html.erb within layouts/application (4.2ms)
+Completed 200 OK in 13.2ms (Views: 12.1ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2015-04-13 21:23:26 -0700
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2015-04-13 21:23:26 -0700
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started POST "/promote" for 127.0.0.1 at 2015-04-13 21:23:32 -0700
+Processing by CoursesController#promote as HTML
+  Parameters: {"authenticity_token"=>"38199FhfgGPFD2Q8P0OPbb7SNiECmJcPNyA9ztJo7uQ="}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  UPDATE "users" SET "facilitator" = 't', "updated_at" = '2015-04-14 04:23:32.153358' WHERE "users"."id" = 1
+  [1m[36m (2.1ms)[0m  [1mcommit transaction[0m
+Redirected to http://localhost:3000/
+Completed 302 Found in 5.9ms (ActiveRecord: 2.6ms)
+
+
+Started GET "/" for 127.0.0.1 at 2015-04-13 21:23:32 -0700
+Processing by CoursesController#index as HTML
+  [1m[35mCourse Load (0.2ms)[0m  SELECT "courses".* FROM "courses" WHERE "courses"."category" IN ('Computer Science', 'Fitness', 'Business', 'Languages', 'Cognitive Science', 'All') AND "courses"."status" IN ('Full', 'Open', 'All') AND "courses"."units" IN ('1', '2', '3', '4')
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1[0m
+  Rendered courses/index.html.erb within layouts/application (3.8ms)
+Completed 200 OK in 12.2ms (Views: 11.2ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2015-04-13 21:23:32 -0700
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2015-04-13 21:23:32 -0700
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/courses/new" for 127.0.0.1 at 2015-04-13 21:23:34 -0700
+Processing by CoursesController#new as HTML
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1
+  Rendered courses/_form.html.erb (4.6ms)
+  Rendered courses/new.html.erb within layouts/application (6.5ms)
+Completed 200 OK in 22.0ms (Views: 15.8ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2015-04-13 21:23:34 -0700
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2015-04-13 21:23:34 -0700
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started POST "/courses" for 127.0.0.1 at 2015-04-13 21:23:39 -0700
+Processing by CoursesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"38199FhfgGPFD2Q8P0OPbb7SNiECmJcPNyA9ztJo7uQ=", "course"=>{"title"=>"adfas", "category"=>"Computer Science", "units"=>"4", "status"=>"Open"}, "commit"=>"Create Course"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mUser Exists (0.1ms)[0m  [1mSELECT 1 AS one FROM "users" WHERE ("users"."email" = 'test@berkeley.edu' AND "users"."id" != 1) LIMIT 1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "courses" ("category", "created_at", "status", "title", "units", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["category", "Computer Science"], ["created_at", Tue, 14 Apr 2015 04:23:39 UTC +00:00], ["status", "Open"], ["title", "adfas"], ["units", "4"], ["updated_at", Tue, 14 Apr 2015 04:23:39 UTC +00:00]]
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "courses_users" ("course_id", "user_id") VALUES (?, ?)[0m  [["course_id", 1], ["user_id", 1]]
+  [1m[35m (2.4ms)[0m  commit transaction
+Completed 500 Internal Server Error in 156.7ms
+
+NoMethodError (undefined method `uid=' for #<Course:0x007fa319055b90>):
+  app/controllers/courses_controller.rb:90:in `create'
+
+
+  Rendered /Users/briantruong626/.rvm/gems/ruby-1.9.3-p547@global/gems/actionpack-3.2.16/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.1ms)
+  Rendered /Users/briantruong626/.rvm/gems/ruby-1.9.3-p547@global/gems/actionpack-3.2.16/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (0.9ms)
+  Rendered /Users/briantruong626/.rvm/gems/ruby-1.9.3-p547@global/gems/actionpack-3.2.16/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (12.0ms)
+
+
+Started POST "/courses" for 127.0.0.1 at 2015-04-13 21:31:40 -0700
+Processing by CoursesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"38199FhfgGPFD2Q8P0OPbb7SNiECmJcPNyA9ztJo7uQ=", "course"=>{"title"=>"adfas", "category"=>"Computer Science", "units"=>"4", "status"=>"Open"}, "commit"=>"Create Course"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "courses" ("category", "created_at", "status", "title", "units", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["category", "Computer Science"], ["created_at", Tue, 14 Apr 2015 04:31:40 UTC +00:00], ["status", "Open"], ["title", "adfas"], ["units", "4"], ["updated_at", Tue, 14 Apr 2015 04:31:40 UTC +00:00]]
+  [1m[35m (3.0ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "courses_users" ("course_id", "user_id") VALUES (?, ?)  [["course_id", 2], ["user_id", 1]]
+  [1m[36m (2.4ms)[0m  [1mcommit transaction[0m
+Redirected to http://localhost:3000/
+Completed 302 Found in 77.7ms (ActiveRecord: 7.6ms)
+
+
+Started GET "/" for 127.0.0.1 at 2015-04-13 21:31:40 -0700
+Processing by CoursesController#index as HTML
+  [1m[35mCourse Load (0.3ms)[0m  SELECT "courses".* FROM "courses" WHERE "courses"."category" IN ('Computer Science', 'Fitness', 'Business', 'Languages', 'Cognitive Science', 'All') AND "courses"."status" IN ('Full', 'Open', 'All') AND "courses"."units" IN ('1', '2', '3', '4')
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1[0m
+  [1m[35mSection_time Load (0.1ms)[0m  SELECT "section_times".* FROM "section_times" INNER JOIN "sections" ON "section_times"."section_id" = "sections"."id" WHERE "sections"."course_id" = 1
+  [1m[36mCoursesUser Load (0.1ms)[0m  [1mSELECT "courses_users".* FROM "courses_users" WHERE "courses_users"."course_id" = 1 AND "courses_users"."user_id" = 1 LIMIT 1[0m
+  [1m[35mSection_time Load (0.1ms)[0m  SELECT "section_times".* FROM "section_times" INNER JOIN "sections" ON "section_times"."section_id" = "sections"."id" WHERE "sections"."course_id" = 2
+  [1m[36mCoursesUser Load (0.1ms)[0m  [1mSELECT "courses_users".* FROM "courses_users" WHERE "courses_users"."course_id" = 2 AND "courses_users"."user_id" = 1 LIMIT 1[0m
+  Rendered courses/index.html.erb within layouts/application (34.6ms)
+Completed 200 OK in 53.0ms (Views: 50.0ms | ActiveRecord: 1.6ms)
+
+
+Started GET "/assets/bootstrap.css?body=1" for 127.0.0.1 at 2015-04-13 21:31:40 -0700
+Served asset /bootstrap.css - 304 Not Modified (6ms)
+
+
+Started GET "/assets/courses.css?body=1" for 127.0.0.1 at 2015-04-13 21:31:40 -0700
+Served asset /courses.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/bootstrap.min.css?body=1" for 127.0.0.1 at 2015-04-13 21:31:40 -0700
+Served asset /bootstrap.min.css - 304 Not Modified (3ms)
+
+
+Started GET "/assets/omniauth_callbacks.css?body=1" for 127.0.0.1 at 2015-04-13 21:31:40 -0700
+Served asset /omniauth_callbacks.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2015-04-13 21:31:40 -0700
+Served asset /scaffolds.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/sections.css?body=1" for 127.0.0.1 at 2015-04-13 21:31:40 -0700
+Served asset /sections.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/uploads.css?body=1" for 127.0.0.1 at 2015-04-13 21:31:40 -0700
+Served asset /uploads.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2015-04-13 21:31:40 -0700
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2015-04-13 21:31:40 -0700
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.min.js?body=1" for 127.0.0.1 at 2015-04-13 21:31:40 -0700
+Served asset /bootstrap.min.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2015-04-13 21:31:40 -0700
+Served asset /bootstrap.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/courses.js?body=1" for 127.0.0.1 at 2015-04-13 21:31:40 -0700
+Served asset /courses.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/omniauth_callbacks.js?body=1" for 127.0.0.1 at 2015-04-13 21:31:40 -0700
+Served asset /omniauth_callbacks.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/sections.js?body=1" for 127.0.0.1 at 2015-04-13 21:31:40 -0700
+Served asset /sections.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/uploads.js?body=1" for 127.0.0.1 at 2015-04-13 21:31:40 -0700
+Served asset /uploads.js - 304 Not Modified (0ms)
+Connecting to database specified by database.yml
+  [1m[36m (5.4ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (28.3ms)[0m  [1mINSERT INTO "courses" ("category", "created_at", "status", "title", "units", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["category", "Cognitive Science"], ["created_at", Tue, 14 Apr 2015 04:32:19 UTC +00:00], ["status", "Open"], ["title", "Quantum Consciousness"], ["units", "2"], ["updated_at", Tue, 14 Apr 2015 04:32:19 UTC +00:00]]
+  [1m[35m (2.8ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "courses" ("category", "created_at", "status", "title", "units", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["category", "Languages"], ["created_at", Tue, 14 Apr 2015 04:32:19 UTC +00:00], ["status", "Full"], ["title", "Taiwanese Language"], ["units", "1"], ["updated_at", Tue, 14 Apr 2015 04:32:19 UTC +00:00]]
+  [1m[36m (2.3ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "courses" ("category", "created_at", "status", "title", "units", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["category", "Computer Science"], ["created_at", Tue, 14 Apr 2015 04:32:19 UTC +00:00], ["status", "Full"], ["title", "Python on Crack"], ["units", "3"], ["updated_at", Tue, 14 Apr 2015 04:32:19 UTC +00:00]]
+  [1m[35m (2.4ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "courses" ("category", "created_at", "status", "title", "units", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["category", "Computer Science"], ["created_at", Tue, 14 Apr 2015 04:32:19 UTC +00:00], ["status", "Full"], ["title", "Ruby on Rails"], ["units", "2"], ["updated_at", Tue, 14 Apr 2015 04:32:19 UTC +00:00]]
+  [1m[36m (2.1ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "courses" ("category", "created_at", "status", "title", "units", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["category", "Fitness"], ["created_at", Tue, 14 Apr 2015 04:32:19 UTC +00:00], ["status", "Open"], ["title", "Max Interval Training"], ["units", "1"], ["updated_at", Tue, 14 Apr 2015 04:32:19 UTC +00:00]]
+  [1m[35m (2.3ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "courses" ("category", "created_at", "status", "title", "units", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["category", "Business"], ["created_at", Tue, 14 Apr 2015 04:32:19 UTC +00:00], ["status", "Full"], ["title", "Introduction to Banking"], ["units", "2"], ["updated_at", Tue, 14 Apr 2015 04:32:19 UTC +00:00]]
+  [1m[36m (2.3ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mUser Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "users" WHERE "users"."email" = 'jamescheng@berkeley.edu' LIMIT 1[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT 1 AS one FROM "users" WHERE "users"."email" = 'jamescheng@berkeley.edu' LIMIT 1
+Binary data inserted for `string` type on column `encrypted_password`
+  [1m[36mSQL (0.6ms)[0m  [1mINSERT INTO "users" ("access", "class_level", "created_at", "current_sign_in_at", "current_sign_in_ip", "email", "encrypted_password", "facilitator", "first_name", "last_name", "last_sign_in_at", "last_sign_in_ip", "provider", "remember_created_at", "reset_password_sent_at", "reset_password_token", "sign_in_count", "uid", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["access", nil], ["class_level", nil], ["created_at", Tue, 14 Apr 2015 04:32:20 UTC +00:00], ["current_sign_in_at", nil], ["current_sign_in_ip", nil], ["email", "jamescheng@berkeley.edu"], ["encrypted_password", "$2a$10$98/7GHrzfgJwW.Aoc7Ij0uW3w54rcABfloFoj57G5IimK77GKjAX6"], ["facilitator", true], ["first_name", "James"], ["last_name", "Cheng"], ["last_sign_in_at", nil], ["last_sign_in_ip", nil], ["provider", nil], ["remember_created_at", nil], ["reset_password_sent_at", nil], ["reset_password_token", nil], ["sign_in_count", 0], ["uid", nil], ["updated_at", Tue, 14 Apr 2015 04:32:20 UTC +00:00]]
+  [1m[35m (2.5ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mUser Exists (0.2ms)[0m  SELECT 1 AS one FROM "users" WHERE "users"."email" = 'johnlennon@berkeley.edu' LIMIT 1
+  [1m[36mUser Exists (0.0ms)[0m  [1mSELECT 1 AS one FROM "users" WHERE "users"."email" = 'johnlennon@berkeley.edu' LIMIT 1[0m
+Binary data inserted for `string` type on column `encrypted_password`
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "users" ("access", "class_level", "created_at", "current_sign_in_at", "current_sign_in_ip", "email", "encrypted_password", "facilitator", "first_name", "last_name", "last_sign_in_at", "last_sign_in_ip", "provider", "remember_created_at", "reset_password_sent_at", "reset_password_token", "sign_in_count", "uid", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)  [["access", nil], ["class_level", nil], ["created_at", Tue, 14 Apr 2015 04:32:20 UTC +00:00], ["current_sign_in_at", nil], ["current_sign_in_ip", nil], ["email", "johnlennon@berkeley.edu"], ["encrypted_password", "$2a$10$6douKKkoU9PwleaR4KCYuOW7zngX0swgfEwZKmajdpRwDENWEGU/a"], ["facilitator", false], ["first_name", "John"], ["last_name", "Lennon"], ["last_sign_in_at", nil], ["last_sign_in_ip", nil], ["provider", nil], ["remember_created_at", nil], ["reset_password_sent_at", nil], ["reset_password_token", nil], ["sign_in_count", 0], ["uid", nil], ["updated_at", Tue, 14 Apr 2015 04:32:20 UTC +00:00]]
+  [1m[36m (3.0ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mUser Exists (0.1ms)[0m  [1mSELECT 1 AS one FROM "users" WHERE "users"."email" = 'jetspike@berkeley.edu' LIMIT 1[0m
+  [1m[35mUser Exists (0.0ms)[0m  SELECT 1 AS one FROM "users" WHERE "users"."email" = 'jetspike@berkeley.edu' LIMIT 1
+Binary data inserted for `string` type on column `encrypted_password`
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "users" ("access", "class_level", "created_at", "current_sign_in_at", "current_sign_in_ip", "email", "encrypted_password", "facilitator", "first_name", "last_name", "last_sign_in_at", "last_sign_in_ip", "provider", "remember_created_at", "reset_password_sent_at", "reset_password_token", "sign_in_count", "uid", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["access", nil], ["class_level", nil], ["created_at", Tue, 14 Apr 2015 04:32:20 UTC +00:00], ["current_sign_in_at", nil], ["current_sign_in_ip", nil], ["email", "jetspike@berkeley.edu"], ["encrypted_password", "$2a$10$qK4EDYcRtPtBG1SmATU5Uepa0wD1Ty8icZNzgqL0haIGE4NKtz8bq"], ["facilitator", false], ["first_name", "Jet"], ["last_name", "Spike"], ["last_sign_in_at", nil], ["last_sign_in_ip", nil], ["provider", nil], ["remember_created_at", nil], ["reset_password_sent_at", nil], ["reset_password_token", nil], ["sign_in_count", 0], ["uid", nil], ["updated_at", Tue, 14 Apr 2015 04:32:20 UTC +00:00]]
+  [1m[35m (2.4ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mUser Exists (0.2ms)[0m  SELECT 1 AS one FROM "users" WHERE "users"."email" = 'vashthestampede@berkeley.edu' LIMIT 1
+  [1m[36mUser Exists (0.0ms)[0m  [1mSELECT 1 AS one FROM "users" WHERE "users"."email" = 'vashthestampede@berkeley.edu' LIMIT 1[0m
+Binary data inserted for `string` type on column `encrypted_password`
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "users" ("access", "class_level", "created_at", "current_sign_in_at", "current_sign_in_ip", "email", "encrypted_password", "facilitator", "first_name", "last_name", "last_sign_in_at", "last_sign_in_ip", "provider", "remember_created_at", "reset_password_sent_at", "reset_password_token", "sign_in_count", "uid", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)  [["access", nil], ["class_level", nil], ["created_at", Tue, 14 Apr 2015 04:32:20 UTC +00:00], ["current_sign_in_at", nil], ["current_sign_in_ip", nil], ["email", "vashthestampede@berkeley.edu"], ["encrypted_password", "$2a$10$Q/El4W8qh1Tauns63ANuxuQOV7jUd.ujdL8NkapYYEJ4pw/4WKQGq"], ["facilitator", false], ["first_name", "Vash"], ["last_name", "Stampede"], ["last_sign_in_at", nil], ["last_sign_in_ip", nil], ["provider", nil], ["remember_created_at", nil], ["reset_password_sent_at", nil], ["reset_password_token", nil], ["sign_in_count", 0], ["uid", nil], ["updated_at", Tue, 14 Apr 2015 04:32:20 UTC +00:00]]
+  [1m[36m (2.4ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mUser Exists (0.1ms)[0m  [1mSELECT 1 AS one FROM "users" WHERE "users"."email" = 'mugenjin@berkeley.edu' LIMIT 1[0m
+  [1m[35mUser Exists (0.0ms)[0m  SELECT 1 AS one FROM "users" WHERE "users"."email" = 'mugenjin@berkeley.edu' LIMIT 1
+Binary data inserted for `string` type on column `encrypted_password`
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "users" ("access", "class_level", "created_at", "current_sign_in_at", "current_sign_in_ip", "email", "encrypted_password", "facilitator", "first_name", "last_name", "last_sign_in_at", "last_sign_in_ip", "provider", "remember_created_at", "reset_password_sent_at", "reset_password_token", "sign_in_count", "uid", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["access", nil], ["class_level", nil], ["created_at", Tue, 14 Apr 2015 04:32:20 UTC +00:00], ["current_sign_in_at", nil], ["current_sign_in_ip", nil], ["email", "mugenjin@berkeley.edu"], ["encrypted_password", "$2a$10$H27wjdOAbJLEUcIpH9N16etPAK3vBoH0iE6usr/NOuyxQPYWoC7wK"], ["facilitator", false], ["first_name", "Mugen"], ["last_name", "Jin"], ["last_sign_in_at", nil], ["last_sign_in_ip", nil], ["provider", nil], ["remember_created_at", nil], ["reset_password_sent_at", nil], ["reset_password_token", nil], ["sign_in_count", 0], ["uid", nil], ["updated_at", Tue, 14 Apr 2015 04:32:20 UTC +00:00]]
+  [1m[35m (2.6ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT 1 AS one FROM "users" WHERE "users"."email" = 'himurakenshin@berkeley.edu' LIMIT 1
+  [1m[36mUser Exists (0.0ms)[0m  [1mSELECT 1 AS one FROM "users" WHERE "users"."email" = 'himurakenshin@berkeley.edu' LIMIT 1[0m
+Binary data inserted for `string` type on column `encrypted_password`
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "users" ("access", "class_level", "created_at", "current_sign_in_at", "current_sign_in_ip", "email", "encrypted_password", "facilitator", "first_name", "last_name", "last_sign_in_at", "last_sign_in_ip", "provider", "remember_created_at", "reset_password_sent_at", "reset_password_token", "sign_in_count", "uid", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)  [["access", nil], ["class_level", nil], ["created_at", Tue, 14 Apr 2015 04:32:20 UTC +00:00], ["current_sign_in_at", nil], ["current_sign_in_ip", nil], ["email", "himurakenshin@berkeley.edu"], ["encrypted_password", "$2a$10$0VCYPcfWKgP81rlCo5Evx.D2Z.x.Dbmb1/0aj8kcISn3Fv7zzWMK6"], ["facilitator", false], ["first_name", "Himura"], ["last_name", "Kenshin"], ["last_sign_in_at", nil], ["last_sign_in_ip", nil], ["provider", nil], ["remember_created_at", nil], ["reset_password_sent_at", nil], ["reset_password_token", nil], ["sign_in_count", 0], ["uid", nil], ["updated_at", Tue, 14 Apr 2015 04:32:20 UTC +00:00]]
+  [1m[36m (2.5ms)[0m  [1mcommit transaction[0m
+Connecting to database specified by database.yml
+
+
+Started GET "/" for 127.0.0.1 at 2015-04-13 21:32:36 -0700
+Processing by CoursesController#index as HTML
+  [1m[36mCourse Load (0.2ms)[0m  [1mSELECT "courses".* FROM "courses" WHERE "courses"."category" IN ('Computer Science', 'Fitness', 'Business', 'Languages', 'Cognitive Science', 'All') AND "courses"."status" IN ('Full', 'Open', 'All') AND "courses"."units" IN ('1', '2', '3', '4')[0m
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1
+  [1m[36mSection_time Load (0.1ms)[0m  [1mSELECT "section_times".* FROM "section_times" INNER JOIN "sections" ON "section_times"."section_id" = "sections"."id" WHERE "sections"."course_id" = 1[0m
+  [1m[35mCoursesUser Load (0.1ms)[0m  SELECT "courses_users".* FROM "courses_users" WHERE "courses_users"."course_id" = 1 AND "courses_users"."user_id" = 1 LIMIT 1
+  [1m[36mSection_time Load (0.1ms)[0m  [1mSELECT "section_times".* FROM "section_times" INNER JOIN "sections" ON "section_times"."section_id" = "sections"."id" WHERE "sections"."course_id" = 2[0m
+  [1m[35mCoursesUser Load (0.1ms)[0m  SELECT "courses_users".* FROM "courses_users" WHERE "courses_users"."course_id" = 2 AND "courses_users"."user_id" = 1 LIMIT 1
+  [1m[36mSection_time Load (0.1ms)[0m  [1mSELECT "section_times".* FROM "section_times" INNER JOIN "sections" ON "section_times"."section_id" = "sections"."id" WHERE "sections"."course_id" = 3[0m
+  [1m[35mCoursesUser Load (0.1ms)[0m  SELECT "courses_users".* FROM "courses_users" WHERE "courses_users"."course_id" = 3 AND "courses_users"."user_id" = 1 LIMIT 1
+  [1m[36mSection_time Load (0.1ms)[0m  [1mSELECT "section_times".* FROM "section_times" INNER JOIN "sections" ON "section_times"."section_id" = "sections"."id" WHERE "sections"."course_id" = 4[0m
+  [1m[35mCoursesUser Load (0.1ms)[0m  SELECT "courses_users".* FROM "courses_users" WHERE "courses_users"."course_id" = 4 AND "courses_users"."user_id" = 1 LIMIT 1
+  [1m[36mSection_time Load (0.1ms)[0m  [1mSELECT "section_times".* FROM "section_times" INNER JOIN "sections" ON "section_times"."section_id" = "sections"."id" WHERE "sections"."course_id" = 5[0m
+  [1m[35mCoursesUser Load (0.1ms)[0m  SELECT "courses_users".* FROM "courses_users" WHERE "courses_users"."course_id" = 5 AND "courses_users"."user_id" = 1 LIMIT 1
+  [1m[36mSection_time Load (0.1ms)[0m  [1mSELECT "section_times".* FROM "section_times" INNER JOIN "sections" ON "section_times"."section_id" = "sections"."id" WHERE "sections"."course_id" = 6[0m
+  [1m[35mCoursesUser Load (0.1ms)[0m  SELECT "courses_users".* FROM "courses_users" WHERE "courses_users"."course_id" = 6 AND "courses_users"."user_id" = 1 LIMIT 1
+  [1m[36mSection_time Load (0.1ms)[0m  [1mSELECT "section_times".* FROM "section_times" INNER JOIN "sections" ON "section_times"."section_id" = "sections"."id" WHERE "sections"."course_id" = 7[0m
+  [1m[35mCoursesUser Load (0.1ms)[0m  SELECT "courses_users".* FROM "courses_users" WHERE "courses_users"."course_id" = 7 AND "courses_users"."user_id" = 1 LIMIT 1
+  [1m[36mSection_time Load (0.1ms)[0m  [1mSELECT "section_times".* FROM "section_times" INNER JOIN "sections" ON "section_times"."section_id" = "sections"."id" WHERE "sections"."course_id" = 8[0m
+  [1m[35mCoursesUser Load (0.1ms)[0m  SELECT "courses_users".* FROM "courses_users" WHERE "courses_users"."course_id" = 8 AND "courses_users"."user_id" = 1 LIMIT 1
+  Rendered courses/index.html.erb within layouts/application (219.0ms)
+Completed 200 OK in 1067.8ms (Views: 977.5ms | ActiveRecord: 6.6ms)
+
+
+Started GET "/assets/bootstrap.css?body=1" for 127.0.0.1 at 2015-04-13 21:32:37 -0700
+Served asset /bootstrap.css - 304 Not Modified (8ms)
+
+
+Started GET "/assets/bootstrap.min.css?body=1" for 127.0.0.1 at 2015-04-13 21:32:37 -0700
+Served asset /bootstrap.min.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/courses.css?body=1" for 127.0.0.1 at 2015-04-13 21:32:37 -0700
+Served asset /courses.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/omniauth_callbacks.css?body=1" for 127.0.0.1 at 2015-04-13 21:32:37 -0700
+Served asset /omniauth_callbacks.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/sections.css?body=1" for 127.0.0.1 at 2015-04-13 21:32:37 -0700
+Served asset /sections.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2015-04-13 21:32:37 -0700
+Served asset /scaffolds.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/uploads.css?body=1" for 127.0.0.1 at 2015-04-13 21:32:37 -0700
+Served asset /uploads.css - 304 Not Modified (5ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2015-04-13 21:32:37 -0700
+Served asset /jquery.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2015-04-13 21:32:37 -0700
+Served asset /jquery_ujs.js - 304 Not Modified (3ms)
+
+
+Started GET "/assets/bootstrap.min.js?body=1" for 127.0.0.1 at 2015-04-13 21:32:37 -0700
+Served asset /bootstrap.min.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/courses.js?body=1" for 127.0.0.1 at 2015-04-13 21:32:37 -0700
+Served asset /courses.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2015-04-13 21:32:37 -0700
+Served asset /bootstrap.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/omniauth_callbacks.js?body=1" for 127.0.0.1 at 2015-04-13 21:32:37 -0700
+Served asset /omniauth_callbacks.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/sections.js?body=1" for 127.0.0.1 at 2015-04-13 21:32:37 -0700
+Served asset /sections.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/uploads.js?body=1" for 127.0.0.1 at 2015-04-13 21:32:37 -0700
+Served asset /uploads.js - 304 Not Modified (1ms)
+
+
+Started GET "/courses/1" for 127.0.0.1 at 2015-04-13 21:32:44 -0700
+Processing by CoursesController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mCourse Load (0.3ms)[0m  [1mSELECT "courses".* FROM "courses" WHERE "courses"."id" = ? LIMIT 1[0m  [["id", "1"]]
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1
+  [1m[36mCoursesUser Load (0.1ms)[0m  [1mSELECT "courses_users".* FROM "courses_users" WHERE "courses_users"."course_id" = 1 AND "courses_users"."user_id" = 1 LIMIT 1[0m
+  [1m[35mSection Load (0.1ms)[0m  SELECT "sections".* FROM "sections" WHERE "sections"."course_id" = 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "courses_users".* FROM "courses_users" WHERE "courses_users"."course_id" = 1 AND "courses_users"."user_id" = 1 LIMIT 1[0m
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" INNER JOIN "courses_users" ON "users"."id" = "courses_users"."user_id" WHERE "courses_users"."course_id" = 1
+  [1m[36mUpload Load (0.1ms)[0m  [1mSELECT "uploads".* FROM "uploads" WHERE "uploads"."course_id" = 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "courses_users".* FROM "courses_users" WHERE "courses_users"."course_id" = 1 AND "courses_users"."user_id" = 1 LIMIT 1
+  Rendered courses/show.html.erb within layouts/application (21.3ms)
+Completed 200 OK in 39.7ms (Views: 37.2ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/assets/bootstrap.min.css?body=1" for 127.0.0.1 at 2015-04-13 21:32:45 -0700
+Served asset /bootstrap.min.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/bootstrap.css?body=1" for 127.0.0.1 at 2015-04-13 21:32:45 -0700
+Served asset /bootstrap.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/omniauth_callbacks.css?body=1" for 127.0.0.1 at 2015-04-13 21:32:45 -0700
+Served asset /omniauth_callbacks.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2015-04-13 21:32:45 -0700
+Served asset /scaffolds.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/courses.css?body=1" for 127.0.0.1 at 2015-04-13 21:32:45 -0700
+Served asset /courses.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/sections.css?body=1" for 127.0.0.1 at 2015-04-13 21:32:45 -0700
+Served asset /sections.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/uploads.css?body=1" for 127.0.0.1 at 2015-04-13 21:32:45 -0700
+Served asset /uploads.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2015-04-13 21:32:45 -0700
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2015-04-13 21:32:45 -0700
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.min.js?body=1" for 127.0.0.1 at 2015-04-13 21:32:45 -0700
+Served asset /bootstrap.min.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2015-04-13 21:32:45 -0700
+Served asset /bootstrap.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/courses.js?body=1" for 127.0.0.1 at 2015-04-13 21:32:45 -0700
+Served asset /courses.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/omniauth_callbacks.js?body=1" for 127.0.0.1 at 2015-04-13 21:32:45 -0700
+Served asset /omniauth_callbacks.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/sections.js?body=1" for 127.0.0.1 at 2015-04-13 21:32:45 -0700
+Served asset /sections.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/uploads.js?body=1" for 127.0.0.1 at 2015-04-13 21:32:45 -0700
+Served asset /uploads.js - 304 Not Modified (0ms)
+
+
+Started GET "/facilitator?course=1" for 127.0.0.1 at 2015-04-13 21:32:47 -0700
+Processing by FacilitatorController#index as HTML
+  Parameters: {"authenticity_token"=>"38199FhfgGPFD2Q8P0OPbb7SNiECmJcPNyA9ztJo7uQ=", "course"=>"1"}
+  [1m[36mCourse Load (38.3ms)[0m  [1mSELECT "courses".* FROM "courses" WHERE "courses"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" INNER JOIN "courses_users" ON "users"."id" = "courses_users"."user_id" WHERE "courses_users"."course_id" = 1
+  Rendered facilitator/_search_form.html (1.0ms)
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE (id not in (1))[0m
+  Rendered facilitator/_user_form.html.erb (3.0ms)
+  Rendered facilitator/index.html.erb within layouts/application (23.9ms)
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1
+Completed 200 OK in 75.0ms (Views: 33.8ms | ActiveRecord: 38.8ms)
+
+
+Started GET "/assets/bootstrap.min.css?body=1" for 127.0.0.1 at 2015-04-13 21:32:47 -0700
+Served asset /bootstrap.min.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/bootstrap.css?body=1" for 127.0.0.1 at 2015-04-13 21:32:47 -0700
+Served asset /bootstrap.css - 304 Not Modified (3ms)
+
+
+Started GET "/assets/courses.css?body=1" for 127.0.0.1 at 2015-04-13 21:32:47 -0700
+Served asset /courses.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2015-04-13 21:32:47 -0700
+Served asset /scaffolds.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/omniauth_callbacks.css?body=1" for 127.0.0.1 at 2015-04-13 21:32:47 -0700
+Served asset /omniauth_callbacks.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/sections.css?body=1" for 127.0.0.1 at 2015-04-13 21:32:47 -0700
+Served asset /sections.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/uploads.css?body=1" for 127.0.0.1 at 2015-04-13 21:32:47 -0700
+Served asset /uploads.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2015-04-13 21:32:47 -0700
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2015-04-13 21:32:47 -0700
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.min.js?body=1" for 127.0.0.1 at 2015-04-13 21:32:47 -0700
+Served asset /bootstrap.min.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2015-04-13 21:32:47 -0700
+Served asset /bootstrap.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/courses.js?body=1" for 127.0.0.1 at 2015-04-13 21:32:47 -0700
+Served asset /courses.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/omniauth_callbacks.js?body=1" for 127.0.0.1 at 2015-04-13 21:32:47 -0700
+Served asset /omniauth_callbacks.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/sections.js?body=1" for 127.0.0.1 at 2015-04-13 21:32:47 -0700
+Served asset /sections.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/uploads.js?body=1" for 127.0.0.1 at 2015-04-13 21:32:47 -0700
+Served asset /uploads.js - 304 Not Modified (0ms)
+
+
+Started POST "/facilitator?method=post" for 127.0.0.1 at 2015-04-13 21:32:50 -0700
+Processing by FacilitatorController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"38199FhfgGPFD2Q8P0OPbb7SNiECmJcPNyA9ztJo7uQ=", "jamescheng@berkeley.edu"=>"1", "course"=>"1", "commit"=>"Add These Facilitators", "method"=>"post"}
+  [1m[36mCourse Load (0.2ms)[0m  [1mSELECT "courses".* FROM "courses" WHERE "courses"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."email" = 'jamescheng@berkeley.edu' LIMIT 1
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "courses_users" ("course_id", "user_id") VALUES (?, ?)  [["course_id", 1], ["user_id", 2]]
+  [1m[36m (3.5ms)[0m  [1mcommit transaction[0m
+Redirected to http://localhost:3000/courses/1
+Completed 302 Found in 11.7ms (ActiveRecord: 4.4ms)
+
+
+Started GET "/courses/1" for 127.0.0.1 at 2015-04-13 21:32:50 -0700
+Processing by CoursesController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mCourse Load (0.1ms)[0m  SELECT "courses".* FROM "courses" WHERE "courses"."id" = ? LIMIT 1  [["id", "1"]]
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1[0m
+  [1m[35mCoursesUser Load (0.1ms)[0m  SELECT "courses_users".* FROM "courses_users" WHERE "courses_users"."course_id" = 1 AND "courses_users"."user_id" = 1 LIMIT 1
+  [1m[36mSection Load (0.1ms)[0m  [1mSELECT "sections".* FROM "sections" WHERE "sections"."course_id" = 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "courses_users".* FROM "courses_users" WHERE "courses_users"."course_id" = 1 AND "courses_users"."user_id" = 1 LIMIT 1
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" INNER JOIN "courses_users" ON "users"."id" = "courses_users"."user_id" WHERE "courses_users"."course_id" = 1[0m
+  [1m[35mUpload Load (0.1ms)[0m  SELECT "uploads".* FROM "uploads" WHERE "uploads"."course_id" = 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "courses_users".* FROM "courses_users" WHERE "courses_users"."course_id" = 1 AND "courses_users"."user_id" = 1 LIMIT 1[0m
+  Rendered courses/show.html.erb within layouts/application (7.1ms)
+Completed 200 OK in 16.9ms (Views: 15.4ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/assets/bootstrap.min.css?body=1" for 127.0.0.1 at 2015-04-13 21:32:50 -0700
+Served asset /bootstrap.min.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/bootstrap.css?body=1" for 127.0.0.1 at 2015-04-13 21:32:50 -0700
+Served asset /bootstrap.css - 304 Not Modified (4ms)
+
+
+Started GET "/assets/courses.css?body=1" for 127.0.0.1 at 2015-04-13 21:32:50 -0700
+Served asset /courses.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/omniauth_callbacks.css?body=1" for 127.0.0.1 at 2015-04-13 21:32:50 -0700
+Served asset /omniauth_callbacks.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2015-04-13 21:32:50 -0700
+Served asset /scaffolds.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/sections.css?body=1" for 127.0.0.1 at 2015-04-13 21:32:50 -0700
+Served asset /sections.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/uploads.css?body=1" for 127.0.0.1 at 2015-04-13 21:32:50 -0700
+Served asset /uploads.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2015-04-13 21:32:50 -0700
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2015-04-13 21:32:50 -0700
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.min.js?body=1" for 127.0.0.1 at 2015-04-13 21:32:51 -0700
+Served asset /bootstrap.min.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2015-04-13 21:32:51 -0700
+Served asset /bootstrap.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/courses.js?body=1" for 127.0.0.1 at 2015-04-13 21:32:51 -0700
+Served asset /courses.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/omniauth_callbacks.js?body=1" for 127.0.0.1 at 2015-04-13 21:32:51 -0700
+Served asset /omniauth_callbacks.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/sections.js?body=1" for 127.0.0.1 at 2015-04-13 21:32:51 -0700
+Served asset /sections.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/uploads.js?body=1" for 127.0.0.1 at 2015-04-13 21:32:51 -0700
+Served asset /uploads.js - 304 Not Modified (0ms)
+
+
+Started GET "/facilitator?course=1" for 127.0.0.1 at 2015-04-13 21:32:59 -0700
+Processing by FacilitatorController#index as HTML
+  Parameters: {"authenticity_token"=>"38199FhfgGPFD2Q8P0OPbb7SNiECmJcPNyA9ztJo7uQ=", "course"=>"1"}
+  [1m[35mCourse Load (0.1ms)[0m  SELECT "courses".* FROM "courses" WHERE "courses"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" INNER JOIN "courses_users" ON "users"."id" = "courses_users"."user_id" WHERE "courses_users"."course_id" = 1[0m
+  Rendered facilitator/_search_form.html (0.4ms)
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE (id not in (1,2))
+  Rendered facilitator/_user_form.html.erb (1.5ms)
+  Rendered facilitator/index.html.erb within layouts/application (2.8ms)
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1[0m
+Completed 200 OK in 13.8ms (Views: 11.1ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/assets/bootstrap.min.css?body=1" for 127.0.0.1 at 2015-04-13 21:32:59 -0700
+Served asset /bootstrap.min.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2015-04-13 21:32:59 -0700
+Served asset /scaffolds.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.css?body=1" for 127.0.0.1 at 2015-04-13 21:32:59 -0700
+Served asset /bootstrap.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/courses.css?body=1" for 127.0.0.1 at 2015-04-13 21:32:59 -0700
+Served asset /courses.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/omniauth_callbacks.css?body=1" for 127.0.0.1 at 2015-04-13 21:32:59 -0700
+Served asset /omniauth_callbacks.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/sections.css?body=1" for 127.0.0.1 at 2015-04-13 21:32:59 -0700
+Served asset /sections.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/uploads.css?body=1" for 127.0.0.1 at 2015-04-13 21:32:59 -0700
+Served asset /uploads.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2015-04-13 21:32:59 -0700
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2015-04-13 21:32:59 -0700
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.min.js?body=1" for 127.0.0.1 at 2015-04-13 21:32:59 -0700
+Served asset /bootstrap.min.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2015-04-13 21:32:59 -0700
+Served asset /bootstrap.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/courses.js?body=1" for 127.0.0.1 at 2015-04-13 21:32:59 -0700
+Served asset /courses.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/omniauth_callbacks.js?body=1" for 127.0.0.1 at 2015-04-13 21:32:59 -0700
+Served asset /omniauth_callbacks.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/sections.js?body=1" for 127.0.0.1 at 2015-04-13 21:32:59 -0700
+Served asset /sections.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/uploads.js?body=1" for 127.0.0.1 at 2015-04-13 21:32:59 -0700
+Served asset /uploads.js - 304 Not Modified (0ms)
+
+
+Started GET "/facilitator?utf8=%E2%9C%93&search_field=john&course=1" for 127.0.0.1 at 2015-04-13 21:33:06 -0700
+Processing by FacilitatorController#index as HTML
+  Parameters: {"utf8"=>"✓", "search_field"=>"john", "course"=>"1"}
+  [1m[35mCourse Load (0.1ms)[0m  SELECT "courses".* FROM "courses" WHERE "courses"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" [0m
+  Rendered facilitator/_search_form.html (0.4ms)
+  Rendered facilitator/_user_form.html.erb (0.7ms)
+  Rendered facilitator/index.html.erb within layouts/application (2.3ms)
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1
+Completed 200 OK in 12.3ms (Views: 10.5ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/assets/bootstrap.min.css?body=1" for 127.0.0.1 at 2015-04-13 21:33:07 -0700
+Served asset /bootstrap.min.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/bootstrap.css?body=1" for 127.0.0.1 at 2015-04-13 21:33:07 -0700
+Served asset /bootstrap.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/omniauth_callbacks.css?body=1" for 127.0.0.1 at 2015-04-13 21:33:07 -0700
+Served asset /omniauth_callbacks.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/courses.css?body=1" for 127.0.0.1 at 2015-04-13 21:33:07 -0700
+Served asset /courses.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2015-04-13 21:33:07 -0700
+Served asset /scaffolds.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/sections.css?body=1" for 127.0.0.1 at 2015-04-13 21:33:07 -0700
+Served asset /sections.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/uploads.css?body=1" for 127.0.0.1 at 2015-04-13 21:33:07 -0700
+Served asset /uploads.css - 304 Not Modified (3ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2015-04-13 21:33:07 -0700
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2015-04-13 21:33:07 -0700
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.min.js?body=1" for 127.0.0.1 at 2015-04-13 21:33:07 -0700
+Served asset /bootstrap.min.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2015-04-13 21:33:07 -0700
+Served asset /bootstrap.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/courses.js?body=1" for 127.0.0.1 at 2015-04-13 21:33:07 -0700
+Served asset /courses.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/omniauth_callbacks.js?body=1" for 127.0.0.1 at 2015-04-13 21:33:07 -0700
+Served asset /omniauth_callbacks.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/sections.js?body=1" for 127.0.0.1 at 2015-04-13 21:33:07 -0700
+Served asset /sections.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/uploads.js?body=1" for 127.0.0.1 at 2015-04-13 21:33:07 -0700
+Served asset /uploads.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.min.css?body=1" for 127.0.0.1 at 2015-04-13 21:33:12 -0700
+Served asset /bootstrap.min.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.css?body=1" for 127.0.0.1 at 2015-04-13 21:33:12 -0700
+Served asset /bootstrap.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/courses.css?body=1" for 127.0.0.1 at 2015-04-13 21:33:12 -0700
+Served asset /courses.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2015-04-13 21:33:12 -0700
+Served asset /scaffolds.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/omniauth_callbacks.css?body=1" for 127.0.0.1 at 2015-04-13 21:33:12 -0700
+Served asset /omniauth_callbacks.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/sections.css?body=1" for 127.0.0.1 at 2015-04-13 21:33:12 -0700
+Served asset /sections.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/uploads.css?body=1" for 127.0.0.1 at 2015-04-13 21:33:12 -0700
+Served asset /uploads.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2015-04-13 21:33:12 -0700
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2015-04-13 21:33:12 -0700
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.min.js?body=1" for 127.0.0.1 at 2015-04-13 21:33:12 -0700
+Served asset /bootstrap.min.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2015-04-13 21:33:12 -0700
+Served asset /bootstrap.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/courses.js?body=1" for 127.0.0.1 at 2015-04-13 21:33:12 -0700
+Served asset /courses.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/omniauth_callbacks.js?body=1" for 127.0.0.1 at 2015-04-13 21:33:12 -0700
+Served asset /omniauth_callbacks.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/sections.js?body=1" for 127.0.0.1 at 2015-04-13 21:33:12 -0700
+Served asset /sections.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/uploads.js?body=1" for 127.0.0.1 at 2015-04-13 21:33:12 -0700
+Served asset /uploads.js - 304 Not Modified (0ms)
+
+
+Started POST "/facilitator?method=post" for 127.0.0.1 at 2015-04-13 21:33:14 -0700
+Processing by FacilitatorController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"38199FhfgGPFD2Q8P0OPbb7SNiECmJcPNyA9ztJo7uQ=", "course"=>"1", "commit"=>"Add These Facilitators", "method"=>"post"}
+Redirected to http://localhost:3000/courses/1
+Completed 302 Found in 0.5ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/courses/1" for 127.0.0.1 at 2015-04-13 21:33:14 -0700
+Processing by CoursesController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mCourse Load (0.1ms)[0m  [1mSELECT "courses".* FROM "courses" WHERE "courses"."id" = ? LIMIT 1[0m  [["id", "1"]]
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1
+  [1m[36mCoursesUser Load (0.1ms)[0m  [1mSELECT "courses_users".* FROM "courses_users" WHERE "courses_users"."course_id" = 1 AND "courses_users"."user_id" = 1 LIMIT 1[0m
+  [1m[35mSection Load (0.1ms)[0m  SELECT "sections".* FROM "sections" WHERE "sections"."course_id" = 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "courses_users".* FROM "courses_users" WHERE "courses_users"."course_id" = 1 AND "courses_users"."user_id" = 1 LIMIT 1[0m
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" INNER JOIN "courses_users" ON "users"."id" = "courses_users"."user_id" WHERE "courses_users"."course_id" = 1
+  [1m[36mUpload Load (0.1ms)[0m  [1mSELECT "uploads".* FROM "uploads" WHERE "uploads"."course_id" = 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "courses_users".* FROM "courses_users" WHERE "courses_users"."course_id" = 1 AND "courses_users"."user_id" = 1 LIMIT 1
+  Rendered courses/show.html.erb within layouts/application (8.0ms)
+Completed 200 OK in 18.5ms (Views: 16.7ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/assets/bootstrap.min.css?body=1" for 127.0.0.1 at 2015-04-13 21:33:14 -0700
+Served asset /bootstrap.min.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/bootstrap.css?body=1" for 127.0.0.1 at 2015-04-13 21:33:14 -0700
+Served asset /bootstrap.css - 304 Not Modified (3ms)
+
+
+Started GET "/assets/omniauth_callbacks.css?body=1" for 127.0.0.1 at 2015-04-13 21:33:14 -0700
+Served asset /omniauth_callbacks.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/courses.css?body=1" for 127.0.0.1 at 2015-04-13 21:33:14 -0700
+Served asset /courses.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/sections.css?body=1" for 127.0.0.1 at 2015-04-13 21:33:14 -0700
+Served asset /sections.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2015-04-13 21:33:14 -0700
+Served asset /scaffolds.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/uploads.css?body=1" for 127.0.0.1 at 2015-04-13 21:33:14 -0700
+Served asset /uploads.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2015-04-13 21:33:14 -0700
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2015-04-13 21:33:14 -0700
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.min.js?body=1" for 127.0.0.1 at 2015-04-13 21:33:14 -0700
+Served asset /bootstrap.min.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2015-04-13 21:33:14 -0700
+Served asset /bootstrap.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/courses.js?body=1" for 127.0.0.1 at 2015-04-13 21:33:14 -0700
+Served asset /courses.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/omniauth_callbacks.js?body=1" for 127.0.0.1 at 2015-04-13 21:33:14 -0700
+Served asset /omniauth_callbacks.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/sections.js?body=1" for 127.0.0.1 at 2015-04-13 21:33:14 -0700
+Served asset /sections.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/uploads.js?body=1" for 127.0.0.1 at 2015-04-13 21:33:14 -0700
+Served asset /uploads.js - 304 Not Modified (0ms)
+
+
+Started DELETE "/facilitator?course=1&user=2" for 127.0.0.1 at 2015-04-13 21:33:18 -0700
+Processing by FacilitatorController#delete as HTML
+  Parameters: {"authenticity_token"=>"38199FhfgGPFD2Q8P0OPbb7SNiECmJcPNyA9ztJo7uQ=", "course"=>"1", "user"=>"2"}
+  [1m[36mCoursesUser Load (0.1ms)[0m  [1mSELECT "courses_users".* FROM "courses_users" WHERE "courses_users"."user_id" = 2 AND "courses_users"."course_id" = 1 LIMIT 1[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.3ms)[0m  [1mDELETE FROM "courses_users" WHERE "courses_users"."id" = ?[0m  [["id", 3]]
+  [1m[35m (3.7ms)[0m  commit transaction
+Redirected to http://localhost:3000/courses/1
+Completed 302 Found in 6.8ms (ActiveRecord: 4.2ms)
+
+
+Started GET "/courses/1" for 127.0.0.1 at 2015-04-13 21:33:18 -0700
+Processing by CoursesController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mCourse Load (0.1ms)[0m  [1mSELECT "courses".* FROM "courses" WHERE "courses"."id" = ? LIMIT 1[0m  [["id", "1"]]
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1
+  [1m[36mCoursesUser Load (0.1ms)[0m  [1mSELECT "courses_users".* FROM "courses_users" WHERE "courses_users"."course_id" = 1 AND "courses_users"."user_id" = 1 LIMIT 1[0m
+  [1m[35mSection Load (0.1ms)[0m  SELECT "sections".* FROM "sections" WHERE "sections"."course_id" = 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "courses_users".* FROM "courses_users" WHERE "courses_users"."course_id" = 1 AND "courses_users"."user_id" = 1 LIMIT 1[0m
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" INNER JOIN "courses_users" ON "users"."id" = "courses_users"."user_id" WHERE "courses_users"."course_id" = 1
+  [1m[36mUpload Load (0.1ms)[0m  [1mSELECT "uploads".* FROM "uploads" WHERE "uploads"."course_id" = 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "courses_users".* FROM "courses_users" WHERE "courses_users"."course_id" = 1 AND "courses_users"."user_id" = 1 LIMIT 1
+  Rendered courses/show.html.erb within layouts/application (7.0ms)
+Completed 200 OK in 50.4ms (Views: 48.8ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/assets/bootstrap.min.css?body=1" for 127.0.0.1 at 2015-04-13 21:33:19 -0700
+Served asset /bootstrap.min.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/courses.css?body=1" for 127.0.0.1 at 2015-04-13 21:33:19 -0700
+Served asset /courses.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/bootstrap.css?body=1" for 127.0.0.1 at 2015-04-13 21:33:19 -0700
+Served asset /bootstrap.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2015-04-13 21:33:19 -0700
+Served asset /scaffolds.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/omniauth_callbacks.css?body=1" for 127.0.0.1 at 2015-04-13 21:33:19 -0700
+Served asset /omniauth_callbacks.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/sections.css?body=1" for 127.0.0.1 at 2015-04-13 21:33:19 -0700
+Served asset /sections.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/uploads.css?body=1" for 127.0.0.1 at 2015-04-13 21:33:19 -0700
+Served asset /uploads.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2015-04-13 21:33:19 -0700
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2015-04-13 21:33:19 -0700
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.min.js?body=1" for 127.0.0.1 at 2015-04-13 21:33:19 -0700
+Served asset /bootstrap.min.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2015-04-13 21:33:19 -0700
+Served asset /bootstrap.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/courses.js?body=1" for 127.0.0.1 at 2015-04-13 21:33:19 -0700
+Served asset /courses.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/omniauth_callbacks.js?body=1" for 127.0.0.1 at 2015-04-13 21:33:19 -0700
+Served asset /omniauth_callbacks.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/sections.js?body=1" for 127.0.0.1 at 2015-04-13 21:33:19 -0700
+Served asset /sections.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/uploads.js?body=1" for 127.0.0.1 at 2015-04-13 21:33:19 -0700
+Served asset /uploads.js - 304 Not Modified (0ms)
+
+
+Started GET "/facilitator?course=1" for 127.0.0.1 at 2015-04-13 21:33:20 -0700
+Processing by FacilitatorController#index as HTML
+  Parameters: {"authenticity_token"=>"38199FhfgGPFD2Q8P0OPbb7SNiECmJcPNyA9ztJo7uQ=", "course"=>"1"}
+  [1m[36mCourse Load (0.1ms)[0m  [1mSELECT "courses".* FROM "courses" WHERE "courses"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" INNER JOIN "courses_users" ON "users"."id" = "courses_users"."user_id" WHERE "courses_users"."course_id" = 1
+  Rendered facilitator/_search_form.html (0.4ms)
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE (id not in (1))[0m
+  Rendered facilitator/_user_form.html.erb (1.6ms)
+  Rendered facilitator/index.html.erb within layouts/application (3.0ms)
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1
+Completed 200 OK in 13.8ms (Views: 11.0ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/assets/bootstrap.min.css?body=1" for 127.0.0.1 at 2015-04-13 21:33:21 -0700
+Served asset /bootstrap.min.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/bootstrap.css?body=1" for 127.0.0.1 at 2015-04-13 21:33:21 -0700
+Served asset /bootstrap.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/courses.css?body=1" for 127.0.0.1 at 2015-04-13 21:33:21 -0700
+Served asset /courses.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2015-04-13 21:33:21 -0700
+Served asset /scaffolds.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/omniauth_callbacks.css?body=1" for 127.0.0.1 at 2015-04-13 21:33:21 -0700
+Served asset /omniauth_callbacks.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/sections.css?body=1" for 127.0.0.1 at 2015-04-13 21:33:21 -0700
+Served asset /sections.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/uploads.css?body=1" for 127.0.0.1 at 2015-04-13 21:33:21 -0700
+Served asset /uploads.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2015-04-13 21:33:21 -0700
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2015-04-13 21:33:21 -0700
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.min.js?body=1" for 127.0.0.1 at 2015-04-13 21:33:21 -0700
+Served asset /bootstrap.min.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2015-04-13 21:33:21 -0700
+Served asset /bootstrap.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/courses.js?body=1" for 127.0.0.1 at 2015-04-13 21:33:21 -0700
+Served asset /courses.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/omniauth_callbacks.js?body=1" for 127.0.0.1 at 2015-04-13 21:33:21 -0700
+Served asset /omniauth_callbacks.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/sections.js?body=1" for 127.0.0.1 at 2015-04-13 21:33:21 -0700
+Served asset /sections.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/uploads.js?body=1" for 127.0.0.1 at 2015-04-13 21:33:21 -0700
+Served asset /uploads.js - 304 Not Modified (0ms)
+
+
+Started DELETE "/facilitator?course=1&user=1" for 127.0.0.1 at 2015-04-13 21:33:25 -0700
+Processing by FacilitatorController#delete as HTML
+  Parameters: {"authenticity_token"=>"38199FhfgGPFD2Q8P0OPbb7SNiECmJcPNyA9ztJo7uQ=", "course"=>"1", "user"=>"1"}
+  [1m[36mCoursesUser Load (0.1ms)[0m  [1mSELECT "courses_users".* FROM "courses_users" WHERE "courses_users"."user_id" = 1 AND "courses_users"."course_id" = 1 LIMIT 1[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mDELETE FROM "courses_users" WHERE "courses_users"."id" = ?[0m  [["id", 1]]
+  [1m[35m (2.1ms)[0m  commit transaction
+Redirected to http://localhost:3000/courses/1
+Completed 302 Found in 4.0ms (ActiveRecord: 2.5ms)
+
+
+Started GET "/courses/1" for 127.0.0.1 at 2015-04-13 21:33:25 -0700
+Processing by CoursesController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mCourse Load (0.1ms)[0m  [1mSELECT "courses".* FROM "courses" WHERE "courses"."id" = ? LIMIT 1[0m  [["id", "1"]]
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1
+  [1m[36mCoursesUser Load (0.1ms)[0m  [1mSELECT "courses_users".* FROM "courses_users" WHERE "courses_users"."course_id" = 1 AND "courses_users"."user_id" = 1 LIMIT 1[0m
+  [1m[35mSection Load (0.1ms)[0m  SELECT "sections".* FROM "sections" WHERE "sections"."course_id" = 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "courses_users".* FROM "courses_users" WHERE "courses_users"."course_id" = 1 AND "courses_users"."user_id" = 1 LIMIT 1[0m
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" INNER JOIN "courses_users" ON "users"."id" = "courses_users"."user_id" WHERE "courses_users"."course_id" = 1
+  [1m[36mUpload Load (0.1ms)[0m  [1mSELECT "uploads".* FROM "uploads" WHERE "uploads"."course_id" = 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "courses_users".* FROM "courses_users" WHERE "courses_users"."course_id" = 1 AND "courses_users"."user_id" = 1 LIMIT 1
+  Rendered courses/show.html.erb within layouts/application (5.6ms)
+Completed 200 OK in 13.6ms (Views: 12.2ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/assets/bootstrap.min.css?body=1" for 127.0.0.1 at 2015-04-13 21:33:25 -0700
+Served asset /bootstrap.min.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/omniauth_callbacks.css?body=1" for 127.0.0.1 at 2015-04-13 21:33:25 -0700
+Served asset /omniauth_callbacks.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2015-04-13 21:33:25 -0700
+Served asset /scaffolds.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/courses.css?body=1" for 127.0.0.1 at 2015-04-13 21:33:25 -0700
+Served asset /courses.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.css?body=1" for 127.0.0.1 at 2015-04-13 21:33:25 -0700
+Served asset /bootstrap.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/sections.css?body=1" for 127.0.0.1 at 2015-04-13 21:33:25 -0700
+Served asset /sections.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/uploads.css?body=1" for 127.0.0.1 at 2015-04-13 21:33:25 -0700
+Served asset /uploads.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2015-04-13 21:33:25 -0700
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2015-04-13 21:33:25 -0700
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.min.js?body=1" for 127.0.0.1 at 2015-04-13 21:33:25 -0700
+Served asset /bootstrap.min.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2015-04-13 21:33:25 -0700
+Served asset /bootstrap.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/courses.js?body=1" for 127.0.0.1 at 2015-04-13 21:33:25 -0700
+Served asset /courses.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/omniauth_callbacks.js?body=1" for 127.0.0.1 at 2015-04-13 21:33:25 -0700
+Served asset /omniauth_callbacks.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/sections.js?body=1" for 127.0.0.1 at 2015-04-13 21:33:25 -0700
+Served asset /sections.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/uploads.js?body=1" for 127.0.0.1 at 2015-04-13 21:33:25 -0700
+Served asset /uploads.js - 304 Not Modified (0ms)
+
+
+Started GET "/dashboard" for 127.0.0.1 at 2015-04-13 21:33:42 -0700
+Processing by DashboardController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1[0m
+  [1m[35mCourse Load (0.2ms)[0m  SELECT "courses".* FROM "courses" INNER JOIN "courses_users" ON "courses"."id" = "courses_users"."course_id" WHERE "courses_users"."user_id" = 1
+  [1m[36mSection_time Load (0.1ms)[0m  [1mSELECT "section_times".* FROM "section_times" INNER JOIN "sections" ON "section_times"."section_id" = "sections"."id" WHERE "sections"."course_id" = 2[0m
+  Rendered dashboard/_dashboard_form.html.erb (5.2ms)
+  Rendered dashboard/index.html.erb within layouts/application (7.4ms)
+Completed 200 OK in 17.1ms (Views: 15.6ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/assets/bootstrap.min.css?body=1" for 127.0.0.1 at 2015-04-13 21:33:42 -0700
+Served asset /bootstrap.min.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.css?body=1" for 127.0.0.1 at 2015-04-13 21:33:42 -0700
+Served asset /bootstrap.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/courses.css?body=1" for 127.0.0.1 at 2015-04-13 21:33:42 -0700
+Served asset /courses.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/omniauth_callbacks.css?body=1" for 127.0.0.1 at 2015-04-13 21:33:42 -0700
+Served asset /omniauth_callbacks.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/sections.css?body=1" for 127.0.0.1 at 2015-04-13 21:33:42 -0700
+Served asset /sections.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2015-04-13 21:33:42 -0700
+Served asset /scaffolds.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/uploads.css?body=1" for 127.0.0.1 at 2015-04-13 21:33:42 -0700
+Served asset /uploads.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2015-04-13 21:33:42 -0700
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2015-04-13 21:33:42 -0700
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.min.js?body=1" for 127.0.0.1 at 2015-04-13 21:33:42 -0700
+Served asset /bootstrap.min.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2015-04-13 21:33:42 -0700
+Served asset /bootstrap.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/courses.js?body=1" for 127.0.0.1 at 2015-04-13 21:33:42 -0700
+Served asset /courses.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/omniauth_callbacks.js?body=1" for 127.0.0.1 at 2015-04-13 21:33:42 -0700
+Served asset /omniauth_callbacks.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/sections.js?body=1" for 127.0.0.1 at 2015-04-13 21:33:42 -0700
+Served asset /sections.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/uploads.js?body=1" for 127.0.0.1 at 2015-04-13 21:33:42 -0700
+Served asset /uploads.js - 304 Not Modified (0ms)
+
+
+Started GET "/existing_courses" for 127.0.0.1 at 2015-04-13 21:33:43 -0700
+Processing by ExistingCoursesController#index as HTML
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1
+  [1m[36mCourse Load (0.1ms)[0m  [1mSELECT "courses".* FROM "courses" INNER JOIN "courses_users" ON "courses"."id" = "courses_users"."course_id" WHERE "courses_users"."user_id" = 1[0m
+  [1m[35mCourse Load (0.2ms)[0m  SELECT "courses".* FROM "courses" WHERE (id NOT IN (2))
+  Rendered existing_courses/_existing_form.html.erb (7.1ms)
+  Rendered existing_courses/index.html.erb within layouts/application (9.1ms)
+Completed 200 OK in 51.0ms (Views: 48.2ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/assets/bootstrap.min.css?body=1" for 127.0.0.1 at 2015-04-13 21:33:43 -0700
+Served asset /bootstrap.min.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/omniauth_callbacks.css?body=1" for 127.0.0.1 at 2015-04-13 21:33:43 -0700
+Served asset /omniauth_callbacks.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/courses.css?body=1" for 127.0.0.1 at 2015-04-13 21:33:43 -0700
+Served asset /courses.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.css?body=1" for 127.0.0.1 at 2015-04-13 21:33:43 -0700
+Served asset /bootstrap.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2015-04-13 21:33:43 -0700
+Served asset /scaffolds.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/sections.css?body=1" for 127.0.0.1 at 2015-04-13 21:33:43 -0700
+Served asset /sections.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/uploads.css?body=1" for 127.0.0.1 at 2015-04-13 21:33:43 -0700
+Served asset /uploads.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2015-04-13 21:33:43 -0700
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2015-04-13 21:33:43 -0700
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.min.js?body=1" for 127.0.0.1 at 2015-04-13 21:33:43 -0700
+Served asset /bootstrap.min.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2015-04-13 21:33:43 -0700
+Served asset /bootstrap.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/courses.js?body=1" for 127.0.0.1 at 2015-04-13 21:33:43 -0700
+Served asset /courses.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/omniauth_callbacks.js?body=1" for 127.0.0.1 at 2015-04-13 21:33:43 -0700
+Served asset /omniauth_callbacks.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/sections.js?body=1" for 127.0.0.1 at 2015-04-13 21:33:43 -0700
+Served asset /sections.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/uploads.js?body=1" for 127.0.0.1 at 2015-04-13 21:33:43 -0700
+Served asset /uploads.js - 304 Not Modified (0ms)
+
+
+Started POST "/existing_courses?method=post" for 127.0.0.1 at 2015-04-13 21:33:52 -0700
+Processing by ExistingCoursesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"38199FhfgGPFD2Q8P0OPbb7SNiECmJcPNyA9ztJo7uQ=", "adfas"=>"1", "commit"=>"Facilitate These Courses", "method"=>"post"}
+  [1m[36mCourse Load (0.2ms)[0m  [1mSELECT "courses".* FROM "courses" WHERE "courses"."title" = 'adfas' LIMIT 1[0m
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "courses_users" ("course_id", "user_id") VALUES (?, ?)  [["course_id", 1], ["user_id", 1]]
+  [1m[36m (2.8ms)[0m  [1mcommit transaction[0m
+Redirected to http://localhost:3000/dashboard
+Completed 302 Found in 6.9ms (ActiveRecord: 3.4ms)
+
+
+Started GET "/dashboard" for 127.0.0.1 at 2015-04-13 21:33:52 -0700
+Processing by DashboardController#index as HTML
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1
+  [1m[36mCourse Load (0.1ms)[0m  [1mSELECT "courses".* FROM "courses" INNER JOIN "courses_users" ON "courses"."id" = "courses_users"."course_id" WHERE "courses_users"."user_id" = 1[0m
+  [1m[35mSection_time Load (0.1ms)[0m  SELECT "section_times".* FROM "section_times" INNER JOIN "sections" ON "section_times"."section_id" = "sections"."id" WHERE "sections"."course_id" = 2
+  [1m[36mSection_time Load (0.1ms)[0m  [1mSELECT "section_times".* FROM "section_times" INNER JOIN "sections" ON "section_times"."section_id" = "sections"."id" WHERE "sections"."course_id" = 1[0m
+  Rendered dashboard/_dashboard_form.html.erb (3.9ms)
+  Rendered dashboard/index.html.erb within layouts/application (4.6ms)
+Completed 200 OK in 14.9ms (Views: 13.7ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/assets/bootstrap.min.css?body=1" for 127.0.0.1 at 2015-04-13 21:33:52 -0700
+Served asset /bootstrap.min.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/courses.css?body=1" for 127.0.0.1 at 2015-04-13 21:33:52 -0700
+Served asset /courses.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/omniauth_callbacks.css?body=1" for 127.0.0.1 at 2015-04-13 21:33:52 -0700
+Served asset /omniauth_callbacks.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.css?body=1" for 127.0.0.1 at 2015-04-13 21:33:52 -0700
+Served asset /bootstrap.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2015-04-13 21:33:52 -0700
+Served asset /scaffolds.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/sections.css?body=1" for 127.0.0.1 at 2015-04-13 21:33:52 -0700
+Served asset /sections.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/uploads.css?body=1" for 127.0.0.1 at 2015-04-13 21:33:52 -0700
+Served asset /uploads.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2015-04-13 21:33:52 -0700
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2015-04-13 21:33:52 -0700
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.min.js?body=1" for 127.0.0.1 at 2015-04-13 21:33:52 -0700
+Served asset /bootstrap.min.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2015-04-13 21:33:52 -0700
+Served asset /bootstrap.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/courses.js?body=1" for 127.0.0.1 at 2015-04-13 21:33:52 -0700
+Served asset /courses.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/omniauth_callbacks.js?body=1" for 127.0.0.1 at 2015-04-13 21:33:52 -0700
+Served asset /omniauth_callbacks.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/sections.js?body=1" for 127.0.0.1 at 2015-04-13 21:33:52 -0700
+Served asset /sections.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/uploads.js?body=1" for 127.0.0.1 at 2015-04-13 21:33:52 -0700
+Served asset /uploads.js - 304 Not Modified (0ms)
+
+
+Started GET "/courses/2" for 127.0.0.1 at 2015-04-13 21:35:26 -0700
+Processing by CoursesController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[35mCourse Load (0.2ms)[0m  SELECT "courses".* FROM "courses" WHERE "courses"."id" = ? LIMIT 1  [["id", "2"]]
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1[0m
+  [1m[35mCoursesUser Load (0.1ms)[0m  SELECT "courses_users".* FROM "courses_users" WHERE "courses_users"."course_id" = 2 AND "courses_users"."user_id" = 1 LIMIT 1
+  [1m[36mSection Load (0.1ms)[0m  [1mSELECT "sections".* FROM "sections" WHERE "sections"."course_id" = 2[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "courses_users".* FROM "courses_users" WHERE "courses_users"."course_id" = 2 AND "courses_users"."user_id" = 1 LIMIT 1
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" INNER JOIN "courses_users" ON "users"."id" = "courses_users"."user_id" WHERE "courses_users"."course_id" = 2[0m
+  [1m[35mUpload Load (0.1ms)[0m  SELECT "uploads".* FROM "uploads" WHERE "uploads"."course_id" = 2
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "courses_users".* FROM "courses_users" WHERE "courses_users"."course_id" = 2 AND "courses_users"."user_id" = 1 LIMIT 1[0m
+  Rendered courses/show.html.erb within layouts/application (8.0ms)
+Completed 200 OK in 49.6ms (Views: 47.8ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/assets/bootstrap.css?body=1" for 127.0.0.1 at 2015-04-13 21:35:26 -0700
+Served asset /bootstrap.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/bootstrap.min.css?body=1" for 127.0.0.1 at 2015-04-13 21:35:26 -0700
+Served asset /bootstrap.min.css - 304 Not Modified (3ms)
+
+
+Started GET "/assets/omniauth_callbacks.css?body=1" for 127.0.0.1 at 2015-04-13 21:35:26 -0700
+Served asset /omniauth_callbacks.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/courses.css?body=1" for 127.0.0.1 at 2015-04-13 21:35:26 -0700
+Served asset /courses.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/sections.css?body=1" for 127.0.0.1 at 2015-04-13 21:35:26 -0700
+Served asset /sections.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2015-04-13 21:35:26 -0700
+Served asset /scaffolds.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/uploads.css?body=1" for 127.0.0.1 at 2015-04-13 21:35:26 -0700
+Served asset /uploads.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2015-04-13 21:35:26 -0700
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2015-04-13 21:35:26 -0700
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.min.js?body=1" for 127.0.0.1 at 2015-04-13 21:35:26 -0700
+Served asset /bootstrap.min.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/courses.js?body=1" for 127.0.0.1 at 2015-04-13 21:35:26 -0700
+Served asset /courses.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2015-04-13 21:35:26 -0700
+Served asset /bootstrap.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/omniauth_callbacks.js?body=1" for 127.0.0.1 at 2015-04-13 21:35:26 -0700
+Served asset /omniauth_callbacks.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/sections.js?body=1" for 127.0.0.1 at 2015-04-13 21:35:26 -0700
+Served asset /sections.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/uploads.js?body=1" for 127.0.0.1 at 2015-04-13 21:35:26 -0700
+Served asset /uploads.js - 304 Not Modified (0ms)
+
+
+Started GET "/courses/2/sections/new" for 127.0.0.1 at 2015-04-13 21:35:30 -0700
+Processing by SectionsController#new as HTML
+  Parameters: {"course_id"=>"2"}
+  [1m[35mCourse Load (0.1ms)[0m  SELECT "courses".* FROM "courses" WHERE "courses"."id" = ? LIMIT 1  [["id", "2"]]
+  Rendered sections/_section_form.html.erb (29.9ms)
+  Rendered sections/new.html.erb within layouts/application (33.1ms)
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1[0m
+Completed 200 OK in 54.8ms (Views: 43.6ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/assets/bootstrap.min.css?body=1" for 127.0.0.1 at 2015-04-13 21:35:30 -0700
+Served asset /bootstrap.min.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/courses.css?body=1" for 127.0.0.1 at 2015-04-13 21:35:30 -0700
+Served asset /courses.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.css?body=1" for 127.0.0.1 at 2015-04-13 21:35:30 -0700
+Served asset /bootstrap.css - 304 Not Modified (4ms)
+
+
+Started GET "/assets/omniauth_callbacks.css?body=1" for 127.0.0.1 at 2015-04-13 21:35:30 -0700
+Served asset /omniauth_callbacks.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2015-04-13 21:35:30 -0700
+Served asset /scaffolds.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/sections.css?body=1" for 127.0.0.1 at 2015-04-13 21:35:30 -0700
+Served asset /sections.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/uploads.css?body=1" for 127.0.0.1 at 2015-04-13 21:35:30 -0700
+Served asset /uploads.css - 304 Not Modified (34ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2015-04-13 21:35:30 -0700
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2015-04-13 21:35:30 -0700
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.min.js?body=1" for 127.0.0.1 at 2015-04-13 21:35:30 -0700
+Served asset /bootstrap.min.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2015-04-13 21:35:30 -0700
+Served asset /bootstrap.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/courses.js?body=1" for 127.0.0.1 at 2015-04-13 21:35:30 -0700
+Served asset /courses.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/omniauth_callbacks.js?body=1" for 127.0.0.1 at 2015-04-13 21:35:30 -0700
+Served asset /omniauth_callbacks.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/sections.js?body=1" for 127.0.0.1 at 2015-04-13 21:35:30 -0700
+Served asset /sections.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/uploads.js?body=1" for 127.0.0.1 at 2015-04-13 21:35:30 -0700
+Served asset /uploads.js - 304 Not Modified (0ms)
+
+
+Started GET "/courses" for 127.0.0.1 at 2015-04-13 21:39:02 -0700
+Processing by CoursesController#index as HTML
+  [1m[35mCourse Load (0.3ms)[0m  SELECT "courses".* FROM "courses" WHERE "courses"."category" IN ('Computer Science', 'Fitness', 'Business', 'Languages', 'Cognitive Science', 'All') AND "courses"."status" IN ('Full', 'Open', 'All') AND "courses"."units" IN ('1', '2', '3', '4')
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1[0m
+  [1m[35mSection_time Load (0.1ms)[0m  SELECT "section_times".* FROM "section_times" INNER JOIN "sections" ON "section_times"."section_id" = "sections"."id" WHERE "sections"."course_id" = 1
+  [1m[36mCoursesUser Load (0.1ms)[0m  [1mSELECT "courses_users".* FROM "courses_users" WHERE "courses_users"."course_id" = 1 AND "courses_users"."user_id" = 1 LIMIT 1[0m
+  [1m[35mSection_time Load (0.1ms)[0m  SELECT "section_times".* FROM "section_times" INNER JOIN "sections" ON "section_times"."section_id" = "sections"."id" WHERE "sections"."course_id" = 2
+  [1m[36mCoursesUser Load (0.1ms)[0m  [1mSELECT "courses_users".* FROM "courses_users" WHERE "courses_users"."course_id" = 2 AND "courses_users"."user_id" = 1 LIMIT 1[0m
+  [1m[35mSection_time Load (0.1ms)[0m  SELECT "section_times".* FROM "section_times" INNER JOIN "sections" ON "section_times"."section_id" = "sections"."id" WHERE "sections"."course_id" = 3
+  [1m[36mCoursesUser Load (0.1ms)[0m  [1mSELECT "courses_users".* FROM "courses_users" WHERE "courses_users"."course_id" = 3 AND "courses_users"."user_id" = 1 LIMIT 1[0m
+  [1m[35mSection_time Load (0.1ms)[0m  SELECT "section_times".* FROM "section_times" INNER JOIN "sections" ON "section_times"."section_id" = "sections"."id" WHERE "sections"."course_id" = 4
+  [1m[36mCoursesUser Load (0.1ms)[0m  [1mSELECT "courses_users".* FROM "courses_users" WHERE "courses_users"."course_id" = 4 AND "courses_users"."user_id" = 1 LIMIT 1[0m
+  [1m[35mSection_time Load (0.1ms)[0m  SELECT "section_times".* FROM "section_times" INNER JOIN "sections" ON "section_times"."section_id" = "sections"."id" WHERE "sections"."course_id" = 5
+  [1m[36mCoursesUser Load (0.1ms)[0m  [1mSELECT "courses_users".* FROM "courses_users" WHERE "courses_users"."course_id" = 5 AND "courses_users"."user_id" = 1 LIMIT 1[0m
+  [1m[35mSection_time Load (0.1ms)[0m  SELECT "section_times".* FROM "section_times" INNER JOIN "sections" ON "section_times"."section_id" = "sections"."id" WHERE "sections"."course_id" = 6
+  [1m[36mCoursesUser Load (0.1ms)[0m  [1mSELECT "courses_users".* FROM "courses_users" WHERE "courses_users"."course_id" = 6 AND "courses_users"."user_id" = 1 LIMIT 1[0m
+  [1m[35mSection_time Load (0.1ms)[0m  SELECT "section_times".* FROM "section_times" INNER JOIN "sections" ON "section_times"."section_id" = "sections"."id" WHERE "sections"."course_id" = 7
+  [1m[36mCoursesUser Load (0.1ms)[0m  [1mSELECT "courses_users".* FROM "courses_users" WHERE "courses_users"."course_id" = 7 AND "courses_users"."user_id" = 1 LIMIT 1[0m
+  [1m[35mSection_time Load (0.1ms)[0m  SELECT "section_times".* FROM "section_times" INNER JOIN "sections" ON "section_times"."section_id" = "sections"."id" WHERE "sections"."course_id" = 8
+  [1m[36mCoursesUser Load (0.1ms)[0m  [1mSELECT "courses_users".* FROM "courses_users" WHERE "courses_users"."course_id" = 8 AND "courses_users"."user_id" = 1 LIMIT 1[0m
+  Rendered courses/index.html.erb within layouts/application (22.1ms)
+Completed 200 OK in 44.2ms (Views: 40.7ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/assets/bootstrap.min.css?body=1" for 127.0.0.1 at 2015-04-13 21:39:02 -0700
+Served asset /bootstrap.min.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/bootstrap.css?body=1" for 127.0.0.1 at 2015-04-13 21:39:02 -0700
+Served asset /bootstrap.css - 304 Not Modified (5ms)
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2015-04-13 21:39:02 -0700
+Served asset /scaffolds.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/sections.css?body=1" for 127.0.0.1 at 2015-04-13 21:39:02 -0700
+Served asset /sections.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/courses.css?body=1" for 127.0.0.1 at 2015-04-13 21:39:02 -0700
+Served asset /courses.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/omniauth_callbacks.css?body=1" for 127.0.0.1 at 2015-04-13 21:39:02 -0700
+Served asset /omniauth_callbacks.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/uploads.css?body=1" for 127.0.0.1 at 2015-04-13 21:39:02 -0700
+Served asset /uploads.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2015-04-13 21:39:02 -0700
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2015-04-13 21:39:02 -0700
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2015-04-13 21:39:02 -0700
+Served asset /bootstrap.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.min.js?body=1" for 127.0.0.1 at 2015-04-13 21:39:02 -0700
+Served asset /bootstrap.min.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/courses.js?body=1" for 127.0.0.1 at 2015-04-13 21:39:02 -0700
+Served asset /courses.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/omniauth_callbacks.js?body=1" for 127.0.0.1 at 2015-04-13 21:39:02 -0700
+Served asset /omniauth_callbacks.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/sections.js?body=1" for 127.0.0.1 at 2015-04-13 21:39:02 -0700
+Served asset /sections.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/uploads.js?body=1" for 127.0.0.1 at 2015-04-13 21:39:02 -0700
+Served asset /uploads.js - 304 Not Modified (0ms)
+
+
+Started GET "/courses/1" for 127.0.0.1 at 2015-04-13 21:39:25 -0700
+Processing by CoursesController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mCourse Load (0.1ms)[0m  SELECT "courses".* FROM "courses" WHERE "courses"."id" = ? LIMIT 1  [["id", "1"]]
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1[0m
+  [1m[35mCoursesUser Load (0.1ms)[0m  SELECT "courses_users".* FROM "courses_users" WHERE "courses_users"."course_id" = 1 AND "courses_users"."user_id" = 1 LIMIT 1
+  [1m[36mSection Load (0.1ms)[0m  [1mSELECT "sections".* FROM "sections" WHERE "sections"."course_id" = 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "courses_users".* FROM "courses_users" WHERE "courses_users"."course_id" = 1 AND "courses_users"."user_id" = 1 LIMIT 1
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" INNER JOIN "courses_users" ON "users"."id" = "courses_users"."user_id" WHERE "courses_users"."course_id" = 1[0m
+  [1m[35mUpload Load (0.1ms)[0m  SELECT "uploads".* FROM "uploads" WHERE "uploads"."course_id" = 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "courses_users".* FROM "courses_users" WHERE "courses_users"."course_id" = 1 AND "courses_users"."user_id" = 1 LIMIT 1[0m
+  Rendered courses/show.html.erb within layouts/application (7.1ms)
+Completed 200 OK in 19.1ms (Views: 17.6ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/assets/bootstrap.min.css?body=1" for 127.0.0.1 at 2015-04-13 21:39:25 -0700
+Served asset /bootstrap.min.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/bootstrap.css?body=1" for 127.0.0.1 at 2015-04-13 21:39:25 -0700
+Served asset /bootstrap.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/courses.css?body=1" for 127.0.0.1 at 2015-04-13 21:39:25 -0700
+Served asset /courses.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2015-04-13 21:39:25 -0700
+Served asset /scaffolds.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/omniauth_callbacks.css?body=1" for 127.0.0.1 at 2015-04-13 21:39:25 -0700
+Served asset /omniauth_callbacks.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/sections.css?body=1" for 127.0.0.1 at 2015-04-13 21:39:25 -0700
+Served asset /sections.css - 304 Not Modified (34ms)
+
+
+Started GET "/assets/uploads.css?body=1" for 127.0.0.1 at 2015-04-13 21:39:25 -0700
+Served asset /uploads.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2015-04-13 21:39:25 -0700
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2015-04-13 21:39:25 -0700
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.min.js?body=1" for 127.0.0.1 at 2015-04-13 21:39:25 -0700
+Served asset /bootstrap.min.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2015-04-13 21:39:25 -0700
+Served asset /bootstrap.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/courses.js?body=1" for 127.0.0.1 at 2015-04-13 21:39:25 -0700
+Served asset /courses.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/omniauth_callbacks.js?body=1" for 127.0.0.1 at 2015-04-13 21:39:25 -0700
+Served asset /omniauth_callbacks.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/sections.js?body=1" for 127.0.0.1 at 2015-04-13 21:39:25 -0700
+Served asset /sections.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/uploads.js?body=1" for 127.0.0.1 at 2015-04-13 21:39:25 -0700
+Served asset /uploads.js - 304 Not Modified (0ms)
+
+
+Started GET "/dashboard" for 127.0.0.1 at 2015-04-13 21:39:28 -0700
+Processing by DashboardController#index as HTML
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1
+  [1m[36mCourse Load (0.2ms)[0m  [1mSELECT "courses".* FROM "courses" INNER JOIN "courses_users" ON "courses"."id" = "courses_users"."course_id" WHERE "courses_users"."user_id" = 1[0m
+  [1m[35mSection_time Load (0.1ms)[0m  SELECT "section_times".* FROM "section_times" INNER JOIN "sections" ON "section_times"."section_id" = "sections"."id" WHERE "sections"."course_id" = 2
+  [1m[36mSection_time Load (0.1ms)[0m  [1mSELECT "section_times".* FROM "section_times" INNER JOIN "sections" ON "section_times"."section_id" = "sections"."id" WHERE "sections"."course_id" = 1[0m
+  Rendered dashboard/_dashboard_form.html.erb (4.3ms)
+  Rendered dashboard/index.html.erb within layouts/application (5.6ms)
+Completed 200 OK in 17.5ms (Views: 16.0ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/assets/bootstrap.min.css?body=1" for 127.0.0.1 at 2015-04-13 21:39:28 -0700
+Served asset /bootstrap.min.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/bootstrap.css?body=1" for 127.0.0.1 at 2015-04-13 21:39:28 -0700
+Served asset /bootstrap.css - 304 Not Modified (3ms)
+
+
+Started GET "/assets/courses.css?body=1" for 127.0.0.1 at 2015-04-13 21:39:28 -0700
+Served asset /courses.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/omniauth_callbacks.css?body=1" for 127.0.0.1 at 2015-04-13 21:39:28 -0700
+Served asset /omniauth_callbacks.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2015-04-13 21:39:28 -0700
+Served asset /scaffolds.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/sections.css?body=1" for 127.0.0.1 at 2015-04-13 21:39:28 -0700
+Served asset /sections.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/uploads.css?body=1" for 127.0.0.1 at 2015-04-13 21:39:28 -0700
+Served asset /uploads.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2015-04-13 21:39:28 -0700
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2015-04-13 21:39:28 -0700
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.min.js?body=1" for 127.0.0.1 at 2015-04-13 21:39:28 -0700
+Served asset /bootstrap.min.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2015-04-13 21:39:28 -0700
+Served asset /bootstrap.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/courses.js?body=1" for 127.0.0.1 at 2015-04-13 21:39:28 -0700
+Served asset /courses.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/omniauth_callbacks.js?body=1" for 127.0.0.1 at 2015-04-13 21:39:28 -0700
+Served asset /omniauth_callbacks.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/sections.js?body=1" for 127.0.0.1 at 2015-04-13 21:39:28 -0700
+Served asset /sections.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/uploads.js?body=1" for 127.0.0.1 at 2015-04-13 21:39:28 -0700
+Served asset /uploads.js - 304 Not Modified (0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2015-04-13 21:39:55 -0700
+Processing by CoursesController#index as HTML
+  [1m[35mCourse Load (0.3ms)[0m  SELECT "courses".* FROM "courses" WHERE "courses"."category" IN ('Computer Science', 'Fitness', 'Business', 'Languages', 'Cognitive Science', 'All') AND "courses"."status" IN ('Full', 'Open', 'All') AND "courses"."units" IN ('1', '2', '3', '4')
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1[0m
+  [1m[35mSection_time Load (0.1ms)[0m  SELECT "section_times".* FROM "section_times" INNER JOIN "sections" ON "section_times"."section_id" = "sections"."id" WHERE "sections"."course_id" = 1
+  [1m[36mCoursesUser Load (0.1ms)[0m  [1mSELECT "courses_users".* FROM "courses_users" WHERE "courses_users"."course_id" = 1 AND "courses_users"."user_id" = 1 LIMIT 1[0m
+  [1m[35mSection_time Load (0.1ms)[0m  SELECT "section_times".* FROM "section_times" INNER JOIN "sections" ON "section_times"."section_id" = "sections"."id" WHERE "sections"."course_id" = 2
+  [1m[36mCoursesUser Load (0.1ms)[0m  [1mSELECT "courses_users".* FROM "courses_users" WHERE "courses_users"."course_id" = 2 AND "courses_users"."user_id" = 1 LIMIT 1[0m
+  [1m[35mSection_time Load (0.1ms)[0m  SELECT "section_times".* FROM "section_times" INNER JOIN "sections" ON "section_times"."section_id" = "sections"."id" WHERE "sections"."course_id" = 3
+  [1m[36mCoursesUser Load (0.1ms)[0m  [1mSELECT "courses_users".* FROM "courses_users" WHERE "courses_users"."course_id" = 3 AND "courses_users"."user_id" = 1 LIMIT 1[0m
+  [1m[35mSection_time Load (0.1ms)[0m  SELECT "section_times".* FROM "section_times" INNER JOIN "sections" ON "section_times"."section_id" = "sections"."id" WHERE "sections"."course_id" = 4
+  [1m[36mCoursesUser Load (0.1ms)[0m  [1mSELECT "courses_users".* FROM "courses_users" WHERE "courses_users"."course_id" = 4 AND "courses_users"."user_id" = 1 LIMIT 1[0m
+  [1m[35mSection_time Load (0.1ms)[0m  SELECT "section_times".* FROM "section_times" INNER JOIN "sections" ON "section_times"."section_id" = "sections"."id" WHERE "sections"."course_id" = 5
+  [1m[36mCoursesUser Load (0.1ms)[0m  [1mSELECT "courses_users".* FROM "courses_users" WHERE "courses_users"."course_id" = 5 AND "courses_users"."user_id" = 1 LIMIT 1[0m
+  [1m[35mSection_time Load (0.1ms)[0m  SELECT "section_times".* FROM "section_times" INNER JOIN "sections" ON "section_times"."section_id" = "sections"."id" WHERE "sections"."course_id" = 6
+  [1m[36mCoursesUser Load (0.1ms)[0m  [1mSELECT "courses_users".* FROM "courses_users" WHERE "courses_users"."course_id" = 6 AND "courses_users"."user_id" = 1 LIMIT 1[0m
+  [1m[35mSection_time Load (0.1ms)[0m  SELECT "section_times".* FROM "section_times" INNER JOIN "sections" ON "section_times"."section_id" = "sections"."id" WHERE "sections"."course_id" = 7
+  [1m[36mCoursesUser Load (0.1ms)[0m  [1mSELECT "courses_users".* FROM "courses_users" WHERE "courses_users"."course_id" = 7 AND "courses_users"."user_id" = 1 LIMIT 1[0m
+  [1m[35mSection_time Load (0.1ms)[0m  SELECT "section_times".* FROM "section_times" INNER JOIN "sections" ON "section_times"."section_id" = "sections"."id" WHERE "sections"."course_id" = 8
+  [1m[36mCoursesUser Load (0.1ms)[0m  [1mSELECT "courses_users".* FROM "courses_users" WHERE "courses_users"."course_id" = 8 AND "courses_users"."user_id" = 1 LIMIT 1[0m
+  Rendered courses/index.html.erb within layouts/application (20.7ms)
+Completed 200 OK in 38.9ms (Views: 35.6ms | ActiveRecord: 1.9ms)
+
+
+Started GET "/assets/bootstrap.min.css?body=1" for 127.0.0.1 at 2015-04-13 21:39:56 -0700
+Served asset /bootstrap.min.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/courses.css?body=1" for 127.0.0.1 at 2015-04-13 21:39:56 -0700
+Served asset /courses.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/omniauth_callbacks.css?body=1" for 127.0.0.1 at 2015-04-13 21:39:56 -0700
+Served asset /omniauth_callbacks.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.css?body=1" for 127.0.0.1 at 2015-04-13 21:39:56 -0700
+Served asset /bootstrap.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2015-04-13 21:39:56 -0700
+Served asset /scaffolds.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/sections.css?body=1" for 127.0.0.1 at 2015-04-13 21:39:56 -0700
+Served asset /sections.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/uploads.css?body=1" for 127.0.0.1 at 2015-04-13 21:39:56 -0700
+Served asset /uploads.css - 304 Not Modified (34ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2015-04-13 21:39:56 -0700
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2015-04-13 21:39:56 -0700
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.min.js?body=1" for 127.0.0.1 at 2015-04-13 21:39:56 -0700
+Served asset /bootstrap.min.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2015-04-13 21:39:56 -0700
+Served asset /bootstrap.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/courses.js?body=1" for 127.0.0.1 at 2015-04-13 21:39:56 -0700
+Served asset /courses.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/omniauth_callbacks.js?body=1" for 127.0.0.1 at 2015-04-13 21:39:56 -0700
+Served asset /omniauth_callbacks.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/sections.js?body=1" for 127.0.0.1 at 2015-04-13 21:39:56 -0700
+Served asset /sections.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/uploads.js?body=1" for 127.0.0.1 at 2015-04-13 21:39:56 -0700
+Served asset /uploads.js - 304 Not Modified (0ms)
+
+
+Started GET "/?utf8=%E2%9C%93&search_field=quantum&units%5B1%5D=1&units%5B2%5D=1&units%5B3%5D=1&units%5B4%5D=1&category=All&section_time%5Bdays%5BM%5D%5D=1&section_time%5Bdays%5BTu%5D%5D=1&section_time%5Bdays%5BW%5D%5D=1&section_time%5Bdays%5BTh%5D%5D=1&section_time%5Bdays%5BF%5D%5D=1&section_time%5Bstart_time%5D=-Select+Time-&section_time%5Bend_time%5D=-Select+Time-&status=All&commit=Search" for 127.0.0.1 at 2015-04-13 21:43:44 -0700
+Processing by CoursesController#index as HTML
+  Parameters: {"utf8"=>"✓", "search_field"=>"quantum", "units"=>{"1"=>"1", "2"=>"1", "3"=>"1", "4"=>"1"}, "category"=>"All", "section_time"=>{"days"=>{"M"=>"1", "Tu"=>"1", "W"=>"1", "Th"=>"1", "F"=>"1"}, "start_time"=>"-Select Time-", "end_time"=>"-Select Time-"}, "status"=>"All", "commit"=>"Search"}
+  [1m[35mCourse Load (0.3ms)[0m  SELECT "courses".* FROM "courses" WHERE "courses"."category" IN ('Computer Science', 'Fitness', 'Business', 'Languages', 'Cognitive Science', 'All') AND "courses"."status" IN ('Full', 'Open', 'All') AND "courses"."units" IN ('1', '2', '3', '4')
+  [1m[36mSection_time Load (0.1ms)[0m  [1mSELECT "section_times".* FROM "section_times" INNER JOIN "sections" ON "section_times"."section_id" = "sections"."id" WHERE "sections"."course_id" = 3[0m
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1
+  Rendered courses/index.html.erb within layouts/application (4.5ms)
+Completed 200 OK in 21.9ms (Views: 19.2ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/assets/bootstrap.css?body=1" for 127.0.0.1 at 2015-04-13 21:43:44 -0700
+Served asset /bootstrap.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/bootstrap.min.css?body=1" for 127.0.0.1 at 2015-04-13 21:43:44 -0700
+Served asset /bootstrap.min.css - 304 Not Modified (13ms)
+
+
+Started GET "/assets/omniauth_callbacks.css?body=1" for 127.0.0.1 at 2015-04-13 21:43:44 -0700
+Served asset /omniauth_callbacks.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2015-04-13 21:43:44 -0700
+Served asset /scaffolds.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/sections.css?body=1" for 127.0.0.1 at 2015-04-13 21:43:44 -0700
+Served asset /sections.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/courses.css?body=1" for 127.0.0.1 at 2015-04-13 21:43:44 -0700
+Served asset /courses.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/uploads.css?body=1" for 127.0.0.1 at 2015-04-13 21:43:44 -0700
+Served asset /uploads.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2015-04-13 21:43:44 -0700
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2015-04-13 21:43:44 -0700
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.min.js?body=1" for 127.0.0.1 at 2015-04-13 21:43:44 -0700
+Served asset /bootstrap.min.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2015-04-13 21:43:44 -0700
+Served asset /bootstrap.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/courses.js?body=1" for 127.0.0.1 at 2015-04-13 21:43:44 -0700
+Served asset /courses.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/omniauth_callbacks.js?body=1" for 127.0.0.1 at 2015-04-13 21:43:44 -0700
+Served asset /omniauth_callbacks.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/sections.js?body=1" for 127.0.0.1 at 2015-04-13 21:43:44 -0700
+Served asset /sections.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/uploads.js?body=1" for 127.0.0.1 at 2015-04-13 21:43:44 -0700
+Served asset /uploads.js - 304 Not Modified (0ms)
+
+
+Started GET "/?utf8=%E2%9C%93&search_field=quantum&units%5B1%5D=1&units%5B2%5D=1&units%5B3%5D=1&units%5B4%5D=1&category=All&section_time%5Bdays%5BM%5D%5D=1&section_time%5Bdays%5BTu%5D%5D=1&section_time%5Bdays%5BW%5D%5D=1&section_time%5Bdays%5BTh%5D%5D=1&section_time%5Bdays%5BF%5D%5D=1&section_time%5Bstart_time%5D=-Select+Time-&section_time%5Bend_time%5D=-Select+Time-&status=All&commit=Search" for 127.0.0.1 at 2015-04-13 21:43:54 -0700
+Processing by CoursesController#index as HTML
+  Parameters: {"utf8"=>"✓", "search_field"=>"quantum", "units"=>{"1"=>"1", "2"=>"1", "3"=>"1", "4"=>"1"}, "category"=>"All", "section_time"=>{"days"=>{"M"=>"1", "Tu"=>"1", "W"=>"1", "Th"=>"1", "F"=>"1"}, "start_time"=>"-Select Time-", "end_time"=>"-Select Time-"}, "status"=>"All", "commit"=>"Search"}
+  [1m[36mCourse Load (0.7ms)[0m  [1mSELECT "courses".* FROM "courses" WHERE "courses"."category" IN ('Computer Science', 'Fitness', 'Business', 'Languages', 'Cognitive Science', 'All') AND "courses"."status" IN ('Full', 'Open', 'All') AND "courses"."units" IN ('1', '2', '3', '4')[0m
+  [1m[35mSection_time Load (0.1ms)[0m  SELECT "section_times".* FROM "section_times" INNER JOIN "sections" ON "section_times"."section_id" = "sections"."id" WHERE "sections"."course_id" = 3
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1[0m
+  Rendered courses/index.html.erb within layouts/application (4.5ms)
+Completed 200 OK in 15.0ms (Views: 12.2ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/assets/bootstrap.min.css?body=1" for 127.0.0.1 at 2015-04-13 21:43:54 -0700
+Served asset /bootstrap.min.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2015-04-13 21:43:54 -0700
+Served asset /scaffolds.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/omniauth_callbacks.css?body=1" for 127.0.0.1 at 2015-04-13 21:43:54 -0700
+Served asset /omniauth_callbacks.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.css?body=1" for 127.0.0.1 at 2015-04-13 21:43:54 -0700
+Served asset /bootstrap.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/courses.css?body=1" for 127.0.0.1 at 2015-04-13 21:43:54 -0700
+Served asset /courses.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/sections.css?body=1" for 127.0.0.1 at 2015-04-13 21:43:54 -0700
+Served asset /sections.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/uploads.css?body=1" for 127.0.0.1 at 2015-04-13 21:43:54 -0700
+Served asset /uploads.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2015-04-13 21:43:54 -0700
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2015-04-13 21:43:54 -0700
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.min.js?body=1" for 127.0.0.1 at 2015-04-13 21:43:54 -0700
+Served asset /bootstrap.min.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2015-04-13 21:43:54 -0700
+Served asset /bootstrap.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/courses.js?body=1" for 127.0.0.1 at 2015-04-13 21:43:54 -0700
+Served asset /courses.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/omniauth_callbacks.js?body=1" for 127.0.0.1 at 2015-04-13 21:43:54 -0700
+Served asset /omniauth_callbacks.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/sections.js?body=1" for 127.0.0.1 at 2015-04-13 21:43:54 -0700
+Served asset /sections.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/uploads.js?body=1" for 127.0.0.1 at 2015-04-13 21:43:54 -0700
+Served asset /uploads.js - 304 Not Modified (0ms)

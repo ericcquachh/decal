@@ -84,11 +84,13 @@ class CoursesController < ApplicationController
   # POST /courses.json
   def create
     # @course = Course.new(params[:course])
-    @course = current_user.courses.new(params[:course])
+    # @course = current_user.courses.new(params[:course])
+    @course = Course.create!(params[:course])
     if @course.valid?
-      current_user.save!
-      @course.uid = current_user.id
-      @course.save!
+      # current_user.save!
+      CoursesUser.create!(:user_id => current_user.id, :course_id => @course.id)
+      # @course.uid = current_user.id
+      # @course.save!
       redirect_to :root, :notice => params
     else
       e = "Errors: "
