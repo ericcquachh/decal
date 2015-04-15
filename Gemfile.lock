@@ -1,3 +1,11 @@
+GIT
+  remote: git://github.com/galetahub/ckeditor.git
+  revision: 0efddf9a46bbba4aeda562ec0ea77af738404418
+  specs:
+    ckeditor (4.1.1)
+      cocaine
+      orm_adapter (~> 0.5.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -44,9 +52,6 @@ GEM
       activesupport (>= 3.2.0)
       json (>= 1.7)
       mime-types (>= 1.16)
-    ckeditor (4.1.1)
-      cocaine
-      orm_adapter (~> 0.5.0)
     climate_control (0.0.3)
       activesupport (>= 3.0)
     cocaine (0.5.7)
@@ -311,7 +316,7 @@ PLATFORMS
 
 DEPENDENCIES
   carrierwave (~> 0.10.0)
-  ckeditor
+  ckeditor!
   cucumber-rails
   database_cleaner
   devise
