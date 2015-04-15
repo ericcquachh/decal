@@ -108,11 +108,13 @@ class CoursesController < ApplicationController
     @course = Course.new(session[:course_params])
     @course.current_step = session[:course_step]
     if @course.valid?
-      if params[:back_button]
+      if params[:previous_button]
         @course.previous_step
       elsif @course.last_step?
-        @course.save if @course.all_valid?
-        CoursesUser.create!(:user_id => current_user.id, :course_id => @course.id) if @course.all_valid?
+        if @course.all_valid?
+          @course.save
+          CoursesUser.create!(:user_id => current_user.id, :course_id => @course.id) if @course.all_valid?
+        end
       else
         @course.next_step
       end
