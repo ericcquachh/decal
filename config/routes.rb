@@ -8,6 +8,7 @@ Decal::Application.routes.draw do
       resources :uploads, only: [:index, :new, :create, :destroy]
   end
 
+  resources :admin
 
   # paths for dashboard
   resources :dashboard
