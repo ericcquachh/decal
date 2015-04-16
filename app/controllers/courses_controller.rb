@@ -112,6 +112,7 @@ class CoursesController < ApplicationController
         @course.previous_step
       elsif @course.last_step?
         if @course.all_valid?
+          @course.pending = true
           @course.save
           CoursesUser.create!(:user_id => current_user.id, :course_id => @course.id)
         end
