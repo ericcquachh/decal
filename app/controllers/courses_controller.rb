@@ -29,7 +29,7 @@ class CoursesController < ApplicationController
     #this does not work when you don't put in information about category, status, and units
     # @courses = Course.find(:all, :order => session[:title], :conditions => {:category => session[:category], :status => session[:status], 
     # :units => session[:units]})
-    @courses = Course.find(:all, :order => session[:title])
+    @courses = Course.find(:all, :order => session[:title], :conditions => {:pending => false})
     # @courses = Course.find(:all, :order => session[:title])
 
     if params[:search_field]

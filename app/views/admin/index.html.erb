@@ -1,22 +1,10 @@
 <h1> Admin Tools </h1>
 
-<div class="btn-group btn-group-justified" role="group" aria-label="...">
-  <div class="btn-group" role="group">
-    <button type="button" class="btn btn-primary">CURRENT COURSES</button>
-  </div>
-  <div class="btn-group" role="group">
- 	<%= link_to 'Manage Courses', courses_path, {:class => "btn btn-primary"} %>
-  </div>
-  <div class="btn-group" role="group">
-    <button type="button" class="btn btn-primary">MANAGE ADMINS</button>
-  </div>
-</div>
-
 <form class="form-inline">
   	<p> <%= session %> </p>
   	<p> <%= params %> </p>
     <div class="form-group">
-      <%= form_for(courses_path, method: :get, id: 'units_form') do %>
+      	<%= form_for(courses_path, method: :get, id: 'units_form') do %>
 	        <%= label_tag("Search:") %>
 	        <input type="text" class="form-control" placeholder="By title" id=<%= text_field_tag(:search_field) %> </input>
 
@@ -45,49 +33,61 @@
 
 	        <%= submit_tag "Search", :class=>"btn btn-primary" %>
 
-      <% end %>
+      	<% end %>
+	</div>
+</form>
 
-      <br></br>
+<br></br>
 
-      <br/><br/>
+<br/><br/>
 
-      <table class="table table-hover">
-        <tr>
-          <th><%= link_to 'Course Title ▼' , admin_index_path(:title => "title") %></th>
-          <th>Category</th>
-          <th>Units</th>
-          <th>Time</th>
-          <th>Status</th>
-          <th></th>
-          <!-- <th></th> -->
-          <!-- <th></th> -->
-        </tr>
+<div class="btn-group btn-group-justified" role="group" aria-label="...">
+  <div class="btn-group" role="group">
+    <%= link_to 'CURRENT COURSES', admin_index_path(:tab => 'curr'), {:class => "btn btn-primary"} %>
+  </div>
+  <div class="btn-group" role="group">
+ 	<%= link_to 'PENDING COURSES', admin_index_path(:tab => 'pending'), {:class => "btn btn-primary"} %>
+  </div>
+  <div class="btn-group" role="group">
+    <%= link_to 'MANAGE ADMINS', admin_index_path(:tab => 'manageadmins'), {:class => "btn btn-primary"} %>
+  </div>
+</div>
 
-      	<% @courses.each do |course| %>
-        <tr>
-          <td><%= link_to course.title, course, {:style=>'font-size: 120%;'} %></td>
-          <td><%= course.category %></td>
-          <td><%= course.units %></td>
-          <td><% course.section_times.each do |time| %>
-              <% if time.filled? %>
-                <%= time.full_time %>
-              <% else %>
-                <%= 'TBA' %>
-              <% end %>
-              <br></br>
-          <% end %> 
-          <td><%= course.status %></td>
-          <% if current_user.try(:facilitator?) %>
-            <% if course.courses_users.find_by_user_id(current_user.id) != nil %>
-              <td><%= link_to 'Edit', edit_course_path(course) %></td>
-            <% else %>
-              <td></td>
-            <% end %>
-          <% end %>
-        </tr>
-      <% end %>
-      </table>
-    </div>
-  </form>
+<table class="table table-hover">
+	<tr>
+	  <th><%= link_to 'Course Title ▼' , admin_index_path(:title => "title") %></th>
+	  <th>Category</th>
+	  <th>Units</th>
+	  <th>Time</th>
+	  <th>Status</th>
+	  <th></th>
+	  <!-- <th></th> -->
+	  <!-- <th></th> -->
+	</tr>
+
+	<% @courses.each do |course| %>
+		<tr>
+		  <td><%= link_to course.title, course, {:style=>'font-size: 120%;'} %></td>
+		  <td><%= course.category %></td>
+		  <td><%= course.units %></td>
+		  <td><% course.section_times.each do |time| %>
+		      <% if time.filled? %>
+		        <%= time.full_time %>
+		      <% else %>
+		        <%= 'TBA' %>
+		      <% end %>
+		      <br></br>
+		  <% end %> 
+		  <td><%= course.status %></td>
+		  <% if current_user.try(:facilitator?) %>
+		    <% if course.courses_users.find_by_user_id(current_user.id) != nil %>
+		      <td><%= link_to 'Edit', edit_course_path(course) %></td>
+		    <% else %>
+		      <td></td>
+		    <% end %>
+		  <% end %>
+		</tr>
+	<% end %>
+</table>
 
 

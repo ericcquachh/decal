@@ -20,7 +20,26 @@ class AdminController < ApplicationController
 	    #this does not work when you don't put in information about category, status, and units
 	    # @courses = Course.find(:all, :order => session[:title], :conditions => {:category => session[:category], :status => session[:status], 
 	    # :units => session[:units]})
-	    @courses = Course.find(:all, :order => session[:title], :conditions => {:pending => true})
+		if !params.has_key?(:tab)
+			if session.has_key?(:tab)
+				params[:tab] = session[:tab]
+			else
+				params[:tab] = 'curr'
+			end
+
+		end
+
+		if params[:tab] == 'curr'
+	    	@courses = Course.find(:all, :order => session[:title], :conditions => {:pending => false})
+	    elsif params[:tab] == 'pending'
+	    	@courses = Course.find(:all, :order => session[:title], :conditions => {:pending => true})
+	    else
+	    	@courses = Course.find(:all, :order => session[:title], :conditions => {:pending => false})
+	    	#NOT IMPLEMENTED YET
+	    	#TODO: ERIC
+	    end
+	    session[:tab] = params[:tab]
+	    	
 	    # @courses = Course.find(:all, :order => session[:title])
 
 	    if params[:search_field]
