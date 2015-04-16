@@ -51,6 +51,16 @@ class CoursesController < ApplicationController
     redirect_to :root, notice: "User demoted to basic user"
   end
 
+  def makeadmin
+    current_user.update_attribute :admin, true
+    redirect_to :root, notice: "User is now God."
+  end
+
+  def removeadmin
+    current_user.update_attribute :admin, false
+    redirect_to :root, notice: "User is now a peasant."
+  end
+
   # GET /courses/1
   # GET /courses/1.json
   def show

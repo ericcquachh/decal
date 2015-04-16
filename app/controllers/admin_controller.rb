@@ -34,7 +34,7 @@ class AdminController < ApplicationController
 	    elsif params[:tab] == 'pending'
 	    	@courses = Course.find(:all, :order => session[:title], :conditions => {:pending => true})
 	    else
-	    	@facilitators = User.find(:all, :conditions => {:facilitator => true})
+	    	#facilitators
 	    end
 	    session[:tab] = params[:tab]
 	    	
@@ -59,7 +59,12 @@ class AdminController < ApplicationController
 					course.save
 				else
 					course.pending = false
+					course.users.each do |user|
+						current_user.update_attribute :facilitator, true
+					
+					end 
 					course.save
+				
 				end 
 			end
 		end

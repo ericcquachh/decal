@@ -1,6 +1,8 @@
 <h1>Editing course</h1>
-
+<% if @course.courses_users.find_by_user_id(current_user.id) != nil or current_user.admin.eql? true %>
 <%= render 'form' %>
 
 <%= link_to 'Show', @course %> |
-<%= link_to 'Back', courses_path %>
+<!--<%= link_to 'Back', courses_path %>-->
+
+<%end%>

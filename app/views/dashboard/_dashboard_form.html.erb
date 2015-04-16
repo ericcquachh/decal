@@ -1,22 +1,24 @@
 <%= form_tag(controller: "dashboard", action: "index", method: "post") do %>
 	<% current_user.courses.each do |course| %>
 	<tr>
-		<% if current_user.try(:facilitator?) %>
-			<td><%= link_to course.title, course, {:style=>'font-size: 120%;'} %></td>
-			<td><%= course.category %></td>
-			<td><%= course.units %></td>
-			<td><%= course.section_times.each do |time| %>
-			  <% if time.filled? %>
-                            <%= time.full_time %>
-                          <% else %>
-                            <%= 'TBA' %>
-                          <% end %>
-                          <br></br>
-                        <% end %>
-			<td><%= course.status %></td>
-			<td><%= link_to 'Edit', edit_course_path(course) %></td>
-			<td><%= check_box_tag(course.title) %></td>
-		<% end %>
+		
+			<% if course.pending.eql? false %>
+				<td><%= link_to course.title, course, {:style=>'font-size: 120%;'} %></td>
+				<td><%= course.category %></td>
+				<td><%= course.units %></td>
+				<td><%= course.section_times.each do |time| %>
+				  <% if time.filled? %>
+	                            <%= time.full_time %>
+	                          <% else %>
+	                            <%= 'TBA' %>
+	                          <% end %>
+	                          <br></br>
+	                        <% end %>
+				<td><%= course.status %></td>
+				<td><%= link_to 'Edit', edit_course_path(course) %></td>
+				<td><%= check_box_tag(course.title) %></td>
+			<%end%>
+		
 	</tr>
 	<% end %>
 </table>

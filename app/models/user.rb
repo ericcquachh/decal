@@ -40,6 +40,8 @@ class User < ActiveRecord::Base
         access: "student",
         provider:access_token.provider,
         email: data["email"],
+        admin: false,
+        facilitator: false,
         uid: access_token.uid ,
         first_name: data["first_name"],
         last_name: data["last_name"],

@@ -79,7 +79,9 @@
 							<ul class="nav navbar-nav">
 								<li><a href="/courses"><b>COURSES</b></a></li>
 								<li><a href="/dashboard"><b>FACILITATE</b></a></li>
+								<% if current_user.try(:admin?) %>
 								<li><a href="/admin"><b>ADMIN</b></a></li>
+								<%end%>
 								<!--<li><%= link_to "FACILITATE", dashboard_index_path %></li>-->
 								<!--
 								<% if user_signed_in? %>
