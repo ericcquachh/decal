@@ -1,49 +1,8 @@
-<h1> Admin Tools </h1>
 
-<form class="form-inline">
-  	<p> <%= session %> </p>
-  	<p> <%= params %> </p>
-    <div class="form-group">
-      	<%= form_for(courses_path, method: :get, id: 'units_form') do %>
-	        <%= label_tag("Search:") %>
-	        <input type="text" class="form-control" placeholder="By title" id=<%= text_field_tag(:search_field) %> </input>
-
-	        <%= label_tag("Units:") %>
-	        <% @all[:units].each do |unit| %>
-	          <%= check_box_tag "units[#{unit}]", 1, session[:units].include?(unit), id: unit %>
-	          <%= unit%>
-	        <% end %>
-	        <br></br>
-	        <%= label_tag("Categories:") %>
-	        <%= select_tag 'category', options_for_select(@all[:category], session[:category]), :class => 'form-control'%>
-	        <br></br>
-	        <%= label_tag("Date:") %>
-	        <% Section_time.all_days.each do |day| %>
-	          <%= check_box_tag "section_time[days[#{day}]]", 1, true, id: day %>
-	          <%= day%>
-	       <% end %>
-	       <br></br>
-	       <%= label_tag ("Start after:") %>
-	       <%= select_tag 'section_time[start_time]', options_for_select(Section_time.all_times, "-Select Time-") %>
-	       <%= label_tag ("Ends before:") %>
-	       <%= select_tag 'section_time[end_time]', options_for_select(Section_time.all_times, "-Select Time-") %>
-	        
-	        <%= label_tag("Status:") %>
-	        <%= select_tag 'status', options_for_select(@all[:status], session[:status]), :class => 'form-control'%>
-
-	        <%= submit_tag "Search", :class=>"btn btn-primary" %>
-
-      	<% end %>
-	</div>
-</form>
-
-<br></br>
-
-<br/><br/>
-
+<br>
 <div class="btn-group btn-group-justified" role="group" aria-label="...">
   <div class="btn-group" role="group">
-    <%= link_to 'CURRENT COURSES', admin_index_path(:tab => 'curr'), {:class => "btn btn-primary"} %>
+    <%= link_to 'APPROVED COURSES', admin_index_path(:tab => 'curr'), {:class => "btn btn-primary"} %>
   </div>
   <div class="btn-group" role="group">
  	<%= link_to 'PENDING COURSES', admin_index_path(:tab => 'pending'), {:class => "btn btn-primary"} %>
@@ -53,41 +12,142 @@
   </div>
 </div>
 
-<table class="table table-hover">
-	<tr>
-	  <th><%= link_to 'Course Title ▼' , admin_index_path(:title => "title") %></th>
-	  <th>Category</th>
-	  <th>Units</th>
-	  <th>Time</th>
-	  <th>Status</th>
-	  <th></th>
-	  <!-- <th></th> -->
-	  <!-- <th></th> -->
-	</tr>
+<div>
+  <% if params[:tab] == "curr" %>
+  	<h3>Approved Courses</h3>
+  <%end%>
+  <% if params[:tab] == "pending" %>
+  	<h3>Pending Courses</h3>
+  <%end%>
+  <% if params[:tab] == "manageadmins" %>
+  	<h3>Manage Admins</h3>
+  <%end%>
+</div>
 
-	<% @courses.each do |course| %>
-		<tr>
-		  <td><%= link_to course.title, course, {:style=>'font-size: 120%;'} %></td>
-		  <td><%= course.category %></td>
-		  <td><%= course.units %></td>
-		  <td><% course.section_times.each do |time| %>
-		      <% if time.filled? %>
-		        <%= time.full_time %>
-		      <% else %>
-		        <%= 'TBA' %>
-		      <% end %>
-		      <br></br>
-		  <% end %> 
-		  <td><%= course.status %></td>
-		  <% if current_user.try(:facilitator?) %>
-		    <% if course.courses_users.find_by_user_id(current_user.id) != nil %>
-		      <td><%= link_to 'Edit', edit_course_path(course) %></td>
-		    <% else %>
-		      <td></td>
-		    <% end %>
-		  <% end %>
-		</tr>
-	<% end %>
-</table>
+<%if params[:tab] != "manageadmins"%>
+	<form class="form-inline">
+	    <div class="form-group">
+	      	<%= form_for(courses_path, method: :get, id: 'units_form') do %>
+		        <%= label_tag("Search:") %>
+		        <input type="text" class="form-control" placeholder="By title" id=<%= text_field_tag(:search_field) %> </input>
+
+		        <%= label_tag("Units:") %>
+		        <% @all[:units].each do |unit| %>
+		          <%= check_box_tag "units[#{unit}]", 1, session[:units].include?(unit), id: unit %>
+		          <%= unit%>
+		        <% end %>
+		        <br></br>
+		        <%= label_tag("Categories:") %>
+		        <%= select_tag 'category', options_for_select(@all[:category], session[:category]), :class => 'form-control'%>
+		        <br></br>
+		        <%= label_tag("Date:") %>
+		        <% Section_time.all_days.each do |day| %>
+		          <%= check_box_tag "section_time[days[#{day}]]", 1, true, id: day %>
+		          <%= day%>
+		       <% end %>
+		       <br></br>
+		       <%= label_tag ("Start after:") %>
+		       <%= select_tag 'section_time[start_time]', options_for_select(Section_time.all_times, "-Select Time-") %>
+		       <%= label_tag ("Ends before:") %>
+		       <%= select_tag 'section_time[end_time]', options_for_select(Section_time.all_times, "-Select Time-") %>
+		        
+		        <%= label_tag("Status:") %>
+		        <%= select_tag 'status', options_for_select(@all[:status], session[:status]), :class => 'form-control'%>
+
+		        <%= submit_tag "Search", :class=>"btn btn-primary" %>
+
+	      	<% end %>
+		</div>
+	</form>
+
+	<br></br>
+
+
+
+	<%= form_tag(controller: "admin", action: "index", method: "post") do %>
+		<table class="table table-hover">
+			<tr>
+			  <th><%= link_to 'Course Title ▼' , admin_index_path(:title => "title") %></th>
+			  <th>Category</th>
+			  <th>Units</th>
+			  <th>Time</th>
+			  <th>Status</th>
+			  <th>Edit</th>
+			  <% if params[:tab] == "curr" %>
+			  	<th>Unappove</th>
+			  <%end%>
+			  <% if params[:tab] == "pending" %>
+			  	<th>Approve</th>
+			  <%end%>
+			  <!-- <th></th> -->
+			  <!-- <th></th> -->
+			</tr>
+
+			<% @courses.each do |course| %>
+				<tr>
+				  <td><%= link_to course.title, course, {:style=>'font-size: 120%;'} %></td>
+				  <td><%= course.category %></td>
+				  <td><%= course.units %></td>
+				  <td><% course.section_times.each do |time| %>
+				      <% if time.filled? %>
+				        <%= time.full_time %>
+				      <% else %>
+				        <%= 'TBA' %>
+				      <% end %>
+				      <br></br>
+				  <% end %> 
+				  <td><%= course.status %></td>
+				  <% if current_user.try(:facilitator?) %>
+				    <% if course.courses_users.find_by_user_id(current_user.id) != nil %>
+				      <td><%= link_to 'Edit', edit_course_path(course) %></td>
+				    <% else %>
+				      <td></td>
+				    <% end %>
+				  <% end %>
+				  
+				  <td><%= check_box_tag(course.title) %></td>
+				</tr>
+			<% end %>
+		</table>
+
+		<% if params[:tab] == "curr" %>
+			<%= submit_tag("Unapprove Course(s)",:class=>'btn btn-primary')%>
+		<% end %>
+		<% if params[:tab] == "pending" %>
+			<%= submit_tag("Approve Course(s)",:class=>'btn btn-primary')%>
+		<% end %>
+	<%end%>
+
+<!--admin-->
+<%else%>
+
+	<%= form_tag(controller: "admin", action: "index", method: "post") do %>
+		<table class="table table-hover">
+			<tr>
+			  <th>First Name</th>
+			  <th>Last Name</th>
+			  <th>Emails</th>
+			  <th>Remove</th>
+
+	
+			</tr>
+
+			<% @facilitators.each do |facilitator| %>
+				<tr>
+				  <td><%=facilitator.first_name%></td>
+				  <td><%=facilitator.last_name%></td>
+				
+				  <td><%= facilitator.email %></td>
+				  <td><%= check_box_tag(facilitator.email) %></td>
+				</tr>
+			<% end %>
+
+		</table>
+	<%end%>
+
+<%end%>
+
+
+
 
 

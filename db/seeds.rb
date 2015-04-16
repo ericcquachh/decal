@@ -13,10 +13,10 @@
 # Course.create!(title: "Ruby on Rails", category: "Computer Science", units:"2", status:"Full")
 # Course.create!(title: "Max Interval Training", category: "Fitness", units:"1", status:"Open")
 # Course.create!(title: "Introduction to Banking", category: "Business", units:"2", status:"Full")
-
 #Test Users
+
 User.create!(:email => "jamescheng@berkeley.edu", :password => "jalapenocheddar",
-	:first_name => "James", :last_name => "Cheng", :facilitator => true)
+	:first_name => "James", :last_name => "Cheng", :category=> :facilitator => true)
 User.create!(email: "johnlennon@berkeley.edu", password: "thebeatlesforever",
 	first_name: "John", last_name: "Lennon")
 User.create!(email: "jetspike@berkeley.edu", password: "cowboybebop",

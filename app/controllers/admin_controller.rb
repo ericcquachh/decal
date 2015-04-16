@@ -34,9 +34,7 @@ class AdminController < ApplicationController
 	    elsif params[:tab] == 'pending'
 	    	@courses = Course.find(:all, :order => session[:title], :conditions => {:pending => true})
 	    else
-	    	@courses = Course.find(:all, :order => session[:title], :conditions => {:pending => false})
-	    	#NOT IMPLEMENTED YET
-	    	#TODO: ERIC
+	    	@facilitators = User.find(:all, :conditions => {:facilitator => true})
 	    end
 	    session[:tab] = params[:tab]
 	    	
@@ -49,5 +47,22 @@ class AdminController < ApplicationController
 	      params[:section_time] = Section_time.filter_section_time params[:section_time]
 	      @courses = @courses.select {|course| course.section_times.any? {|time| time.include_time? params[:section_time]}}
 	    end
+	end
+
+	def create
+
+		params.keys.each do |key|
+			if params[key] == "1"
+				course = Course.find_by_title(key)
+				if course.pending.eql? false
+					course.pending = true
+					course.save
+				else
+					course.pending = false
+					course.save
+				end 
+			end
+		end
+		redirect_to "/admin"
 	end
 end
