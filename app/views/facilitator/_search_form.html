@@ -1,0 +1,5 @@
+<%= form_tag('/facilitator', method: :get) do %>
+  <%= label_tag("Search for:") %>
+  <%= text_field_tag(:search_field) %>
+  <%= hidden_field_tag :course, @course.id %>
+<% end %>

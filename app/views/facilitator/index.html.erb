@@ -1,0 +1,8 @@
+
+<% if @course.courses_users.find_by_user_id(current_user.id) != nil or current_user.admin.eql? true %>
+<h1><%= "Add Facilitators for " + @course.title %></h1>
+<%= render 'search_form' %>
+<%= render 'user_form' %>
+<%else%>
+You do not have access to this page.
+<%end%>

@@ -27,9 +27,9 @@ class CoursesController < ApplicationController
     end
 
     #this does not work when you don't put in information about category, status, and units
-    @courses = Course.find(:all, :order => session[:title], :conditions => {:category => session[:category], :status => session[:status], 
-    :units => session[:units]})
-
+    # @courses = Course.find(:all, :order => session[:title], :conditions => {:category => session[:category], :status => session[:status], 
+    # :units => session[:units]})
+    @courses = Course.find(:all, :order => session[:title], :conditions => {:pending => false})
     # @courses = Course.find(:all, :order => session[:title])
 
     if params[:search_field]
@@ -51,6 +51,16 @@ class CoursesController < ApplicationController
     redirect_to :root, notice: "User demoted to basic user"
   end
 
+  def makeadmin
+    current_user.update_attribute :admin, true
+    redirect_to :root, notice: "User is now God."
+  end
+
+  def removeadmin
+    current_user.update_attribute :admin, false
+    redirect_to :root, notice: "User is now a peasant."
+  end
+
   # GET /courses/1
   # GET /courses/1.json
   def show
@@ -65,6 +75,7 @@ class CoursesController < ApplicationController
   # GET /courses/new  
   # GET /courses/new.json
   def new
+    session[:course_params] ||= {}
     @course = Course.new
 
 
@@ -82,22 +93,51 @@ class CoursesController < ApplicationController
 
   # POST /courses
   # POST /courses.json
+  # def create
+  #   # @course = Course.new(params[:course])
+  #   # @course = current_user.courses.new(params[:course])
+  #   @course = Course.create!(params[:course])
+  #   if @course.valid?
+  #     # current_user.save!
+  #     CoursesUser.create!(:user_id => current_user.id, :course_id => @course.id)
+  #     # @course.uid = current_user.id
+  #     # @course.save!
+  #     redirect_to :root, :notice => params
+  #   else
+  #     e = "Errors: "
+  #     @course.errors.each do |type, msg|
+  #       e = e + msg + "\n"
+  #     end 
+  #     #need to persist data across redirect
+  #     redirect_to new_course_path, :flash => {:error => e}
+  #   end 
+  # end
+
   def create
-    # @course = Course.new(params[:course])
-    @course = current_user.courses.new(params[:course])
+    session[:course_params].deep_merge!(params[:course]) if params[:course]
+    @course = Course.new(session[:course_params])
+    @course.current_step = session[:course_step]
     if @course.valid?
-      current_user.save!
-      @course.uid = current_user.id
-      @course.save!
-      redirect_to :root, :notice => params
+      if params[:previous_button]
+        @course.previous_step
+      elsif @course.last_step?
+        if @course.all_valid?
+          @course.pending = true
+          @course.save
+          CoursesUser.create!(:user_id => current_user.id, :course_id => @course.id)
+        end
+      else
+        @course.next_step
+      end
+      session[:course_step] = @course.current_step
+    end
+    if @course.new_record?
+      render 'new'
     else
-      e = "Errors: "
-      @course.errors.each do |type, msg|
-        e = e + msg + "\n"
-      end 
-      #need to persist data across redirect
-      redirect_to new_course_path, :flash => {:error => e}
-    end 
+      session[:course_step] = session[:course_params] = nil
+      flash[:notice] = "Course saved."
+      redirect_to @course
+    end
   end
 
   # PUT /courses/1
