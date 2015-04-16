@@ -50,7 +50,7 @@
             <th>
               <abbr title="Course Control Numbers">CCNs</abbr>
             </th>
-            <% if @course.verify_facilitator? current_user.id) %>
+            <% if @course.verify_facilitator? current_user.id %>
               <th>Delete</th>
             <% end %>
           </tr>
