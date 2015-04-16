@@ -21,7 +21,7 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   #access = ["student", "facilitator", "admin"]
-  attr_accessible :email, :last_name, :first_name, :class_level, :access, :facilitator, :course_id,
+  attr_accessible :email, :last_name, :first_name, :class_level, :access, :facilitator, :admin, :course_id,
   #devise defaults
   :password, :password_confirmation, :remember_me, :provider, :uid, :propic
   # attr_accessible :title, :body
