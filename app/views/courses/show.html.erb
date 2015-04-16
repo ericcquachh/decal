@@ -105,7 +105,8 @@
             </td>
             <% if current_user.try(:facilitator?) and current_user.id == @course.uid %>
               <td>
-                <%= button_to "delete", {:controller => :sections, :action => 'destroy', :id => section.id, :course_id => @course.id }, :method => :delete, "onclick" => "javascript:return confirm('Are you absolutely sure you want to delete?')" %>
+                <%= link_to "Edit", edit_course_section_path(@course, section), :class => "button" %>
+                <%= button_to "delete", {:controller => :sections, :action => 'destroy', :id => section.id, :course_id => @course.id }, :method=> :delete, "onclick" => "javascript:return confirm('Are you absolutely sure you want to delete?')" %>
               </td>
             <% end %>
           </tr>

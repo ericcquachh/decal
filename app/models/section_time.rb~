@@ -14,16 +14,13 @@ class Section_time < ActiveRecord::Base
     full = ""
     full = days + " " if days
     full += start_time if start_time
-    full += + '-' + end_time if end_time
+    full += '-' + end_time if end_time
     full
   end
 
   def include_day? dotw
-    bool = true
-    if dotw
-      bool = days_to_list.any? {|day| dotw.include? day}
-    end
-    bool
+    return true if !dotw
+    days_to_list.any? {|day| dotw.include? day} 
   end
 
   def include_time? param
@@ -43,7 +40,7 @@ class Section_time < ActiveRecord::Base
 
 
   def self.time_to_int time
-    time =~ /(\d+):(\d+)(P)?(A)?M/
+    time =~ /(\d+):(\d+) (P)?(A)?M/
     new = $1.to_i * 60 + $2.to_i
     if $3
       new + 720
@@ -53,17 +50,16 @@ class Section_time < ActiveRecord::Base
   end
 
   def self.int_to_time int
-    pm = false
-    if int > 720
+    pm = (int >= 720)
+    if int >= 780
       int -= 720
-      pm = true
     end
     time = (int / 60).to_s + ":" + (int % 60).to_s
     time += 0.to_s if int % 60 == 0
     if pm 
-      time += "PM"
+      time += " PM"
     else
-      time += "AM"
+      time += " AM"
     end
   end
 
