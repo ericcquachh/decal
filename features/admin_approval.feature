@@ -24,4 +24,4 @@ Scenario: Successful approve a course
 Scenario: Non-Admin cannot add a course
 	When I logout
 	Then I log in as a facilitator
-	I should not see "Admin"
+	And I should not see "Admin"
