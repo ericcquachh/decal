@@ -1,11 +1,7 @@
-
-
-
-
-<% if @course.pending.eql? false or @course.users.include?(current_user) or current_user.admin.eql? true   %>
+<% if @course.pending.eql? false or @course.users.include?(current_user) or current_user.admin.eql? true %>
   <% if @course.pending.eql? true %>
     <h3>Course can be edited, but still needs to be approved.</h3>
-  <%end%>
+<%end%>  
 
   <div class="panel panel-default">
     <div class="panel-heading">
@@ -15,7 +11,7 @@
       <p>
         <b>Category</b> <%= @course.category %><br></br>
         <b>Units</b> <%= @course.units %><br></br> 
-      <% if @course.verify_facilitator? current_user%>
+      <% if @course.verify_facilitator? current_user %>
         <%= link_to 'Edit Course Info', edit_course_path(@course) %>
       <% end %>
       </p>
@@ -156,19 +152,20 @@
         </tr>
       </thead>
       <tbody>
-        <% @course.users.each do |user| %>
+        <% @course.facilitators.each do |facilitator| %>
           <tr>
-            <td><%= user.first_name %></td>
-            <td><%= user.last_name %></td>
-            <td><%= user.email %></td>
-            <% if @course.courses_users.find_by_user_id(current_user.id) != nil or current_user.admin.eql? true %>
-            <td><%= link_to "Remove", facilitator_delete_path(:course => @course.id, :user => user.id), :method => :delete %>
+            <td><%= facililator.first_name %></td>
+            <td><%= facilitator.last_name %></td>
+            <td><%= facilitator.email %></td>
+            <% if @course.verify_facilitator? current_user %>
+            <td><%= link_to "Remove", facilitator_delete_path(:course => @course.id, :user => facilitator.id), :method => :delete %>
             <%end%>
           </tr>
         <% end %>
       </tbody>
     </table>
-    <% if @course.courses_users.find_by_user_id(current_user.id) != nil or current_user.admin.eql? true %>
+
+    <% if @course.verify_facilitator? current_user %>
       <%= link_to "Add Facilitators", facilitator_index_path(:course => @course), :method => :get %>
     <%end%>
   <br/><br/>
@@ -188,7 +185,7 @@
           <tr>
             <td><%= upload.name %></td>
             <td><%= link_to "Download", upload.attachment_url %></td>
-            <% if @course.verify_facilitator? current_user.id %>
+            <% if @course.verify_facilitator? current_user %>
               <td><%= button_to "Delete", {:controller => :uploads, :action => 'destroy', :id => upload.id, :course_id => @course.id }, :method => :delete, "onclick" => "javascript:return confirm('Are you absolutely sure you want to delete?')" %></td>
             <% end %>
           </tr>
@@ -211,7 +208,7 @@
   <% if @course.verify_facilitator? current_user %>
     <%= render 'facilitator/request_form' %>
   <% else %>
-    <%= render 'request_form' %>
+    <%= button_to 'Request to be Facilitator', facilitate_request_path(:course_id => @course.id), {:class => "btn btn-primary"} %>
   <% end %>
   <br/><br/>
   

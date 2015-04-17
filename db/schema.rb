@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150417084039) do
+ActiveRecord::Schema.define(:version => 20150417114814) do
 
   create_table "ckeditor_assets", :force => true do |t|
     t.string   "data_file_name",                  :null => false
@@ -43,14 +43,14 @@ ActiveRecord::Schema.define(:version => 20150417084039) do
     t.string   "course_website"
     t.string   "faculty_name"
     t.string   "faculty_email"
+    t.boolean  "pending"
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
-    t.boolean  "pending"
   end
 
-  create_table "courses_users", :force => true do |t|
-    t.integer "course_id", :default => -1
-    t.integer "user_id",   :default => -1
+  create_table "facilitate_ownedcourses", :force => true do |t|
+    t.integer "ownedcourse_id", :default => -1
+    t.integer "facilitator_id", :default => -1
   end
 
   create_table "facilitate_requests", :force => true do |t|
@@ -58,24 +58,6 @@ ActiveRecord::Schema.define(:version => 20150417084039) do
     t.integer  "receiver_id", :default => -1
     t.datetime "created_at",                  :null => false
     t.datetime "updated_at",                  :null => false
-  end
-
-  create_table "pending_courses", :force => true do |t|
-    t.string   "title"
-    t.string   "category"
-    t.string   "units"
-    t.string   "time"
-    t.string   "status"
-    t.string   "department_num"
-    t.boolean  "cs_fw"
-    t.string   "description"
-    t.string   "enrollment_info"
-    t.string   "course_email"
-    t.string   "course_website"
-    t.string   "faculty_name"
-    t.string   "faculty_email"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
   end
 
   create_table "section_times", :force => true do |t|

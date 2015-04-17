@@ -15,7 +15,7 @@
 
     <h3>Facilitator Status:</h3>
     
-    <% if not user_signed_in? or current_user.courses.length.equal?(0) %>
+    <% if not user_signed_in? or current_user.ownedcourses.empty?) %>
       <p>You own no courses, so your ARE NOT a faciltiator. Currently you can be a facilitator through the following: Click Facilitate, Submit Course, Have an admin approve that course; Have a facilitator add you to their approved course. <p>
     <%else%>
       <p>You own course(s), so you ARE a facilitator.</p>
@@ -50,7 +50,6 @@
         <th>Units</th>
         <th>Time</th>
         <th>Status</th>
-  
       </tr>
 
     <% @courses.each do |course| %>
