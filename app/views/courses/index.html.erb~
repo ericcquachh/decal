@@ -50,6 +50,7 @@
         <th>Units</th>
         <th>Time</th>
         <th>Status</th>
+  
       </tr>
 
     <% @courses.each do |course| %>

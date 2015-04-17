@@ -1,0 +1,4 @@
+<%= form_tag(controller: "facilitator", action: "index", method: "post") do %>
+  <h2><%= "Request to be Facilitator" %></h2>
+  <%= button_to 'request_to_facilitator', facilitate_request_path, {:class => "btn btn-primary"} %>
+<% end %>

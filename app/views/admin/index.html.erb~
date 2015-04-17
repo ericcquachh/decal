@@ -39,7 +39,7 @@
           <th>Status</th>
           <th>Edit</th>
           <% if params[:tab] == "curr" %>
-            <th>Unapprove</th>
+            <th>Unappove</th>
           <%end%>
           <% if params[:tab] == "pending" %>
             <th>Approve</th>

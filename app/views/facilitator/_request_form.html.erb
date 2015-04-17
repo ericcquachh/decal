@@ -1,4 +1,5 @@
 <%= form_tag(controller: "facilitator", action: "index", method: "post") do %>
+  <h2><%= "Facilitator Requests" %></h2>
   <table class="std">
     <thead>
       <tr>
@@ -10,7 +11,7 @@
     </thead>
     <tbody>
 
-      <% @user.each do |user| %>
+      <% @course.requests.each do |user| %>
         <tr>
           <td><%= user.first_name %></td>
           <td><%= user.last_name %></td>

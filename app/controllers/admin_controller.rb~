@@ -62,7 +62,7 @@ class AdminController < ApplicationController
           #course.users.each do |user|
             #current_user.update_attribute :facilitator, true
 
-          #end
+          end
           course.save
 
         end

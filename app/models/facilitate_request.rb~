@@ -1,0 +1,5 @@
+class FacilitateRequest < ActiveRecord::Base
+  attr_accessible :receiver_id, :request_id
+  belongs_to :receiver, :class_name => "Course", foreign_key => "course_id"
+  belongs_to :request,  :class_name => "User", foreign_key => "user_id"
+end

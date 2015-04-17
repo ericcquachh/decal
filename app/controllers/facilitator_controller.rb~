@@ -31,7 +31,7 @@ class FacilitatorController < ApplicationController
   def request
     user = User.find(params[:user])
     course = Course.find(params[:course].to_i)
-    FacilitateRequests.create!(user_id: user.id, course_id: course.id)
+    FacilitateRequests.create!(user_id: user.id, course_id: course:id)
     redirect_to course_path(:id => params[:course])
   end
 

@@ -1,0 +1,9 @@
+class CreateFacilitateRequests < ActiveRecord::Migration
+  def change
+    create_table :facilitate_requests do |t|
+      t.integer :course_id
+      t.integer :user_id
+      t.timesteps
+    end
+  end
+end

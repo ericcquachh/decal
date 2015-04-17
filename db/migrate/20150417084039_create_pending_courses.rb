@@ -1,6 +1,6 @@
-class CreateCourses < ActiveRecord::Migration
+class CreatePendingCourses < ActiveRecord::Migration
   def change
-    create_table :courses do |t|
+    create_table :pending_courses do |t|
       t.string :title
       t.string :category
       t.string :units
