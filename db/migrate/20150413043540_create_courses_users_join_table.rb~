@@ -1,8 +1,0 @@
-class CreateFacilitateRelationshipJoinTable < ActiveRecord::Migration
-  def change
-    create_table :facilitate_relationship do |t|
-      t.integer :course_id, :default => -1
-      t.integer :facilitator_id, :default => -1
-    end
-  end
-end
