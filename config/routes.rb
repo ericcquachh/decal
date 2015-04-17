@@ -1,7 +1,5 @@
 Decal::Application.routes.draw do
 
-  mount Ckeditor::Engine => '/ckeditor'
-
   devise_for :users, :controllers =>{:omniauth_callbacks => "omniauth_callbacks", :registrations=>"registrations" }
 
   resources :courses do
