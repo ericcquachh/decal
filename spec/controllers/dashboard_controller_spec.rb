@@ -4,9 +4,6 @@ describe DashboardController do
 	include Devise::TestHelpers
 
 	before :each do
-		# obj = double()
-		# obj.stub(:current_user) {User.new}
-		# obj.stub(:authenticate) { return true }
 		user1 = User.create!(email: "mugenjin@berkeley.edu", password: "samuraichamploo",
 			first_name: "Mugen", last_name: "Jin")
 	end
@@ -19,13 +16,19 @@ describe DashboardController do
 
 	it "tests params filtering" do
 		user1 = User.find_by_email("mugenjin@berkeley.edu")
+		sign_in user1
 		flirt = Course.create(title: "Flirting in French", category: "Languages", units: "2", status: "Full", pending: true)
 		CoursesUser.create!(:user_id => user1.id, :course_id => flirt.id)
-		post :create, :parameters => {"Flirting in French" => "1"}
-
-
-		# response.should be_success
-		# response.should render_template ''
-		# puts response
+		post :create, {"Flirting in French" => "1"}
+		response.should redirect_to('/dashboard')
 	end
+
+	it "tests delete" do
+		flirt = Course.create(title: "Flirting in French", category: "Languages", units: "2", status: "Full", pending: true)
+		get :delete, :id => flirt.id
+		course = Course.find_by_title("Flirting in French")
+		course.should be_nil
+		response.should redirect_to('/dashboard')
+	end
+
 end

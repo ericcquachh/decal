@@ -135,7 +135,7 @@ class CoursesController < ApplicationController
       render 'new'
     else
       session[:course_step] = session[:course_params] = nil
-      flash[:notice] = "Course saved."
+      flash[:notice] = "Course request successfully submitted to admin."
       redirect_to @course
     end
   end

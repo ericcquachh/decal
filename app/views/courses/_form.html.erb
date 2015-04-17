@@ -13,7 +13,7 @@
     </div>
   <% end %>
   <%= render "courses/steps/page#{@course.current_step}", f: f %>
-  <p><%= f.submit "Continue" %></p>
+  <p><%= f.submit "Continue", :id => "continue" %></p>
   <p><%= f.submit "Back", :name => "previous_button" unless @course.first_step? %></p>
 
 <% end %>

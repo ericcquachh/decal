@@ -13,6 +13,7 @@ class DashboardController < ApplicationController
 
 	def create
 		params.keys.each do |key|
+			puts params
 			if params[key] == "1"
 				course = Course.find_by_title(key)
 				relation = CoursesUser.find_by_user_id_and_course_id(current_user.id, course.id)
