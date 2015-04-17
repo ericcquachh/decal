@@ -156,21 +156,25 @@
         </tr>
       </thead>
       <tbody>
-        <% @course.users.each do |user| %>
-          <tr>
-            <td><%= user.first_name %></td>
-            <td><%= user.last_name %></td>
-            <td><%= user.email %></td>
-            <% if @course.courses_users.find_by_user_id(current_user.id) != nil or current_user.admin.eql? true %>
-            <td><%= link_to "Remove", facilitator_delete_path(:course => @course.id, :user => user.id), :method => :delete %>
-            <%end%>
-          </tr>
+        <% if @course.pending.eql? false %>
+          <% @course.users.each do |user| %>
+            <tr>
+              <td><%= user.first_name %></td>
+              <td><%= user.last_name %></td>
+              <td><%= user.email %></td>
+              <% if @course.courses_users.find_by_user_id(current_user.id) != nil or current_user.admin.eql? true %>
+              <td><%= link_to "Remove", facilitator_delete_path(:course => @course.id, :user => user.id), :method => :delete %>
+              <%end%>
+            </tr>
+          <% end %>
         <% end %>
       </tbody>
     </table>
-    <% if @course.courses_users.find_by_user_id(current_user.id) != nil or current_user.admin.eql? true %>
-      <%= link_to "Add Facilitators", facilitator_index_path(:course => @course), :method => :get %>
-    <%end%>
+    <% if @course.pending.eql? false %>
+      <% if @course.courses_users.find_by_user_id(current_user.id) != nil or current_user.admin.eql? true %>
+        <%= link_to "Add Facilitators", facilitator_index_path(:course => @course), :method => :get %>
+      <%end%>
+    <% end %>
   <br/><br/>
 
 
