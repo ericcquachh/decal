@@ -1,7 +1,7 @@
-Feature: Approving Facilitator Logic
+Feature: Adding cofacilitator
 	As a facilitator
-	I want to be able to approve other students
-	So they can also be facilitators
+	I want to be able to add other students
+	So they can also be cofacilitators for my course
 
 Background: Facilitator has logged in
 	When I sign in as a facilitator

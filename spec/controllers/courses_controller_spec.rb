@@ -21,10 +21,10 @@ describe CoursesController do
 
   describe 'filtering courses' do
     before :each do
-      course1 = Course.create(title: "Flirting in French", category: "Languages", units: "2", status: "Full")
-      course2 = Course.create(title: "Ballmer Peak", category: "Computer Science", units: "3", status: "Open")
-      course3 = Course.create(title: "The Communist Manifesto", category: "Business", units: "3", status: "Full")
-      course4 = Course.create(title: "Kim Jong Un: Our Dear CEO", category: "Business", units: "1", status: "Open")
+      course1 = Course.create(title: "Flirting in French", category: "Languages", units: "2", status: "Full", pending: true)
+      course2 = Course.create(title: "Ballmer Peak", category: "Computer Science", units: "3", status: "Open", pending: true)
+      course3 = Course.create(title: "The Communist Manifesto", category: "Business", units: "3", status: "Full", pending: true)
+      course4 = Course.create(title: "Kim Jong Un: Our Dear CEO", category: "Business", units: "1", status: "Open", pending: true)
     end
 
     it 'should default to all courses' do
@@ -64,19 +64,6 @@ describe CoursesController do
       assigns(:courses).should == [course2, course3]
     end
 
-  end
-
-  describe 'relationships between users and courses' do
-
-    it 'should be a sanity check' do
-      user = User.create!(email: 'akhilnambiar@berkeley.edu', password: 'awefjiol')
-      user.courses.create(title: "Flirting in French", category: "Languages", units: "2", status: "Full", uid: "test")
-      user.courses.create(title: "Flirting", category: "Languages", units: "2", status: "Full", uid: "something else")
-      user.courses.each do |course|
-        course.units == 2
-      end
-      # user.courses.create(title: "Flirting in French", category: "Languages", units: "2", status: "Full", uid: "test")
-    end
   end
 
 

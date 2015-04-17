@@ -152,6 +152,8 @@
         </tr>
       </thead>
       <tbody>
+<<<<<<< HEAD
+       <% if !@course.pending %>
         <% @course.facilitators.each do |facilitator| %>
           <tr>
             <td><%= facilitator.first_name %></td>
@@ -162,12 +164,16 @@
             <%end%>
           </tr>
         <% end %>
+      <% end %>
       </tbody>
     </table>
 
+    <% if !@course.pending %>
     <% if @course.verify_facilitator? current_user %>
       <%= link_to "Add Facilitators", facilitate_index_path(:course => @course), :method => :get %>
     <%end%>
+    <%end%>
+
   <br/><br/>
 
   <h2>Files</h2>
