@@ -20,5 +20,5 @@
     </tr>
     <% end %>
   </table>
-<%= submit_tag("Unfacilitate These Courses",:class=>'btn btn-primary')%>
+  <%= submit_tag("Unfacilitate These Courses",:class=>'btn btn-primary')%>
 <% end %>

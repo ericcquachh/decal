@@ -1,0 +1,8 @@
+
+<% if @course.verify_facilitator? current_user %>
+  <h1><%= "Add Facilitators for " + @course.title %></h1>
+  <%= render 'search_form' %>
+  <%= render 'user_form' %>
+  <%else%>
+You do not have access to this page.
+<%end%>

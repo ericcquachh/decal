@@ -85,6 +85,7 @@ class CoursesController < ApplicationController
   def create
     session[:course_params].deep_merge!(params[:course]) if params[:course]
     @course = Course.new(session[:course_params])
+    @course.facilitators << current_user
     @course.current_step = session[:course_step]
     if @course.valid?
       if params[:previous_button]
@@ -136,10 +137,4 @@ class CoursesController < ApplicationController
     end
   end
 
-  def facilitate_request
-    @course = Course.find(params[:course_id])
-    FacilitateRequest.create(:request_id => current_user.id, :receiver_id => @course.id)
-    redirect_to @course
-  end
-    
 end

@@ -1,7 +1,7 @@
-<% if @course.pending.eql? false or @course.users.include?(current_user) or current_user.admin.eql? true %>
-  <% if @course.pending.eql? true %>
+<% if !@course.pending or @course.verify_facilitator? current_user %>
+  <% if @course.pending %>
     <h3>Course can be edited, but still needs to be approved.</h3>
-<%end%>  
+  <%end%>  
 
   <div class="panel panel-default">
     <div class="panel-heading">
@@ -154,11 +154,11 @@
       <tbody>
         <% @course.facilitators.each do |facilitator| %>
           <tr>
-            <td><%= facililator.first_name %></td>
+            <td><%= facilitator.first_name %></td>
             <td><%= facilitator.last_name %></td>
             <td><%= facilitator.email %></td>
             <% if @course.verify_facilitator? current_user %>
-            <td><%= link_to "Remove", facilitator_delete_path(:course => @course.id, :user => facilitator.id), :method => :delete %>
+            <td><%= link_to "Remove", facilitate_delete_path(:course => @course.id, :user => facilitator.id), :method => :delete %>
             <%end%>
           </tr>
         <% end %>
@@ -166,7 +166,7 @@
     </table>
 
     <% if @course.verify_facilitator? current_user %>
-      <%= link_to "Add Facilitators", facilitator_index_path(:course => @course), :method => :get %>
+      <%= link_to "Add Facilitators", facilitate_index_path(:course => @course), :method => :get %>
     <%end%>
   <br/><br/>
 
@@ -206,8 +206,8 @@
 </end>
 
   <% if @course.verify_facilitator? current_user %>
-    <%= render 'facilitator/request_form' %>
-  <% else %>
+    <%= render 'facilitate/request_form' %>
+  <% elsif %>
     <%= button_to 'Request to be Facilitator', facilitate_request_path(:course_id => @course.id), {:class => "btn btn-primary"} %>
   <% end %>
   <br/><br/>

@@ -82,6 +82,8 @@
                 <% if current_user.try(:admin?) %>
                 <li><a href="/admin"><b>ADMIN</b></a></li>
                 <%end%>
+                <!--<li><%= link_to "FACILITATE", dashboard_index_path %></li>-->
+                <!--
                 <% if user_signed_in? %>
                 Logged in as <strong><%= current_user.email %></strong>.
                 <li><%= link_to 'Edit profile', edit_user_registration_path  %></li>

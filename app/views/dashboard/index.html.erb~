@@ -17,13 +17,13 @@
 
 <p>* If you are currently teaching a course, and do not have access to your course page, ask your lead facilitator for access</p>
 
-<% if not current_user.courses.blank? %>
+<% if not current_user.ownedcourses.blank? %>
   <div>
     <div class="page-header">
       <h3>Courses Pending Approval</h3>
     </div>
 
-    <% current_user.courses.each do |course| %>
+    <% current_user.ownedcourses.each do |course| %>
       <% if course.pending.eql? true %>
 
         <table class="table table-hover">
@@ -41,7 +41,7 @@
       <%end%>
     <%end%>
 
-      <% current_user.courses.each do |course| %>
+      <% current_user.ownedcourses.each do |course| %>
       <tr>
           <% if course.pending.eql? true %>
             <td><%= link_to course.title, course, {:style=>'font-size: 120%;'} %></td>
