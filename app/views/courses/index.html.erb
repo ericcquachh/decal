@@ -15,7 +15,7 @@
 
     <h3>Facilitator Status:</h3>
     
-    <% if not user_signed_in? or current_user.courses.nil? %>
+    <% if not user_signed_in? or current_user.courses.length.equal?(0) %>
       <p>You own no courses, so your ARE NOT a faciltiator. Currently you can be a facilitator through the following: Click Facilitate, Submit Course, Have an admin approve that course; Have a facilitator add you to their approved course. <p>
     <%else%>
       <p>You own course(s), so you ARE a facilitator.</p>
@@ -24,6 +24,7 @@
     <h3>Admin Status</h3>
     <% if not user_signed_in? or current_user.admin.eql? false %>
       <p>You ARE NOT an admin.</p>
+
     <%else%>
       <p>You ARE an admin.</p>
     <%end%>
