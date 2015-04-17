@@ -30,7 +30,7 @@ group :assets do
   gem 'carrierwave', '~> 0.10.0'
   gem 'strong_parameters'
   # gem 'ckeditor', github: 'galetahub/ckeditor'
-  gem 'ckeditor_rails'
+  # gem 'ckeditor_rails'
   gem 'mini_magick'
   gem 'figaro'
   gem 'fog'
