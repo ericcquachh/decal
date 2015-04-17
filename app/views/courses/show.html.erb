@@ -1,202 +1,222 @@
-<p id="notice"><%= notice %></p>
 
-<p>
-  <h1><%= @course.title %></h1>
-</p>
 
-<p>
-  <b>Category</b> <%= @course.category %><br></br>
-  <b>Units</b> <%= @course.units %><br></br> 
-<% if current_user.try(:facilitator?) and @course.verify_facilitator? current_user.id %>
-  <%= link_to 'Edit Course Info', edit_course_path(@course) %>
-<% end %>
-</p>
-<br/>
-<p>
-  <%= field_set_tag 'About the Course' do %>
-    <div><%= @course.description.html_safe %></div>
-  <% end %>
-</p>
-<p>
-  <%= field_set_tag 'How to Enroll' do %>
-    <div><%= @course.enrollment_info.html_safe %></div>
-  <% end %>
-</p>
-<p>
-  <h2>Sections</h2>
-</p>
-<div class="sections">
-  <% if !@course.sections.blank? %>
-    <table class="std">
-      <thead>
-        <tr>
-          <th>Section</th>
-          <th>Facilitator</th>
-          <th>Size</th>
-          <th>Location</th>
-          <th>Time</th>
-          <th>Starts</th>
-          <th>Status</th>
-          <th>
-            <abbr title="Course Control Numbers">CCNs</abbr>
-          </th>
-          <% if current_user.try(:facilitator?) %>
-            <th>Delete</th>
-          <% end %>
-        </tr>
-      </thead>
-      <tbody>
-        <% @course.sections.each do |section| %>
+
+
+<% if @course.pending.eql? false or @course.users.include?(current_user) or current_user.admin.eql? true   %>
+  <% if @course.pending.eql? true %>
+    <h3>Course can be edited, but still needs to be approved.</h3>
+  <%end%>
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title"><h1><%= @course.title %></h1>  
+    </div>
+    <div class="panel-body">
+      <p>
+        <b>Category</b> <%= @course.category %><br></br>
+        <b>Units</b> <%= @course.units %><br></br> 
+      <% if @course.verify_facilitator? current_user.id or current_user.admin.eql? true%>
+        <%= link_to 'Edit Course Info', edit_course_path(@course) %>
+      <% end %>
+      </p>
+    </div>
+  </div>
+  
+  <p>
+    <%= field_set_tag 'About the Course' do %>
+      <div><%= @course.description.html_safe %></div>
+    <% end %>
+  </p>
+  <p>
+    <%= field_set_tag 'How to Enroll' do %>
+      <div><%= @course.enrollment_info.html_safe %></div>
+    <% end %>
+  </p>
+  <p>
+    <h2>Sections</h2>
+  </p>
+  <div class="sections">
+    <% if !@course.sections.blank? %>
+      <table class="std">
+        <thead>
           <tr>
-            <td>
-              <% if !section.section_title.blank? %>
-                <%= section.section_title %>
-              <% else %>
-                <%= '--' %>
-              <% end %>
-            </td>
-            <td>
-              <% if !section.facilitator.blank? %>
-                <%= section.facilitator %>
-              <% else %>
-                <%= '--' %>
-              <% end %>
-            </td>
-            <td>
-              <% if !section.size.blank? %>
-                <%= section.size %>
-              <% else %>
-                <%= '--' %>
-              <% end %>
-            </td>
-            <td>
-              <% if !section.location.blank? %>
-                <%= section.location %>
-              <% else %>
-                <%= '--' %>
-              <% end %>
-            </td>
-            <td>
-              <% if section.section_time.filled? %>
-                <%= section.section_time.full_time %>
-              <% else %>
-                <%= 'TBA' %>
-              <% end %>
-            </td>
-            <td>
-              <% if !section.first_day.blank? %>
-                <%= section.first_day %>
-              <% else %>
-                <%= 'TBA' %>
-              <% end %>
-            </td>
-            <td>
-              <% if !section.status.blank? %>
-                <div><b><font color="red">Full</font></b></div>
-              <% else %>
-                <div><b><font color="green">Open</font></b></div>
-              <% end %>
-            </td>
-            <td>
-              <% if !section.ccn_publish.blank? %>
-                <% if !section.ccn_ld.blank? %>
-                  <%= section.ccn_ld %>
-                <% else %>
-                  <%= '--' %>
-                <% end %>/
-                <% if !section.ccn_ud.blank? %>
-                  <%= section.ccn_ud %>
+            <th>Section</th>
+            <th>Facilitator</th>
+            <th>Size</th>
+            <th>Location</th>
+            <th>Time</th>
+            <th>Starts</th>
+            <th>Status</th>
+            <th>
+              <abbr title="Course Control Numbers">CCNs</abbr>
+            </th>
+            <% if @course.verify_facilitator? current_user.id %>
+              <th>Delete</th>
+            <% end %>
+          </tr>
+        </thead>
+        <tbody>
+          <% @course.sections.each do |section| %>
+            <tr>
+              <td>
+                <% if !section.section_title.blank? %>
+                  <%= section.section_title %>
                 <% else %>
                   <%= '--' %>
                 <% end %>
-              <% else %>
-                <%= '--' %>
-              <% end %>
-            </td>
-            <% if current_user.try(:facilitator?) and @course.verify_facilitator? current_user.id %>
-              <td>
-                <%= button_to "delete", {:controller => :sections, :action => 'destroy', :id => section.id, :course_id => @course.id }, :method => :delete, "onclick" => "javascript:return confirm('Are you absolutely sure you want to delete?')" %>
               </td>
+              <td>
+                <% if !section.facilitator.blank? %>
+                  <%= section.facilitator %>
+                <% else %>
+                  <%= '--' %>
+                <% end %>
+              </td>
+              <td>
+                <% if !section.size.blank? %>
+                  <%= section.size %>
+                <% else %>
+                  <%= '--' %>
+                <% end %>
+              </td>
+              <td>
+                <% if !section.location.blank? %>
+                  <%= section.location %>
+                <% else %>
+                  <%= '--' %>
+                <% end %>
+              </td>
+              <td>
+                <% if section.section_time.filled? %>
+                  <%= section.section_time.full_time %>
+                <% else %>
+                  <%= 'TBA' %>
+                <% end %>
+              </td>
+              <td>
+                <% if !section.first_day.blank? %>
+                  <%= section.first_day %>
+                <% else %>
+                  <%= 'TBA' %>
+                <% end %>
+              </td>
+              <td>
+                <% if !section.status.blank? %>
+                  <div><b><font color="red">Full</font></b></div>
+                <% else %>
+                  <div><b><font color="green">Open</font></b></div>
+                <% end %>
+              </td>
+              <td>
+                <% if !section.ccn_publish.blank? %>
+                  <% if !section.ccn_ld.blank? %>
+                    <%= section.ccn_ld %>
+                  <% else %>
+                    <%= '--' %>
+                  <% end %>/
+                  <% if !section.ccn_ud.blank? %>
+                    <%= section.ccn_ud %>
+                  <% else %>
+                    <%= '--' %>
+                  <% end %>
+                <% else %>
+                  <%= '--' %>
+                <% end %>
+              </td>
+              <% if  @course.verify_facilitator? current_user.id %>
+                <td>
+                  <%= button_to "delete", {:controller => :sections, :action => 'destroy', :id => section.id, :course_id => @course.id }, :method => :delete, "onclick" => "javascript:return confirm('Are you absolutely sure you want to delete?')" %>
+                </td>
+              <% end %>
+            </tr>
+          <% end %>
+        </tbody>
+      </table><br/>
+      <% if  @course.verify_facilitator? current_user.id  %>
+        <%= button_to 'Add Section', {:controller => :sections, :action => 'new', :course_id => @course.id}, :method => :get %>
+        <br/><br/>
+      <% end %>
+    <% else %>
+      <fieldset><legend><h5>No section has been created for this course yet</h5></legend></fieldset>
+      <% if  @course.verify_facilitator? current_user.id  %>
+        <%= button_to 'Add Section', {:controller => :sections, :action => 'new', :course_id => @course.id}, :method => :get %>
+        <br/><br/>
+      <% end %>
+    <% end %>
+  </div>
+
+  <h2> Current Facilitators </h2>
+    <table class="std">
+      <thead>
+        <tr>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Email</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @course.users.each do |user| %>
+          <tr>
+            <td><%= user.first_name %></td>
+            <td><%= user.last_name %></td>
+            <td><%= user.email %></td>
+            <% if @course.courses_users.find_by_user_id(current_user.id) != nil or current_user.admin.eql? true %>
+            <td><%= link_to "Remove", facilitator_delete_path(:course => @course.id, :user => user.id), :method => :delete %>
+            <%end%>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <% if @course.courses_users.find_by_user_id(current_user.id) != nil or current_user.admin.eql? true %>
+      <%= link_to "Add Facilitators", facilitator_index_path(:course => @course), :method => :get %>
+    <%end%>
+  <br/><br/>
+
+
+
+  <h2>Files</h2>
+  <div class="uploads">
+    <!--
+    <% if !flash[:notice].blank? %>
+      <div class="alert alert-info">
+      <%= flash[:notice] %>
+      </div>
+    <% end %>
+    <br /> -->
+
+    <table class="std">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Download Link</th>
+          <th>&nbsp;</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @course.uploads.each do |upload| %>
+          <tr>
+            <td><%= upload.name %></td>
+            <td><%= link_to "Download", upload.attachment_url %></td>
+            <% if @course.verify_facilitator? current_user.id %>
+              <td><%= button_to "Delete", {:controller => :uploads, :action => 'destroy', :id => upload.id, :course_id => @course.id }, :method => :delete, "onclick" => "javascript:return confirm('Are you absolutely sure you want to delete?')" %></td>
             <% end %>
           </tr>
         <% end %>
       </tbody>
-    </table><br/>
-    <% if current_user.try(:facilitator?) and @course.verify_facilitator? current_user.id  %>
-      <%= button_to 'Add Section', {:controller => :sections, :action => 'new', :course_id => @course.id}, :method => :get %>
-      <br/><br/>
+    </table>
+    <br/>
+    <% if @course.verify_facilitator? current_user.id %>
+      <%= button_to "New Upload", {:controller => :uploads, :action => 'new', :course_id => @course.id}, :method => :get %>
+      <br />
+      <br />
     <% end %>
-  <% else %>
-    <fieldset><legend><h5>No section has been created for this course yet</h5></legend></fieldset>
-    <% if current_user.try(:facilitator?) and @course.verify_facilitator? current_user.id  %>
-      <%= button_to 'Add Section', {:controller => :sections, :action => 'new', :course_id => @course.id}, :method => :get %>
-      <br/><br/>
-    <% end %>
-  <% end %>
-</div>
-
-<h2> Current Facilitators </h2>
-  <table class="std">
-    <thead>
-      <tr>
-        <th>First Name</th>
-        <th>Last Name</th>
-        <th>Email</th>
-        <th></th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @course.users.each do |user| %>
-        <tr>
-          <td><%= user.first_name %></td>
-          <td><%= user.last_name %></td>
-          <td><%= user.email %></td>
-          <td><%= link_to "Remove", facilitator_delete_path(:course => @course.id, :user => user.id), :method => :delete %>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
-  <%= link_to "Add Facilitators", facilitator_index_path(:course => @course), :method => :get %>
-<br/><br/>
-
-
-
-<h2>Files</h2>
-<div class="uploads">
-  <!--
-  <% if !flash[:notice].blank? %>
-    <div class="alert alert-info">
-    <%= flash[:notice] %>
-    </div>
-  <% end %>
-  <br /> -->
-
-  <table class="std">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Download Link</th>
-        <th>&nbsp;</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @course.uploads.each do |upload| %>
-        <tr>
-          <td><%= upload.name %></td>
-          <td><%= link_to "Download", upload.attachment_url %></td>
-          <% if current_user.try(:facilitator?) and @course.verify_facilitator? current_user.id %>
-            <td><%= button_to "Delete", {:controller => :uploads, :action => 'destroy', :id => upload.id, :course_id => @course.id }, :method => :delete, "onclick" => "javascript:return confirm('Are you absolutely sure you want to delete?')" %></td>
-          <% end %>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
+  </div>
   <br/>
-  <% if current_user.try(:facilitator?) and @course.verify_facilitator? current_user.id %>
-    <%= button_to "New Upload", {:controller => :uploads, :action => 'new', :course_id => @course.id}, :method => :get %>
-    <br />
-    <br />
-  <% end %>
-</div>
-<br/>
+  <%else%>
+    <h1>This course has not been approved by the admin.</h1>
+  <%end%>
+</end>
+
 <%= link_to 'Back', courses_path %>
+

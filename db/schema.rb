@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150415031523) do
+ActiveRecord::Schema.define(:version => 20150416032108) do
 
   create_table "ckeditor_assets", :force => true do |t|
     t.string   "data_file_name",                  :null => false
@@ -44,6 +44,7 @@ ActiveRecord::Schema.define(:version => 20150415031523) do
     t.string   "course_website"
     t.string   "faculty_name"
     t.string   "faculty_email"
+    t.boolean  "pending"
   end
 
   create_table "courses_users", :force => true do |t|
@@ -103,6 +104,7 @@ ActiveRecord::Schema.define(:version => 20150415031523) do
     t.string   "class_level"
     t.boolean  "facilitator",            :default => false
     t.string   "access"
+    t.boolean  "admin"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

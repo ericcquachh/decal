@@ -29,7 +29,7 @@ class CoursesController < ApplicationController
     #this does not work when you don't put in information about category, status, and units
     # @courses = Course.find(:all, :order => session[:title], :conditions => {:category => session[:category], :status => session[:status], 
     # :units => session[:units]})
-    @courses = Course.find(:all, :order => session[:title])
+    @courses = Course.find(:all, :order => session[:title], :conditions => {:pending => false})
     # @courses = Course.find(:all, :order => session[:title])
 
     if params[:search_field]
@@ -49,6 +49,16 @@ class CoursesController < ApplicationController
   def demote
     current_user.update_attribute :facilitator, false
     redirect_to :root, notice: "User demoted to basic user"
+  end
+
+  def makeadmin
+    current_user.update_attribute :admin, true
+    redirect_to :root, notice: "User is now God."
+  end
+
+  def removeadmin
+    current_user.update_attribute :admin, false
+    redirect_to :root, notice: "User is now a peasant."
   end
 
   # GET /courses/1
@@ -112,6 +122,7 @@ class CoursesController < ApplicationController
         @course.previous_step
       elsif @course.last_step?
         if @course.all_valid?
+          @course.pending = true
           @course.save
           CoursesUser.create!(:user_id => current_user.id, :course_id => @course.id)
         end
