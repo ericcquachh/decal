@@ -16,6 +16,6 @@
 //= require ckeditor-jquery
 //= require_tree .
 
-$('.ckeditor').ckeditor({
-  // optional config
-});
+// $('.ckeditor').ckeditor({
+//   // optional config
+// });

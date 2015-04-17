@@ -16,7 +16,7 @@
 #Test Users
 
 User.create!(:email => "jamescheng@berkeley.edu", :password => "jalapenocheddar",
-	:first_name => "James", :last_name => "Cheng", :category=> :facilitator => true)
+	:first_name => "James", :last_name => "Cheng")
 User.create!(email: "johnlennon@berkeley.edu", password: "thebeatlesforever",
 	first_name: "John", last_name: "Lennon")
 User.create!(email: "jetspike@berkeley.edu", password: "cowboybebop",
