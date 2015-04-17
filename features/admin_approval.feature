@@ -1,4 +1,4 @@
-Feature: Admin should be able to approve courses
+Feature: Admin should be able to approve pending courses
 
 As an admin
 In order to approve new courses
@@ -11,17 +11,20 @@ Background: Admin has logged in
 	| test course   | 2     | UGBA       | Business      | test@gmail.com  | false    |
 	| test course 2 | 3     | CS         | Entertainment | test2@gmail.com | false    |
 
-Scenario: Successful approve a course
+Scenario: Successfully approve a course
 	When I visit the admin page
-	And I press approve courses
+	And I press pending courses
 	Then I should see "test course"
 	Then I should seee "test course 2"
-	Given I check "test_course"
-	And I press "Approve Courses"
+	Given I check "test course"
+	And I press "Approve Course(s)"
 	Then I visit home page
 	And I should see "test course"
+	When I vist the admin page
+	And I press pending courses
+	Then I should not see "test course"
 
 Scenario: Non-Admin cannot add a course
 	When I logout
-	Then I log in as a facilitator
-	And I should not see "Admin"
+	And I log in as a non-admin facilitator
+	Then I should not see "Admin"

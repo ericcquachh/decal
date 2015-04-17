@@ -1,4 +1,4 @@
-Feature: Admin should be able to approve or reject existing course facilitate requests
+Feature: Facilitator should be able to approve or reject existing course co-facilitate requests
   As a facilitator
   In order to decide who can co-facilitate existing courses
   I want to approve and reject course facilitate requests
