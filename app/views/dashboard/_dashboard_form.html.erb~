@@ -1,5 +1,5 @@
 <%= form_tag(controller: "dashboard", action: "index", method: "post") do %>
-  <% current_user.ownedcourses.each do |course| %>
+  <% current_user.courses.each do |course| %>
     <tr>
       <% if course.pending.eql? false %>
         <td><%= link_to course.title, course, {:style=>'font-size: 120%;'} %></td>

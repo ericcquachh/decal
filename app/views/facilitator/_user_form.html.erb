@@ -15,7 +15,7 @@
           <td><%= user.first_name %></td>
           <td><%= user.last_name %></td>
           <td><%= user.email %></td>
-    		  <td><%= check_box_tag(user.email) %></td>
+          <td><%= check_box_tag(user.email) %></td>
         </tr>
       <% end %>
 
@@ -24,5 +24,5 @@
   </table>
 </br>
   <%= hidden_field_tag :course, @course.id %>
-	<%= submit_tag("Add These Facilitators",:class=>'btn btn-primary')%>
+  <%= submit_tag("Add These Facilitators",:class=>'btn btn-primary')%>
 <% end %>

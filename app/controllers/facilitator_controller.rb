@@ -7,7 +7,7 @@ class FacilitatorController < ApplicationController
     if params[:search_field]
       @user = User.select{|user| user.email.downcase.include? params[:search_field].downcase}
     else
-      @user = User.where('id not in (?)', @course.users)
+      @user = User.where('id not in (?)', @course.facilitators)
     end
   end
 
@@ -16,15 +16,15 @@ class FacilitatorController < ApplicationController
       if key.include? "@" and params[key] == "1"
         course = Course.find(params[:course].to_i)
         user = User.find_by_email(key)
-        user.update_attribute(:facilitator, true)
-        CoursesUser.create!(user_id: user.id, course_id: course.id)
+        FacilitateOwnedcourses.create!(facilitator_id: user.id, ownedcourse_id: course.id)
+        FacilitateRequests.destroy_all(request_id: user_id, receiver_id: course.id)
       end
     end
     redirect_to course_path(:id => params[:course])
   end
 
   def delete
-    relation = CoursesUser.find_by_user_id_and_course_id(params[:user].to_i, params[:course].to_i)
+    relation = FacilitateOwnedcourses.find_by_facilitator_id_and_ownedcourse_id(params[:user].to_i, params[:course].to_i)
     relation.destroy
     redirect_to course_path(:id => params[:course])
   end
@@ -34,5 +34,6 @@ class FacilitatorController < ApplicationController
     FacilitateRequest.create!(request_id: current_user.id, receiver_id: course.id)
     redirect_to course_path(:id => params[:course])
   end
+
 
 end

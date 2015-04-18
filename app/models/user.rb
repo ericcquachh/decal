@@ -11,8 +11,12 @@ class User < ActiveRecord::Base
 
   #facilitator relation
   # has_many :courses, :foreign_key => :uid
-  has_many :courses_users
-  has_many :courses, through: :courses_users
+  has_many :facilitate_ownedcourses, foreign_key: :facilitator_id
+  has_many :ownedcourses, through: :facilitate_ownedcourses, source: :ownedcourse
+  #request relation
+  # has_many :courses, :foreign_key => :uid
+  has_many :facilitate_requests, foreign_key: :request_id
+  has_many :receivers, through: :facilitate_requests, source: :receiver
   # Include default devise modules. Others available are:
 
   has_many :facilitate_requests, foreign_key: :request_id

@@ -1,0 +1,9 @@
+class FacilitateRequest < ActiveRecord::Base
+  attr_accessible :receiver_id, :request_id
+  belongs_to :receiver, :class_name => "Course"
+<<<<<<< HEAD
+  belongs_to :request, :class_name => "User"
+=======
+  belongs_to :request,  :class_name => "User"
+>>>>>>> 9b1549eeee614ea076d2ab3f7112655a42748c24
+end
