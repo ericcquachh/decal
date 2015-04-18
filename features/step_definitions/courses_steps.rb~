@@ -120,6 +120,12 @@ Given(/^these courses exist:$/) do |courses_table|
     input_course.category = course["Category"]
     input_course.units = course["Units"]
     input_course.status = course["Status"]
+    input_course.email = course["Email"]
+    input_course.pending = course["Pending"]
+    input_course.department_num = course["Department_num"]
+    input_course.course_email = course["Course_email"]
+    input_course.faculty_email = course["Faculty_email"]
+    input_course.faculty_name = course["Facutly_name"]
     input_course.save
   end
 end
@@ -217,7 +223,6 @@ end
 
 Given /^I submitted a new course request form with valid fields/ do
   pending_course_info
-  @pending_course = Course.new
   fill_in "course_title", :with => @pending_course_info[:title]
   select(@pending_course_info[:category], :from => "course_category")
   fill_in "course_units", :with => @pending_course_info[:units]
@@ -239,6 +244,11 @@ Given /^I input invalid fields in the new course request form$/ do
 end
 
 Given /^I leave incomplete fields in the new course request form$/ do
-
+  pending_course_info
+  fill_in "course_title", :with => @pending_course_info[:title]
+  select(@pending_course_info[:category], :from => "course_category")
+  fill_in "course_units", :with => @pending_course_info[:units]
+  select(@pending_course_info[:status], :from => "course_status")
+  click_button "continue"
 end
 
