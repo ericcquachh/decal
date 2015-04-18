@@ -32,7 +32,7 @@ class AdminController < ApplicationController
     if params[:tab] == 'curr'
         @courses = Course.find(:all, :order => session[:title], :conditions => {:pending => false})
       elsif params[:tab] == 'pending'
-        @courses = PendingCourse.find(:all, :order => session[:title], :conditions => {:pending => true})
+        @courses = Course.find(:all, :order => session[:title], :conditions => {:pending => true})
       else
         #facilitators
       end

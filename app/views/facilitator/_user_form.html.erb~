@@ -24,10 +24,6 @@
   </table>
 </br>
   <%= hidden_field_tag :course, @course.id %>
-<<<<<<< HEAD
     <%= submit_tag("Add These Facilitators",:class=>'btn btn-primary', :id => "add_these_facilitators")%>
-=======
-  <%= submit_tag("Add These Facilitators",:class=>'btn btn-primary', :id => "add_these_facilitators")%>
 
->>>>>>> 14f01fb91e4d1175846f86cada1370b21c2528c1
 <% end %>
