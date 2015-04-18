@@ -1,4 +1,4 @@
-<% if !@course.pending or @course.verify_faciliator? current_user   %>
+<% if !@course.pending or @course.verify_facilitator? current_user   %>
   <% if @course.pending  %>
     <h3>Course can be edited, but still needs to be approved.</h3>
   <%end%>
@@ -166,10 +166,8 @@
         <% end %>
       </tbody>
     </table>
-    <% if !@course.pending %>
       <% if @course.verify_facilitator? current_user %>
-        <%= link_to "Add Facilitators", facilitator_index_path(:course => @course), :method => :get %>
-      <%end%>
+        <%= link_to "Add Facilitators", facilitator_index_path(), :method => :get %>
     <% end %>
   <br/><br/>
 
@@ -215,7 +213,7 @@
   <% if @course.verify_facilitator? current_user %>
     <%= render 'facilitator/request_form' %>
   <% else %>
-  <%= button_to 'Request to be Facilitator', facilitator_request_path(:course_id => @course.id), {:class => "btn btn-primary"} %>
+  <%= button_to 'Request to be Facilitator', 'facilitator/request', {:class => "btn btn-primary"} %>
   <% end %>
   <br/><br/>
 
