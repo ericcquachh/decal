@@ -9,7 +9,7 @@ describe AdminController do
 
 	it "should test the admin index functionality" do
 		#my god ted, this was the only thing i can think of to test it
-		get :index, :section_time => 42
+		get :index
 	end
 
 	it "should create a particular param" do
