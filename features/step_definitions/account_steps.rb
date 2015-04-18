@@ -176,8 +176,14 @@ end
 
 ### THEN ###
 
-Then /^I log out$/ do
-  click_link "sign_out"
+Given /^I log out$/ do
+  current_driver = Capybara.current_driver
+  begin
+    Capybara.current_driver = :rack_test
+    page.driver.submit :delete, "/users/sign_out", {}
+  ensure
+    Capybara.current_driver = current_driver
+  end
 end
 
 Then /^I should be signed in$/ do
