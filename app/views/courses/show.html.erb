@@ -12,7 +12,7 @@
         <b>Category</b> <%= @course.category %><br></br>
         <b>Units</b> <%= @course.units %><br></br> 
       <% if @course.verify_facilitator? current_user %>
-        <%= link_to 'Edit Course Info', edit_course_path(@course) %>
+        <%= link_to 'Edit Course Info', edit_course_path(@course, :step_1 => true) %>
       <% end %>
       </p>
     </div>
@@ -20,12 +20,18 @@
   
   <p>
     <%= field_set_tag 'About the Course' do %>
-      <div><%= @course.description.html_safe %></div>
+      <div><%= @course.description.html_safe %></div><br/>
+      <% if @course.verify_facilitator? current_user %>
+        <%= link_to 'Edit Course Description', edit_course_path(@course, :step_3 => true) %>
+      <% end %>
     <% end %>
   </p>
   <p>
     <%= field_set_tag 'How to Enroll' do %>
       <div><%= @course.enrollment_info.html_safe %></div>
+      <% if @course.verify_facilitator? current_user %>
+        <%= link_to 'Edit Information', edit_course_path(@course, :step_3 => true) %>
+      <% end %>
     <% end %>
   </p>
   <p>
