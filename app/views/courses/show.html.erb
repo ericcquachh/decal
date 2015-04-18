@@ -213,7 +213,7 @@
   <% if @course.verify_facilitator? current_user %>
     <%= render 'facilitator/request_form' %>
   <% else %>
-  <%= button_to 'Request to be Facilitator', 'facilitator/request', {:class => "btn btn-primary"} %>
+    <%= render 'request_form' %>
   <% end %>
   <br/><br/>
 

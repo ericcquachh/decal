@@ -1,5 +1,4 @@
 <%= form_tag(controller: "facilitator", action: "index", method: "post") do %>
-  <% if !@course.requests.blank? %>
   <table class="std">
     <thead>
       <tr>
@@ -11,7 +10,7 @@
     </thead>
     <tbody>
 
-      <% @course.requests.each do |user| %>
+      <% @user.each do |user| %>
         <tr>
           <td><%= user.first_name %></td>
           <td><%= user.last_name %></td>
@@ -25,9 +24,9 @@
   </table>
 </br>
   <%= hidden_field_tag :course, @course.id %>
-  <%= submit_tag("Add These Facilitators",:class=>'btn btn-primary', :id => "add_these_facilitators")%>
-  <% else %>
-    <h5>There have been no new requests to faciliate this course</h5>
-  <% end %>
-
+<<<<<<< HEAD
+  <%= submit_tag("Add These Facilitators",:class=>'btn btn-primary')%>
+=======
+	<%= submit_tag("Add These Facilitators",:class=>'btn btn-primary', :id => "add_these_facilitators")%>
+>>>>>>> 6ddd3d52184fd05970f9c8344efc44f47e07ed92
 <% end %>
