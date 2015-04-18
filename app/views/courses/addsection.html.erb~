@@ -1,0 +1,3 @@
+<% if @course.courses_users.find_by_user_id(current_user.id) != nil or current_user.admin.eql? true %>
+	<%= render 'sectionform' %>
+<% end %>

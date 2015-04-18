@@ -9,7 +9,6 @@
       </tr>
     </thead>
     <tbody>
-
       <% @user.each do |user| %>
         <tr>
           <td><%= user.first_name %></td>
@@ -18,12 +17,9 @@
           <td><%= check_box_tag(user.email) %></td>
         </tr>
       <% end %>
-
     </tbody>
-
   </table>
-</br>
+  </br>
   <%= hidden_field_tag :course, @course.id %>
-    <%= submit_tag("Add These Facilitators",:class=>'btn btn-primary', :id => "add_these_facilitators")%>
-
+  <%= submit_tag("Add These Facilitators",:class=>'btn btn-primary', :id => "add_these_facilitators")%>
 <% end %>

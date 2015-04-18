@@ -1,87 +1,45 @@
-# -*- coding: utf-8 -*-
-<%= params %>
-<%if current_user.try(:admin?) %>
-  <br>
-  <div class="btn-group btn-group-justified" role="group" aria-label="...">
-    <div class="btn-group" role="group">
-      <%= link_to 'APPROVED COURSES', admin_index_path(:tab => 'curr'), {:class => "btn btn-primary"} %>
-    </div>
-    <div class="btn-group" role="group">
+<br>
+<div class="btn-group btn-group-justified" role="group" aria-label="...">
+  <div class="btn-group" role="group">
+    <%= link_to 'APPROVED COURSES', admin_index_path(:tab => 'curr'), {:class => "btn btn-primary"} %>
+  </div>
+  <div class="btn-group" role="group">
     <%= link_to 'PENDING COURSES', admin_index_path(:tab => 'pending'), {:class => "btn btn-primary"} %>
-    </div>
-    <div class="btn-group" role="group">
-      <%= link_to 'MANAGE FACILITATORS', admin_index_path(:tab => 'manageadmins'), {:class => "btn btn-primary"} %>
-    </div>
   </div>
-
-  <div>
-    <% if params[:tab] == "curr" %>
-      <h3>Approved Courses</h3>
-    <%end%>
-    <% if params[:tab] == "pending" %>
-      <h3>Pending Courses</h3>
-    <%end%>
-    <% if params[:tab] == "manageadmins" %>
-      <h3>Manage Admins</h3>
-    <%end%>
+  <div class="btn-group" role="group">
+    <%= link_to 'MANAGE FACILITATORS', admin_index_path(:tab => 'manageadmins'), {:class => "btn btn-primary"} %>
   </div>
+</div>
 
-  <%if params[:tab] != "manageadmins"%>
-      <form class="form-inline">
-        <%= form_for(admin_index_path, method: :get, id: 'units_form') do %>
-          <%= hidden_field_tag :tab, params[:tab] %>
-          <%= render 'courses/search_form' %>
-        <% end %>
-        <br></br>
-    <%= form_tag(controller: "admin", action: "index", method: "post") do %>
-      <table class="table table-hover">
-        <tr>
-          <th><%= link_to 'Course Title ▼' , admin_index_path(:title => "title") %></th>
-          <th>Category</th>
-          <th>Units</th>
-          <th>Time</th>
-          <th>Status</th>
-          <th>Edit</th>
-          <% if params[:tab] == "curr" %>
-            <th>Unapprove</th>
-          <%end%>
-          <% if params[:tab] == "pending" %>
-            <th>Approve</th>
-          <%end%>
-        </tr>
-
-        <% @courses.each do |course| %>
-          <tr>
-            <td><%= link_to course.title, course, {:style=>'font-size: 120%;'} %></td>
-            <td><%= course.category %></td>
-            <td><%= course.units %></td>
-            <td><% course.section_times.each do |time| %>
-                <% if time.filled? %>
-                  <%= time.full_time %>
-                <% else %>
-                  <%= 'TBA' %>
-                <% end %>
-                <br></br>
-            <% end %>
-            <td><%= course.status %></td>
-                <td><%= link_to 'Edit', edit_course_path(course) %></td>
-            <td><%= check_box_tag(course.title) %></td>
-          </tr>
-        <% end %>
-      </table>
-
-      <% if params[:tab] == "curr" %>
-        <%= submit_tag("Unapprove Course(s)",:class=>'btn btn-primary')%>
-      <% end %>
-      <% if params[:tab] == "pending" %>
-        <%= submit_tag("Approve Course(s)",:class=>'btn btn-primary')%>
-      <% end %>
-    <%end%>
-
-  <%else%>
+<div>
+  <% if params[:tab] == "curr" %>
+    <h3>Approved Courses</h3>
   <%end%>
-<%else%>
-<h1>You do not have admin priviledges</h1>
+  <% if params[:tab] == "pending" %>
+    <h3>Pending Courses</h3>
+  <%end%>
+  <% if params[:tab] == "manageadmins" %>
+    <h3>Manage Admins</h3>
+  <%end%>
+</div>
+
+<%if params[:tab] != "manageadmins"%>
+  <form class="form-inline">
+    <%= form_for(admin_index_path, method: :get, id: 'units_form') do %>
+      <%= hidden_field_tag :tab, params[:tab] %>
+      <%= render 'courses/search_form' %>
+    <% end %>
+    <br></br>
+  <%= form_tag(controller: "admin", action: "index", method: "post") do %>
+    <%= render 'shared/course_table' %>
+    <% if params[:tab] == "pending" %>
+      <%= submit_tag("Approve Course(s)",:class=>'btn btn-primary')%>
+    <% else %>
+      <%= submit_tag("Unapprove Course(s)",:class=>'btn btn-primary')%>
+    <% end %>
+  <%end%>
+  <%else%>
 <%end%>
+
 
 

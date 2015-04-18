@@ -3,6 +3,7 @@ class CoursesController < ApplicationController
   # GET /courses.json
 
   before_filter :authorize, :except => [:index, :show]
+  before_filter :is_facilitator, :only => [:destroy]
 
   def authorize
     if current_user.nil? || !(user_signed_in?)
@@ -10,7 +11,14 @@ class CoursesController < ApplicationController
     end
   end
 
+  def is_facilitator
+    if !(Course.find(params[:course_id]).verify_facilitator? current_user)
+      redirect_to :root, notice: 'You do not have these priveleges'
+    end
+  end
+
   def index
+    @access = 'user'
     filter = {}
     Course.filter_attributes.each do |attribute, values|
       if !params[attribute] || params[attribute] == 'Select'
@@ -24,8 +32,8 @@ class CoursesController < ApplicationController
       end
     end
 
-    @courses = Course.find(:all, :order => params[:title], :conditions => {:category => sort[:category], :status => sort[:status], 
-    :units => sort[:units], :pending => false})
+    @courses = Course.find(:all, :order => params[:title], :conditions => {:category => filter[:category], :status => filter[:status], 
+    :units => filter[:units], :pending => false})
 
     if params[:search_field]
       @courses = @courses.select {|course| course.title.downcase.include? params[:search_field].downcase}

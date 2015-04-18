@@ -12,7 +12,7 @@
   6. Submit course for approval below <br/>
 </div>
 <br/>
-<%= link_to 'Submit A Course For Approval', new_course_path, {:class => "btn btn-primary"} %><br>
+<%= link_to 'Submit A Course For Approval', new_course_path, {:class => "btn btn-primary", :id => "submit_course_for_approval"} %><br>
 <br>
 
 <p>* If you are currently teaching a course, and do not have access to your course page, ask your lead facilitator for access</p>
@@ -22,61 +22,22 @@
     <div class="page-header">
       <h3>Courses Pending Approval</h3>
     </div>
-
-    <% current_user.ownedcourses.each do |course| %>
-      <% if course.pending.eql? true %>
-
-        <table class="table table-hover">
-        <tr>
-          <th><%= link_to 'Course Title ▼' , courses_path(:title => "title") %></th>
-          <th>Category</th>
-          <th>Units</th>
-          <th>Time</th>
-          <th>Status</th>
-          <th>End</th>
-        </tr>
-      <% break if course.pending.eql? true %>
-      <%else%>
-        No pending courses.
-      <%end%>
-    <%end%>
-
-      <% current_user.ownedcourses.each do |course| %>
-      <tr>
-          <% if course.pending.eql? true %>
-            <td><%= link_to course.title, course, {:style=>'font-size: 120%;'} %></td>
-            <td><%= course.category %></td>
-            <td><%= course.units %></td>
-            <td><%= course.section_times.each do |time| %>
-              <% if time.filled? %>
-                <%= time.full_time %>
-              <% else %>
-                <%= 'TBA' %>
-              <% end %>
-              <br></br>
-            <% end %>
-            <td><%= course.status %></td>
-            <td><%= link_to 'Edit', edit_course_path(course) %></td>
-          <%end%>
-      </tr>
-      <% end %>
-      </table>
+    <% @courses = current_user.ownedcourses.where(:pending => true) %>
+    <% if not @courses.blank? %>
+      <%= render 'shared/course_table' %>
+    <% else %>
+      <h3>No courses currently pending approval</h3>
+    <% end %>
   </div>
 
   <div class="page-header">
   <h3>Your Courses</h3>
   </div>
-  <table class="table table-hover">
-    <tr>
-      <th>Courses</th>
-      <th>Category</th>
-      <th>Units</th>
-      <th>Time</th>
-      <th>Status</th>
-      <th></th>
-      <th></th>
-    </tr>
-
-  <%= render 'dashboard_form'%>
-
+  <% @courses = current_user.ownedcourses.where(:pending => false) %>
+  <% if not @courses.blank? %>
+    <%= form_tag(controller: "dashboard", action: "index", method: "post") do %>
+      <%= render 'shared/course_table' %>
+      <%= submit_tag("Unfacilitate These Courses",:class=>'btn btn-primary')%>
+    <% end %>
+  <% end %>
 <%end%>

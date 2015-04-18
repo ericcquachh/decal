@@ -1,9 +1,18 @@
 class FacilitatorController < ApplicationController
+
+  before_filter :is_facilitator
+
+  def is_facilitator
+    if !(Course.find(params[:course_id]).verify_facilitator? current_user)
+      redirect_to :root, notice: 'You do not have access to this page'
+    end
+  end
+
   def index
     @course = Course.find(params[:course])
-    @user = User.where('id not in (?)', @course.facilitators)
+    @users = User.where('id not in (?)', @course.facilitators)
     if params[:search_field]
-      @user = @user.select{|user| user.email.downcase.include? params[:search_field].downcase}
+      @users = @users.select{|user| user.email.downcase.include? params[:search_field].downcase}
     end
   end
 

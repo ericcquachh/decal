@@ -3,10 +3,17 @@ class CoursesController < ApplicationController
   # GET /courses.json
 
   before_filter :authorize, :except => [:index, :show]
+  before_filter :is_facilitator, :only => [:destroy]
 
   def authorize
     if current_user.nil? || !(user_signed_in?)
       redirect_to :root, notice: 'make sure you login fool'
+    end
+  end
+
+  def is_facilitator
+    if !(Course.find(params[:course_id]).verify_facilitator? current_user)
+      redirect_to :root, notice: 'You do not have these priveleges'
     end
   end
 

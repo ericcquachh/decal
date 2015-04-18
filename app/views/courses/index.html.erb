@@ -46,33 +46,7 @@
       <%= render 'search_form' %>
     <% end %>
     <br></br>
-    <table class="table table-hover">
-      <tr>
-        <th><%= link_to 'Course Title ▼' , courses_path(:title => "title") %></th>
-        <th>Category</th>
-        <th>Units</th>
-        <th>Time</th>
-        <th>Status</th>
-      </tr>
-
-    <% @courses.each do |course| %>
-      <tr>
-        <td><%= link_to course.title, course, {:style=>'font-size: 120%;'} %></td>
-        <td><%= course.category %></td>
-        <td><%= course.units %></td>
-        <td><% course.section_times.each do |time| %>
-            <% if time.filled? %>
-              <%= time.full_time %>
-            <% else %>
-              <%= 'TBA' %>
-            <% end %>
-            <br></br>
-        <% end %> 
-        <td><%= course.status %></td>
-
-      </tr>
-    <% end %>
-    </table>
+    <%= render 'shared/course_table' %>
   </div>
 </form>
 <br />
