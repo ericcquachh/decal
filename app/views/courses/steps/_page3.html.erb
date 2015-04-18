@@ -2,12 +2,14 @@
     <%= field_set_tag 'WHAT IS THE COURSE LIKE?' do %>
       <div><%= f.label :description, 'COURSE DESCRIPTION: ' %><br/>
         A few paragraphs about your class - are there any papers or exams? What is the attendance policy? etc.<br/><br/>
-        <%= f.text_area :description, :size => '86x10' %>
+        <%= f.text_area :description, :class => 'tinymce' %>
       </div><br/>
       <div><%= f.label :enrollment_info, 'ENROLLMENT INFORMATION: ' %><br/>
         What's your policy? First come, first served? Interviews? Applications? Lottery?<br/><br/>
 
-        <%= f.text_area :enrollment_info, :size => '86x10' %>
+        <%= f.text_area :enrollment_info, :class => 'tinymce' %>
       </div>
     <% end %>
   </div><br/>
+
+<%= tinymce %>

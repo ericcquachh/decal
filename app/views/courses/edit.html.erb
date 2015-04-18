@@ -1,5 +1,15 @@
 <h1>Editing course</h1>
 <% if @course.verify_facilitator? current_user %>
-  <%= render 'form' %>
-<%= link_to 'Show', @course %> |
+	<%= form_for(@course) do |f| %>
+	  <% if params[:step_1] %>
+	  	<%= render 'courses/steps/page1', f: f %>
+	  <% elsif params[:step_2] %>
+	  	<%= render 'courses/steps/page2', f: f %>
+	  <% else %>
+	  	<%= render 'courses/steps/page3', f: f %>
+	  <% end %>
+	  <p><%= f.submit "Update", :id => "update" %></p>
+	<% end %>
+<%= link_to 'Back', @course %>
 <%end%>
+
