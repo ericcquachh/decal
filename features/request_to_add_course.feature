@@ -26,6 +26,6 @@ Scenario: User submits incomplete form
       
 Scenario: Logged out user cannot submit form
   Given I log out
-  Then I should see "logged out"
-  When I visit the course homepage
-  Then I should not see "Facilitate"
+  Then I should see "Signed out successfully"
+  When I visit the facilitate course page
+  Then I should see "make you sure login"
