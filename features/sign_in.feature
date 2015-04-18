@@ -1,7 +1,7 @@
 Feature: Sign in
   As a student
   So that I can facilitate a course
-  I Should be able to sign in
+  I want to be able to sign in
 
     Scenario: User is not signed up
       Given I do not exist as a user

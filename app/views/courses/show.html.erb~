@@ -216,6 +216,6 @@
   <%= button_to 'Request to be Facilitator', 'facilitator/request', {:class => "btn btn-primary"} %>
   <% end %>
   <br/><br/>
->>>>>>> 9b1549eeee614ea076d2ab3f7112655a42748c24
+
 
 <%= link_to 'Back', courses_path %>

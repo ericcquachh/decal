@@ -72,15 +72,10 @@ end
 
 ### GIVEN ###
 
-#Given /^I am not logged in$/ do
- # visit  destroy_user_session_path
-#end
-
 Given /^I am logged in$/ do
   create_user
   sign_in
 end
-
 
 Given /^I exist as a user$/ do
   create_user
@@ -88,9 +83,17 @@ end
 
 Given /^I do not exist as a user$/ do
   create_visitor
-
 end
 
+Given /^I log out$/ do
+  current_driver = Capybara.current_driver
+  begin
+    Capybara.current_driver = :rack_test
+    page.driver.submit :delete, "/users/sign_out", {}
+  ensure
+    Capybara.current_driver = current_driver
+  end
+end
 
 ### WHEN ###
 
@@ -180,15 +183,6 @@ end
 
 ### THEN ###
 
-Given /^I log out$/ do
-  current_driver = Capybara.current_driver
-  begin
-    Capybara.current_driver = :rack_test
-    page.driver.submit :delete, "/users/sign_out", {}
-  ensure
-    Capybara.current_driver = current_driver
-  end
-end
 
 Then /^I should be signed in$/ do
   page.should have_content "Logout"
@@ -247,26 +241,4 @@ Then /^I should see my name$/ do
   page.should have_content @user[:name]
 end
 
-#Julian
 
-def create_admin
-  @admin = { :admin=>true, :first_name => "Kevin", :last_name => "Casey", :email => "overlord@berkeley.edu",
-  :password => "testingpass", :password_confirmation => "testingpass" }
-  @user = User.create(@admin)
-end
-
-def sign_in_admin
-  visit 'users/sign_in'
-  fill_in "user_email", :with => @admin[:email]
-  fill_in "user_password", :with => @admin[:password]
-  click_button "Sign in"
-end
-
-When /^I sign in as an admin$/ do
-  create_admin
-  sign_in_admin
-end
-
-When /^I visit the admin page$/ do
-  visit 'admin'
-end
