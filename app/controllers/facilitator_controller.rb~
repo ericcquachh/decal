@@ -17,7 +17,7 @@ class FacilitatorController < ApplicationController
         course = Course.find(params[:course].to_i)
         user = User.find_by_email(key)
         FacilitateOwnedcourse.create!(facilitator_id: user.id, ownedcourse_id: course.id)
-        FacilitateRequest.destroy_all(request_id: user_id, receiver_id: course.id)
+        FacilitateRequest.destroy_all(request_id: user.id, receiver_id: course.id)
       end
     end
     redirect_to course_path(:id => params[:course])

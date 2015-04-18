@@ -1,9 +1,6 @@
 class FacilitatorController < ApplicationController
   def index
-    #setting the instance course for the facilitator
-    @course = Course.find(params[:course].to_i)
-
-    #finding the user to add as facilitator
+    @course = Course.find(params[:course])
     if params[:search_field]
       @user = User.select{|user| user.email.downcase.include? params[:search_field].downcase}
     else

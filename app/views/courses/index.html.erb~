@@ -3,7 +3,7 @@
     display: inline-block;
   }
 </style>
-
+<%= params %>
 <div class="panel panel-default">
   <div class="panel-heading">
     <h3 class="panel-title">DEVELOPER TOOLS</h3>
@@ -15,7 +15,7 @@
 
     <h3>Facilitator Status:</h3>
     
-    <% if not user_signed_in? or current_user.ownedcourses.empty?) %>
+    <% if not user_signed_in? or current_user.ownedcourses.empty? %>
       <p>You own no courses, so your ARE NOT a faciltiator. Currently you can be a facilitator through the following: Click Facilitate, Submit Course, Have an admin approve that course; Have a facilitator add you to their approved course. <p>
     <%else%>
       <p>You own course(s), so you ARE a facilitator.</p>
@@ -41,7 +41,9 @@
 
 <h1>COURSES</h1>
 <form class="form-inline">
-    <%= render 'search_form' %>
+  <div class="form-group">
+    <%= form_for(courses_path, method: :get, id: 'units_form') do %>
+      <%= render 'search_form' %>
     <br></br>
     <table class="table table-hover">
       <tr>
