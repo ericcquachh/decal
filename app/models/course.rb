@@ -10,9 +10,10 @@ class Course < ActiveRecord::Base
 
   CATEGORIES = ["Computer Science", "Fitness", "Business", "Languages", "Cognitive Science"]
 
-  validates_presence_of :title, :units, :if => lambda { |o| o.current_step == "1" }
-  validates_inclusion_of :category, :in => CATEGORIES, :if => lambda { |o| o.current_step == "1" }, :message => "You must choose a category from the dropdown selection."
-  validates_inclusion_of :status, :in => ["Open", "Full"], :if => lambda { |o| o.current_step == "1" }, :message => "You must choose a status from the dropdown selection."  
+  validates_presence_of :title, :if => lambda { |o| o.current_step == "1" }
+  validates :units, :presence => {message: "cannot be blank"}, :numericality => {only_integer: true, :greater_than => 0, :less_than => 5, message: "must be integers 1-4"}
+  validates_inclusion_of :category, :in => CATEGORIES, :if => lambda { |o| o.current_step == "1" }, :message => "must be selected from the dropdown menu"
+  validates_inclusion_of :status, :in => ["Open", "Full"], :if => lambda { |o| o.current_step == "1" }, :message => "must be selected from the dropdown menu"  
 
   validates_presence_of :department_num, :course_email, :faculty_email, :faculty_name, :if => lambda { |o| o.current_step == "2" }
   validates_presence_of :description, :enrollment_info, :if => lambda { |o| o.current_step == "3"}
