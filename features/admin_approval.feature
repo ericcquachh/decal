@@ -26,7 +26,8 @@ Scenario: Successfully approve a course
 	When I visit the home page
 	Then I should see "XYZ"
 
-Scenario: Non-admin cannot add a course
+Scenario: Non-admin cannot approve a course
 	When I log out
 	And I sign in as a user
-	Then I should not see "Admin"
+	And I visit the admin page
+	Then I should see "You do not have admin priviledges"
