@@ -11,21 +11,21 @@ class CoursesController < ApplicationController
   end
 
   def index
-    sort = {}
-    Course.sort_attributes.each do |attribute, values|
+    filter = {}
+    Course.filter_attributes.each do |attribute, values|
       if !params[attribute] || params[attribute] == 'Select'
         params.delete(attribute)
-        sort[attribute] = values
+        filter[attribute] = values
       else 
         if attribute == :units
           params[attribute] = params[attribute].keys
         end
-      sort[attribute] = params[attribute]
+      filter[attribute] = params[attribute]
       end
     end
 
-    @courses = Course.find(:all, :order => params[:title], :conditions => {:category => sort[:category], :status => sort[:status], 
-    :units => sort[:units], :pending => false})
+    @courses = Course.find(:all, :order => params[:title], :conditions => {:category => filter[:category], :status => filter[:status], 
+    :units => filter[:units], :pending => false})
 
     if params[:search_field]
       @courses = @courses.select {|course| course.title.downcase.include? params[:search_field].downcase}

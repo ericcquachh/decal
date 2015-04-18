@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+<%= params %>
 <%if current_user.try(:admin?) %>
   <br>
   <div class="btn-group btn-group-justified" role="group" aria-label="...">
@@ -27,8 +28,11 @@
 
   <%if params[:tab] != "manageadmins"%>
       <form class="form-inline">
-        <%= render 'courses/search_form' %>
-      <br></br>
+        <%= form_for(admin_index_path, method: :get, id: 'units_form') do %>
+          <%= hidden_field_tag :tab, params[:tab] %>
+          <%= render 'courses/search_form' %>
+        <% end %>
+        <br></br>
     <%= form_tag(controller: "admin", action: "index", method: "post") do %>
       <table class="table table-hover">
         <tr>

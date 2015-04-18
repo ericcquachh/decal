@@ -26,8 +26,7 @@ class Course < ActiveRecord::Base
   # validates :units, :presence => {message: "Units cannot be blank."}, :numericality => {only_integer: true, :greater_than => 0, :less_than => 5, message: "Units must be integers 1-4."} 
   # validates :category, :inclusion => {in: CATEGORIES, message: "You must choose a category from the dropdown selection."}
 
-
-  def self.sort_attributes
+  def self.filter_attributes
     {:title => nil, :category => self.categories + ["All"], :status => self.statuses + ["All"], :units => self.units}
   end
 
