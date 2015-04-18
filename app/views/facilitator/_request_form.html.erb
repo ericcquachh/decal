@@ -1,0 +1,28 @@
+<h2><%= "Facilitator Requests" %></h2>
+  <table class="std">
+    <thead>
+      <tr>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Email</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+
+      <% @course.requests.each do |user| %>
+        <tr>
+          <td><%= user.first_name %></td>
+          <td><%= user.last_name %></td>
+          <td><%= user.email %></td>
+          <td><%= check_box_tag(user.email) %></td>
+        </tr>
+      <% end %>
+
+    </tbody>
+
+  </table>
+</br>
+ 
+  <%= submit_tag("Add These Facilitators",:class=>'btn btn-primary')%>
+

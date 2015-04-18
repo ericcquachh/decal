@@ -222,11 +222,10 @@
   <%end%>
 </end>
   <% if !@course.pending %>
-    <br/><br/>
     <% if @course.verify_facilitator? current_user.id %>
       <%= render 'facilitator/request_form' %>
     <% else %>
-      <%= link_to 'Request to be Facilitator', facilitator_request_path, {:class => "btn btn-primary"} %>
+      <%= button_to 'Request to be Facilitator', 'facilitator/request', {:class => "btn btn-primary"} %>
     <% end %>
   <br/><br/>
   <%end%>
