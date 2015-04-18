@@ -4,42 +4,28 @@ Feature: Request to Add Course
   I want to submit a request approval form
 
 Background: user has logged in
-  When I sign in as a user
+  Given I sign in as a user
+  And I visit facilitate course page
+  Then I should see "How to start a Course"
+  When I follow "submit_course_for_approval"
+  Then I should see "New course"
 
-Scenario: User successfully submits request approval form
-  Given I visit the facilitate page
-  When I follow “Request to Add New Course”
-  Then I should see the request form
-  When I fill in the following:
-    | Title                 | My First Course                |
-    | Units                 | 2                              |
-    | Department            | Haas                           |
-    | Category              | Business                       |
-    | Description           | Super cool class               |
-    | Enrollment Info       | First come first serve yo      |
-    | Course Contact Email  | coolbeans@berkeley.edu         |
-    | Course Website        | www.coolcourse.com             |
-    | Faculty Sponsor Name  | Frank Schultz                  |
-    | Faculty Sponsor Email | frankschultz@haas.berkeley.edu |
-  And I attach the file “course_syllabus” to the syllabus section
-  And I press “Submit Request”
-  Then I should see “Course request successfully submitted to admin.”
+Scenario: User successfully submits valid request course approval form
+  Given I submitted a new course request form with valid fields
+  Then I should see "Course request successfully submitted to admin."
 
 Scenario: User submits invalid form
-  Given I visit the facilitate page
-  When I follow “Request to Add New Course”
-  And I fill in invalid fields
-  And I press “Submit Request”
-  Then I should see “Invalid fields”
+  Given I input invalid fields in the new course request form
+  And I press "continue"
+  Then the page should have an error
 
 Scenario: User submits incomplete form
-  Given I visit the facilitate page
-  When I follow “Request to Add New Course”
-  And I fill in incomplete fields
-  And I press “Submit Request”
-  Then I should see “The following fields are required”
+  Given I leave incomplete fields in the new course request form
+  And I press "continue"
+  Then I should see "can't be blank"
       
 Scenario: Logged out user cannot submit form
   Given I log out
-  And I visit the course homepage
-  Then I should not see “Request to Add New Course”
+  Then I should see "logged out"
+  When I visit the course homepage
+  Then I should not see "Facilitate"
