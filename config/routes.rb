@@ -14,9 +14,9 @@ Decal::Application.routes.draw do
   resources :existing_courses
 
   # paths for adding facilitator to courses
-  resources :facilitators
+  resources :facilitator
 
-  delete '/facilitators', to: 'facilitators#delete', as: 'facilitator_delete'
+  delete '/facilitator', to: 'facilitator#delete', as: 'facilitator_delete'
   delete '/dashboard', to: 'dashboard#delete', as: 'dashboard'
   # get '/dashboard/existing', to: 'dashboard#show', as: 'dashboard_existing'
 
@@ -24,7 +24,7 @@ Decal::Application.routes.draw do
   match 'demote' => 'courses#demote'
   match 'makeadmin' => 'courses#makeadmin'
   match 'removeadmin' => 'courses#removeadmin'
-  match 'facilitator_request' => 'facilitator#request'
+  match 'facilitator_request' => 'facilitator#facilitator_request'
   # match '/courses/:id/addsection' => 'courses#addsection', :as => :add_section, :via => :get
   # match '/courses/:id/updatesection' => 'courses#updatesection', :as => :update_section, :via => :post
 

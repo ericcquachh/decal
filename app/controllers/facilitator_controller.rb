@@ -1,7 +1,14 @@
 class FacilitatorController < ApplicationController
   def index
-    redirect_to course_path(:id => params[:course])
- 
+    #setting the instance course for the facilitator
+    @course = Course.find(params[:course].to_i)
+
+    #finding the user to add as facilitator
+    if params[:search_field]
+      @user = User.select{|user| user.email.downcase.include? params[:search_field].downcase}
+    else
+      @user = User.where('id not in (?)', @course.facilitators)
+    end
   end
 
   def create
@@ -22,11 +29,11 @@ class FacilitatorController < ApplicationController
     redirect_to course_path(:id => params[:course])
   end
 
-  def request
+  def facilitate_request
     course = Course.find(params[:course].to_i)
     FacilitateRequests.create!(request_id: current_user.id, receiver_id: course.id)
     redirect_to course_path(:id => params[:course])
   end
-    
+
 
 end

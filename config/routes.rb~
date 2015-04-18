@@ -14,9 +14,9 @@ Decal::Application.routes.draw do
   resources :existing_courses
 
   # paths for adding facilitator to courses
-  resources :facilitator
+  resources :facilitators
 
-  delete '/facilitator', to: 'facilitator#delete', as: 'facilitator_delete'
+  delete '/facilitators', to: 'facilitators#delete', as: 'facilitator_delete'
   delete '/dashboard', to: 'dashboard#delete', as: 'dashboard'
   # get '/dashboard/existing', to: 'dashboard#show', as: 'dashboard_existing'
 

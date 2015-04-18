@@ -27,6 +27,6 @@ class FacilitatorsController < ApplicationController
     FacilitateRequests.create!(request_id: current_user.id, receiver_id: course.id)
     redirect_to course_path(:id => params[:course])
   end
-
+    
 
 end
