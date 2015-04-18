@@ -102,18 +102,6 @@ end
 Then /^page should not have add course button$/ do 
   page.should_not have_content "Add New Course"
 end
-
-When /^I visit the home page/ do
-  visit '/'
-end
-
-Given /the following courses exist/ do |courses_table|
-  courses_table.hashes.each do |course|
-    Course.create!(course)
-  end
-end
-
-
   
 
 Given(/^these courses exist:$/) do |courses_table|
@@ -181,7 +169,7 @@ end
 
 #Felix's step for facilitate_course
 Given(/^the following users exist:$/) do |users_table|
-  users_table.rows_hash.each do |user|
+  users_table.hashes.each do |user|
     input_user = User.new
     input_user.email = user["email"]
     input_user.first_name = user["first name"]
@@ -237,6 +225,11 @@ Given /^I submitted a new course request form with valid fields/ do
   click_button "continue"
 end
 
+Given /^my course "([^"]*)" is approved/ do |title|
+  @my_course = Course.find_by_title(title)
+  @my_course.pending = false
+end
+  
 Given /^I input invalid fields in the new course request form$/ do
   fill_in "course_units", :with => 10
 end
@@ -250,3 +243,12 @@ Given /^I leave incomplete fields in the new course request form$/ do
   click_button "continue"
 end
 
+When /^I add facilitators for my course/ do 
+  visit "/facilitator?course=1"
+end
+
+When /^I search for "([^"]*)"/ do |name|
+  fill_in "search_field", :with => name
+  click_button "search"
+end
+  

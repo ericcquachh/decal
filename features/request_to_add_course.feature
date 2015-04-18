@@ -28,4 +28,4 @@ Scenario: Logged out user cannot submit form
   Given I log out
   Then I should see "Signed out successfully"
   When I visit facilitate course page
-  Then I should see "make you sure login"
+  Then I should see "make sure you login"

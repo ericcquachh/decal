@@ -28,4 +28,4 @@ Scenario: Facilitator should not find a non-existent student
 	And I click on "Test Course" course
 	When I add facilitators for my course
 	And I search for "sdgs"
-	Then I should not see "sdgs@berkeley.edu"
+	Then I should not see "@berkeley.edu"

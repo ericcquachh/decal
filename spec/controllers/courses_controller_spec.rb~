@@ -43,7 +43,7 @@ describe CoursesController do
       course3 = Course.find_by_title("The Communist Manifesto")
       course4 = Course.find_by_title("Kim Jong Un: Our Dear CEO")
       get :index, {:category => "Business"}
-      # assigns(:courses).should == [course3, course4]
+      assigns(:courses).should == [course3, course4]
     end
 
     it 'should filter by status' do
@@ -52,7 +52,7 @@ describe CoursesController do
       course3 = Course.find_by_title("The Communist Manifesto")
       course4 = Course.find_by_title("Kim Jong Un: Our Dear CEO")
       get :index, {:status => "Open"}
-      # assigns(:courses).should == [course2, course4]
+      assigns(:courses).should == [course2, course4]
     end
 
     it 'should filter by units' do
@@ -61,7 +61,7 @@ describe CoursesController do
       course3 = Course.find_by_title("The Communist Manifesto")
       course4 = Course.find_by_title("Kim Jong Un: Our Dear CEO")
       get :index, {:units => {"3" => nil}}
-      # assigns(:courses).should == [course2, course3]
+      assigns(:courses).should == [course2, course3]
     end
 
   end
