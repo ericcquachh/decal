@@ -1,5 +1,19 @@
 # -*- coding: utf-8 -*-
 <%if current_user.try(:admin?) %>
+<<<<<<< HEAD
+	<br>
+	<div class="btn-group btn-group-justified" role="group" aria-label="...">
+	  <div class="btn-group" role="group">
+	    <%= link_to 'APPROVED COURSES', admin_index_path(:tab => 'curr'), {:class => "btn btn-primary", :id => "approved_courses"} %>
+	  </div>
+	  <div class="btn-group" role="group">
+	 	<%= link_to 'PENDING COURSES', admin_index_path(:tab => 'pending'), {:class => "btn btn-primary", :id => "pending_courses"} %>
+	  </div>
+	  <div class="btn-group" role="group">
+	    <%= link_to 'MANAGE FACILITATORS', admin_index_path(:tab => 'manageadmins'), {:class => "btn btn-primary"} %>
+	  </div>
+	</div>
+=======
   <br>
   <div class="btn-group btn-group-justified" role="group" aria-label="...">
     <div class="btn-group" role="group">
@@ -12,6 +26,7 @@
       <%= link_to 'MANAGE FACILITATORS', admin_index_path(:tab => 'manageadmins'), {:class => "btn btn-primary"} %>
     </div>
   </div>
+>>>>>>> 9b1549eeee614ea076d2ab3f7112655a42748c24
 
   <div>
     <% if params[:tab] == "curr" %>
@@ -39,7 +54,7 @@
           <th>Status</th>
           <th>Edit</th>
           <% if params[:tab] == "curr" %>
-            <th>Unappove</th>
+            <th>Unapprove</th>
           <%end%>
           <% if params[:tab] == "pending" %>
             <th>Approve</th>
@@ -75,8 +90,66 @@
     <%end%>
 
 
+<<<<<<< HEAD
+		<br></br>
+
+
+
+		<%= form_tag(controller: "admin", action: "index", method: "post") do %>
+			<table class="table table-hover">
+				<tr>
+				  <th><%= link_to 'Course Title ▼' , admin_index_path(:title => "title") %></th>
+				  <th>Category</th>
+				  <th>Units</th>
+				  <th>Time</th>
+				  <th>Status</th>
+				  <th>Edit</th>
+				  <% if params[:tab] == "curr" %>
+				  	<th>Unappove</th>
+				  <%end%>
+				  <% if params[:tab] == "pending" %>
+				  	<th>Approve</th>
+				  <%end%>
+				  <!-- <th></th> -->
+				  <!-- <th></th> -->
+				</tr>
+
+				<% @courses.each do |course| %>
+					<tr>
+					  <td><%= link_to course.title, course, {:style=>'font-size: 120%;'} %></td>
+					  <td><%= course.category %></td>
+					  <td><%= course.units %></td>
+					  <td><% course.section_times.each do |time| %>
+					      <% if time.filled? %>
+					        <%= time.full_time %>
+					      <% else %>
+					        <%= 'TBA' %>
+					      <% end %>
+					      <br></br>
+					  <% end %> 
+					  <td><%= course.status %></td>
+					      <td><%= link_to 'Edit', edit_course_path(course) %></td>
+					  <td><%= check_box_tag(course.title) %></td>
+					</tr>
+				<% end %>
+			</table>
+
+			<% if params[:tab] == "curr" %>
+				<%= submit_tag("Unapprove Course(s)",:class=>'btn btn-primary')%>
+			<% end %>
+			<% if params[:tab] == "pending" %>
+				<%= submit_tag("Approve Course(s)",:class=>'btn btn-primary', :id => "approve_courses")%>
+			<% end %>
+		<%end%>
+
+
+	<%else%>
+	<!--facilitator		-->
+	<%end%>
+=======
   <%else%>
   <%end%>
+>>>>>>> 9b1549eeee614ea076d2ab3f7112655a42748c24
 <%else%>
 <h1>You do not have admin priviledges</h1>
 <%end%>

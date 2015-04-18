@@ -30,13 +30,10 @@ def find_user
   @user = User.where(:email => @visitor[:email]).first
 end
 
-
 def create_user
   create_visitor
   @user = User.create(@visitor)
 end
-
-
 
 def sign_up
   visit 'users/sign_up'
@@ -72,15 +69,10 @@ end
 
 ### GIVEN ###
 
-#Given /^I am not logged in$/ do
- # visit  destroy_user_session_path
-#end
-
 Given /^I am logged in$/ do
   create_user
   sign_in
 end
-
 
 Given /^I exist as a user$/ do
   create_user
@@ -88,9 +80,17 @@ end
 
 Given /^I do not exist as a user$/ do
   create_visitor
-
 end
 
+Given /^I log out$/ do
+  current_driver = Capybara.current_driver
+  begin
+    Capybara.current_driver = :rack_test
+    page.driver.submit :delete, "/users/sign_out", {}
+  ensure
+    Capybara.current_driver = current_driver
+  end
+end
 
 ### WHEN ###
 
@@ -180,15 +180,6 @@ end
 
 ### THEN ###
 
-Given /^I log out$/ do
-  current_driver = Capybara.current_driver
-  begin
-    Capybara.current_driver = :rack_test
-    page.driver.submit :delete, "/users/sign_out", {}
-  ensure
-    Capybara.current_driver = current_driver
-  end
-end
 
 Then /^I should be signed in$/ do
   page.should have_content "Logout"

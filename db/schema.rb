@@ -11,11 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(:version => 20150418015704) do
-=======
 ActiveRecord::Schema.define(:version => 20150418013554) do
->>>>>>> 9b1549eeee614ea076d2ab3f7112655a42748c24
 
   create_table "courses", :force => true do |t|
     t.string   "title"
@@ -39,13 +35,6 @@ ActiveRecord::Schema.define(:version => 20150418013554) do
   create_table "facilitate_ownedcourses", :force => true do |t|
     t.integer "ownedcourse_id", :default => -1
     t.integer "facilitator_id", :default => -1
-  end
-
-  create_table "facilitate_requests", :force => true do |t|
-    t.integer  "request_id",  :default => -1
-    t.integer  "receiver_id", :default => -1
-    t.datetime "created_at",                  :null => false
-    t.datetime "updated_at",                  :null => false
   end
 
   create_table "facilitate_requests", :force => true do |t|

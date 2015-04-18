@@ -1,4 +1,5 @@
-<h2><%= "Facilitator Requests" %></h2>
+<%= form_tag(controller: "facilitator", action: "index", method: "post") do %>
+  <% if !@course.requests.blank? %>
   <table class="std">
     <thead>
       <tr>
@@ -24,4 +25,8 @@
   </table>
 </br>
   <%= hidden_field_tag :course, @course.id %>
-  <%= submit_tag("Add These Facilitators",:class=>'btn btn-primary')%>
+  <%= submit_tag("Add These Facilitators",:class=>'btn btn-primary', :id => "add_these_facilitators")%>
+  <% else %>
+  <h5>There have been no new requests to faciliate this course</h5>
+
+<% end %>

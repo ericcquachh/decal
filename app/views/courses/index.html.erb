@@ -3,7 +3,7 @@
     display: inline-block;
   }
 </style>
-
+<%= params %>
 <div class="panel panel-default">
   <div class="panel-heading">
     <h3 class="panel-title">DEVELOPER TOOLS</h3>
@@ -41,7 +41,10 @@
 
 <h1>COURSES</h1>
 <form class="form-inline">
-    <%= render 'search_form' %>
+  <div class="form-group">
+    <%= form_for(courses_path, method: :get, id: 'units_form') do %>
+      <%= render 'search_form' %>
+    <% end %>
     <br></br>
     <table class="table table-hover">
       <tr>
