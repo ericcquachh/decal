@@ -18,13 +18,15 @@ Scenario: Successfully approve a course
 	And I should see "Teach"
 	Given I check "XYZ"
 	And I press "approve_courses"
-	Then I should not see "XYZ"
-        And I should see "Teach"
         When I follow "approved_courses"
         Then I should see "XYZ"
         And I should not see "Teach"
 	When I visit the home page
 	Then I should see "XYZ"
+	When I visit the admin page
+	And I follow "pending_courses"
+	Then I should not see "XYZ"
+        And I should see "Teach"
 
 Scenario: Non-admin cannot add a course
 	When I log out

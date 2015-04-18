@@ -103,7 +103,6 @@ Then /^page should not have add course button$/ do
   page.should_not have_content "Add New Course"
 end
 
-
 Given /the following courses exist/ do |courses_table|
   courses_table.hashes.each do |course|
     Course.create!(course)
@@ -121,10 +120,6 @@ Given(/^these courses exist:$/) do |courses_table|
     input_course.units = course["Units"]
     input_course.status = course["Status"]
     input_course.pending = course["Pending"]
-    input_course.department_num = course["Department_num"]
-    input_course.course_email = course["Course_email"]
-    input_course.faculty_email = course["Faculty_email"]
-    input_course.faculty_name = course["Facutly_name"]
     input_course.save
   end
 end
