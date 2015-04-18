@@ -3,8 +3,6 @@ branding/logo.png: branding/logo-05c276b6d6c27b3d09b883a68a88d564.png
 branding/logo/index.png: branding/logo-05c276b6d6c27b3d09b883a68a88d564.png
 rails.png: rails-71e944d9b39043eba50b77788c0d767f.png
 rails/index.png: rails-71e944d9b39043eba50b77788c0d767f.png
-application.js: application-8a994b41760ea6c31eeb9f5b3f94d505.js
-application/index.js: application-8a994b41760ea6c31eeb9f5b3f94d505.js
 application.css: application-9c6cf98e216405978ba4634c45397bfd.css
 application/index.css: application-9c6cf98e216405978ba4634c45397bfd.css
 jquery.min.map: jquery.min-c5a89be96c8d2def857e2657b2c155c0.map
