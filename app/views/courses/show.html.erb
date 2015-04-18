@@ -221,15 +221,7 @@
     <h1>This course has not been approved by the admin.</h1>
   <%end%>
 </end>
-  <% if !@course.pending %>
-    <br/><br/>
-    <% if @course.verify_facilitator? current_user.id %>
-      <%= render 'facilitator/request_form' %>
-    <% else %>
-      <%= link_to 'Request to be Facilitator', facilitator_request_path, {:class => "btn btn-primary"} %>
-    <% end %>
-  <br/><br/>
-  <%end%>
+
 
 
 <%= link_to 'Back', courses_path %>
