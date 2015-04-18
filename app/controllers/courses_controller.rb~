@@ -11,33 +11,33 @@ class CoursesController < ApplicationController
   end
 
   def index
-    @all = Course.all_attributes
-    @attributes = @all.keys
-    @attributes.each {|attribute| session[attribute] = @all[attribute]}
-    @attributes.each do |attribute|
-      if params[attribute] && params[attribute] != 'All'
+    sort = {}
+    Course.sort_attributes.each do |attribute, values|
+      if !params[attribute] || params[attribute] == 'Select'
+        params.delete(attribute)
+        sort[attribute] = values
+      else 
         if attribute == :units
-          session[attribute] = params[attribute].keys
-          params[attribute] = session[attribute]
-        else
-          session[attribute] = params[attribute]
+          params[attribute] = params[attribute].keys
         end
+      sort[attribute] = params[attribute]
       end
-    
     end
-
     #this does not work when you don't put in information about category, status, and units
-    # @courses = Course.find(:all, :order => session[:title], :conditions => {:category => session[:category], :status => session[:status], 
-    # :units => session[:units]})
-    @courses = Course.find(:all, :order => session[:title], :conditions => {:pending => false})
+    @courses = Course.find(:all, :order => params[:title], :conditions => {:category => sort[:category], :status => sort[:status], 
+    :units => sort[:units], :pending => false})
+    #@courses = Course.find(:all, :order => session[:title], :conditions => {:pending => false})
     # @courses = Course.find(:all, :order => session[:title])
-
     if params[:search_field]
       @courses = @courses.select {|course| course.title.downcase.include? params[:search_field].downcase}
     end
     if params[:section_time]
       params[:section_time] = Section_time.filter_section_time params[:section_time]
-      @courses = @courses.select {|course| course.section_times.any? {|time| time.include_time? params[:section_time]}}
+      if !params[:section_time].empty?
+        @courses = @courses.select {|course| course.section_times.any? {|time| time.include_time? params[:section_time]}}
+      else
+        params.delete(:section_time)
+      end
     end
   end
 
@@ -85,7 +85,7 @@ class CoursesController < ApplicationController
   def create
     session[:course_params].deep_merge!(params[:course]) if params[:course]
     @course = Course.new(session[:course_params])
-    @course.facilitator = current_user
+    @course.facilitators << current_user
     @course.current_step = session[:course_step]
     if @course.valid?
       if params[:previous_button]
@@ -104,7 +104,7 @@ class CoursesController < ApplicationController
       render 'new'
     else
       session[:course_step] = session[:course_params] = nil
-      flash[:notice] = "Course saved."
+      flash[:notice] = "Course request successfully submitted to admin."
       redirect_to @course
     end
   end
