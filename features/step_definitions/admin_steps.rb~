@@ -21,7 +21,3 @@ end
 When /^I visit the admin page$/ do
   visit '/admin'
 end
-
-When /^I visit the home page/ do
-  visit '/'
-end

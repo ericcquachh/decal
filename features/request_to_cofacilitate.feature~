@@ -10,6 +10,7 @@ Background:
     | XYZ   | 2     | Business  | false   | Open   | 
     | Teach | 3     | Languages | false   | Open   | 
 
+
 Scenario:
   Given I am on the course page for "XYZ"
   When I request to facilitate "XYZ"

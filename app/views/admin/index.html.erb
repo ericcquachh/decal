@@ -2,10 +2,10 @@
 	<br>
 	<div class="btn-group btn-group-justified" role="group" aria-label="...">
 	  <div class="btn-group" role="group">
-	    <%= link_to 'APPROVED COURSES', admin_index_path(:tab => 'curr'), {:class => "btn btn-primary"} %>
+	    <%= link_to 'APPROVED COURSES', admin_index_path(:tab => 'curr'), {:class => "btn btn-primary", :id => "approved_courses"} %>
 	  </div>
 	  <div class="btn-group" role="group">
-	 	<%= link_to 'PENDING COURSES', admin_index_path(:tab => 'pending'), {:class => "btn btn-primary"} %>
+	 	<%= link_to 'PENDING COURSES', admin_index_path(:tab => 'pending'), {:class => "btn btn-primary", :id => "pending_courses"} %>
 	  </div>
 	  <div class="btn-group" role="group">
 	    <%= link_to 'MANAGE FACILITATORS', admin_index_path(:tab => 'manageadmins'), {:class => "btn btn-primary"} %>
@@ -107,7 +107,7 @@
 				<%= submit_tag("Unapprove Course(s)",:class=>'btn btn-primary')%>
 			<% end %>
 			<% if params[:tab] == "pending" %>
-				<%= submit_tag("Approve Course(s)",:class=>'btn btn-primary')%>
+				<%= submit_tag("Approve Course(s)",:class=>'btn btn-primary', :id => "approve_courses")%>
 			<% end %>
 		<%end%>
 
