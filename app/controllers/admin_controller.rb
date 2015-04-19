@@ -11,6 +11,7 @@ class AdminController < ApplicationController
 
   def index
     @access = 'admin'
+    @users = User.joins(:facilitate_ownedcourses)
     if !params[:tab]
       params[:tab] = 'curr'
     end

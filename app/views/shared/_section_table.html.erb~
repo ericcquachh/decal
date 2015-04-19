@@ -1,0 +1,76 @@
+<table class="std">
+  <thead>
+    <tr>
+      <th>Section</th>
+      <th>Facilitator</th>
+      <th>Size</th>
+      <th>Location</th>
+      <th>Time</th>
+      <th>Starts</th>
+      <th>Status</th>
+      <th>
+      <abbr title="Course Control Numbers">CCNs</abbr>
+      </th>
+      <% if @course.verify_facilitator? current_user %>
+        <th>Delete</th>
+      <% end %>
+    </tr>
+  </thead>
+  <tbody>
+    <% @course.sections.each do |section| %>
+      <tr>
+        <% if !section.section_title.blank? %>
+          <td><%= section.section_title %></td>
+        <% else %>
+          <td><%= '--' %></td>
+        <% end %>
+        <% if !section.facilitator.blank? %>
+          <%= section.facilitator %></td>
+        <% else %>
+          <%= '--' %></td>
+        <% end %>
+        <% if !section.size.blank? %>
+          <td> <%= section.size %></td>
+        <% else %>
+          <td> <%= '--' %></td>
+        <% end %>
+        <% if !section.location.blank? %>
+          <td> <%= section.location %></td>
+        <% else %>
+          <td> <%= '--' %></td>
+        <% end %>
+        <% if section.section_time.filled? %>
+          <td><%= section.section_time.full_time %></td>
+        <% else %>
+          <td> <%= 'TBA' %></td>
+        <% end %>
+        <% if !section.first_day.blank? %>
+          <td> <%= section.first_day %></td>
+        <% else %>
+          <td> <%= 'TBA' %></td>
+        <% end %>
+        <% if !section.status.blank? %>
+          <td> <div><b><font color="red">Full</font></b></div></td>
+        <% else %>
+          <td> <div><b><font color="green">Open</font></b></div></td>
+        <% end %>
+        <% if !section.ccn_publish.blank? %>
+          <% if !section.ccn_ld.blank? %>
+            <td> <%= section.ccn_ld %></td>
+          <% else %>
+             <td>  <%= '--' %></td>
+          <% end %>/
+          <% if !section.ccn_ud.blank? %>
+            <td> <%= section.ccn_ud %></td>
+          <% else %>
+            <td> <%= '--' %></td>
+          <% end %>
+        <% else %>
+          <td> <%= '--' %></td>
+        <% end %>
+        <% if @course.verify_facilitator? current_user %>
+          <td><%= button_to "delete", {:controller => :sections, :action => 'destroy', :id => section.id, :course_id => @course.id }, :method => :delete, "onclick" => "javascript:return confirm('Are you absolutely sure you want to delete?')" %></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>

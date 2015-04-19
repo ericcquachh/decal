@@ -4,7 +4,7 @@ class SectionsController < ApplicationController
 
   def can_edit
     if !(Course.find(params[:course_id]).verify_facilitator? current_user)
-      redirect_to :root, notice: 'You do not have access to this page'
+      redirect_to course_path(params[:course_id]), notice: 'You do not have access to this page'
     end
   end
 

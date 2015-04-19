@@ -1,25 +1,36 @@
-<%= form_tag(controller: "facilitator", action: "index", method: "post") do %>
-  <table class="std">
-    <thead>
-      <tr>
-        <th>First Name</th>
-        <th>Last Name</th>
-        <th>Email</th>
-        <th></th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @user.each do |user| %>
-        <tr>
-          <td><%= user.first_name %></td>
-          <td><%= user.last_name %></td>
-          <td><%= user.email %></td>
-          <td><%= check_box_tag(user.email) %></td>
-        </tr>
+<table class="std">
+  <thead>
+    <tr>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Email</th>
+      <% if @more == 'approve' %>
+        <th>Approve</th>
+        <th>Reject</th>
+      <% elsif @more == 'edit' %>
+        <th>Remove</th>
+      <% elsif @more == 'add' %>
+        <th>Add</th>
       <% end %>
-    </tbody>
-  </table>
-  </br>
-  <%= hidden_field_tag :course, @course.id %>
-  <%= submit_tag("Add These Facilitators",:class=>'btn btn-primary', :id => "add_these_facilitators")%>
-<% end %>
+    </tr>
+  </thead>
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.first_name %></td>
+        <td><%= user.last_name %></td>
+        <td><%= user.email %></td>
+        <% if @more == 'approve' %>
+          <td><%= button_to 'approve', course_facilitator_index_path(:id => @course.id, :user_id => user.id, :page => @page), {:class => "btn btn-primary"} %></td>
+          <td><%= button_to 'reject', course_facilitator_index_path(:id => @course.id, :user_id => user.id, :page => @page), {:class => "btn btn-primary"} %></td>
+        <% elsif @more == 'edit' %>
+          <h5>Remove</h5>
+        <% elsif @more == 'add' %>
+          <td><%= button_to 'Add', course_facilitator_index_path(:id => @course.id, :user_id => user.id, :page => @page) %></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+  

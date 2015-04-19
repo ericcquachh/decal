@@ -1,6 +1,7 @@
 class FacilitatorController < ApplicationController
 
-  before_filter :is_facilitator
+  before_filter :is_facilitator, :except => [:facilitator_request]
+  before_filter :logged_in, :only => [:facilitator_request]
 
   def is_facilitator
     if !(Course.find(params[:course_id]).verify_facilitator? current_user)
@@ -8,8 +9,14 @@ class FacilitatorController < ApplicationController
     end
   end
 
+  def logged_in
+    if current_user.nil? || !(user_signed_in?)
+      redirect_to :root, notice: 'make sure you login fool'
+    end
+  end
+
   def index
-    @course = Course.find(params[:course])
+    @course = Course.find(params[:course_id])
     @users = User.where('id not in (?)', @course.facilitators)
     if params[:search_field]
       @users = @users.select{|user| user.email.downcase.include? params[:search_field].downcase}
@@ -17,28 +24,27 @@ class FacilitatorController < ApplicationController
   end
 
   def create
-    params.keys.each do |key|
-      if key.include? "@" and params[key] == "1"
-        course = Course.find(params[:course].to_i)
-        user = User.find_by_email(key)
-        FacilitateOwnedcourse.create!(facilitator_id: user.id, ownedcourse_id: course.id)
-        FacilitateRequest.destroy_all(request_id: user.id, receiver_id: course.id)
-      end
+    userid = params[:user_id]
+    courseid = params[:course_id]
+    FacilitateOwnedcourse.create!(facilitator_id: userid, ownedcourse_id: courseid)
+    FacilitateRequest.destroy_all(request_id: userid, receiver_id: courseid)
+    if params[:page] == 'manual'
+      redirect_to course_facilitator_index_path(:course_id => courseid), :method => :get, notice: "User has been promoted to facilitator"
     end
-    redirect_to course_path(:id => params[:course])
+    redirect_to course_path(:id => courseid), notice: "User has been promoted to facilitator"
   end
 
   def delete
-    relation = FacilitateOwnedcourse.find_by_facilitator_id_and_ownedcourse_id(params[:user].to_i, params[:course].to_i)
-    relation.destroy
-    redirect_to course_path(:id => params[:course])
+    userid = params[:user_id]
+    courseid = params[:course_id]
+    FacilitateOwnedcourse.destroy_all(facilitator_id: userid, ownedcourse_id: courseid)
+    FacilitateRequest.destroy_all(request_id: userid, receiver_id: courseid)
+    redirect_to course_path(:id => courseid)
   end
 
   def facilitator_request
-    course = Course.find(params[:course].to_i)
-    FacilitateRequest.create!(request_id: current_user.id, receiver_id: course.id)
-    redirect_to course_path(:id => params[:course])
+    FacilitateRequest.create!(request_id: current_user.id, receiver_id: params[:course_id])
+    redirect_to course_path(:id => params[:course_id])
   end
-
 
 end

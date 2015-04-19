@@ -1,6 +1,5 @@
-<%= form_tag('/facilitator', method: :get) do %>
+<%= form_tag(course_facilitator_index_path(:course_id => @course.id), :method => :get) do %>
   <%= label_tag("Search for:") %>
   <%= text_field_tag(:search_field) %>
-  <%= hidden_field_tag :course, @course.id %>
   <%= submit_tag "Search", :class=>"btn btn-primary", :id => "search" %>
 <% end %>

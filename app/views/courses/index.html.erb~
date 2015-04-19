@@ -46,7 +46,7 @@
       <%= render 'search_form' %>
     <% end %>
     <br></br>
-    <%= render 'course_table' %>
+    <%= render 'shared/course_table' %>
   </div>
 </form>
 <br />

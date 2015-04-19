@@ -19,17 +19,17 @@
     <h3>Pending Courses</h3>
   <%end%>
   <% if params[:tab] == "manageadmins" %>
-    <h3>Manage Admins</h3>
+    <h3>Manage Facilitators</h3>
   <%end%>
 </div>
 
 <%if params[:tab] != "manageadmins"%>
   <form class="form-inline">
-    <%= form_for(admin_index_path, method: :get, id: 'units_form') do %>
-      <%= hidden_field_tag :tab, params[:tab] %>
-      <%= render 'courses/search_form' %>
-    <% end %>
-    <br></br>
+  <%= form_for(admin_index_path, method: :get, id: 'units_form') do %>
+    <%= hidden_field_tag :tab, params[:tab] %>
+    <%= render 'courses/search_form' %>
+  <% end %>
+  <br></br>
   <%= form_tag(controller: "admin", action: "index", method: "post") do %>
     <%= render 'shared/course_table' %>
     <% if params[:tab] == "pending" %>
@@ -37,8 +37,9 @@
     <% else %>
       <%= submit_tag("Unapprove Course(s)",:class=>'btn btn-primary')%>
     <% end %>
-  <%end%>
-  <%else%>
+  <% end %>
+<%else%>
+  <%= render 'shared/user_table' %>
 <%end%>
 
 

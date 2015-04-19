@@ -2,10 +2,10 @@ class CoursesController < ApplicationController
   # GET /courses
   # GET /courses.json
 
-  before_filter :authorize, :except => [:index, :show]
+  before_filter :logged_in, :except => [:index, :show]
   before_filter :is_facilitator, :only => [:destroy]
 
-  def authorize
+  def logged_in
     if current_user.nil? || !(user_signed_in?)
       redirect_to :root, notice: 'make sure you login fool'
     end

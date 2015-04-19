@@ -17,7 +17,7 @@
 
 <p>* If you are currently teaching a course, and do not have access to your course page, ask your lead facilitator for access</p>
 
-<% if not current_user.ownedcourses.blank? %>
+<% if not current_user.ownedcourses.blank? || current_user.admin %>
   <div>
     <div class="page-header">
       <h3>Courses Pending Approval</h3>
@@ -26,7 +26,7 @@
     <% if not @courses.blank? %>
       <%= render 'shared/course_table' %>
     <% else %>
-      <h3>No courses currently pending approval</h3>
+      <h5>No courses currently pending approval</h5>
     <% end %>
   </div>
 
