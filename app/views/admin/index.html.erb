@@ -32,6 +32,7 @@
   <br></br>
   <% @access = 'admin' %>
   <%= form_tag(controller: "admin", action: "index", method: "post") do %>
+    <%= hidden_field_tag :tab, params[:tab] %>
     <%= render 'shared/course_table' %>
     <% if params[:tab] == "pending" %>
       <%= submit_tag("Approve Course(s)",:class=>'btn btn-primary')%>

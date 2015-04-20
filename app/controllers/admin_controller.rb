@@ -38,6 +38,6 @@ class AdminController < ApplicationController
         end
       end
     end
-    redirect_to "/admin"
+    redirect_to admin_index_path(:tab => params[:tab]), method: :get
   end
 end
