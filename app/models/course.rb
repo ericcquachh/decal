@@ -26,18 +26,47 @@ class Course < ActiveRecord::Base
   # validates :units, :presence => {message: "Units cannot be blank."}, :numericality => {only_integer: true, :greater_than => 0, :less_than => 5, message: "Units must be integers 1-4."} 
   # validates :category, :inclusion => {in: CATEGORIES, message: "You must choose a category from the dropdown selection."}
 
-  def self.filter_attributes
-    {:title => nil, :category => self.categories + ["All"], :status => self.statuses + ["All"], :units => self.units}
-  end
-
   # Changed to make validations work
   def self.categories
     CATEGORIES
   end
 
-  def verify_facilitator? user
-    return false if !user
-    user.admin or self.facilitators.include? user
+  def self.filter_attributes
+    {:title => nil, :category => self.categories + ["All"], :status => self.statuses + ["All"], :units => self.units}
+  end
+
+  def self.normalize_params! input
+    Course.filter_attributes.keys.each do |attribute|
+      if !input[attribute] or input[attribute] == 'Select'
+        input.delete attribute
+      elsif attribute == :units
+        input[attribute] = input[attribute].keys
+      end
+    end
+    Section_time.normalize_time!(input)
+  end
+
+  def self.filtering_values input
+    output = {}
+    Course.filter_attributes.each do |attribute, values|
+      if !input[attribute]
+        output[attribute] = values
+      else
+        output[attribute] = input[attribute]
+      end
+    end
+    output
+  end
+
+  def self.filter! input, pending
+    normalize_params! input
+    filter_values = filtering_values input
+    output = Course.find(:all, :order => input[:title], :conditions => {:category => filter_values[:category], :status => filter_values[:status], :units => filter_values[:units], :pending => pending})
+    output = output.select {|course| course.section_times.any? {|time| time.include_time? input}}
+    if input[:search_field]
+      output = output.select {|course| course.title.downcase.include? input[:search_field].downcase}
+    end
+    output
   end
 
   def self.units
@@ -78,5 +107,11 @@ class Course < ActiveRecord::Base
       valid?
     end
   end
+
+  def verify_facilitator? user
+    return false if !user
+    user.admin or self.facilitators.include? user
+  end
+
 
 end

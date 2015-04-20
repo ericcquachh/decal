@@ -40,7 +40,7 @@ class Section_time < ActiveRecord::Base
 
 
   def self.time_to_int time
-    time =~ /(\d+):(\d+) (P)?(A)?M/
+    time =~ /(\d+):(\d+)(P)?(A)?M/
     new = $1.to_i * 60 + $2.to_i
     if $3
       new + 720
@@ -57,23 +57,29 @@ class Section_time < ActiveRecord::Base
     time = (int / 60).to_s + ":" + (int % 60).to_s
     time += 0.to_s if int % 60 == 0
     if pm 
-      time += " PM"
+      time += "PM"
     else
-      time += " AM"
+      time += "AM"
     end
   end
 
-  def self.filter_section_time input
+  def self.normalize_time! input
+    need_to_sort = false
     if input[:days]
       input[:days] = input[:days].keys.join("")
+      need_to_sort = true
     end
     if input[:start_time] == '-Select Time-'
       input.delete :start_time
+    else
+      need_to_sort = true
     end
     if input[:end_time] == '-Select Time-'
       input.delete :end_time
+    else
+      need_to_sort = true
     end
-    input
+    need_to_sort
   end
 
   def filled?

@@ -63,7 +63,7 @@ class Section_time < ActiveRecord::Base
     end
   end
 
-  def self.filter_section_time input
+  def self.normalize_time! input
     if input[:days]
       input[:days] = input[:days].keys.join("")
     end
@@ -73,7 +73,6 @@ class Section_time < ActiveRecord::Base
     if input[:end_time] == '-Select Time-'
       input.delete :end_time
     end
-    input
   end
 
   def filled?
