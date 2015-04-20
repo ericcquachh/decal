@@ -17,7 +17,7 @@ class FacilitatorController < ApplicationController
 
   def index
     @course = Course.find(params[:course_id])
-    @users = User.where('id not in (?)', @course.facilitators)
+    @users = User.where('id NOT IN (?)', @course.facilitators.empty? ? '' : @course.facilitators)
     if params[:search_field]
       @users = @users.select{|user| user.email.downcase.include? params[:search_field].downcase}
     end

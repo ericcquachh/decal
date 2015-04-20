@@ -30,6 +30,7 @@
     <%= render 'shared/search_form' %>
   <% end %>
   <br></br>
+  <% @access = 'admin' %>
   <%= form_tag(controller: "admin", action: "index", method: "post") do %>
     <%= render 'shared/course_table' %>
     <% if params[:tab] == "pending" %>
