@@ -35,9 +35,7 @@
   </div>
   <% @courses = current_user.ownedcourses.where(:pending => false) %>
   <% if not @courses.blank? %>
-    <%= form_tag(controller: "dashboard", action: "index", method: "post") do %>
-      <%= render 'shared/course_table' %>
-      <%= submit_tag("Unfacilitate These Courses",:class=>'btn btn-primary')%>
-    <% end %>
+    <%= @page = 'dashboard' %>
+    <%= render 'shared/course_table' %>
   <% end %>
 <%end%>

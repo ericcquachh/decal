@@ -37,7 +37,8 @@
 
   <h2>Sections</h2>
   <div class="sections">
-    <% if !@course.sections.blank? %>
+    <% @sections = @course.sections %>
+    <% if !@sections.blank? %>
       <%= render 'shared/section_table' %>
       <br/>
       <% if  @course.verify_facilitator? current_user  %>
@@ -87,6 +88,7 @@
 
   <h2>Files</h2>
   <div class="uploads">
+    <% @uploads = @course.uploads %>
     <%= render 'shared/upload_table' %>
     <br/>
     <% if @course.verify_facilitator? current_user %>

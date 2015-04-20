@@ -40,7 +40,11 @@ class FacilitatorController < ApplicationController
     courseid = params[:course_id]
     FacilitateOwnedcourse.destroy_all(facilitator_id: userid, ownedcourse_id: courseid)
     FacilitateRequest.destroy_all(request_id: userid, receiver_id: courseid)
-    redirect_to course_path(:id => courseid)
+    if params[:page] == 'dashboard'
+      redirect_to dashboard_index_path
+    else
+      redirect_to course_path(:id => courseid)
+    end
   end
 
   def facilitator_request

@@ -7,7 +7,7 @@
     </tr>
   </thead>
   <tbody>
-    <% @course.uploads.each do |upload| %>
+    <% @uploads.each do |upload| %>
       <tr>
         <td><%= upload.name %></td>
         <td><%= link_to "Download", upload.attachment_url %></td>

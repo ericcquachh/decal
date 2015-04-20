@@ -17,7 +17,7 @@
     </tr>
   </thead>
   <tbody>
-    <% @course.sections.each do |section| %>
+    <% @sections.each do |section| %>
       <tr>
         <% if !section.section_title.blank? %>
           <td><%= section.section_title %></td>
