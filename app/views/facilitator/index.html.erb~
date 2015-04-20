@@ -1,8 +1,0 @@
-<h1><%= "Add Facilitators for " + @course.title %></h1>
-<%= render 'search_form' %>
-<% @page = 'manual' %>
-<% @more = 'add' %>
-<%= render 'shared/user_form' %>
-
-
-

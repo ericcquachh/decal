@@ -1,5 +1,0 @@
-<h1>Editing course</h1>
-<% if @course.verify_facilitator? %>
-  <%= render 'form' %>
-<%= link_to 'Show', @course %> |
-<%end%>
