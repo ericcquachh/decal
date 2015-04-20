@@ -35,7 +35,7 @@
   </div>
   <% @courses = current_user.ownedcourses.where(:pending => false) %>
   <% if not @courses.blank? %>
-    <%= @page = 'dashboard' %>
+    <% @page = 'dashboard' %>
     <%= render 'shared/course_table' %>
   <% end %>
 <%end%>
