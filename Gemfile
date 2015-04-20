@@ -29,6 +29,10 @@ group :assets do
   gem 'omniauth-google-oauth2' 
   gem 'carrierwave', '~> 0.10.0'
   gem 'strong_parameters'
+  # gem 'ckeditor', github: 'galetahub/ckeditor'
+  # gem 'ckeditor_rails'
+  # gem 'mini_magick'
+  gem 'tinymce-rails'
   gem 'figaro'
   gem 'fog'
   

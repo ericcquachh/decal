@@ -1,4 +1,13 @@
 class SectionsController < ApplicationController
+
+  before_filter :can_edit
+
+  def can_edit
+    if !(Course.find(params[:course_id]).verify_facilitator? current_user)
+      redirect_to course_path(params[:course_id]), notice: 'You do not have access to this page'
+    end
+  end
+
   def new
     @course = Course.find(params[:course_id])
     @section = Section.new

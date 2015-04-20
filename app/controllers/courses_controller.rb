@@ -2,53 +2,33 @@ class CoursesController < ApplicationController
   # GET /courses
   # GET /courses.json
 
-  before_filter :authorize, :except => [:index, :show]
+  before_filter :logged_in, :except => [:index, :show]
+  before_filter :is_facilitator, :only => [:destroy]
 
-  def authorize
+  def logged_in
     if current_user.nil? || !(user_signed_in?)
       redirect_to :root, notice: 'make sure you login fool'
     end
   end
 
+  def is_facilitator
+    if !(Course.find(params[:course_id]).verify_facilitator? current_user)
+      redirect_to :root, notice: 'You do not have these priveleges'
+    end
+  end
+
   def index
-    @all = Course.all_attributes
-    @attributes = @all.keys
-    @attributes.each {|attribute| session[attribute] = @all[attribute]}
-    @attributes.each do |attribute|
-      if params[attribute] && params[attribute] != 'All'
-        if attribute == :units
-          session[attribute] = params[attribute].keys
-          params[attribute] = session[attribute]
-        else
-          session[attribute] = params[attribute]
-        end
-      end
-    
-    end
-
-    #this does not work when you don't put in information about category, status, and units
-    @courses = Course.find(:all, :order => session[:title], :conditions => {:category => session[:category], :status => session[:status], 
-    :units => session[:units]})
-
-    # @courses = Course.find(:all, :order => session[:title])
-
-    if params[:search_field]
-      @courses = @courses.select {|course| course.title.downcase.include? params[:search_field].downcase}
-    end
-    if params[:section_time]
-      params[:section_time] = Section_time.filter_section_time params[:section_time]
-      @courses = @courses.select {|course| course.section_times.any? {|time| time.include_time? params[:section_time]}}
-    end
+    @courses = Course.filter! params, false
   end
 
-  def promote
-    current_user.update_attribute :facilitator, true
-    redirect_to :root, notice: "User promoted to facilitator"
+  def makeadmin
+    current_user.update_attribute :admin, true
+    redirect_to :root, notice: "User is now God."
   end
 
-  def demote
-    current_user.update_attribute :facilitator, false
-    redirect_to :root, notice: "User demoted to basic user"
+  def removeadmin
+    current_user.update_attribute :admin, false
+    redirect_to :root, notice: "User is now a peasant."
   end
 
   # GET /courses/1
@@ -65,9 +45,8 @@ class CoursesController < ApplicationController
   # GET /courses/new  
   # GET /courses/new.json
   def new
+    session[:course_params] ||= {}
     @course = Course.new
-
-
 
     respond_to do |format|
       format.html # new.html.erb
@@ -82,22 +61,32 @@ class CoursesController < ApplicationController
 
   # POST /courses
   # POST /courses.json
+
   def create
-    # @course = Course.new(params[:course])
-    @course = current_user.courses.new(params[:course])
+    session[:course_params].deep_merge!(params[:course]) if params[:course]
+    @course = Course.new(session[:course_params])
+    @course.facilitators << current_user
+    @course.current_step = session[:course_step]
     if @course.valid?
-      current_user.save!
-      @course.uid = current_user.id
-      @course.save!
-      redirect_to :root, :notice => params
+      if params[:previous_button]
+        @course.previous_step
+      elsif @course.last_step?
+        if @course.all_valid?
+          @course.pending = true
+          @course.save
+        end
+      else
+        @course.next_step
+      end
+      session[:course_step] = @course.current_step
+    end
+    if @course.new_record?
+      render 'new'
     else
-      e = "Errors: "
-      @course.errors.each do |type, msg|
-        e = e + msg + "\n"
-      end 
-      #need to persist data across redirect
-      redirect_to new_course_path, :flash => {:error => e}
-    end 
+      session[:course_step] = session[:course_params] = nil
+      flash[:notice] = "Course request successfully submitted to admin."
+      redirect_to @course
+    end
   end
 
   # PUT /courses/1
@@ -127,5 +116,5 @@ class CoursesController < ApplicationController
       format.json { head :no_content }
     end
   end
-    
+
 end

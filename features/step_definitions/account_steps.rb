@@ -25,17 +25,15 @@ def create_other_facilitator
 end
 
 
+
 def find_user
   @user = User.where(:email => @visitor[:email]).first
 end
-
 
 def create_user
   create_visitor
   @user = User.create(@visitor)
 end
-
-
 
 def sign_up
   visit 'users/sign_up'
@@ -67,17 +65,14 @@ def sign_in_facilitator
   click_button "Sign in"
 end
 
-### GIVEN ###
 
-#Given /^I am not logged in$/ do
- # visit  destroy_user_session_path
-#end
+
+### GIVEN ###
 
 Given /^I am logged in$/ do
   create_user
   sign_in
 end
-
 
 Given /^I exist as a user$/ do
   create_user
@@ -85,9 +80,17 @@ end
 
 Given /^I do not exist as a user$/ do
   create_visitor
-
 end
 
+Given /^I log out$/ do
+  current_driver = Capybara.current_driver
+  begin
+    Capybara.current_driver = :rack_test
+    page.driver.submit :delete, "/users/sign_out", {}
+  ensure
+    Capybara.current_driver = current_driver
+  end
+end
 
 ### WHEN ###
 
@@ -106,8 +109,9 @@ When /^I sign in as another facilitator$/ do
   sign_in_facilitator
 end
 
+
 When /^I sign in as a user$/ do
-  create_visitor
+  create_user
   sign_in
 end
 
@@ -176,9 +180,6 @@ end
 
 ### THEN ###
 
-Then /^I log out$/ do
-  click_link "Logout"
-end
 
 Then /^I should be signed in$/ do
   page.should have_content "Logout"
@@ -236,3 +237,5 @@ Then /^I should see my name$/ do
   create_user
   page.should have_content @user[:name]
 end
+
+

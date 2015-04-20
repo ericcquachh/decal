@@ -1,4 +1,4 @@
-Then /^(?:|I )should see a "([^"]*)" button$/ do |text|
+Then /^(?:|I )should see a "([^\"]*)" button$/ do |text|
    page.should have_selector("input[type=submit][value='New Upload']")
 end
 

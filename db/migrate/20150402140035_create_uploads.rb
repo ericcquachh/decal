@@ -3,7 +3,7 @@ class CreateUploads < ActiveRecord::Migration
     create_table :uploads do |t|
       t.string :name
       t.string :attachment
-
+      t.integer :course_id
       t.timestamps
     end
   end

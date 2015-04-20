@@ -11,23 +11,44 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150403183050) do
+ActiveRecord::Schema.define(:version => 20150418013554) do
 
   create_table "courses", :force => true do |t|
     t.string   "title"
     t.string   "category"
     t.string   "units"
+    t.string   "time"
     t.string   "status"
-    t.datetime "created_at",                 :null => false
-    t.datetime "updated_at",                 :null => false
-    t.integer  "uid",        :default => -1
+    t.string   "department_num"
+    t.boolean  "cs_fw"
+    t.string   "description"
+    t.string   "enrollment_info"
+    t.string   "course_email"
+    t.string   "course_website"
+    t.string   "faculty_name"
+    t.string   "faculty_email"
+    t.boolean  "pending"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+  end
+
+  create_table "facilitate_ownedcourses", :force => true do |t|
+    t.integer "ownedcourse_id", :default => -1
+    t.integer "facilitator_id", :default => -1
+  end
+
+  create_table "facilitate_requests", :force => true do |t|
+    t.integer  "request_id",  :default => -1
+    t.integer  "receiver_id", :default => -1
+    t.datetime "created_at",                  :null => false
+    t.datetime "updated_at",                  :null => false
   end
 
   create_table "section_times", :force => true do |t|
     t.string   "days"
     t.string   "start_time"
     t.string   "end_time"
-    t.string   "section_id"
+    t.integer  "section_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
@@ -42,39 +63,39 @@ ActiveRecord::Schema.define(:version => 20150403183050) do
     t.boolean  "status"
     t.string   "first_day"
     t.string   "location"
+    t.integer  "course_id"
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
-    t.integer  "course_id"
   end
 
   create_table "uploads", :force => true do |t|
     t.string   "name"
     t.string   "attachment"
+    t.integer  "course_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
-    t.integer  "course_id"
   end
 
   create_table "users", :force => true do |t|
-    t.string   "email",                  :default => "",    :null => false
-    t.string   "encrypted_password",     :default => "",    :null => false
+    t.string   "email",                  :default => "", :null => false
+    t.string   "encrypted_password",     :default => "", :null => false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          :default => 0,     :null => false
+    t.integer  "sign_in_count",          :default => 0,  :null => false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.datetime "created_at",                                :null => false
-    t.datetime "updated_at",                                :null => false
+    t.datetime "created_at",                             :null => false
+    t.datetime "updated_at",                             :null => false
     t.string   "provider"
     t.string   "uid"
     t.string   "first_name"
     t.string   "last_name"
     t.string   "class_level"
-    t.boolean  "facilitator",            :default => false
     t.string   "access"
+    t.boolean  "admin"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

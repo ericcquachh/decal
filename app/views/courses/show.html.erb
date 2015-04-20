@@ -1,167 +1,103 @@
-<p id="notice"><%= notice %></p>
+<% if !@course.pending or @course.verify_facilitator? current_user %>
+  <% if @course.pending  %>
+    <h3>Course can be edited, but still needs to be approved.</h3>
+  <%end%>
 
-<p>
-  <h1><%= @course.title %></h1>
-</p>
-
-<p>
-  <b>Category</b> <%= @course.category %><br></br>
-  <b>Units</b> <%= @course.units %><br></br>
-<% if current_user.try(:facilitator?) and current_user.id == @course.uid %>
-  <%= link_to 'Edit Course Info', edit_course_path(@course) %>
-<% end %>
-</p>
-<br/>
-<p>
-  <h2>Sections</h2>
-</p>
-<div class="sections">
-  <% if !@course.sections.blank? %>
-    <table class="std">
-      <thead>
-        <tr>
-          <th>Section</th>
-          <th>Facilitator</th>
-          <th>Size</th>
-          <th>Location</th>
-          <th>Time</th>
-          <th>Starts</th>
-          <th>Status</th>
-          <th>
-            <abbr title="Course Control Numbers">CCNs</abbr>
-          </th>
-          <% if current_user.try(:facilitator?) %>
-            <th>Delete</th>
-          <% end %>
-        </tr>
-      </thead>
-      <tbody>
-        <% @course.sections.each do |section| %>
-          <tr>
-            <td>
-              <% if !section.section_title.blank? %>
-                <%= section.section_title %>
-              <% else %>
-                <%= '--' %>
-              <% end %>
-            </td>
-            <td>
-              <% if !section.facilitator.blank? %>
-                <%= section.facilitator %>
-              <% else %>
-                <%= '--' %>
-              <% end %>
-            </td>
-            <td>
-              <% if !section.size.blank? %>
-                <%= section.size %>
-              <% else %>
-                <%= '--' %>
-              <% end %>
-            </td>
-            <td>
-              <% if !section.location.blank? %>
-                <%= section.location %>
-              <% else %>
-                <%= '--' %>
-              <% end %>
-            </td>
-            <td>
-              <% if section.section_time.filled? %>
-                <%= section.section_time.full_time %>
-              <% else %>
-                <%= 'TBA' %>
-              <% end %>
-            </td>
-            <td>
-              <% if !section.first_day.blank? %>
-                <%= section.first_day %>
-              <% else %>
-                <%= 'TBA' %>
-              <% end %>
-            </td>
-            <td>
-              <% if !section.status.blank? %>
-                <div><b><font color="red">Full</font></b></div>
-              <% else %>
-                <div><b><font color="green">Open</font></b></div>
-              <% end %>
-            </td>
-            <td>
-              <% if !section.ccn_publish.blank? %>
-                <% if !section.ccn_ld.blank? %>
-                  <%= section.ccn_ld %>
-                <% else %>
-                  <%= '--' %>
-                <% end %>/
-                <% if !section.ccn_ud.blank? %>
-                  <%= section.ccn_ud %>
-                <% else %>
-                  <%= '--' %>
-                <% end %>
-              <% else %>
-                <%= '--' %>
-              <% end %>
-            </td>
-            <% if current_user.try(:facilitator?) and current_user.id == @course.uid %>
-              <td>
-                <%= button_to "delete", {:controller => :sections, :action => 'destroy', :id => section.id, :course_id => @course.id }, :method => :delete, "onclick" => "javascript:return confirm('Are you absolutely sure you want to delete?')" %>
-              </td>
-            <% end %>
-          </tr>
-        <% end %>
-      </tbody>
-    </table><br/>
-    <% if current_user.try(:facilitator?) and current_user.id == @course.uid  %>
-      <%= button_to 'Add Section', {:controller => :sections, :action => 'new', :course_id => @course.id}, :method => :get %>
-      <br/><br/>
-    <% end %>
-  <% else %>
-    <fieldset><legend><h5>No section has been created for this course yet</h5></legend></fieldset>
-    <% if current_user.try(:facilitator?) and current_user.id == @course.uid  %>
-      <%= button_to 'Add Section', {:controller => :sections, :action => 'new', :course_id => @course.id}, :method => :get %>
-      <br/><br/>
-    <% end %>
-  <% end %>
-</div>
-
-
-<h2>Files</h2>
-<div class="uploads">
-  <!--
-  <% if !flash[:notice].blank? %>
-    <div class="alert alert-info">
-    <%= flash[:notice] %>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title"><h1><%= @course.title %></h1>  
     </div>
-  <% end %>
-  <br /> -->
-
-  <table class="std">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Download Link</th>
-        <th>&nbsp;</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @course.uploads.each do |upload| %>
-        <tr>
-          <td><%= upload.name %></td>
-          <td><%= link_to "Download", upload.attachment_url %></td>
-          <% if current_user.try(:facilitator?) and current_user.id == @course.uid %>
-            <td><%= button_to "Delete", {:controller => :uploads, :action => 'destroy', :id => upload.id, :course_id => @course.id }, :method => :delete, "onclick" => "javascript:return confirm('Are you absolutely sure you want to delete?')" %></td>
-          <% end %>
-        </tr>
+    <div class="panel-body">
+      <p>
+        <b>Category</b> <%= @course.category %><br></br>
+        <b>Units</b> <%= @course.units %><br></br> 
+      <% if @course.verify_facilitator? current_user %>
+        <%= link_to 'Edit Course Info', edit_course_path(@course, :step_1 => true) %>
       <% end %>
-    </tbody>
-  </table>
+      </p>
+    </div>
+  </div>
+
+  <p>
+    <%= field_set_tag 'About the Course' do %>
+      <div><%= @course.description.html_safe %></div><br/>
+      <% if @course.verify_facilitator? current_user %>
+        <%= link_to 'Edit Course Description', edit_course_path(@course, :step_3 => true) %>
+      <% end %>
+    <% end %>
+  </p>
+  <p>
+    <%= field_set_tag 'How to Enroll' do %>
+      <div><%= @course.enrollment_info.html_safe %></div>
+      <% if @course.verify_facilitator? current_user %>
+        <%= link_to 'Edit Information', edit_course_path(@course, :step_3 => true) %>
+      <% end %>
+    <% end %>
+  </p>
+
+  <h2>Sections</h2>
+  <div class="sections">
+    <% if !@course.sections.blank? %>
+      <%= render 'shared/section_table' %>
+      <br/>
+      <% if  @course.verify_facilitator? current_user  %>
+        <%= button_to 'Add Section', {:controller => :sections, :action => 'new', :course_id => @course.id}, :method => :get %>
+        <br/><br/>
+      <% end %>
+    <% else %>
+      <fieldset><legend><h5>No section has been created for this course yet</h5></legend></fieldset>
+      <% if  @course.verify_facilitator? current_user  %>
+        <%= button_to 'Add Section', {:controller => :sections, :action => 'new', :course_id => @course.id}, :method => :get %>
+        <br/><br/>
+      <% end %>
+    <% end %>
+  </div>
+
+  <h2> Current Facilitators </h2>
+  <div class="current_facilitators">
+    <% @more = 'edit' %>
+    <% @users = @course.facilitators %>
+    <%= render 'shared/user_table' %>
+    <br/><br/>
+    <% if @course.verify_facilitator? current_user %>
+      <%= link_to "Add Facilitators", course_facilitator_index_path(:course_id => @course.id), :method => :get %>
+    <% end %>
+    <br/><br/>
+  </div>
+
+  <h2> Facilitator Requests </h2>
+  <div class="facilitator_requests">
+    <% if @course.verify_facilitator? current_user %>
+      <% @users = @course.requests %>
+      <% if !@users.empty? %>
+        <% @more = 'approve' %>
+        <%= render 'shared/user_table' %>
+      <% else %>
+        <h5>There are no new requests to facilitate this course</h5>
+      <%end%>
+    <% else %>
+      <% if @course.requests.include? current_user %>
+        <h5>You have already requested to become a facilitator for this course</h5>
+      <% else %>
+         <%= button_to 'Request to be Facilitator', course_facilitator_request_path(:course_id => @course.id), {:class => "btn btn-primary"} %>
+      <% end %>
+    <% end %>
+    <br/><br/>
+  </div>
+
+  <h2>Files</h2>
+  <div class="uploads">
+    <%= render 'shared/upload_table' %>
+    <br/>
+    <% if @course.verify_facilitator? current_user %>
+      <%= button_to "New Upload", {:controller => :uploads, :action => 'new', :course_id => @course.id}, :method => :get %>
+      <br></br>
+    <% end %>
+  </div>
   <br/>
-  <% if current_user.try(:facilitator?) and current_user.id == @course.uid %>
-    <%= button_to "New Upload", {:controller => :uploads, :action => 'new', :course_id => @course.id}, :method => :get %>
-    <br />
-    <br />
-  <% end %>
-</div>
-<br/>
+
+<%else%>
+  <h1>This course has not been approved by the admin.</h1>
+<%end%>
+
 <%= link_to 'Back', courses_path %>

@@ -19,11 +19,8 @@ class Section_time < ActiveRecord::Base
   end
 
   def include_day? dotw
-    bool = true
-    if dotw
-      bool = days_to_list.any? {|day| dotw.include? day}
-    end
-    bool
+    return true if !dotw
+    days_to_list.any? {|day| dotw.include? day} 
   end
 
   def include_time? param
@@ -53,10 +50,9 @@ class Section_time < ActiveRecord::Base
   end
 
   def self.int_to_time int
-    pm = false
-    if int > 720
+    pm = (int >= 720)
+    if int >= 780
       int -= 720
-      pm = true
     end
     time = (int / 60).to_s + ":" + (int % 60).to_s
     time += 0.to_s if int % 60 == 0
@@ -67,7 +63,7 @@ class Section_time < ActiveRecord::Base
     end
   end
 
-  def self.filter_section_time input
+  def self.normalize_time! input
     if input[:days]
       input[:days] = input[:days].keys.join("")
     end
@@ -77,7 +73,6 @@ class Section_time < ActiveRecord::Base
     if input[:end_time] == '-Select Time-'
       input.delete :end_time
     end
-    input
   end
 
   def filled?

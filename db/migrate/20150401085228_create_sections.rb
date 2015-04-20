@@ -10,7 +10,7 @@ class CreateSections < ActiveRecord::Migration
       t.boolean :status
       t.string :first_day
       t.string :location
-
+      t.integer :course_id
       t.timestamps
     end
   end

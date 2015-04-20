@@ -10,8 +10,17 @@ class User < ActiveRecord::Base
   }
 
   #facilitator relation
-  has_many :courses, :foreign_key => :uid
+  # has_many :courses, :foreign_key => :uid
+  has_many :facilitate_ownedcourses, foreign_key: :facilitator_id
+  has_many :ownedcourses, through: :facilitate_ownedcourses, source: :ownedcourse
+  #request relation
+  # has_many :courses, :foreign_key => :uid
+  has_many :facilitate_requests, foreign_key: :request_id
+  has_many :receivers, through: :facilitate_requests, source: :receiver
   # Include default devise modules. Others available are:
+
+  has_many :facilitate_requests, foreign_key: :request_id
+  has_many :receivers, through: :facilitate_requests, source: :receiver
 
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable, :omniauthable,
@@ -19,7 +28,7 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   #access = ["student", "facilitator", "admin"]
-  attr_accessible :email, :last_name, :first_name, :class_level, :access, :facilitator,
+  attr_accessible :email, :last_name, :first_name, :class_level, :access, :facilitator, :admin, :course_id,
   #devise defaults
   :password, :password_confirmation, :remember_me, :provider, :uid, :propic
   # attr_accessible :title, :body
@@ -38,6 +47,8 @@ class User < ActiveRecord::Base
         access: "student",
         provider:access_token.provider,
         email: data["email"],
+        admin: false,
+        facilitator: false,
         uid: access_token.uid ,
         first_name: data["first_name"],
         last_name: data["last_name"],

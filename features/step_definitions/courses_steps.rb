@@ -47,14 +47,15 @@ Then /^I should see my new section in facilitate course page$/ do
   page.should have_content "Test Section"
 end
 
-Then /^I visit facilitate course page$/ do
-  visit 'dashboard'
+Given /^I visit facilitate course page$/ do
+  visit '/dashboard'
 end
 
 Then /^I create a new section$/ do
   mock_section
   create_section
 end
+
 Given /^I create a course$/ do
   mock_course
   create_course
@@ -87,7 +88,7 @@ Given /^another facilitator has created a course$/ do
 end
 
 Then /^the page should have an error$/ do 
-  page.should have_content "Errors: Units must be integers 1-4."
+  page.should have_content "Error:"
 end
 
 Then /^my course should exist in home page$/ do 
@@ -101,15 +102,6 @@ end
 Then /^page should not have add course button$/ do 
   page.should_not have_content "Add New Course"
 end
-
-
-Given /the following courses exist/ do |courses_table|
-  courses_table.hashes.each do |course|
-    Course.create!(course)
-  end
-end
-
-
   
 
 Given(/^these courses exist:$/) do |courses_table|
@@ -119,6 +111,7 @@ Given(/^these courses exist:$/) do |courses_table|
     input_course.category = course["Category"]
     input_course.units = course["Units"]
     input_course.status = course["Status"]
+    input_course.pending = course["Pending"]
     input_course.save
   end
 end
@@ -176,7 +169,7 @@ end
 
 #Felix's step for facilitate_course
 Given(/^the following users exist:$/) do |users_table|
-  users_table.rows_hash.each do |user|
+  users_table.hashes.each do |user|
     input_user = User.new
     input_user.email = user["email"]
     input_user.first_name = user["first name"]
@@ -199,3 +192,64 @@ Then(/^I should not see that course$/) do
   end
 end
 
+
+# Iteration 3-2
+When /^(?:|I )press "([^"]*)"$/ do |button|
+  click_button(button)
+end
+
+When /^(?:|I )follow "([^"]*)"$/ do |link|
+  click_link(link)
+end
+
+def pending_course_info
+  @pending_course_info = {:pending=>true, :title=>"Test Course", :units => 2, :category => "Computer Science", :status => "Open", :department_num => "CS 200", :course_email => "contact@berkeley.edu",
+    :course_website => "http://www.course.com", :faculty_name => "Faculty God", :faculty_email => "faculty@berkeley.edu", :description => "Awesome class!", :enrollment_info => "Lottery"}
+end
+
+Given /^I submitted a new course request form with valid fields/ do
+  pending_course_info
+  fill_in "course_title", :with => @pending_course_info[:title]
+  select(@pending_course_info[:category], :from => "course_category")
+  fill_in "course_units", :with => @pending_course_info[:units]
+  select(@pending_course_info[:status], :from => "course_status")
+  click_button "continue"
+  fill_in "course_department_num", :with => @pending_course_info[:department_num]
+  fill_in "course_course_email", :with => @pending_course_info[:course_email]
+  fill_in "course_course_website", :with => @pending_course_info[:course_website]
+  fill_in "course_faculty_name", :with => @pending_course_info[:faculty_name]
+  fill_in "course_faculty_email", :with => @pending_course_info[:faculty_email]
+  click_button "continue"
+  fill_in "course_description", :with => @pending_course_info[:description]
+  fill_in "course_enrollment_info", :with => @pending_course_info[:enrollment_info]
+  click_button "continue"
+end
+
+Given /^my course "([^"]*)" is approved/ do |title|
+  @my_course = Course.find_by_title(title)
+  @my_course.pending = false
+  @my_course.save
+end
+  
+Given /^I input invalid fields in the new course request form$/ do
+  fill_in "course_units", :with => 10
+end
+
+Given /^I leave incomplete fields in the new course request form$/ do
+  pending_course_info
+  fill_in "course_title", :with => @pending_course_info[:title]
+  select(@pending_course_info[:category], :from => "course_category")
+  fill_in "course_units", :with => @pending_course_info[:units]
+  select(@pending_course_info[:status], :from => "course_status")
+  click_button "continue"
+end
+
+When /^I add facilitators for my course/ do 
+  visit "/facilitator?course=1"
+end
+
+When /^I search for "([^"]*)"/ do |name|
+  fill_in "search_field", :with => name
+  click_button "search"
+end
+  

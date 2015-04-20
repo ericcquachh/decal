@@ -1,0 +1,16 @@
+  <div class="box">
+    <%= field_set_tag 'ESSENTIAL COURSE INFO' do %>
+      <div><%= f.label :title, 'Course Title: ', :class => 'field' %><%= f.text_field :title, :size => 35 %></div><br/>
+      <div><%= f.label :department_num, 'Department + Course No. (e.g. "Math 98/198"): ', :class => 'field' %><%= f.text_field :department_num, :size => 35 %></div><br/>
+      <div><%= f.label :units, '# of Units: ', :class => 'field' %><%= select_tag :units, options_for_select(["1", "2", "3", "1 to 2", "1 to 3", "2 to 3"], "-Select Units-") %></div><br/>
+      <div><%= f.check_box(:cs_fw) %><%= f.label(:cs_fw, "Yes, this is a CS/FW (Community Service / Field Work) course", :class => 'field' ) %></div><br/>
+    <% end %>
+  </div><br/>
+  <div class="box">
+    <%= field_set_tag 'CONTACT INFORMATION' do %>
+      <div><%= f.label :course_email, 'COURSE CONTACT EMAIL: ', :class => 'field' %><%= f.text_field :course_email, :size => 35 %></div><br/>
+      <div><%= f.label :course_website, 'COURSE WEBSITE: ', :class => 'field' %><%= f.url_field(:course_website) %></div><br/>
+      <div><%= f.label :faculty_name, 'FACULTY SPONSOR NAME: ', :class => 'field' %><%= f.text_field :faculty_name, :size => 35 %></div><br/>
+      <div><%= f.label :faculty_email, 'FACULTY SPONSOR EMAIL: ', :class => 'field' %><%= f.text_field :faculty_email, :size => 35 %></div><br/>
+    <% end %>
+  </div><br/>

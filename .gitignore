@@ -7,3 +7,6 @@ db/development.sqlite3
 
 # Ignore application configuration
 /config/application.yml
+
+# Ignore temp
+*~

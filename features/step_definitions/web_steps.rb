@@ -41,6 +41,7 @@ When /^(.*) within (.*[^:]):$/ do |step, parent, table_or_string|
   with_scope(parent) { When "#{step}:", table_or_string }
 end
 
+=begin
 Given /^(?:|I )am on (.+)$/ do |page_name|
   visit path_to(page_name)
 end
@@ -49,17 +50,12 @@ When /^(?:|I )go to (.+)$/ do |page_name|
   visit path_to(page_name)
 end
 
-When /^(?:|I )press "([^"]*)"$/ do |button|
-  click_button(button)
-end
 
-When /^(?:|I )follow "([^"]*)"$/ do |link|
-  click_link(link)
-end
 
 When /^(?:|I )fill in "([^"]*)" with "([^"]*)"$/ do |field, value|
   fill_in(field, :with => value)
 end
+=end
 
 When /^(?:|I )fill in "([^"]*)" for "([^"]*)"$/ do |value, field|
   fill_in(field, :with => value)
@@ -76,6 +72,8 @@ end
 # TODO: Add support for checkbox, select or option
 # based on naming conventions.
 #
+
+=begin
 When /^(?:|I )fill in the following:$/ do |fields|
   fields.rows_hash.each do |name, value|
     When %{I fill in "#{name}" with "#{value}"}
@@ -85,6 +83,7 @@ end
 When /^(?:|I )select "([^"]*)" from "([^"]*)"$/ do |value, field|
   select(value, :from => field)
 end
+=end
 
 When /^(?:|I )check "([^"]*)"$/ do |field|
   check(field)
