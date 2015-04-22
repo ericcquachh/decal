@@ -35,4 +35,4 @@ Scenario: Course should show number of applications received (sad path)
 	And the course is full
 	And the course has received "50" applications
 	Then I should not see "50 applications have been received"
-	And I should see "sorry the course is full!
+	And I should see "sorry the course is full!"
