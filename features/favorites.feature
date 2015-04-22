@@ -1,3 +1,4 @@
+#Felix Liu
 Feature: User can favorite a class
 	As a User
 	I want to be able to favorite a class
