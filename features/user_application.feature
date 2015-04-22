@@ -1,5 +1,9 @@
 # Brian Truong
 Feature: Courses should have applications
+    As a user
+    So that I can be added to a course
+    And see who has applied for a course
+    I want to able to apply to join a course
 Background: User has logged in
 	Given I sign in as a user
 	And the following courses exist:
