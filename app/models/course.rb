@@ -7,7 +7,7 @@ class Course < ActiveRecord::Base
   has_many :uploads
   has_many :section_times, through: :sections
 
-  has_and_belongs_to_many :users, join_table: :favorite_courses
+  has_and_belongs_to_many :favorite_users, join_table: :favorite_courses, class_name: "User"
 
   has_many :facilitate_ownedcourses, foreign_key: :ownedcourse_id
   has_many :facilitators, through: :facilitate_ownedcourses, source: :facilitator
@@ -24,7 +24,7 @@ class Course < ActiveRecord::Base
 
 
   # validates :units, :presence => {message: "cannot be blank"}, :numericality => {only_integer: true, :greater_than => 0, :less_than => 5, message: "must be integers 1-4"}
-  validates_inclusion_of :category, :in => Category.categories, :if => lambda { |o| o.current_step == "1" }, :message => "must be selected from the dropdown menu"
+  # validates_inclusion_of :category, :in => Category.categories, :if => lambda { |o| o.current_step == "1" }, :message => "must be selected from the dropdown menu"
   validates_inclusion_of :status, :in => ["Open", "Full"], :if => lambda { |o| o.current_step == "1" }, :message => "must be selected from the dropdown menu"  
 
   validates_presence_of :department_num, :course_email, :faculty_email, :faculty_name, :if => lambda { |o| o.current_step == "2" }
