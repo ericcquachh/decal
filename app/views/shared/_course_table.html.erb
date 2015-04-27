@@ -41,7 +41,6 @@
             <% course.uploads.each do |upload| %>
               <% if upload.syl? %>
                 <td><%= link_to "Syllabus", upload.attachment_url %></td>
-                <%= break %>
               <% end %>
             <% end %>
           <% else %>
@@ -51,7 +50,6 @@
             <% course.uploads.each do |upload| %>
               <% if upload.cpf? %>
                 <td><%= link_to "CPF", upload.attachment_url %></td>
-                <%= break %>
               <% end %>
             <% end %>
           <% else %>
