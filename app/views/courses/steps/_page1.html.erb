@@ -11,6 +11,29 @@
     <div class="field">
       <%= f.label :status %><br />
       <%= f.select :status, options_for_select(%w[Open Full]) %>
+    </div>
+  <% end %>
+</div><br/>
+
+<div class="box">
+  <%= field_set_tag 'ADD COURSE APPLICATION (OPTIONAL)' do %>
+
+    <li>If you do not have an application ready, leave this section blank</li><br/>
+
+    1. Create an application using Google Forms <br/>
+    <%= link_to nil, "https://docs.google.com/forms/create?hl=en", :target => "_blank" %><br/>
+    2. Check the form setting: <b>Only allow one response per person</b> <br/>
+    3. After submitting your completed form, paste the form url below <br/>
+    4. Again, the form url can be found in edit forms page under File > Send form...<br/><br/>
+
+    **<b>Note: this field can be edited at a later time</b><br/><br/>
+    <div>
+      <b>Application URL (e.g. "https://docs.google.com/forms/..." ):</b><br />
+      <%= f.text_field :application_url %>
+    </div><br/>
+    <div>
+      <b>Application Due Date:</b><br />
+      <%= f.date_select :application_due, :order => [:day, :month, :year] %>
     </div><br/>
   <% end %>
 </div><br/>

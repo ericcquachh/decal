@@ -33,7 +33,26 @@
         <%= link_to 'Edit Information', edit_course_path(@course, :step_3 => true) %>
       <% end %>
     <% end %>
-  </p>
+  </p><br/>
+
+  <h2>Apply For Course</h2>
+  <div class="application">
+    <% if !@course.application_url.blank? %>
+      <b><%= (@course.application_due - Date.today).to_int %> days left until application deadline!</b><br/><br/>
+      <%= button_to 'Start Application', @course.application_url, form: {target: '_blank'}, :method => :get %><br/>
+      <% if  @course.verify_facilitator? current_user  %>
+        <%= link_to 'Edit Application', edit_course_path(@course, :step_1 => true), :method => :get %>
+        <br/><br/>
+      <% end %>
+      <br/>
+    <% else %>
+      <fieldset><legend><h5>No application has been added to this course yet</h5></legend></fieldset>
+      <% if  @course.verify_facilitator? current_user  %>
+        <%= link_to 'Edit Application', edit_course_path(@course, :step_1 => true), :method => :get %>
+        <br/><br/>
+      <% end %>
+    <% end %>
+  </div>
 
   <h2>Sections</h2>
   <div class="sections">
