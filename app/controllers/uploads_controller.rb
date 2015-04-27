@@ -27,18 +27,36 @@ class UploadsController < ApplicationController
 
   def create
   	@upload = Upload.new(params[:upload])
-  	@upload.course = Course.find(params[:course_id])
-
-  	if @upload.save
-      redirect_to course_path(params[:course_id]), notice: "The upload #{@upload.name} has been uploaded."
+    @upload.syl = params[:upload][:syl]
+    @upload.cpf = params[:upload][:cpf]
+    @upload.course = Course.find(params[:course_id])
+    if @upload.syl and @upload.cpf
+      redirect_to new_course_upload_path(params[:course_id]), notice: "An upload can't act as both a CPF and a Syllabus"
+  	elsif @upload.save
+      if @upload.syl
+        @upload.course.has_syl = true
+        redirect_to course_path(params[:course_id]), notice: "The syllabus #{@upload.name} has been uploaded."
+      elsif @upload.cpf
+        @upload.course.has_cpf = true
+        redirect_to course_path(params[:course_id]), notice: "The CPF #{@upload.name} has been uploaded."
+      else
+        redirect_to course_path(params[:course_id]), notice: "The upload #{@upload.name} has been uploaded."
+      end
     else
-       redirect_to new_course_upload_path(params[:course_id]), notice: @upload.errors.full_messages.to_s
-     end
+      redirect_to new_course_upload_path(params[:course_id]), notice: @upload.errors.full_messages.to_s
+    end
   end
 
   def destroy
-  	@upload = Upload.find(params[:id])
+    @upload = Upload.find(params[:id])
+    if @upload.syl
+      @upload.course.has_syl = false
+    elsif @upload.cpf
+      @upload.course.has_cpf = false
+    end
     @upload.destroy
+    
+
     redirect_to course_path(params[:course_id]), notice:  "The upload #{@upload.name} has been deleted."
   end
 
