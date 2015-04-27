@@ -1,6 +1,5 @@
 class Course < ActiveRecord::Base
-
-     attr_accessible :semester, :category, :status, :title, :units, :uid, :department_num, :cs_fw, :description, :enrollment_info, :course_email, :course_website, :faculty_name, :faculty_email, :pending, :application_url, :application_due
+ attr_accessible :semester, :category, :status, :title, :units, :uid, :department_num, :cs_fw, :description, :enrollment_info, :course_email, :course_website, :faculty_name, :faculty_email, :pending, :application_url, :application_due, :has_cpf, :has_syl
 
   attr_writer :current_step
 

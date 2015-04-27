@@ -73,6 +73,8 @@ class CoursesController < ApplicationController
       elsif @course.last_step?
         if @course.all_valid?
           @course.pending = true
+          @course.has_syl = false
+          @course.has_cpf = false
           @course.save
         end
       else

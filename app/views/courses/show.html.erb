@@ -8,6 +8,15 @@
   <% end %>
   <% if @course.pending  %>
     <h3>Course can be edited, but still needs to be approved.</h3>
+    <p> Does this course have syllabus? </p>
+    <%= @course.has_syl %>
+    <% if !@course.has_cpf%>
+      <h2>YOU NEED TO UPLOAD A COMPLETED CPF BEFORE COURSE APPROVAL.</h2>
+    <%end%>
+    <% if !@course.has_syl%>
+      <h2>YOU NEED TO UPLOAD A COMPLETED SYLLABUS BEFORE COURSE APPROVAL.</h2>
+      <%= @course.has_cpf %>
+    <%end%>
   <%end%>
 
   <div class="panel panel-default">
