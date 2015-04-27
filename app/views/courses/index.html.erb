@@ -44,9 +44,9 @@
   <div class="form-group">
     <%= form_for(courses_path, method: :get, id: 'units_form') do %>
       <%= render 'shared/search_form' %>
+      <br></br>
+      <%= render 'shared/course_table' %>
     <% end %>
-    <br></br>
-    <%= render 'shared/course_table' %>
   </div>
 </form>
 <br />

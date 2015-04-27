@@ -10,6 +10,15 @@
     <%= link_to 'MANAGE FACILITATORS', admin_index_path(:tab => 'manageadmins'), {:class => "btn btn-primary"} %>
   </div>
 </div>
+<%= form_tag(add_semester_path, id: 'add_semester') do %>
+  <%= label_tag("Add Semester:") %>
+  <input type="text" class="form-control" placeholder="Ex. Fall 2015" id=<%= text_field_tag('semester') %> </input>
+<% end %>
+
+<%= form_tag(add_category_path, id: 'add_category') do %>
+  <%= label_tag("Add Category:") %>
+  <input type="text" class="form-control" placeholder="Ex. Computer Science" id=<%= text_field_tag('category') %> </input>
+<% end %>
 
 <div>
   <% if params[:tab] == "curr" %>
@@ -22,6 +31,7 @@
     <h3>Manage Facilitators</h3>
   <%end%>
 </div>
+
 
 <%if params[:tab] != "manageadmins"%>
   <form class="form-inline">

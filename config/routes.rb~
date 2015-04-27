@@ -26,7 +26,6 @@ Decal::Application.routes.draw do
   match 'removeadmin' => 'courses#removeadmin'
 
   match 'add_semester' => 'admin#add_semester'
-  match 'add_category' => 'admin#add_category'
 
   # match '/courses/:id/addsection' => 'courses#addsection', :as => :add_section, :via => :get
   # match '/courses/:id/updatesection' => 'courses#updatesection', :as => :update_section, :via => :post

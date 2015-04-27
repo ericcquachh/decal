@@ -10,11 +10,10 @@ class AdminController < ApplicationController
 
 
   def index
-    if !params[:tab]
-      params[:tab] = 'curr'
-    end
+    params[:tab] ||= 'curr'
     if params[:tab] != 'manageadmins'
-      @courses = Course.filter! params, params[:tab] == 'pending'
+      @courses = Course.filter! params, (params[:tab] == 'pending')
+      params[:hello] = Course.filtering_values params
     else
       @users = User.joins(:facilitate_ownedcourses)
     end
@@ -39,5 +38,18 @@ class AdminController < ApplicationController
       end
     end
     redirect_to admin_index_path(:tab => params[:tab]), method: :get
+  end
+
+  def add_semester
+    Semester.create(:name => params[:semester])
+    redirect_to admin_index_path(:tab => params[:tab]), method: :get
+  end
+
+  def add_category
+    Category.create(:name => params[:category])
+    redirect_to admin_index_path(:tab => params[:tab]), method: :get
+  end
+
+  def remove_semester
   end
 end

@@ -11,15 +11,21 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150427025556) do
+ActiveRecord::Schema.define(:version => 20150427034637) do
+
+  create_table "categories", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "courses", :force => true do |t|
     t.string   "title"
     t.string   "category"
     t.string   "units"
-    t.string   "time"
     t.string   "status"
     t.string   "department_num"
+    t.string   "semester"
     t.boolean  "cs_fw"
     t.string   "description"
     t.string   "enrollment_info"
@@ -32,6 +38,8 @@ ActiveRecord::Schema.define(:version => 20150427025556) do
     t.datetime "updated_at",      :null => false
     t.string   "application_url"
     t.date     "application_due"
+    t.boolean  "has_syl"
+    t.boolean  "has_cpf"
   end
 
   create_table "facilitate_ownedcourses", :force => true do |t|
@@ -75,12 +83,20 @@ ActiveRecord::Schema.define(:version => 20150427025556) do
     t.datetime "updated_at",    :null => false
   end
 
+  create_table "semesters", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "uploads", :force => true do |t|
     t.string   "name"
     t.string   "attachment"
     t.integer  "course_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.boolean  "syl"
+    t.boolean  "cpf"
   end
 
   create_table "users", :force => true do |t|

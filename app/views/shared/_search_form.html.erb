@@ -1,24 +1,27 @@
+<%=label_tag("Semester") %>
+  <%= select_tag 'semester', options_for_select(Semester.semesters, Semester.current_semester(params[:semester])), :class => 'form-control'%>
+  <br></br>
 <%= label_tag("Search:") %>
   <input type="text" class="form-control" placeholder="By title" id=<%= text_field_tag('search_field') %> </input>
-  <%= label_tag("Units:") %>
+<%= label_tag("Units:") %>
   <% Course.units.each do |unit| %>
     <%= check_box_tag "units[#{unit}]", 1, params[:units] && params[:units].include?(unit) , id: unit %>
     <%= unit%>
   <% end %>
   <br></br>
-  <%= label_tag("Categories:") %>
-  <%= select_tag 'category', options_for_select(['Select'] + Course.categories, params[:category]), :class => 'form-control'%>
+<%= label_tag("Categories:") %>
+  <%= select_tag 'category', options_for_select(['Select'] + Category.categories, params[:category]), :class => 'form-control'%>
   <br></br>
-  <%= label_tag("Date:") %>
+<%= label_tag("Date:") %>
   <% Section_time.all_days.each do |day| %>
     <%= check_box_tag "days[#{day}]", 1, params[:days] && params[:days].include?(day), id: day %>
     <%= day%>
   <% end %>
   <br></br>
-  <%= label_tag ("Start after:") %>
+<%= label_tag ("Start after:") %>
   <%= select_tag 'start_time', options_for_select(Section_time.all_times, params[:start_time]) %>
-  <%= label_tag ("Ends before:") %>
+<%= label_tag ("Ends before:") %>
   <%= select_tag 'end_time', options_for_select(Section_time.all_times, params[:end_time]) %>
-  <%= label_tag("Status:") %>
+<%= label_tag("Status:") %>
   <%= select_tag 'status', options_for_select(['Select'] + Course.statuses, params[:status]), :class => 'form-control'%>
   <%= submit_tag "Search", :class=>"btn btn-primary" %>

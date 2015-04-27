@@ -7,9 +7,6 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 #Test Courses
-Course.create!(title: "Quantum Consciousness",
-	category: "Cognitive Science", units:"2", status:"Open", description: "physssiccss",
-	enrollment_info: "enrolled hell ya")
 # Course.create!(title: "Taiwanese Language", category: "Languages", units:"1", status:"Full")
 # Course.create!(title: "Python on Crack", category: "Computer Science", units:"3", status:"Full")
 # Course.create!(title: "Ruby on Rails", category: "Computer Science", units:"2", status:"Full")
@@ -29,4 +26,27 @@ Course.create!(title: "Quantum Consciousness",
 # 	first_name: "Mugen", last_name: "Jin")
 # User.create!(email: "himurakenshin@berkeley.edu", password: "rurounikenshin",
 # 	first_name: "Himura", last_name: "Kenshin")
+
+Category.create!(name: "Computer Science")
+Category.create!(name: "Fitness")
+Category.create!(name: "Business")
+Category.create!(name: "Languages")
+Category.create!(name: "Cognitive Science")
+
+Semester.create!(name: "Spring 2015")
+Semester.create!(name: "Fall 2015")
+
+Course.create!(semester: "Spring 2015", title: "A", category: "Computer Science", status: "Open", units: 1, pending: false) 
+Course.create!(semester: "Fall 2015", title: "B", category: "Cognitive Science", status: "Open", units: 1, pending: false) 
+Course.create!(semester: "Spring 2015",title: "C", category: "Computer Science", status: "Open", units: 1, pending: false) 
+Course.create!(semester: "Fall 2015",title: "D", category: "Fitness", status: "Open", units: 1, pending: false) 
+Course.create!(semester: "Spring 2015",title: "E", category: "Business", status: "Open", units: 1, pending: false) 
+Course.create!(semester: "Fall 2015",title: "F", category: "Languages", status: "Open", units: 1, pending: false) 
+Course.create!(semester: "Spring 2015",title: "G", category: "Computer Science", status: "Open", units: 1, pending: false) 
+Course.create!(semester: "Spring 2015",title: "H", category: "Business", status: "Open", units: 1, pending: true) 
+Course.create!(semester: "Spring 2015",title: "I", category: "Fitness", status: "Open", units: 1, pending: true) 
+Course.create!(semester: "Fall 2015",title: "J", category: "Languages", status: "Open", units: 1, pending: true) 
+Course.create!(semester: "Fall 2015",title: "K", category: "Computer Science", status: "Open", units: 1, pending: true) 
+Course.create!(semester: "Spring 2015",title: "L", category: "Computer Science", status: "Open", units: 1, pending: true) 
+
 
