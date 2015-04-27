@@ -9,17 +9,26 @@
   <tbody>
     <% @uploads.each do |upload| %>
       <tr>
-        <td><%= upload.name %></td>
-        <td><%= link_to "Download", upload.attachment_url %></td>
-        <% if @course.verify_facilitator? current_user %>
-          <td><%= button_to "Delete", {:controller => :uploads, :action => 'destroy', :id => upload.id, :course_id => @course.id }, :method => :delete, "onclick" => "javascript:return confirm('Are you absolutely sure you want to delete?')" %></td>
-          <% if upload.syl? %>
-            <td>Syllabus</td>
+        <% if upload.syl? or upload.cpf? %>
+          <% if @course.verify_facilitator? current_user %>
+            <td><%= upload.name %></td>
+            <td><%= link_to "Download", upload.attachment_url %></td>
+            <td><%= button_to "Delete", {:controller => :uploads, :action => 'destroy', :id => upload.id, :course_id => @course.id }, :method => :delete, "onclick" => "javascript:return confirm('Are you absolutely sure you want to delete?')" %></td>
+            <% if upload.syl? %>
+              <td>Syllabus for Course Request [Not Visible to Public]</td>
+            <% end %>
+            <% if upload.cpf? %>
+              <td>CPF for Course Request [Not Visible to Public]</td>
+            <% end %>
           <% end %>
-          <% if upload.cpf? %>
-            <td>CPF</td>
+        <% else %>
+          <td><%= upload.name %></td>
+          <td><%= link_to "Download", upload.attachment_url %></td>
+          <% if @course.verify_facilitator? current_user %>
+            <td><%= button_to "Delete", {:controller => :uploads, :action => 'destroy', :id => upload.id, :course_id => @course.id }, :method => :delete, "onclick" => "javascript:return confirm('Are you absolutely sure you want to delete?')" %></td>
           <% end %>
         <% end %>
+
       </tr>
     <% end %>
   </tbody>

@@ -27,6 +27,10 @@ class UploadsController < ApplicationController
 
   def create
   	@upload = Upload.new(params[:upload])
+    if params[:syl] or params[:cpf]
+      params[:upload][:syl] = params[:syl]
+      params[:upload][:cpf] = params[:cpf]
+    end
     @upload.syl = params[:upload][:syl]
     @upload.cpf = params[:upload][:cpf]
     @upload.course = Course.find(params[:course_id])
@@ -34,11 +38,21 @@ class UploadsController < ApplicationController
       redirect_to new_course_upload_path(params[:course_id]), notice: "An upload can't act as both a CPF and a Syllabus"
   	elsif @upload.save
       if @upload.syl
-        @upload.course.has_syl = true
-        redirect_to course_path(params[:course_id]), notice: "The syllabus #{@upload.name} has been uploaded."
+        @upload.course.update_attribute(:has_syl, true)
+        Upload.where(syl: true).find_each do |upload|
+          if upload != @upload
+            upload.destroy
+          end
+        end
+        redirect_to course_path(params[:course_id]), notice: "The syllabus #{@upload.name} has been uploaded and overwritten any old syllabus."
       elsif @upload.cpf
-        @upload.course.has_cpf = true
-        redirect_to course_path(params[:course_id]), notice: "The CPF #{@upload.name} has been uploaded."
+        @upload.course.update_attribute(:has_cpf, true)
+        Upload.where(cpf: true).find_each do |upload|
+          if upload != @upload
+            upload.destroy
+          end
+        end
+        redirect_to course_path(params[:course_id]), notice: "The CPF #{@upload.name} has been uploaded and overwritten any old CPF."
       else
         redirect_to course_path(params[:course_id]), notice: "The upload #{@upload.name} has been uploaded."
       end
@@ -50,9 +64,9 @@ class UploadsController < ApplicationController
   def destroy
     @upload = Upload.find(params[:id])
     if @upload.syl
-      @upload.course.has_syl = false
+      @upload.course.update_attribute(:has_syl, false)
     elsif @upload.cpf
-      @upload.course.has_cpf = false
+      @upload.course.update_attribute(:has_cpf, false)
     end
     @upload.destroy
     
