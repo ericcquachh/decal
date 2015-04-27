@@ -130,7 +130,8 @@
   <br/>
 
   <h3> Favorites </h3>
-  
+  <%= button_to "add course to favorites", {:controller => :courses, :action => 'favorites', :id => @course.id}, :method => :post %>
+
 
 <%else%>
   <h1>This course has not been approved by the admin.</h1>

@@ -24,7 +24,7 @@ class Course < ActiveRecord::Base
 
 
   # validates :units, :presence => {message: "cannot be blank"}, :numericality => {only_integer: true, :greater_than => 0, :less_than => 5, message: "must be integers 1-4"}
-  validates_inclusion_of :category, :in => Category.categories, :if => lambda { |o| o.current_step == "1" }, :message => "must be selected from the dropdown menu"
+  # validates_inclusion_of :category, :in => Category.categories, :if => lambda { |o| o.current_step == "1" }, :message => "must be selected from the dropdown menu"
   validates_inclusion_of :status, :in => ["Open", "Full"], :if => lambda { |o| o.current_step == "1" }, :message => "must be selected from the dropdown menu"  
 
   validates_presence_of :department_num, :course_email, :faculty_email, :faculty_name, :if => lambda { |o| o.current_step == "2" }

@@ -28,6 +28,8 @@ Decal::Application.routes.draw do
   match 'add_semester' => 'admin#add_semester'
   match 'add_category' => 'admin#add_category'
 
+  match 'favorites' => 'courses#favorites'
+  match 'unfavorite' => 'courses#unfavorite'
   # match '/courses/:id/addsection' => 'courses#addsection', :as => :add_section, :via => :get
   # match '/courses/:id/updatesection' => 'courses#updatesection', :as => :update_section, :via => :post
 
