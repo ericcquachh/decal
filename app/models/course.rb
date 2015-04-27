@@ -6,6 +6,8 @@ class Course < ActiveRecord::Base
   has_many :uploads
   has_many :section_times, through: :sections
 
+  has_and_belongs_to_many :users, join_table: :favorite_courses
+
   has_many :facilitate_ownedcourses, foreign_key: :ownedcourse_id
   has_many :facilitators, through: :facilitate_ownedcourses, source: :facilitator
 
