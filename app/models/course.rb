@@ -1,10 +1,11 @@
 class Course < ActiveRecord::Base
-     attr_accessible :category, :status, :title, :units, :uid, :department_num, :cs_fw, :description, :enrollment_info, :course_email, :course_website, :faculty_name, :faculty_email, :pending
+     attr_accessible :semester, :category, :status, :title, :units, :uid, :department_num, :cs_fw, :description, :enrollment_info, :course_email, :course_website, :faculty_name, :faculty_email, :pending
   attr_writer :current_step
 
   has_many :sections
   has_many :uploads
   has_many :section_times, through: :sections
+
 
   has_many :facilitate_ownedcourses, foreign_key: :ownedcourse_id
   has_many :facilitators, through: :facilitate_ownedcourses, source: :facilitator
@@ -16,7 +17,7 @@ class Course < ActiveRecord::Base
 
   validates_presence_of :title, :if => lambda { |o| o.current_step == "1" }
   # validates :units, :presence => {message: "cannot be blank"}, :numericality => {only_integer: true, :greater_than => 0, :less_than => 5, message: "must be integers 1-4"}
-  validates_inclusion_of :category, :in => CATEGORIES, :if => lambda { |o| o.current_step == "1" }, :message => "must be selected from the dropdown menu"
+  validates_inclusion_of :category, :in => Category.categories, :if => lambda { |o| o.current_step == "1" }, :message => "must be selected from the dropdown menu"
   validates_inclusion_of :status, :in => ["Open", "Full"], :if => lambda { |o| o.current_step == "1" }, :message => "must be selected from the dropdown menu"  
 
   validates_presence_of :department_num, :course_email, :faculty_email, :faculty_name, :if => lambda { |o| o.current_step == "2" }
@@ -32,7 +33,7 @@ class Course < ActiveRecord::Base
   end
 
   def self.filter_attributes
-    {:title => nil, :category => self.categories + ["All"], :status => self.statuses + ["All"], :units => self.units}
+    {:title => nil, :category => self.categories + ["All"], :status => self.statuses + ["All"], :units => self.units, :semester => Semester.current_semester(nil)}
   end
 
   def self.normalize_params! input
@@ -61,8 +62,7 @@ class Course < ActiveRecord::Base
   def self.filter! input, pending
     normalize_params! input
     filter_values = filtering_values input
-    output = Course.find(:all, :order => input[:title], :conditions => {:category => filter_values[:category], :status => filter_values[:status], :units => filter_values[:units], :pending => pending})
-    output = output.select {|course| course.section_times.any? {|time| time.include_time? input}}
+    output = Course.find(:all, :order => input[:title], :conditions => {:category => filter_values[:category], :status => filter_values[:status],  :pending => pending, :semester => filter_values[:semester]})
     if input[:search_field]
       output = output.select {|course| course.title.downcase.include? input[:search_field].downcase}
     end

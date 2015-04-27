@@ -4,9 +4,9 @@ class CreateCourses < ActiveRecord::Migration
       t.string :title
       t.string :category
       t.string :units
-      t.string :time
       t.string :status
       t.string :department_num
+      t.string :semester
       t.boolean :cs_fw
       t.string :description
       t.string :enrollment_info

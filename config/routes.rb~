@@ -5,11 +5,12 @@ Decal::Application.routes.draw do
   resources :courses do
       resources :sections
       resources :uploads, only: [:index, :new, :create, :destroy]
-      resources :facilitator, only: [:index, :create, :delete]
+      resources :facilitator, only: [:index, :create]
+      delete '/facilitator', to: 'facilitator#delete', as: 'facilitator_delete'
       match '/facilitator_request' => 'facilitator#facilitator_request', as: 'facilitator_request'
   end
 
-  resources :admin
+  resources :admin 
 
   # paths for dashboard
   resources :dashboard
@@ -23,6 +24,8 @@ Decal::Application.routes.draw do
   match 'demote' => 'courses#demote'
   match 'makeadmin' => 'courses#makeadmin'
   match 'removeadmin' => 'courses#removeadmin'
+
+  match 'add_semester' => 'admin#add_semester'
 
   # match '/courses/:id/addsection' => 'courses#addsection', :as => :add_section, :via => :get
   # match '/courses/:id/updatesection' => 'courses#updatesection', :as => :update_section, :via => :post

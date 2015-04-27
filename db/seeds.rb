@@ -28,3 +28,26 @@ User.create!(email: "mugenjin@berkeley.edu", password: "samuraichamploo",
 User.create!(email: "himurakenshin@berkeley.edu", password: "rurounikenshin",
 	first_name: "Himura", last_name: "Kenshin")
 
+Category.create!(name: "Computer Science")
+Category.create!(name: "Fitness")
+Category.create!(name: "Business")
+Category.create!(name: "Languages")
+Category.create!(name: "Cognitive Science")
+
+Semester.create!(name: "Spring 2015")
+Semester.create!(name: "Fall 2015")
+
+Course.create!(semester: "Spring 2015", title: "A", category: "Computer Science", status: "Open", units: 1, pending: false) 
+Course.create!(semester: "Fall 2015", title: "B", category: "Cognitive Science", status: "Open", units: 1, pending: false) 
+Course.create!(semester: "Spring 2015",title: "C", category: "Computer Science", status: "Open", units: 1, pending: false) 
+Course.create!(semester: "Fall 2015",title: "D", category: "Fitness", status: "Open", units: 1, pending: false) 
+Course.create!(semester: "Spring 2015",title: "E", category: "Business", status: "Open", units: 1, pending: false) 
+Course.create!(semester: "Fall 2015",title: "F", category: "Languages", status: "Open", units: 1, pending: false) 
+Course.create!(semester: "Spring 2015",title: "G", category: "Computer Science", status: "Open", units: 1, pending: false) 
+Course.create!(semester: "Spring 2015",title: "H", category: "Business", status: "Open", units: 1, pending: true) 
+Course.create!(semester: "Spring 2015",title: "I", category: "Fitness", status: "Open", units: 1, pending: true) 
+Course.create!(semester: "Fall 2015",title: "J", category: "Languages", status: "Open", units: 1, pending: true) 
+Course.create!(semester: "Fall 2015",title: "K", category: "Computer Science", status: "Open", units: 1, pending: true) 
+Course.create!(semester: "Spring 2015",title: "L", category: "Computer Science", status: "Open", units: 1, pending: true) 
+
+
