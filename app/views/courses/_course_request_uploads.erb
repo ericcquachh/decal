@@ -1,8 +1,8 @@
 <h3>Course can be edited, but still needs to be approved.</h3>
 <% if @course.has_cpf and @course.has_syl %>
-  <p>You have filled out a course request and have uploaded both required documents! Wait for course approval now.</p>
+  <p style="color:green">You have filled out a course request and have uploaded both required documents! Wait for course approval now.</p>
 <% elsif !@course.has_cpf or !@course.has_syl %>
-  <p>You have filled out a course request but haven't uploaded both required documents! Your application won't be considered until you upload both a syllabus and a completed CPF.</p>
+  <p style="color:red">You have filled out a course request but haven't uploaded both required documents! Your application won't be considered until you upload both a syllabus and a completed CPF.</p>
 <% end %>
 <table class="std">
   <thead>

@@ -8,7 +8,7 @@
     <% if @access %>
       <th>Edit</th>
       <% if @access == 'admin' %>
-        <% if params[:tab] == "pending" %>
+        <% if params[:tab] == "pending" or params[:tab] == 'curr'%>
           <th>Syllabus</th>
           <th>CPF</th>
           <th>Approve</th>
@@ -40,20 +40,20 @@
           <% if course.has_syl? %>
             <% course.uploads.each do |upload| %>
               <% if upload.syl? %>
-                <td><%= link_to "Syllabus", upload.attachment_url %></td>
+                <td><%= link_to "Syllabus", upload.attachment_url, {:style => "color: green"} %></td>
               <% end %>
             <% end %>
           <% else %>
-            <td>No Syllabus Uploaded!</td>
+            <td style="color:red">No Syllabus Uploaded!</td>
           <% end %>
           <% if course.has_cpf? %>
             <% course.uploads.each do |upload| %>
               <% if upload.cpf? %>
-                <td><%= link_to "CPF", upload.attachment_url %></td>
+                <td><%= link_to "CPF", upload.attachment_url, {:style => "color: green"} %></td>
               <% end %>
             <% end %>
           <% else %>
-            <td>No CPF Uploaded!</td>
+            <td style="color:red">No CPF Uploaded!</td>
           <% end %>
           <td><%= check_box_tag(course.title) %></td>
         <% else %>
