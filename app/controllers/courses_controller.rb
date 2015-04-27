@@ -74,6 +74,8 @@ class CoursesController < ApplicationController
         if @course.all_valid?
           @course.pending = true
           @course.save
+          # @upload = Upload.new(params[:upload])
+          # @upload.course = @course
         end
       else
         @course.next_step

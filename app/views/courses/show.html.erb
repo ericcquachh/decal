@@ -1,4 +1,11 @@
 <% if !@course.pending or @course.verify_facilitator? current_user %>
+  <% if !@course.errors.empty? %>
+    <div id="error_explanation">
+      <% @course.errors.full_messages.each do |msg| %>
+        <li><%= "Error: " + msg %></li>
+      <% end %>
+    </div>
+  <% end %>
   <% if @course.pending  %>
     <h3>Course can be edited, but still needs to be approved.</h3>
   <%end%>
