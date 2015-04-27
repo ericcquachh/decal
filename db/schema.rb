@@ -36,6 +36,8 @@ ActiveRecord::Schema.define(:version => 20150427034338) do
     t.boolean  "pending"
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
+    t.string   "application_url"
+    t.date     "application_due"
   end
 
   create_table "facilitate_ownedcourses", :force => true do |t|
@@ -48,6 +50,11 @@ ActiveRecord::Schema.define(:version => 20150427034338) do
     t.integer  "receiver_id", :default => -1
     t.datetime "created_at",                  :null => false
     t.datetime "updated_at",                  :null => false
+  end
+
+  create_table "favorite_courses", :force => true do |t|
+    t.integer "user_id"
+    t.integer "course_id"
   end
 
   create_table "section_times", :force => true do |t|
