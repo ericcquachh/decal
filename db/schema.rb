@@ -22,8 +22,6 @@ ActiveRecord::Schema.define(:version => 20150427034637) do
   create_table "courses", :force => true do |t|
     t.string   "title"
     t.string   "category"
-    t.string   "units"
-    t.string   "status"
     t.string   "department_num"
     t.string   "semester"
     t.boolean  "cs_fw"
@@ -34,6 +32,7 @@ ActiveRecord::Schema.define(:version => 20150427034637) do
     t.string   "faculty_name"
     t.string   "faculty_email"
     t.boolean  "pending"
+    t.string   "units"
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
     t.string   "application_url"
@@ -59,15 +58,6 @@ ActiveRecord::Schema.define(:version => 20150427034637) do
     t.integer "course_id"
   end
 
-  create_table "section_times", :force => true do |t|
-    t.string   "days"
-    t.string   "start_time"
-    t.string   "end_time"
-    t.integer  "section_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
   create_table "sections", :force => true do |t|
     t.string   "section_title"
     t.string   "facilitator"
@@ -75,10 +65,13 @@ ActiveRecord::Schema.define(:version => 20150427034637) do
     t.integer  "ccn_ld"
     t.integer  "ccn_ud"
     t.boolean  "ccn_publish"
-    t.boolean  "status"
+    t.string   "status"
     t.string   "first_day"
     t.string   "location"
+    t.integer  "start_time"
+    t.integer  "end_time"
     t.integer  "course_id"
+    t.string   "days"
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
   end

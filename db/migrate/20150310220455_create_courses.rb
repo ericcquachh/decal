@@ -3,8 +3,6 @@ class CreateCourses < ActiveRecord::Migration
     create_table :courses do |t|
       t.string :title
       t.string :category
-      t.string :units
-      t.string :status
       t.string :department_num
       t.string :semester
       t.boolean :cs_fw
@@ -15,6 +13,7 @@ class CreateCourses < ActiveRecord::Migration
       t.string :faculty_name
       t.string :faculty_email
       t.boolean :pending
+      t.string :units
       t.timestamps
     end
   end

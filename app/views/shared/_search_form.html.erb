@@ -13,15 +13,15 @@
   <%= select_tag 'category', options_for_select(['Select'] + Category.categories, params[:category]), :class => 'form-control'%>
   <br></br>
 <%= label_tag("Date:") %>
-  <% Section_time.all_days.each do |day| %>
+  <% Section.all_days.each do |day| %>
     <%= check_box_tag "days[#{day}]", 1, params[:days] && params[:days].include?(day), id: day %>
     <%= day%>
   <% end %>
   <br></br>
 <%= label_tag ("Start after:") %>
-  <%= select_tag 'start_time', options_for_select(Section_time.all_times, params[:start_time]) %>
+  <%= select_tag 'start_time', options_for_select(['-Select Time-'] + Section.all_times, params[:start_time]) %>
 <%= label_tag ("Ends before:") %>
-  <%= select_tag 'end_time', options_for_select(Section_time.all_times, params[:end_time]) %>
+  <%= select_tag 'end_time', options_for_select(['-Select Time-'] + Section.all_times, params[:end_time]) %>
 <%= label_tag("Status:") %>
-  <%= select_tag 'status', options_for_select(['Select'] + Course.statuses, params[:status]), :class => 'form-control'%>
+  <%= select_tag 'status', options_for_select(['Select'] + Section.statuses, params[:status]), :class => 'form-control'%>
   <%= submit_tag "Search", :class=>"btn btn-primary" %>

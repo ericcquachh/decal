@@ -25,9 +25,9 @@
           <td><%= '--' %></td>
         <% end %>
         <% if !section.facilitator.blank? %>
-          <%= section.facilitator %></td>
+          <td><%= section.facilitator %></td>
         <% else %>
-          <%= '--' %></td>
+          <td><%= '--' %></td>
         <% end %>
         <% if !section.size.blank? %>
           <td><%= section.size %></td>
@@ -39,8 +39,8 @@
         <% else %>
           <td><%= '--' %></td>
         <% end %>
-        <% if section.section_time.filled? %>
-          <td><%= section.section_time.full_time %></td>
+        <% if section.filled? %>
+          <td><%= section.full_time %></td>
         <% else %>
           <td><%= 'TBA' %></td>
         <% end %>
@@ -50,9 +50,15 @@
           <td><%= 'TBA' %></td>
         <% end %>
         <% if !section.status.blank? %>
-          <td><div><b><font color="red">Full</font></b></div></td>
+          <% if section.status == 'Full' %>
+            <td><div><b><font color="red">Full</font></b></div></td>
+          <% elsif section.status == "Open" %>
+            <td><div><b><font color="green">Open</font></b></div></td>
+          <% else %>
+            <td><div><b><font color="green">Started</font></b></div></td>
+          <% end %>
         <% else %>
-          <td><div><b><font color="green">Open</font></b></div></td>
+          <td><%= 'TBA' %></td>
         <% end %>
         <% if !section.ccn_publish.blank? %>
           <% if !section.ccn_ld.blank? %>

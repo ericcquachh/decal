@@ -12,8 +12,7 @@ class AdminController < ApplicationController
   def index
     params[:tab] ||= 'curr'
     if params[:tab] != 'manageadmins'
-      @courses = Course.filter! params, (params[:tab] == 'pending')
-      params[:hello] = Course.filtering_values params
+      @courses = Course.filter params, (params[:tab] == 'pending'), true
     else
       @users = User.joins(:facilitate_ownedcourses)
     end

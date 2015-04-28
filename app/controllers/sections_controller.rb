@@ -14,11 +14,9 @@ class SectionsController < ApplicationController
   end
 
   def create
+    Section.to_add! params[:section]
     @section = Section.new(params[:section])
     @section.course = Course.find(params[:course_id])
-    params[:section_time] = Section_time.filter_section_time(params[:section_time])
-    @section.section_time = Section_time.create(params[:section_time])
-    
     @section.save!
     redirect_to course_path(params[:course_id]), :notice => params
   end

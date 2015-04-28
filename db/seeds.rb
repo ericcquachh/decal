@@ -15,18 +15,18 @@
 # Course.create!(title: "Introduction to Banking", category: "Business", units:"2", status:"Full")
 #Test Users
 
-# User.create!(:email => "jamescheng@berkeley.edu", :password => "jalapenocheddar",
-# 	:first_name => "James", :last_name => "Cheng")
-# User.create!(email: "johnlennon@berkeley.edu", password: "thebeatlesforever",
-# 	first_name: "John", last_name: "Lennon")
-# User.create!(email: "jetspike@berkeley.edu", password: "cowboybebop",
-# 	first_name: "Jet", last_name: "Spike")
-# User.create!(email: "vashthestampede@berkeley.edu", password: "trigunseed",
-# 	first_name: "Vash", last_name: "Stampede")
-# User.create!(email: "mugenjin@berkeley.edu", password: "samuraichamploo",
-# 	first_name: "Mugen", last_name: "Jin")
-# User.create!(email: "himurakenshin@berkeley.edu", password: "rurounikenshin",
-# 	first_name: "Himura", last_name: "Kenshin")
+user1 = User.create!(:email => "jamescheng@berkeley.edu", :password => "jalapenocheddar",
+ 	:first_name => "James", :last_name => "Cheng")
+user2 = User.create!(email: "johnlennon@berkeley.edu", password: "thebeatlesforever",
+ 	first_name: "John", last_name: "Lennon")
+user3 = User.create!(email: "jetspike@berkeley.edu", password: "cowboybebop",
+ 	first_name: "Jet", last_name: "Spike")
+user4 = User.create!(email: "vashthestampede@berkeley.edu", password: "trigunseed",
+ 	first_name: "Vash", last_name: "Stampede")
+user5 = User.create!(email: "mugenjin@berkeley.edu", password: "samuraichamploo",
+ 	first_name: "Mugen", last_name: "Jin")
+user6 = User.create!(email: "master@berkeley.edu", password: "123456789",
+ 	first_name: "Himura", last_name: "Kenshin")
 
 Category.create!(name: "Computer Science")
 Category.create!(name: "Fitness")
@@ -37,17 +37,21 @@ Category.create!(name: "Cognitive Science")
 Semester.create!(name: "Spring 2015")
 Semester.create!(name: "Fall 2015")
 
-Course.create!(semester: "Spring 2015", title: "A", category: "Computer Science", status: "Open", units: 1, pending: false) 
-Course.create!(semester: "Fall 2015", title: "B", category: "Cognitive Science", status: "Open", units: 1, pending: false) 
-Course.create!(semester: "Spring 2015",title: "C", category: "Computer Science", status: "Open", units: 1, pending: false) 
-Course.create!(semester: "Fall 2015",title: "D", category: "Fitness", status: "Open", units: 1, pending: false) 
-Course.create!(semester: "Spring 2015",title: "E", category: "Business", status: "Open", units: 1, pending: false) 
-Course.create!(semester: "Fall 2015",title: "F", category: "Languages", status: "Open", units: 1, pending: false) 
-Course.create!(semester: "Spring 2015",title: "G", category: "Computer Science", status: "Open", units: 1, pending: false) 
-Course.create!(semester: "Spring 2015",title: "H", category: "Business", status: "Open", units: 1, pending: true) 
-Course.create!(semester: "Spring 2015",title: "I", category: "Fitness", status: "Open", units: 1, pending: true) 
-Course.create!(semester: "Fall 2015",title: "J", category: "Languages", status: "Open", units: 1, pending: true) 
-Course.create!(semester: "Fall 2015",title: "K", category: "Computer Science", status: "Open", units: 1, pending: true) 
-Course.create!(semester: "Spring 2015",title: "L", category: "Computer Science", status: "Open", units: 1, pending: true) 
+course1 = Course.create!(semester: "Spring 2015", title: "A", category: "Computer Science",  units: 1, pending: false, description: 'hi', enrollment_info: 'hi')  
+course2 = Course.create!(semester: "Fall 2015", title: "B", category: "Cognitive Science", units: 1, pending: false, description: 'hi', enrollment_info: 'hi') 
+course3 = Course.create!(semester: "Spring 2015",title: "C", category: "Computer Science", units: '1-2', pending: false, description: 'hi', enrollment_info: 'hi') 
+course4 = Course.create!(semester: "Fall 2015",title: "D", category: "Fitness", units: '1-2', pending: false, description: 'hi', enrollment_info: 'hi') 
+course5 = Course.create!(semester: "Spring 2015",title: "E", category: "Business", units: '1-2', pending: false, description: 'hi', enrollment_info: 'hi') 
+course6 = Course.create!(semester: "Fall 2015",title: "F", category: "Languages",  units: 1, pending: false, description: 'hi', enrollment_info: 'hi') 
+course7 = Course.create!(semester: "Spring 2015",title: "G", category: "Computer Science",units: 1, pending: false, description: 'hi', enrollment_info: 'hi') 
+course8 = Course.create!(semester: "Spring 2015",title: "H", category: "Business", units: 1, pending: true, description: 'hi', enrollment_info: 'hi') 
+course9 = Course.create!(semester: "Spring 2015",title: "I", category: "Fitness", units: '1-2', pending: true, description: 'hi', enrollment_info: 'hi') 
+course10 = Course.create!(semester: "Fall 2015",title: "J", category: "Languages",  units: '1-2', pending: true, description: 'hi', enrollment_info: 'hi') 
+course11 = Course.create!(semester: "Fall 2015",title: "K", category: "Computer Science",  units: '1-2', pending: true, description: 'hi', enrollment_info: 'hi') 
+course12 = Course.create!(semester: "Spring 2015",title: "L", category: "Computer Science", units: 1, pending: true, description: 'hi', enrollment_info: 'hi') 
+
+FacilitateOwnedcourse.create!(facilitator_id: user6.id, ownedcourse_id: course1.id)
+
+
 
 
