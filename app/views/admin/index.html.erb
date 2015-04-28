@@ -9,17 +9,11 @@
       </ul>    
       <br/>
 
-<%= params %>
-<%= form_tag(add_semester_path) do %>
-  <%= label_tag("Add Semester:") %>
-  <input type="text" class="form-control" placeholder="Ex. Spring 2015" id=<%= text_field_tag('semester') %> </input>
-  <%= submit_tag "Add Semester", :class=>"btn btn-primary pull-right center" %>
-<% end %>
 
-<%= form_tag(add_category_path, id: 'add_category') do %>
-  <%= label_tag("Add Category:") %>
-  <input type="text" class="form-control" placeholder="Ex. Computer Science" id=<%= text_field_tag('category') %> </input>
-  <%= submit_tag "Add Category", :class=>"btn btn-primary pull-right center" %>
+<%= form_tag(remove_category_path, id: 'remove_category') do %>
+  <%= label_tag("Remove Category:") %>
+  <%= select_tag 'category', options_for_select(Category.categories), :class => 'form-control selectpicker' %>
+  <%= submit_tag "Remove Category", :class=>"btn btn-primary pull-right center" %>
 <% end %>
 
 <%= form_tag(remove_semester_path, id: 'remove_semester') do %>
@@ -28,11 +22,21 @@
   <%= submit_tag "Remove Semester", :class=>"btn btn-primary pull-right center" %>
 <% end %>
 
-<%= form_tag(remove_category_path, id: 'remove_category') do %>
-  <%= label_tag("Remove Category:") %>
-  <%= select_tag 'category', options_for_select(Category.categories), :class => 'form-control selectpicker' %>
-  <%= submit_tag "Remove Category", :class=>"btn btn-primary pull-right center" %>
+<%= form_tag(add_category_path, id: 'add_category') do %>
+  <%= label_tag("Add Category:") %>
+  <input type="text" class="form-control" placeholder="Ex. Computer Science" id=<%= text_field_tag('category') %> </input>
+  <%= submit_tag "Add Category", :class=>"btn btn-primary pull-right center" %>
 <% end %>
+
+<%= form_tag(add_semester_path) do %>
+  <%= label_tag("Add Semester:") %>
+  <input type="text" class="form-control" placeholder="Ex. Spring 2015" id=<%= text_field_tag('semester') %> </input>
+  <%= submit_tag "Add Semester", :class=>"btn btn-primary pull-right center" %>
+<% end %>
+
+
+
+
 
 
 

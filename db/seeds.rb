@@ -50,6 +50,37 @@ course10 = Course.create!(semester: "Fall 2015",title: "J", category: "Languages
 course11 = Course.create!(semester: "Fall 2015",title: "K", category: "Computer Science",  units: '1-2', pending: true, description: 'hi', enrollment_info: 'hi') 
 course12 = Course.create!(semester: "Spring 2015",title: "L", category: "Computer Science", units: 1, pending: true, description: 'hi', enrollment_info: 'hi') 
 
+section1 = Section.new(section_title: "1", days: "MTW", status: "Open", start_time: Section.time_to_int("8:00AM"), end_time: Section.time_to_int("9:00AM"))
+section1.course = course1
+section1.save
+
+section2 = Section.new(section_title: "2", days: "MTW", status: "Full", start_time: Section.time_to_int("9:00AM"), end_time: Section.time_to_int("10:00AM"))
+section2.course = course2
+section2.save
+
+section3 = Section.new(section_title: "3", days: "MTW", status: "Full", start_time: Section.time_to_int("10:00AM"), end_time: Section.time_to_int("11:00AM"))
+section3.course = course1
+section3.save
+
+section4 = Section.new(section_title: "4", days: "MTW", status: "Starting", start_time: Section.time_to_int("11:30AM"), end_time: Section.time_to_int("12:30PM"))
+section4.course = course3
+section4.save
+
+section5 = Section.new(section_title: "5", days: "MTW", status: "Starting", start_time: Section.time_to_int("1:00PM"), end_time: Section.time_to_int("2:00PM"))
+section5.course = course4
+section5.save
+
+section6 = Section.new(section_title: "6", days: "MTW", status: "Open", start_time: Section.time_to_int("3:00PM"), end_time: Section.time_to_int("4:00PM"))
+section6.course = course5
+section6.save
+
+section7 = Section.new(section_title: "7", days: "MTW", status: "Full", start_time: Section.time_to_int("5:00PM"), end_time: Section.time_to_int("6:30PM"))
+section7.course = course4
+section7.save
+
+
+
+
 FacilitateOwnedcourse.create!(facilitator_id: user6.id, ownedcourse_id: course1.id)
 
 
