@@ -46,7 +46,7 @@ class Course < ActiveRecord::Base
       output = output.where(course[:units].matches_any new)
     end
     output = Section.filter input, output
-    output = output.order(sorting[input[:sort]]) if input[:sort]
+    output = output.order(sorting[input[:sort]]) if sorting[input[:sort]]
     output
   end
 

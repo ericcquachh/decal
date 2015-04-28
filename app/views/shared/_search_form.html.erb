@@ -40,7 +40,7 @@ $(document).ready(function(){
                <%= select_tag 'category', options_for_select(Category.categories, params[:category]), :multiple => true, :class => 'form-control selectpicker' %>
 
           <%=label_tag("Sort") %>
-               <%= select_tag 'sort', options_for_select(Course.sorting.keys, params[:sort]), :class => 'form-control selectpicker'   %>
+               <%= select_tag 'sort', options_for_select([''] + Course.sorting.keys, params[:sort]), :class => 'form-control selectpicker'   %>
         </div>
 
         <div id="logistics" class="tab-pane fade">
