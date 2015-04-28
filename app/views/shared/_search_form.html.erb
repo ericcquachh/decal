@@ -25,12 +25,11 @@ $(document).ready(function(){
   </div>
   <div class="col-md-8">
     <div class="tab-content">
-       <div id="semester" class="tab-pane fade">
-       <%=label_tag("Semester") %>
-         <%= select_tag 'semester', options_for_select(Semester.semesters, Semester.current_semester(params[:semester])), :class => 'form-control selectpicker'   %>
-        </div>
 
         <div id="title" class="tab-pane fade">
+         <%=label_tag("Semester") %>
+               <%= select_tag 'semester', options_for_select(Semester.semesters, Semester.current_semester(params[:semester])), :class => 'form-control selectpicker'   %>
+
           <%= label_tag("SEARCH") %>
           <input type="text" class="form-control" placeholder="By title" id=<%= text_field_tag('search_field') %> </input>
         </div>
@@ -38,35 +37,35 @@ $(document).ready(function(){
         <div id="categories" class="tab-pane fade">
      
           <%= label_tag("CATEGORIES") %>
-               <%= select_tag 'category', options_for_select(['Select'] + Course.categories, params[:category]), :multiple => true, :class => 'form-control selectpicker' %>
+               <%= select_tag 'category', options_for_select(Category.categories, params[:category]), :multiple => true, :class => 'form-control selectpicker' %>
         </div>
 
         <div id="logistics" class="tab-pane fade">
       
           <%= label_tag("Units:") %>
-          <%= select_tag 'unit', options_for_select(['Select'] + Course.units, params[:units]), :multiple => true, :class => 'form-control selectpicker' %>
+          <%= select_tag 'units', options_for_select(Course.units, params[:units]), :multiple => true, :class => 'form-control selectpicker' %>
           
           <br/><br/>
           <%= label_tag("Status:") %>
-          <%= select_tag 'status', options_for_select(['Select'] + Section.statuses, params[:status]), :class => 'form-control selectpicker'%>
+          <%= select_tag 'status', options_for_select(Section.statuses, params[:status]), :multiple => true, :class => 'form-control selectpicker'%>
         </div>
 
         <div id="time" class="tab-pane fade">
         
           
             <%= label_tag("Date:") %>
-            <%= select_tag 'day', options_for_select(['Select'] + Section.all_days, params[:days]), :multiple => true, :class => 'form-control selectpicker' %>
+            <%= select_tag 'days', options_for_select(Section.all_days, params[:days]), :multiple => true, :class => 'form-control selectpicker' %>
 
          
           <br/><br/>
           
             <%= label_tag ("Starting Time") %>
-            <%= select_tag 'start_time', options_for_select(Section.all_times, params[:start_time]), :class => 'form-control selectpicker' %>
+            <%= select_tag 'start_time', options_for_select([''] + Section.all_times, params[:start_time]), :class => 'form-control selectpicker' %>
             <br/><br/>
 
 
             <%= label_tag ("Ending Time") %>
-            <%= select_tag 'end_time', options_for_select(Section.all_times, params[:end_time]), :class => 'form-control selectpicker' %>
+            <%= select_tag 'end_time', options_for_select([''] + Section.all_times, params[:end_time]), :class => 'form-control selectpicker' %>
         
         </div>
       

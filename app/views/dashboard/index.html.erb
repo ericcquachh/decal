@@ -16,6 +16,15 @@
 
 <p>* If you are currently teaching a course, and do not have access to your course page, ask your lead facilitator for access</p>
 
+<h2> Favorite Courses </h2>
+<% @favorite = true %>
+<% @courses = current_user.favorites %>
+
+
+<%= render 'shared/course_table'%>
+<% @favorite = nil %>
+<% @access = 'facilitator' %>
+
 <% if not current_user.ownedcourses.blank? or current_user.admin %>
   <div>
     <div class="page-header">

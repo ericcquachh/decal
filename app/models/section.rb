@@ -4,11 +4,11 @@ class Section < ActiveRecord::Base
   belongs_to :course, :class_name => "Course", :foreign_key => "course_id"
 
   def self.filter input, output
-    output = output.where('status = ?', input[:status]) if input[:status]
-    output = output.where('start_time >= ?', time_to_int(input[:start_time])) if input[:start_time]
-    output = output.where('end_time <= ?', time_to_int(input[:end_time])) if input[:end_time]
+    section = Section.arel_table
+    output = output.where(section[:status].eq_any input[:status]) if input[:status]
+    output = output.where('start_time >= ?', time_to_int(input[:start_time])) if !input[:start_time].blank?
+    output = output.where('end_time <= ?', time_to_int(input[:end_time])) if !input[:end_time].blank?
     if input[:days]
-      section = Section.arel_table
       new = input[:days].collect {|t| "%#{t}%"}
       output = output.where(section[:days].matches_any new)
     end
@@ -16,7 +16,6 @@ class Section < ActiveRecord::Base
   end
 
   def self.need_to_filter input
-    normalize! input
     input[:start_time] || input[:end_time] || input[:status]
   end
     
@@ -55,13 +54,6 @@ class Section < ActiveRecord::Base
     time = (int / 60).to_s + ":" + (int % 60).to_s
     time += 0.to_s if int % 60 == 0
     pm ? time += "PM" : time += "AM" 
-  end
-
-  def self.normalize! input
-    input[:days] = input[:days].keys if input[:days]
-    input.delete :start_time if input[:start_time] == '-Select Time-'
-    input.delete :end_time if input[:end_time] == '-Select Time-'
-    input.delete :status if input[:status] == 'Select'
   end
 
   def self.to_add! input

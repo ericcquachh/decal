@@ -34,32 +34,15 @@ class Course < ActiveRecord::Base
 
   # Changed to make validations work
 
-  def self.normalize_attributes
-    [:title, :category, :units]
-  end
-
-  def self.normalize_params! input
-    Course.normalize_attributes.each do |attribute|
-      if !input[attribute] or input[attribute] == 'Select'
-        input.delete attribute
-      elsif attribute == :units
-        input[attribute] = input[attribute].keys
-      end
-    end
-    if input[:search_field] == ''
-      input.delete :search_field
-    end
-  end
-
   def self.filter input, pending, admin
-    normalize_params! input
     output = Course.select("DISTINCT courses.*").where(:semester => Semester.current_semester(input[:semester])).where(:pending => pending)
     (Section.need_to_filter(input) or !admin) ? output = output.joins(:sections) : output = output.joins("LEFT JOIN sections")
     output = output.where(:category => input[:category]) if input[:category]
-    output = output.where('title like ?', "%#{input[:search_field]}%") if input[:search_field]
+    output = output.where('title like ?', "%#{input[:search_field]}%") if !input[:search_field].blank?
     if input[:units]
       course = Course.arel_table
       new = input[:units].collect {|t| "%#{t}%"}
+      input[:hello] = new
       output = output.where(course[:units].matches_any new)
     end
     output = Section.filter input, output

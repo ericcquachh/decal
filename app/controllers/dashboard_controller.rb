@@ -9,7 +9,6 @@ class DashboardController < ApplicationController
   end
 
   def index
-    @access = 'facilitator'
   end
 
   def create

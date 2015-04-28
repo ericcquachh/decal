@@ -5,6 +5,9 @@
     <th>Units</th>
     <th>Time</th>
     <th>Status</th>
+    <% if @favorite %>
+      <th>Remove</th>
+    <% end %>
     <% if @access %>
       <th>Edit</th>
       <% if @access == 'admin' %>
@@ -38,7 +41,9 @@
       <br></br>
       <% end %></td>
         <br></br>
-      
+      <% if @favorite %>
+        <td><%= button_to "delete", {:controller => :courses, :action => 'unfavorite', :id => course.id}, :method => :delete %><td>
+      <% end %>
       <% if @access %>
         <td><%= link_to 'Edit', edit_course_path(course) %></td>
         <% if @access == 'admin' %>
