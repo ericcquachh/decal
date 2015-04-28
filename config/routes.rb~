@@ -25,7 +25,7 @@ Decal::Application.routes.draw do
   match 'makeadmin' => 'courses#makeadmin'
   match 'removeadmin' => 'courses#removeadmin'
 
-  match 'add_semester' => 'admin#add_semester'
+  match 'insert_semester' => 'admin#insert_semester'
   match 'add_category' => 'admin#add_category'
   match 'remove_semester' => 'admin#remove_semester'
   match 'remove_category' => 'admin#remove_category'

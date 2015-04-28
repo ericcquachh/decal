@@ -46,7 +46,13 @@ class Course < ActiveRecord::Base
       output = output.where(course[:units].matches_any new)
     end
     output = Section.filter input, output
-    output = output.order(input[:title])
+    output = output.order(sorting[input[:sort]]) if input[:sort]
+    output
+  end
+
+  def self.sorting
+    {'Date posted, oldest first' => 'created_at DESC', 'Date posted, newest first' => 'created_at ASC',
+     'Title, alphabetically' => 'title'}
   end
 
   def self.units

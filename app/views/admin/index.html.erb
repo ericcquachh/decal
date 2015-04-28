@@ -9,9 +9,10 @@
       </ul>    
       <br/>
 
-<%= form_tag(add_semester_path, id: 'add_semester') do %>
+<%= params %>
+<%= form_tag(add_semester_path) do %>
   <%= label_tag("Add Semester:") %>
-  <input type="text" class="form-control" placeholder="Ex. Fall 2015" id=<%= text_field_tag('semester') %> </input>
+  <input type="text" class="form-control" placeholder="Ex. Spring 2015" id=<%= text_field_tag('semester') %> </input>
   <%= submit_tag "Add Semester", :class=>"btn btn-primary pull-right center" %>
 <% end %>
 
