@@ -1,16 +1,18 @@
-<div class="box">
-  <%= field_set_tag 'NEW COURSE' do %>
-    <div class="field">
-      <%= f.label :title %><br />
-      <%= f.text_field :title %>
-    </div><br/>
-    <div class="field">
-      <%= f.label :category %><br />
-      <%= f.select :category, options_for_select(["- Select -"] + Course.categories) %>
-    </div><br/>
-    <div class="field">
-      <%= f.label :status %><br />
-      <%= f.select :status, options_for_select(%w[Open Full]) %>
-    </div><br/>
-  <% end %>
+<div class="box center70">
+    <%= field_set_tag 'NEW COURSE' do %>
+    
+        <%= f.label :title %><br />
+     
+        <%= f.text_field :title , :class=>'form-control' %>
+    
+ 
+     
+        <%= f.label :category %><br />
+        <%= f.select :category, options_for_select(["- Select -"] + Course.categories), {}, {:class=>'form-control selectpicker'}  %>
+      <br/>
+     
+        <%= f.label :status %><br />
+        <%= f.select :status, options_for_select(%w[Open Full]), {},:class=>'form-control selectpicker'%>
+      <br/>
+    <% end %>
 </div><br/>

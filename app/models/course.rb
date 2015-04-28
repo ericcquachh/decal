@@ -61,8 +61,8 @@ class Course < ActiveRecord::Base
   def self.filter! input, pending
     normalize_params! input
     filter_values = filtering_values input
-    output = Course.find(:all, :order => input[:title], :conditions => {:category => filter_values[:category], :status => filter_values[:status], :units => filter_values[:units], :pending => pending})
-    output = output.select {|course| course.section_times.any? {|time| time.include_time? input}}
+    output = Course.find(:all, :order => input[:title], :conditions => {:category => filter_values[:category], :status => filter_values[:status], :pending => pending})
+
     if input[:search_field]
       output = output.select {|course| course.title.downcase.include? input[:search_field].downcase}
     end
