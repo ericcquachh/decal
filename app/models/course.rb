@@ -9,7 +9,7 @@ class Course < ActiveRecord::Base
   has_many :uploads
   has_many :section_times, through: :sections
 
-  has_and_belongs_to_many :users, join_table: :favorite_courses
+  has_and_belongs_to_many :favorite_users, join_table: :favorite_courses, class_name: "User"
 
   has_many :facilitate_ownedcourses, foreign_key: :ownedcourse_id
   has_many :facilitators, through: :facilitate_ownedcourses, source: :facilitator
@@ -22,7 +22,9 @@ class Course < ActiveRecord::Base
   validates :application_url, :if => lambda { |o| o.current_step == "1" }, :allow_blank => true, :format => /(^$)|(^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(([0-9]{1,5})?\/.*)?$)/ix
   validates :application_due, :if => lambda { |o| o.current_step == "1" }, date: { allow_blank: true, after: Proc.new { Time.now }, before: Proc.new { Time.now + 1.year }, message: '... Please enter an upcoming date' }
 
+
   validates_inclusion_of :category, :in => Category.categories, :if => lambda { |o| o.current_step == "1" }, :message => "must be selected from the dropdown menu"
+
 
   validates_presence_of :department_num, :course_email, :faculty_email, :faculty_name, :if => lambda { |o| o.current_step == "2" }
   validates_presence_of :description, :enrollment_info, :if => lambda { |o| o.current_step == "3"}

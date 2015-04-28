@@ -6,19 +6,15 @@
       <% end %>
     </div>
   <% end %>
-  <% if @course.pending  %>
-    <h3>Course can be edited, but still needs to be approved.</h3>
-    <p> Does this course have syllabus? </p>
-    <%= @course.has_syl %>
-    <% if !@course.has_cpf%>
-      <h2>YOU NEED TO UPLOAD A COMPLETED CPF BEFORE COURSE APPROVAL.</h2>
-    <%end%>
-    <% if !@course.has_syl%>
-      <h2>YOU NEED TO UPLOAD A COMPLETED SYLLABUS BEFORE COURSE APPROVAL.</h2>
-      <%= @course.has_cpf %>
-    <%end%>
+  
+  <% if @course.pending %>
+    <div id="pending_info box">
+      <% @uploads = @course.uploads %>
+      <%= render 'course_request_uploads' %>
+    </div>
+    </br>
   <%end%>
-
+  
   <div class="panel panel-default">
     <div class="panel-heading">
       <h3 class="panel-title"><h1><%= @course.title %></h1>  
@@ -132,6 +128,10 @@
     <% end %>
   </div>
   <br/>
+
+  <h3> Favorites </h3>
+  <%= button_to "add course to favorites", {:controller => :courses, :action => 'favorites', :id => @course.id}, :method => :post %>
+
 
 <%else%>
   <h1>This course has not been approved by the admin.</h1>

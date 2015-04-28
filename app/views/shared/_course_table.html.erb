@@ -8,7 +8,9 @@
     <% if @access %>
       <th>Edit</th>
       <% if @access == 'admin' %>
-        <% if params[:tab] == "pending" %>
+        <% if params[:tab] == "pending" or params[:tab] == 'curr'%>
+          <th>Syllabus</th>
+          <th>CPF</th>
           <th>Approve</th>
         <%else%>
           <th>Unapprove</th>
@@ -40,6 +42,24 @@
       <% if @access %>
         <td><%= link_to 'Edit', edit_course_path(course) %></td>
         <% if @access == 'admin' %>
+          <% if course.has_syl? %>
+            <% course.uploads.each do |upload| %>
+              <% if upload.syl? %>
+                <td><%= link_to "Syllabus", upload.attachment_url, {:style => "color: green"} %></td>
+              <% end %>
+            <% end %>
+          <% else %>
+            <td style="color:red">No Syllabus Uploaded!</td>
+          <% end %>
+          <% if course.has_cpf? %>
+            <% course.uploads.each do |upload| %>
+              <% if upload.cpf? %>
+                <td><%= link_to "CPF", upload.attachment_url, {:style => "color: green"} %></td>
+              <% end %>
+            <% end %>
+          <% else %>
+            <td style="color:red">No CPF Uploaded!</td>
+          <% end %>
           <td><%= check_box_tag(course.title) %></td>
         <% else %>
           <td><%= button_to 'Unfacilitate', course_facilitator_delete_path(:course_id => course.id, :user_id => current_user.id, :page => @page), method: :delete %></td>

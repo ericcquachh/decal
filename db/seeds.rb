@@ -7,7 +7,6 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 #Test Courses
-
 # Course.create!(title: "Taiwanese Language", category: "Languages", units:"1", status:"Full")
 # Course.create!(title: "Python on Crack", category: "Computer Science", units:"3", status:"Full")
 # Course.create!(title: "Ruby on Rails", category: "Computer Science", units:"2", status:"Full")
@@ -37,6 +36,7 @@ Category.create!(name: "Cognitive Science")
 Semester.create!(name: "Spring 2015")
 Semester.create!(name: "Fall 2015")
 
+
 course1 = Course.create!(semester: "Spring 2015", title: "A", category: "Computer Science",  units: 1, pending: false, description: 'hi', enrollment_info: 'hi')  
 course2 = Course.create!(semester: "Fall 2015", title: "B", category: "Cognitive Science", units: 1, pending: false, description: 'hi', enrollment_info: 'hi') 
 course3 = Course.create!(semester: "Spring 2015",title: "C", category: "Computer Science", units: '1-2', pending: false, description: 'hi', enrollment_info: 'hi') 
@@ -51,6 +51,7 @@ course11 = Course.create!(semester: "Fall 2015",title: "K", category: "Computer 
 course12 = Course.create!(semester: "Spring 2015",title: "L", category: "Computer Science", units: 1, pending: true, description: 'hi', enrollment_info: 'hi') 
 
 FacilitateOwnedcourse.create!(facilitator_id: user6.id, ownedcourse_id: course1.id)
+
 
 
 

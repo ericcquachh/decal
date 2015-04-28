@@ -22,7 +22,7 @@ class User < ActiveRecord::Base
   has_many :facilitate_requests, foreign_key: :request_id
   has_many :receivers, through: :facilitate_requests, source: :receiver
 
-  has_and_belongs_to_many :courses, join_table: :favorite_courses
+  has_and_belongs_to_many :favorites, join_table: :favorite_courses, class_name: "Course"
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable, :omniauthable,
   :recoverable, :rememberable, :trackable, :validatable

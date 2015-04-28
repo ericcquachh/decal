@@ -1,21 +1,67 @@
-<%= form_for(@course) do |f| %>
-  <div class="box">
-    <%= field_set_tag 'NEW COURSE' do %>
-      <div class="field">
-        <%= f.label :title %><br />
-        <%= f.text_field :title %>
-      </div><br/>
-      <div class="field">
-        <%= f.label :category %><br />
-        <%= f.select :category, options_for_select(["- Select -"] + Course.categories) %>
-      </div><br/>
-      <div class="field">
-        <%= f.label :status %><br />
-        <%= f.select :status, options_for_select(%w[Open Full]) %>
-      </div>
-  <% end %>
-  </div><br/>
-  <p><%= f.submit "Continue", :id => "continue" %></p>
-
+<h3>Course can be edited, but still needs to be approved.</h3>
+<% if @course.has_cpf and @course.has_syl %>
+  <p style="color:green">You have filled out a course request and have uploaded both required documents! Wait for course approval now.</p>
+<% elsif !@course.has_cpf or !@course.has_syl %>
+  <p style="color:red">You have filled out a course request but haven't uploaded both required documents! Your application won't be considered until you upload both a syllabus and a completed CPF.</p>
 <% end %>
+<table class="std">
+  <thead>
+    <tr>
+      <th>Required Document</th>
+      <th>Name</th>
+      <th>View File</th>
+      <th>&nbsp;</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @uploads.each do |upload| %>
+      <tr>
+        <% if @course.verify_facilitator? current_user %>
+          <% if upload.syl? %>
+            <td>Syllabus</td>
+            <td><%= upload.name %></td>
+            <td><%= link_to "Download", upload.attachment_url %></td>
+            <td><%= button_to "Delete", {:controller => :uploads, :action => 'destroy', :id => upload.id, :course_id => @course.id }, :method => :delete, "onclick" => "javascript:return confirm('Are you absolutely sure you want to delete?')" %></td>
+            <td><%= button_to "Update", {:controller => :uploads, :action => 'new', :course_id => @course.id}, :method => :get, "onclick" => "javascript:return confirm('Uploading a new syllabus will overwrite the current syllabus. Proceed?)" %></td>
+          <% end %>
+          <% if upload.cpf? %>
+            <td>CPF</td>
+            <td><%= upload.name %></td>
+            <td><%= link_to "Download", upload.attachment_url %></td>
+            <td><%= button_to "Delete", {:controller => :uploads, :action => 'destroy', :id => upload.id, :course_id => @course.id }, :method => :delete, "onclick" => "javascript:return confirm('Are you absolutely sure you want to delete?')" %></td>
+            <td><%= button_to "Update", {:controller => :uploads, :action => 'new', :course_id => @course.id}, :method => :get, "onclick" => "javascript:return confirm('Uploading a new CPF will overwrite the current syllabus. Proceed?)" %></td>
+          <% end %>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<% if !@course.has_cpf%>
+  <h2>YOU NEED TO UPLOAD A COMPLETED CPF BEFORE COURSE APPROVAL.</h2>
+  <div class="cpf_upload box">
+    <p>Upload Required CPF</p>
+    <%= form_for(:upload, :url => course_uploads_path(:course_id => @course.id, :syl => 0, :cpf => 1)) do |f| %>
+      <%= f.label :name %>
+      <%= f.text_field :name %></br>
+      <%= f.label :attachment %>
+      <%= f.file_field :attachment %>
+      <%= f.submit "Upload", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+<%end%>
+<% if !@course.has_syl%>
+  <h2>YOU NEED TO UPLOAD A COMPLETED SYLLABUS BEFORE COURSE APPROVAL.</h2>
+  <div class="syl_upload box">
+    <p>Upload Required Syllabus</p>
+    <%= form_for(:upload, :url => course_uploads_path(:course_id => @course.id, :syl => 1, :cpf => 0)) do |f| %>
+      <%= f.label :name %>
+      <%= f.text_field :name %></br>
+      <%= f.label :attachment %>
+      <%= f.file_field :attachment %>
+      <%= f.submit "Upload", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+<%end%>
+
 

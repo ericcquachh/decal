@@ -1,0 +1,20 @@
+<table class="std">
+  <thead>
+    <tr>
+    	<th>Course Title</th>
+    	<th>Category</th>
+    	<th>Units</th>
+    	<th>Status</th>
+    	<th>Remove</th>
+    </tr>
+  </thead>
+  <% current_user.favorites.each do |course| %>
+    <tr>
+      <td><%= link_to course.title, course, {:style=>'font-size: 120%;'} %></td>
+      <td><%= course.category %></td>
+      <td><%= course.units %></td>
+      <td><%= course.status %></td>
+      <td><%= button_to "delete", {:controller => :courses, :action => 'unfavorite', :id => course.id}, :method => :delete %><td>
+    </tr>
+  <% end %>
+</table>
