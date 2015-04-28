@@ -50,5 +50,15 @@ class AdminController < ApplicationController
   end
 
   def remove_semester
+    semester = Semester.find_by_name(params[:semester])
+    semester.destroy
+    redirect_to admin_index_path(:tab => params[:tab]), method: :get
   end
+
+  def remove_category
+    category = Category.find_by_name(params[:category])
+    category.destroy
+    redirect_to admin_index_path(:tab => params[:tab]), method: :get
+  end
+
 end

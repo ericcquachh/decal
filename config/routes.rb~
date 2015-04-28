@@ -10,13 +10,8 @@ Decal::Application.routes.draw do
       match '/facilitator_request' => 'facilitator#facilitator_request', as: 'facilitator_request'
   end
 
-<<<<<<< HEAD
-  resources :admin 
-
-=======
   resources :admin
   resources :home
->>>>>>> 8ece989d5870132bc784d03a01468c3560186c33
   # paths for dashboard
   resources :dashboard
   resources :existing_courses
@@ -32,6 +27,8 @@ Decal::Application.routes.draw do
 
   match 'add_semester' => 'admin#add_semester'
   match 'add_category' => 'admin#add_category'
+  match 'remove_semester' => 'admin#remove_semester'
+  match 'remove_category' => 'admin#remove_category'
 
   match 'favorites' => 'courses#favorites'
   match 'unfavorite' => 'courses#unfavorite'

@@ -46,7 +46,7 @@ class CoursesController < ApplicationController
     @course = Course.find(params[:id])
     relation = FavoriteCourse.find_by_course_id_and_user_id(@course.id, current_user.id)
     relation.destroy
-    redirect_to courses_path
+    redirect_to dashboard_index_path
   end
 
   # GET /courses/1
