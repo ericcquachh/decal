@@ -10,8 +10,8 @@ Decal::Application.routes.draw do
       match '/facilitator_request' => 'facilitator#facilitator_request', as: 'facilitator_request'
   end
 
-  resources :admin 
-
+  resources :admin
+  resources :home
   # paths for dashboard
   resources :dashboard
   resources :existing_courses
@@ -33,6 +33,6 @@ Decal::Application.routes.draw do
   # match '/courses/:id/addsection' => 'courses#addsection', :as => :add_section, :via => :get
   # match '/courses/:id/updatesection' => 'courses#updatesection', :as => :update_section, :via => :post
 
-  root :to => 'courses#index'
+  root :to => 'home#index'
 
 end

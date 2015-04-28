@@ -1,58 +1,40 @@
-<br>
-<div class="btn-group btn-group-justified" role="group" aria-label="...">
-  <div class="btn-group" role="group">
-    <%= link_to 'APPROVED COURSES', admin_index_path(:tab => 'curr'), {:class => "btn btn-primary"} %>
-  </div>
-  <div class="btn-group" role="group">
-    <%= link_to 'PENDING COURSES', admin_index_path(:tab => 'pending'), {:class => "btn btn-primary"} %>
-  </div>
-  <div class="btn-group" role="group">
-    <%= link_to 'MANAGE FACILITATORS', admin_index_path(:tab => 'manageadmins'), {:class => "btn btn-primary"} %>
-  </div>
-</div>
-<%= form_tag(add_semester_path, id: 'add_semester') do %>
-  <%= label_tag("Add Semester:") %>
-  <input type="text" class="form-control" placeholder="Ex. Fall 2015" id=<%= text_field_tag('semester') %> </input>
-<% end %>
-
-<%= form_tag(add_category_path, id: 'add_category') do %>
-  <%= label_tag("Add Category:") %>
-  <input type="text" class="form-control" placeholder="Ex. Computer Science" id=<%= text_field_tag('category') %> </input>
-<% end %>
-
-<div>
-  <% if params[:tab] == "curr" %>
-    <h3>Approved Courses</h3>
-  <%end%>
-  <% if params[:tab] == "pending" %>
-    <h3>Pending Courses</h3>
-  <%end%>
-  <% if params[:tab] == "manageadmins" %>
-    <h3>Manage Facilitators</h3>
-  <%end%>
-</div>
-
-
-<%if params[:tab] != "manageadmins"%>
+<div class="row">
   <form class="form-inline">
-  <%= form_for(admin_index_path, method: :get, id: 'units_form') do %>
-    <%= hidden_field_tag :tab, params[:tab] %>
-    <%= render 'shared/search_form' %>
-  <% end %>
-  <br></br>
-  <% @access = 'admin' %>
-  <%= form_tag(controller: "admin", action: "index", method: "post") do %>
-    <%= hidden_field_tag :tab, params[:tab] %>
-    <%= render 'shared/course_table' %>
-    <% if params[:tab] == "pending" %>
-      <%= submit_tag("Approve Course(s)",:class=>'btn btn-primary')%>
-    <% else %>
-      <%= submit_tag("Unapprove Course(s)",:class=>'btn btn-primary')%>
-    <% end %>
-  <% end %>
-<%else%>
-  <%= render 'shared/user_table' %>
-<%end%>
+    <div class="form-group col-md-4 box">
+      <h3>Manage</h3>
+      <ul class="nav nav-pills nav-stacked">
+        <li class="<%= "active" if params[:tab] == 'curr'%>"><%= link_to 'APPROVED COURSES', admin_index_path(:tab => 'curr'), {:class => "btn btn-primary"} %><li>
+        <li class="<%= "active" if params[:tab] == 'pending'%>"><%= link_to 'PENDING COURSES', admin_index_path(:tab => 'pending'), {:class => "btn btn-primary"} %></li>
+        <li class="<%= "active" if params[:tab] == 'manageadmins'%>"><%= link_to 'FACILITATORS', admin_index_path(:tab => 'manageadmins'), {:class => "btn btn-primary"} %></li>
+      </ul>    
+      <br/>
 
-
-
+      <%if params[:tab] != "manageadmins"%>
+        <%= form_for(admin_index_path, method: :get, id: 'units_form') do %>
+          <%= hidden_field_tag :tab, params[:tab] %>
+          <%= render 'shared/search_form' %>
+        <% end %>
+        </div>
+        <% @access = 'admin' %>
+        <%= form_tag(controller: "admin", action: "index", method: "post") do %>
+          <%= hidden_field_tag :tab, params[:tab] %>
+          <div class="col-md-8">
+            <%= render 'shared/course_table' %>
+            <div class="pull-right">
+              <% if params[:tab] == "pending" %>
+                <%= submit_tag("Approve Course(s)",:class=>'btn btn-primary')%>
+              <% else %>
+                <%= submit_tag("Unapprove Course(s)",:class=>'btn btn-primary')%>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+      <%else%>
+        </div>
+        <div class="col-md-8">
+          <%= render 'shared/user_table' %>
+        </div>
+      <%end%>
+    </div>
+  </form>
+</div>

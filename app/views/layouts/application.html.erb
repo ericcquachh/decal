@@ -3,64 +3,20 @@
 
   <head>
     <title>DeCal</title>
+    <%= stylesheet_link_tag    "bootstrap", :media => "all" %>
     <%= stylesheet_link_tag    "application", :media => "all" %>
-    <%= javascript_include_tag "application" %>
+    <%= stylesheet_link_tag    "style", :media => "all" %>
+    <%= stylesheet_link_tag    "bootstrap-select", :media => "all" %>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <%= javascript_include_tag "bootstrap-select", :media =>"all" %>
+
+
+
     <%= csrf_meta_tags %>
   </head>
   <body>
-    <style type = "text/css">
-    @import url(http://fonts.googleapis.com/css?family=Lato);
-    @import url(http://fonts.googleapis.com/css?family=Raleway:400,700);
 
-    *{
-    font-family: "Raleway";
-      }
-    .navbar-default {
-    background-color: #30678E;
-    }
-    .navbar-default .navbar-nav > li > a {
-      color: white;
-    }
-    .navbar-default .navbar-nav > li > a:hover {
-      color: #E6E65C
-    ;
-    }
-    .navbar-default {
-    background-color: #30678E;
-
-    }
-    .navbar-default .navbar-nav > .active > a {
-      color: white;
-    }
-    .navbar-default .navbar-nav > .active > a:hover {
-      color: #30678E;
-      background-color: #E6E65C;
-    }
-    .navbar-default .navbar-nav > .active > a {
-      background-color: #E6E65C;
-    }
-    .table-hover > tbody > tr:nth-child(1) > td, .table-hover > tbody > tr:nth-child(1) > th {
-    background-color: #30678E;
-    color: white;
-    }
-    .table-hover > tbody > tr > th > a {
-      color: white;
-    }
-    .table-hover > tbody > tr:hover {
-      background-color: #F2F2AE;
-    }
-    .shadow {
-    -webkit-box-shadow: 0 8px 6px -3px #F2F2AE;
-    -moz-box-shadow: 0 8px 6px -3px #F2F2AE;
-    box-shadow: 0 8px 6px -3px #F2F2AE;
-    }
-    .container
-    {
-    margin-left: auto;
-    margin-right: auto;
-    width: 50em;
-    }
-    </style>
     <header class="header">
       <nav class="navbar navbar-default shadow">
         <div class= "container">
@@ -78,11 +34,25 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
               <ul class="nav navbar-nav">
-                <li><a href="/courses"><b>COURSES</b></a></li>
-                <li><a href="/dashboard"><b>FACILITATE</b></a></li>
+           
+                <li class="<%= is_active?(courses_path) %>"><a href="/courses">COURSES</a></li>
+                <li class="<%= is_active?(dashboard_index_path) %>"><a href="/dashboard">FACILITATE</a></li>
                 <% if current_user.try(:admin?) %>
-                <li><a href="/admin"><b>ADMIN</b></a></li>
+                <li class="<%= is_active?(admin_index_path) %>"><a href="/admin">ADMIN</a></li>
                 <%end%>
+
+                <li><a>EXPO</a></li>
+                <li><a>INTERN</a></li>
+                <li><a>ABOUT</a></li> 
+                <li><a>HELP</a></li>
+              </ul>
+              <ul class="nav navbar-nav navbar-right">
+                <li><a href="<%= new_user_registration_path %>"><b>SIGNUP</b></a></li>
+                <li><a href="<%= user_omniauth_authorize_path(:google_oauth2) %>"><b>SIGNIN</b></a></li>
+              </ul>
+
+
+                
                 <!--<li><%= link_to "FACILITATE", dashboard_index_path %></li>-->
                 <!--
                 <% if user_signed_in? %>
@@ -98,6 +68,8 @@
 
 
               </ul>
+
+
               </div><!-- /.navbar-collapse -->
               </div><!-- /.container-fluid -->
             </div>
@@ -107,7 +79,7 @@
           <div class="pull-right">
             <% if user_signed_in? %>
               Logged in as <strong><%= current_user.email %></strong>.
-              <%= link_to 'Edit profile', edit_user_registration_path  %>
+            <!--   <%= link_to 'Edit profile', edit_user_registration_path  %> -->
               <b>|</b>
               <%= link_to "Logout", destroy_user_session_path, :method => :delete %>
             <% else %>
@@ -118,13 +90,16 @@
               <%= link_to "Sign in", new_user_session_path%>
             <% end %>
           </div>
-          <br>
+          
           <% if notice %>
-          <p class="alert alert-success"><%= notice %></p>
+            <br/>
+            <p class="alert alert-success"><%= notice %></p>
           <% end %>
           <% if alert %>
-          <p class="alert alert-danger"><%= alert %></p>
+            <br/>
+            <p class="alert alert-danger"><%= alert %></p>
           <% end %>
+          <br/><br/>
           <%= yield %>
           <!-- end of header -->
         </div>
