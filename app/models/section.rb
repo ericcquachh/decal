@@ -3,7 +3,7 @@ class Section < ActiveRecord::Base
   :days, :start_time, :end_time, :sid, :course_id
   belongs_to :course, :class_name => "Course", :foreign_key => "course_id"
   
-  validates_presence_of :section_title, :status, :days, :start_time, :end_time
+  validates_presence_of :section_title, :status, :days, :start_time, :end_time, :location
 
   def self.filter input, output
     section = Section.arel_table

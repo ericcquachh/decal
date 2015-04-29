@@ -34,7 +34,7 @@
     </div><br/>
     <div>
       <b>Application Due Date:</b><br />
-      <%= f.date_select :application_due, :order => [:day, :month, :year] %>
+      <%= f.date_select :application_due, :order => [:day, :month, :year], :include_blank => true %>
     </div><br/>
   <% end %>
 </div><br/>
