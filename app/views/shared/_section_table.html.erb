@@ -1,5 +1,4 @@
-<table class="std">
-  <thead>
+<table class="table table-hover">
     <tr>
       <th>Section</th>
       <th>Facilitator</th>
@@ -15,8 +14,6 @@
         <th>Delete</th>
       <% end %>
     </tr>
-  </thead>
-  <tbody>
     <% @sections.each do |section| %>
       <tr>
         <% if !section.section_title.blank? %>
@@ -79,5 +76,4 @@
         <% end %>
       </tr>
     <% end %>
-  </tbody>
 </table>

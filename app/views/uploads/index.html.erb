@@ -8,14 +8,11 @@
 <br />
 <br />
 <table class="table table-bordered table-striped">
-  <thead>
     <tr>
       <th>Name</th>
       <th>Download Link</th>
       <th>&nbsp;</th>
     </tr>
-  </thead>
-  <tbody>
     <% @uploads.each do |upload| %>
       <tr>
         <td><%= upload.name %></td>
@@ -23,5 +20,4 @@
         <td><%= button_to "Delete", {:controller => :uploads, :action => 'destroy', :id => upload.id, :course_id => @course.id }, :method => :delete, "onclick" => "javascript:return confirm('Are you absolutely sure you want to delete?')" %></td>
       </tr>
     <% end %>
-  </tbody>
 </table>

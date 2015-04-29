@@ -17,17 +17,17 @@ class Course < ActiveRecord::Base
   has_many :facilitate_requests, foreign_key: :receiver_id
   has_many :requests, through: :facilitate_requests, source: :request
 
-  validates_presence_of :title, :if => lambda { |o| o.current_step == "1" }
+  validates_presence_of :title, :department_num, :course_email, :faculty_email, :faculty_name,  :if => lambda { |o| o.current_step == "1" }
 
-  validates :application_url, :if => lambda { |o| o.current_step == "1" }, :allow_blank => true, :format => /(^$)|(^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(([0-9]{1,5})?\/.*)?$)/ix
-  validates :application_due, :if => lambda { |o| o.current_step == "1" }, date: { allow_blank: true, after: Proc.new { Time.now }, before: Proc.new { Time.now + 1.year }, message: '... Please enter an upcoming date' }
+  validates :application_url, :if => lambda { |o| o.current_step == "3" }, :allow_blank => true, :format => /(^$)|(^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(([0-9]{1,5})?\/.*)?$)/ix
+  validates :application_due, :if => lambda { |o| o.current_step == "3" }, date: { allow_blank: true, after: Proc.new { Time.now }, before: Proc.new { Time.now + 1.year }, message: '... Please enter an upcoming date' }
 
 
   validates_inclusion_of :category, :in => Category.categories, :if => lambda { |o| o.current_step == "1" }, :message => "must be selected from the dropdown menu"
 
 
-  validates_presence_of :department_num, :course_email, :faculty_email, :faculty_name, :if => lambda { |o| o.current_step == "2" }
-  validates_presence_of :description, :enrollment_info, :if => lambda { |o| o.current_step == "3"}
+  validates_presence_of :description, :if => lambda { |o| o.current_step == "2" }
+  validates_presence_of :enrollment_info, :if => lambda { |o| o.current_step == "3"}
 
   # validates :title, :presence => {message: "Title is required."}
   # validates :units, :presence => {message: "Units cannot be blank."}, :numericality => {only_integer: true, :greater_than => 0, :less_than => 5, message: "Units must be integers 1-4."} 

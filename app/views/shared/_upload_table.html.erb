@@ -1,12 +1,9 @@
-<table class="std">
-  <thead>
+  <table class="table table-hover">
     <tr>
       <th>Name</th>
       <th>Download Link</th>
       <th>&nbsp;</th>
     </tr>
-  </thead>
-  <tbody>
     <% @uploads.each do |upload| %>
       <tr>
         <% if upload.syl? or upload.cpf? %>
@@ -31,5 +28,4 @@
 
       </tr>
     <% end %>
-  </tbody>
-</table>
+  </table>

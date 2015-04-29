@@ -8,18 +8,24 @@
 <br/>
 
   <%= form_for(@course) do |f| %>
-    <% if !@course.errors.empty? %>
-      <div id="error_explanation">
-        <% @course.errors.full_messages.each do |msg| %>
-          <li><%= "Error: " + msg %></li>
-        <% end %>
-      </div>
-    <% end %>
-      <%= render "courses/steps/page#{@course.current_step}", f: f %>
-    <div class="center70">
-      <%= f.submit "Continue", :id => "continue" %>
-      <%= f.submit "Back", :name => "previous_button" unless @course.first_step? %>
+     <div class="center70">
+      <% if !@course.errors.empty? %>
+        <div id="error_explanation">
+          <% @course.errors.full_messages.each do |msg| %>
+            <li><%= "Error: " + msg %></li>
+          <% end %>
+        </div>
+      <% end %>
     </div>
-  <% end %>
+    <br/>
+      <%= render "courses/steps/page#{@course.current_step}", f: f %>
 
+      <nav>
+        <ul class="pager center70">
+          <%= f.submit "Back", :name => ("previous_button" unless @course.first_step?), :class => "btn btn-primary" %>
+          <%= f.submit "Continue", :id => "continue", :class => "btn btn-primary" %>
+        </ul>
+        
+      </nav>
+  <% end %>
 

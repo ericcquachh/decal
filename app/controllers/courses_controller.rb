@@ -104,7 +104,7 @@ class CoursesController < ApplicationController
       render 'new'
     else
       session[:course_step] = session[:course_params] = nil
-      flash[:notice] = "Course request successfully submitted to admin."
+      flash[:notice] = "Course successfully requested. Please submit your CPF and Syllabus in order to get course approved by admin."
       redirect_to @course
     end
   end

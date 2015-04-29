@@ -1,4 +1,6 @@
+<div class="center70">
 <h1>Editing course</h1>
+</div>
 <% if @course.verify_facilitator? current_user %>
   <%= form_for(@course) do |f| %>
     <% if params[:step_1] %>
@@ -8,8 +10,16 @@
     <% else %>
       <%= render 'courses/steps/page3', f: f %>
     <% end %>
-    <p><%= f.submit "Update", :id => "update" %></p>
+    <div class="center70">
+      <nav>
+        <ul class="pager">
+          <li ><a href="<%=  @course %>"><span aria-hidden="true">&larr;</span>  Back</a></li>
+          <%= f.submit "Update", :id => "update", :class => "btn btn-primary"  %>
+        </ul>
+        
+      </nav>
+    
   <% end %>
-<%= link_to 'Back', @course %>
+  </div>
 <%end%>
 
