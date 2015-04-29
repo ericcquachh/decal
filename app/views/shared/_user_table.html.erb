@@ -1,6 +1,6 @@
 
   <table class="table table-hover">
-    <thead>
+    
       <tr>
         <th>First Name</th>
         <th>Last Name</th>
@@ -16,8 +16,6 @@
           <% end %>
         <% end %>
       </tr>
-    </thead>
-    <tbody>
       <% @users.each do |user| %>
         <tr>
           <td><%= user.first_name %></td>
@@ -35,8 +33,5 @@
           <% end %>
         </tr>
       <% end %>
-    </tbody>
+
   </table>
-
-
-  

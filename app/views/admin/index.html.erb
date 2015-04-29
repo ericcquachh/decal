@@ -1,56 +1,80 @@
 <div class="row">
   <form class="form-inline">
-    <div class="form-group col-md-4 box">
-      <h3>Manage</h3>
-      <ul class="nav nav-pills nav-stacked">
-        <li class="<%= "active" if params[:tab] == 'curr'%>"><%= link_to 'APPROVED COURSES', admin_index_path(:tab => 'curr'), {:class => "btn btn-primary"} %><li>
-        <li class="<%= "active" if params[:tab] == 'pending'%>"><%= link_to 'PENDING COURSES', admin_index_path(:tab => 'pending'), {:class => "btn btn-primary"} %></li>
-        <li class="<%= "active" if params[:tab] == 'manageadmins'%>"><%= link_to 'FACILITATORS', admin_index_path(:tab => 'manageadmins'), {:class => "btn btn-primary"} %></li>
-      </ul>    
+    <div class="col-md-4">
+      <div class="col-md-12 box">
+        <div class="form-group">
+          <h3>Manage</h3>
+          <ul class="nav nav-pills nav-stacked">
+            <li class="<%= "active" if params[:tab] == 'curr'%>"><%= link_to 'APPROVED COURSES', admin_index_path(:tab => 'curr'), {:class => "btn btn-primary"} %></li>
+            <li class="<%= "active" if params[:tab] == 'pending'%>"><%= link_to 'PENDING COURSES', admin_index_path(:tab => 'pending'), {:class => "btn btn-primary"} %></li>
+            <li class="<%= "active" if params[:tab] == 'manageadmins'%>"><%= link_to 'FACILITATORS', admin_index_path(:tab => 'manageadmins'), {:class => "btn btn-primary"} %></li>
+          </ul>    
+          <br/>
+
+          <%if params[:tab] != "manageadmins"%>
+
+            <%= form_for(admin_index_path, method: :get, id: 'units_form') do %>
+              <%= hidden_field_tag :tab, params[:tab] %>
+              <%= render 'shared/search_form' %>
+            <% end %>
+          <%end%>
+          <br/>
+        </div>
+      </div>
+      <div class="line">
+      </div>
+      <div class="col-md-12 box">
+
+        <div class="col-md-6">
+          <%= form_tag(remove_category_path, id: 'remove_category') do %>
+            <%= label_tag("Remove Category:") %>
+            <%= select_tag 'category', options_for_select(Category.categories), :class => 'form-control selectpicker' %>
+            <%= submit_tag "Remove Category", :class=>"btn btn-primary pull-right center" %>
+          <% end %>
+        </div>
+
+        <div class="col-md-6">
+          <%= form_tag(remove_semester_path, id: 'remove_semester') do %>
+            <%= label_tag("Remove Semester:") %>
+            <%= select_tag 'semester', options_for_select(Semester.semesters), :class => 'form-control selectpicker' %>
+            <%= submit_tag "Remove Semester", :class=>"btn btn-primary pull-right center" %>
+          <% end %>
+          <br/>
+        </div>
+        
+        <div class="col-md-12">
+
+          <%= form_tag(add_category_path, id: 'add_category') do %>
+            <%= label_tag("Add Category:") %>
+            <input type="text" class="form-control" placeholder="Ex. Computer Science" id=<%= text_field_tag('category') %> </input>
+            <%= submit_tag "Add Category", :class=>"btn btn-primary pull-right center" %>
+          <% end %>
+        </div>
+        <div class="col-md-12">
+
+          <%= form_tag(add_semester_path) do %>
+            <%= label_tag("Add Semester:") %>
+            <input type="text" class="form-control" placeholder="Ex. Spring 2015" id=<%= text_field_tag('semester') %> </input>
+            <%= submit_tag "Add Semester", :class=>"btn btn-primary pull-right center" %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </form>
+
+
       <br/>
 
 
-<%= form_tag(remove_category_path, id: 'remove_category') do %>
-  <%= label_tag("Remove Category:") %>
-  <%= select_tag 'category', options_for_select(Category.categories), :class => 'form-control selectpicker' %>
-  <%= submit_tag "Remove Category", :class=>"btn btn-primary pull-right center" %>
-<% end %>
 
-<%= form_tag(remove_semester_path, id: 'remove_semester') do %>
-  <%= label_tag("Remove Semester:") %>
-  <%= select_tag 'semester', options_for_select(Semester.semesters), :class => 'form-control selectpicker' %>
-  <%= submit_tag "Remove Semester", :class=>"btn btn-primary pull-right center" %>
-<% end %>
-
-<%= form_tag(add_category_path, id: 'add_category') do %>
-  <%= label_tag("Add Category:") %>
-  <input type="text" class="form-control" placeholder="Ex. Computer Science" id=<%= text_field_tag('category') %> </input>
-  <%= submit_tag "Add Category", :class=>"btn btn-primary pull-right center" %>
-<% end %>
-
-<%= form_tag(add_semester_path) do %>
-  <%= label_tag("Add Semester:") %>
-  <input type="text" class="form-control" placeholder="Ex. Spring 2015" id=<%= text_field_tag('semester') %> </input>
-  <%= submit_tag "Add Semester", :class=>"btn btn-primary pull-right center" %>
-<% end %>
-
-
-
-
-
-
-
-      <%if params[:tab] != "manageadmins"%>
-        <%= form_for(admin_index_path, method: :get, id: 'units_form') do %>
-          <%= hidden_field_tag :tab, params[:tab] %>
-          <%= render 'shared/search_form' %>
-        <% end %>
-        </div>
+      <%if params[:tab] != "manageadmins"%>  
         <% @access = 'admin' %>
         <%= form_tag(controller: "admin", action: "index", method: "post") do %>
           <%= hidden_field_tag :tab, params[:tab] %>
+
           <div class="col-md-8">
             <%= render 'shared/course_table' %>
+            
             <div class="pull-right">
               <% if params[:tab] == "pending" %>
                 <%= submit_tag("Approve Course(s)",:class=>'btn btn-primary')%>
@@ -58,14 +82,13 @@
                 <%= submit_tag("Unapprove Course(s)",:class=>'btn btn-primary')%>
               <% end %>
             </div>
+          
           </div>
+
         <% end %>
       <%else%>
-        </div>
         <div class="col-md-8">
           <%= render 'shared/user_table' %>
         </div>
       <%end%>
-    </div>
-  </form>
 </div>

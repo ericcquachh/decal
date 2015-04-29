@@ -40,13 +40,17 @@ background-color:  #323232;
 color: white;
 }
 .table-hover > tbody > tr:hover {
-background-color: #F2F2AE;
+background-color: #F5F5F5
+;
 }
 
 /*.shadow {
--webkit-box-shadow: 0 8px 6px -3px #F2F2AE;
--moz-box-shadow: 0 8px 6px -3px #F2F2AE;
-box-shadow: 0 8px 6px -3px #F2F2AE;
+-webkit-box-shadow: 0 8px 6px -3px #F5F5F5
+;
+-moz-box-shadow: 0 8px 6px -3px #F5F5F5
+;
+box-shadow: 0 8px 6px -3px #F5F5F5
+;
 }*/
 .container
 {
@@ -111,10 +115,11 @@ color: white;
 }
 
 .box {
-/*	border-style: solid;
+	border-style: solid;
 	border-width: 1px;
-*/	padding: 15px;
-	background-color: #F2F2AE;
+	padding: 15px;
+	background-color: #F5F5F5;
+	border-color: #EBEBEB;
 
 }
 
@@ -177,12 +182,32 @@ table {
     
 }
 
+.line {
+	margin-top: 20px;
+	margin-bottom: 20px;
+	border-top: 1px solid #eee;
 
-
+}
 legend  {
 	border-color: black;
 }
 
 h3 {
-	margin-top: 0px;
+	margin-top: 10px;
+}
+
+h1 {
+	margin-top: 10px;
+}
+
+.clearspace {
+	margin-bottom: 10px;
+}
+
+textarea.form-control {
+	height: 200px;
+}
+
+.break {
+	margin: 20px;
 }
