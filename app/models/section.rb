@@ -2,6 +2,8 @@ class Section < ActiveRecord::Base
   attr_accessible :ccn_ld, :ccn_publish, :ccn_ud, :facilitator, :first_day, :location, :section_title, :size, :status, 
   :days, :start_time, :end_time, :sid, :course_id
   belongs_to :course, :class_name => "Course", :foreign_key => "course_id"
+  
+  validates_presence_of :section_title, :status, :days, :start_time, :end_time
 
   def self.filter input, output
     section = Section.arel_table
@@ -16,6 +18,8 @@ class Section < ActiveRecord::Base
   end
 
   def self.need_to_filter input
+    input.delete(:start_time) if input[:start_time].blank?
+    input.delete(:end_time) if input[:end_time].blank?
     input[:start_time] || input[:end_time] || input[:status]
   end
     
@@ -36,7 +40,7 @@ class Section < ActiveRecord::Base
   end
 
   def full_time
-    full = days if days
+    full = days ? days : ''
     full += " " + Section.int_to_time(start_time) if start_time
     full += "-" + Section.int_to_time(end_time) if end_time
     full

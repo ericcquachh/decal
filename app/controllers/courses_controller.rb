@@ -18,7 +18,7 @@ class CoursesController < ApplicationController
   end
 
   def index
-    @courses = Course.filter params, false, false
+    @courses = Course.filter params, false
   end
 
   def makeadmin

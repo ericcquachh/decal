@@ -34,9 +34,9 @@ class Course < ActiveRecord::Base
 
   # Changed to make validations work
 
-  def self.filter input, pending, admin
+  def self.filter input, pending
     output = Course.select("DISTINCT courses.*").where(:semester => Semester.current_semester(input[:semester])).where(:pending => pending)
-    (Section.need_to_filter(input) or !admin) ? output = output.joins(:sections) : output = output.joins("LEFT JOIN sections")
+    output = Section.need_to_filter(input) ? output.joins(:sections) : output.joins("LEFT JOIN sections")
     output = output.where(:category => input[:category]) if input[:category]
     output = output.where('title like ?', "%#{input[:search_field]}%") if !input[:search_field].blank?
     if input[:units]

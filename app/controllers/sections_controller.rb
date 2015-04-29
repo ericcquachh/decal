@@ -16,9 +16,14 @@ class SectionsController < ApplicationController
   def create
     Section.to_add! params[:section]
     @section = Section.new(params[:section])
-    @section.course = Course.find(params[:course_id])
-    @section.save!
-    redirect_to course_path(params[:course_id]), :notice => params
+    @course = Course.find(params[:course_id])
+    if @section.valid?
+      @section.course = @course
+      @section.save!
+      redirect_to course_path(params[:course_id]), notice: 'You have successfully created the section'
+    else
+      render 'new'
+    end
   end
 
   def destroy

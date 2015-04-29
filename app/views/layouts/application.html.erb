@@ -36,7 +36,7 @@
               <ul class="nav navbar-nav">
            
                 <li class="<%= is_active?(courses_path) %>"><a href="/courses">COURSES</a></li>
-                <li class="<%= is_active?(dashboard_index_path) %>"><a href="/dashboard">FACILITATE</a></li>
+                <li class="<%= is_active?(dashboard_index_path) %>"><a href="/dashboard">DASHBOARD</a></li>
                 <% if current_user.try(:admin?) %>
                 <li class="<%= is_active?(admin_index_path) %>"><a href="/admin">ADMIN</a></li>
                 <%end%>

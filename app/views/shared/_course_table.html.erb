@@ -28,19 +28,20 @@
       <td><%= link_to course.title, course, {:style=>'font-size: 120%;'} %></td>
       <td><%= course.category %></td>
       <td><%= course.units %></td>
-      <td><% course.sections.each do |section| %>
-        <% if section.filled? %>
+      <% if course.sections.blank? %>
+        <td><%= 'TBA' %></td>
+        <td><%= '---' %></td>
+      <% else %>
+        <td><% course.sections.each do |section| %>
           <%= section.full_time %>
-        <% else %>
-          <%= 'TBA' %>
-        <% end %>
+          <br></br>
+        <% end %></td>
+        <td><% course.sections.each do |section| %>
+          <%= section.status %>
+          <br></br>
+        <% end %></td>
         <br></br>
-      <% end %></td>
-      <td><% course.sections.each do |section| %>
-        <%= section.status %>
-      <br></br>
-      <% end %></td>
-        <br></br>
+      <% end %>
       <% if @favorite %>
         <td><%= button_to "delete", {:controller => :courses, :action => 'unfavorite', :id => course.id}, :method => :delete %><td>
       <% end %>
