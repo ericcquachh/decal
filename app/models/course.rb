@@ -42,7 +42,6 @@ class Course < ActiveRecord::Base
     if input[:units]
       course = Course.arel_table
       new = input[:units].collect {|t| "%#{t}%"}
-      input[:hello] = new
       output = output.where(course[:units].matches_any new)
     end
     output = Section.filter input, output
