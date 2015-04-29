@@ -61,7 +61,7 @@ class Section < ActiveRecord::Base
   end
 
   def self.to_add! input
-    input[:days] = input[:days].keys.join("") if input[:days]
+    input[:days] = input[:days].join("") if input[:days]
     input[:start_time] = time_to_int input[:start_time] if input[:start_time]
     input[:end_time] = time_to_int input[:end_time] if input[:end_time]
   end

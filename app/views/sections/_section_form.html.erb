@@ -1,4 +1,4 @@
-
+<%= params %>
 <%= form_for(@section, :url => course_sections_path(@course)) do |f| %>
 
     <% if !@section.errors.empty? %>
@@ -24,7 +24,7 @@
       <div><%= f.label :first_day, 'First Day of Class (In MM/DD/YYYY format, like this: 11/29/2012): ', :class => 'field'  %><%= f.text_field :first_day, :size => 20 %></div><br/>
       <div><%= f.label :location, 'Where is it? (Like this: 320 Eshleman or 216 Dwinelle): ', :class => 'field'  %><%= f.text_field :location, :size => 15 %></div><br/>
       <%= label_tag("Class every ...") %>
-      <%= select_tag 'days', options_for_select(Section.all_days, params[:days]), :multiple => true %>
+      <%= select_tag 'section[days]', options_for_select(Section.all_days, params[:days]), :multiple => true %>
       <br></br>
       <%= label_tag ("Start after:") %>
       <%= select_tag 'section[start_time]', options_for_select(Section.all_times, "-Select Time-") %>
