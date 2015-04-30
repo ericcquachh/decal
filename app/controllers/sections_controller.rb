@@ -33,7 +33,23 @@ class SectionsController < ApplicationController
   end
 
   def edit
+    @course = Course.find(params[:course_id])
     @section = Section.find(params[:id])
+  end
+
+  def update
+    @course = Course.find(params[:course_id])
+    @section = Section.find(params[:id])
+
+    respond_to do |format|
+      if @section.update_attributes(params[:section])
+        format.html { redirect_to course_path(params[:course_id]), notice: 'You have successfully updated the section' }
+        format.json { head :no_content }
+      else
+        format.html { render action: "edit" }
+        format.json { render json: @section.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
 

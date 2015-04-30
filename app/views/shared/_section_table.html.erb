@@ -73,6 +73,7 @@
         <% end %>
         <% if @course.verify_facilitator? current_user %>
           <td><%= button_to "delete", {:controller => :sections, :action => 'destroy', :id => section.id, :course_id => @course.id }, :method => :delete, "onclick" => "javascript:return confirm('Are you absolutely sure you want to delete?')" %></td>
+          <td><%= button_to "edit", edit_course_section_path(:course_id => @course.id, :id => section.id), :method => :get %></td>
         <% end %>
       </tr>
     <% end %>
