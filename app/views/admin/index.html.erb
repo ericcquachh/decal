@@ -1,7 +1,7 @@
 <div class="row">
   <form class="form-inline">
-    <div class="col-md-4">
-      <div class="col-md-12 box">
+    <div class="col-md-4 box">
+    
         <div class="form-group">
           <h3>Manage</h3>
           <ul class="nav nav-pills nav-stacked">
@@ -20,11 +20,9 @@
           <%end%>
           <br/>
         </div>
-      </div>
+   
       <div class="line">
       </div>
-      <div class="col-md-12 box">
-
         <div class="col-md-6">
           <%= form_tag(remove_category_path, id: 'remove_category') do %>
             <%= label_tag("Remove Category:") %>
@@ -58,7 +56,7 @@
             <%= submit_tag "Add Semester", :class=>"btn btn-primary pull-right center" %>
           <% end %>
         </div>
-      </div>
+  
     </div>
   </form>
 
