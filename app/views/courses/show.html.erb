@@ -113,9 +113,13 @@
     </div>
 
     <div class="page-header">
-      <h3>Section</h3>
+      <h3>Sections</h3>
       <% @sections = @course.sections %>
+      <% if !@sections.blank? %>
         <%= render 'shared/section_table' %>
+      <% else %>
+        <h5>This course has no sections</h5>
+      <% end %>
     </div>
 
     <div class="page-header">
@@ -123,7 +127,11 @@
       <div class="current_facilitators">
         <% @more = 'edit' %>
         <% @users = @course.facilitators %>
-        <%= render 'shared/user_table' %>
+        <% if !@users.blank? %>
+          <%= render 'shared/user_table' %>
+        <% else %>
+          <h5>This course has no facilitators</h5>
+        <% end %>
       </div>
       <% if !@course.facilitators.include? current_user%>
         <% if @course.requests.include? current_user %>
@@ -140,7 +148,11 @@
       <h3>Files</h3>
       <div class="uploads">
         <% @uploads = @course.uploads %>
-        <%= render 'shared/upload_table' %>
+        <% if !@uploads.blank? %>
+          <%= render 'shared/upload_table' %>
+        <% else %>
+          <h5>This course has no uploads</h5>
+        <% end %>
         <% if @course.verify_facilitator? current_user %>
           <%= button_to "New Upload", {:controller => :uploads, :action => 'new', :course_id => @course.id}, :method => :get %>
         <% end %>
