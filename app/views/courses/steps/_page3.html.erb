@@ -1,8 +1,10 @@
+<%= tinymce_assets %>
+
 <div class="box center70">
   <%= field_set_tag 'HOW DO I GET IN?' do %>
     <div><%= f.label :enrollment_info, 'ENROLLMENT INFORMATION: ' %>
       What's your policy? First come, first served? Interviews? Applications? Lottery?<br/><br/>
-      <%= f.text_area :enrollment_info, :class => 'tinymce', :class=>'form-control' %>
+      <%= f.text_area :enrollment_info, :class => 'tinymce' %>
     </div>
     <br/>
     <div><%= f.label :enrollment_info, 'ENROLLMENT APPLICATION: ' %>
@@ -28,3 +30,5 @@
   <% end %>
 </div>
 
+
+<%= tinymce %>

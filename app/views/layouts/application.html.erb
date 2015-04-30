@@ -2,12 +2,17 @@
 <html>
 
   <head>
-    <title>DeCal</title>
+    <title>DeCal</title> <%= stylesheet_link_tag    "bootstrap-select", :media => "all" %>
     <%= stylesheet_link_tag    "bootstrap", :media => "all" %>
-    <%= stylesheet_link_tag    "application", :media => "all" %>
+     <%= stylesheet_link_tag    "decal", :media => "all" %>
     <%= stylesheet_link_tag    "style", :media => "all" %>
+    <%= stylesheet_link_tag    "application", :media => "all" %>
+
+
     <%= stylesheet_link_tag    "bootstrap-select", :media => "all" %>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+        <%= javascript_include_tag "application", :media =>"all" %>
+
     <%= javascript_include_tag "bootstrap", :media =>"all" %>
     <%= javascript_include_tag "bootstrap-select", :media =>"all" %>
 
