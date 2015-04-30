@@ -71,7 +71,6 @@
         <% @access = 'admin' %>
         <%= form_tag(controller: "admin", action: "index", method: "post") do %>
           <%= hidden_field_tag :tab, params[:tab] %>
-
           <div class="col-md-8">
             <%= render 'shared/course_table' %>
             

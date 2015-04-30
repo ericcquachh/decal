@@ -11,9 +11,9 @@
     <% if @access %>
       <th>Edit</th>
       <% if @access == 'admin' %>
-        <% if params[:tab] == "pending" or params[:tab] == 'curr'%>
           <th>Syllabus</th>
           <th>CPF</th>
+        <% if params[:tab] == 'pending'%>
           <th>Approve</th>
         <%else%>
           <th>Unapprove</th>
@@ -66,7 +66,7 @@
           <% else %>
             <td style="color:red">No CPF Uploaded!</td>
           <% end %>
-          <td><%= check_box_tag(course.title) %></td>
+          <td><%= check_box_tag("course_ids[#{course.id}]") %></td>
         <% else %>
           <td><%= button_to 'Unfacilitate', course_facilitator_delete_path(:course_id => course.id, :user_id => current_user.id, :page => @page), method: :delete %></td>
         <% end %>

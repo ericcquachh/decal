@@ -19,20 +19,16 @@ class AdminController < ApplicationController
   end
 
   def create
-    params.keys.each do |key|
-      if params[key] == "1"
-        course = Course.find_by_title(key)
-        if course.pending.eql? false
-          course.pending = true
-          course.save
-        else
+    if params[:course_ids]
+      params[:course_ids] = params[:course_ids].keys
+      params[:course_ids].each do |id|
+        course = Course.find(id)
+        if course.pending
           course.pending = false
-          #course.users.each do |user|
-            #current_user.update_attribute :facilitator, true
-
-          #end
-          course.save
-
+          course.save!
+        else
+          course.pending = true
+          course.save!
         end
       end
     end

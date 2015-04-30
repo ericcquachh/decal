@@ -5,11 +5,11 @@ class Course < ActiveRecord::Base
 
   attr_writer :current_step
 
-  has_many :sections
-  has_many :uploads
-  has_many :section_times, through: :sections
+  has_many :sections, dependent: :destroy
+  has_many :uploads, dependent: :destroy
 
   has_and_belongs_to_many :favorite_users, join_table: :favorite_courses, class_name: "User"
+  before_destroy { favorite_users.clear }
 
   has_many :facilitate_ownedcourses, foreign_key: :ownedcourse_id
   has_many :facilitators, through: :facilitate_ownedcourses, source: :facilitator
@@ -17,7 +17,7 @@ class Course < ActiveRecord::Base
   has_many :facilitate_requests, foreign_key: :receiver_id
   has_many :requests, through: :facilitate_requests, source: :request
 
-  validates_presence_of :title, :department_num, :course_email, :faculty_email, :faculty_name,  :if => lambda { |o| o.current_step == "1" }
+  validates_presence_of :title, :department_num, :faculty_email, :faculty_name,  :if => lambda { |o| o.current_step == "1" }
 
   validates :application_url, :if => lambda { |o| o.current_step == "3" }, :allow_blank => true, :format => /(^$)|(^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(([0-9]{1,5})?\/.*)?$)/ix
   validates :application_due, :if => lambda { |o| o.current_step == "3" }, date: { allow_blank: true, after: Proc.new { Time.now }, before: Proc.new { Time.now + 1.year }, message: '... Please enter an upcoming date' }
@@ -30,7 +30,7 @@ class Course < ActiveRecord::Base
   validates_presence_of :enrollment_info, :if => lambda { |o| o.current_step == "3"}
 
   # validates :title, :presence => {message: "Title is required."}
-  # validates :units, :presence => {message: "Units cannot be blank."}, :numericality => {only_integer: true, :greater_than => 0, :less_than => 5, message: "Units must be integers 1-4."} 
+  # validates :units, :presence => {message: "Units cannot be blank."} 
 
   # Changed to make validations work
 
