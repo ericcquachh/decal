@@ -12,6 +12,7 @@
       </th>
       <% if @course.verify_facilitator? current_user %>
         <th>Delete</th>
+        <th>Edit</th>
       <% end %>
     </tr>
     <% @sections.each do |section| %>

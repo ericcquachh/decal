@@ -31,21 +31,16 @@ class CoursesController < ApplicationController
     redirect_to :root, notice: "User is now a peasant."
   end
 
-  # Controller action for favroite courses
+  # Controller action for favorite courses
   def favorites
     @course = Course.find(params[:id])
-    if FavoriteCourse.find_by_course_id_and_user_id(@course.id, current_user.id)
-      flash[:notice] = "you already favorited this course"
-    else
-      FavoriteCourse.create!(course_id: @course.id, user_id: current_user.id)
-    end
+    FavoriteCourse.create!(course_id: @course.id, user_id: current_user.id)
     redirect_to course_path(:id => @course.id)
   end
 
   def unfavorite
     @course = Course.find(params[:id])
-    relation = FavoriteCourse.find_by_course_id_and_user_id(@course.id, current_user.id)
-    relation.destroy
+    FavoriteCourse.destroy_all(course_id: @course.id, user_id: current_user.id)
     redirect_to dashboard_index_path
   end
 

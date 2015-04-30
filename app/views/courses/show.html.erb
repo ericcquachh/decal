@@ -61,7 +61,11 @@
     <div class="row">
       <div class="col-md-4">
         <h1><%= @course.title %></h1>
-        <%= button_to "Add to Favorites", {:controller => :courses, :action => 'favorites', :id => @course.id}, :method => :post, :class => "btn btn-primary" %></h1><br/>
+        <% if !@course.favorite_users.include? current_user%>
+          <%= button_to "Add to Favorites", {:controller => :courses, :action => 'favorites', :id => @course.id}, :method => :post, :class => "btn btn-primary" %></h1><br/>
+        <% else %>
+          <h5>You have favorited this course</h5>
+        <% end %>
       </div>
 
       <div class="col-md-2">
