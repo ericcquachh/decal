@@ -16,16 +16,21 @@
 
 <p>* If you are currently teaching a course, and do not have access to your course page, ask your lead facilitator for access</p>
 
-<h2> Favorite Courses </h2>
-<% @favorite = true %>
-<% @courses = current_user.favorites %>
-
-
-<%= render 'shared/course_table'%>
-<% @favorite = nil %>
-<% @access = 'facilitator' %>
+<div>
+  <div class="page-header">
+    <h3>Favorite Courses</h3>
+  </div>
+  <% if not current_user.favorites.blank? %>
+    <% @more = 'favorite' %>
+    <% @courses = current_user.favorites %>
+    <%= render 'shared/course_table'%>
+  <% else %>
+    <h5>You have not favorited any courses</h5>
+  <% end %>
+</div>
 
 <% if not current_user.ownedcourses.blank? or current_user.admin %>
+  <% @more = 'facilitator' %>
   <div>
     <div class="page-header">
       <h3>Courses Pending Approval</h3>
@@ -45,5 +50,7 @@
   <% if not @courses.blank? %>
     <% @page = 'dashboard' %>
     <%= render 'shared/course_table' %>
+  <% else %>
+    <h5>No courses have been approved</h5>
   <% end %>
 <%end%>

@@ -5,12 +5,12 @@
     <th>Units</th>
     <th>Time</th>
     <th>Status</th>
-    <% if @favorite %>
-      <th>Remove</th>
+    <% if @more == 'favorite' %>
+      <th>Unfavorite</th>
     <% end %>
-    <% if @access %>
+    <% if @more == 'admin' or @more == 'facilitator' %>
       <th>Edit</th>
-      <% if @access == 'admin' %>
+      <% if @more == 'admin' %>
           <th>Syllabus</th>
           <th>CPF</th>
         <% if params[:tab] == 'pending'%>
@@ -18,7 +18,7 @@
         <%else%>
           <th>Unapprove</th>
         <%end%>
-      <% else %>
+      <% elsif @more == 'facilitator' %>
         <th>Unfacilitate</th>
       <% end %>
     <% end %>
@@ -41,12 +41,12 @@
           <br></br>
         <% end %></td>
       <% end %>
-      <% if @favorite %>
+      <% if @more == 'favorite' %>
         <td><%= button_to "delete", {:controller => :courses, :action => 'unfavorite', :id => course.id}, :method => :delete %><td>
       <% end %>
-      <% if @access %>
+      <% if @more == 'admin' or @more == 'facilitator' %>
         <td><%= link_to 'Edit', edit_course_path(course) %></td>
-        <% if @access == 'admin' %>
+        <% if @more == 'admin' %>
           <% if course.has_syl? %>
             <% course.uploads.each do |upload| %>
               <% if upload.syl? %>
@@ -66,7 +66,7 @@
             <td style="color:red">No CPF Uploaded!</td>
           <% end %>
           <td><%= check_box_tag("course_ids[#{course.id}]") %></td>
-        <% else %>
+        <% elsif @more == 'facilitator' %>
           <td><%= button_to 'Unfacilitate', course_facilitator_delete_path(:course_id => course.id, :user_id => current_user.id, :page => @page), method: :delete %></td>
         <% end %>
       <% end %>

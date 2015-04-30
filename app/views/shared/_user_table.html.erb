@@ -1,19 +1,19 @@
-
+<%= params %>
   <table class="table table-hover">
-    
       <tr>
         <th>First Name</th>
         <th>Last Name</th>
         <th>Email</th>
-        <% if @more  %>
-          <% if @more == 'approve' %>
-            <th>Approve</th>
-            <th>Reject</th>
-          <% elsif @more == 'edit' %>
-            <th>Remove</th>
-          <% elsif @more == 'add' %>
-            <th>Add</th>
-          <% end %>
+        <% if @more == 'admin' %>
+          <th>Courses</th>
+        <% end %>
+        <% if @more == 'approve' %>
+          <th>Approve</th>
+          <th>Reject</th>
+        <% elsif @more == 'edit' || @more == 'admin' %>
+          <th>Remove</th>
+        <% elsif @more == 'add' %>
+          <th>Add</th>
         <% end %>
       </tr>
       <% @users.each do |user| %>
@@ -21,15 +21,23 @@
           <td><%= user.first_name %></td>
           <td><%= user.last_name %></td>
           <td><%= user.email %></td>
-          <% if @more %>
-            <% if @more == 'approve' %>
-              <td><%= button_to 'approve', course_facilitator_index_path(:course_id => @course.id, :user_id => user.id, :page => @page) %></td>
-              <td><%= button_to 'reject', course_facilitator_delete_path(:course_id => @course.id, :user_id => user.id, :page => @page), method: :delete %></td>
-            <% elsif @more == 'edit' %>
-              <td><%= button_to 'remove', course_facilitator_delete_path(:course_id => @course.id, :user_id => user.id, :page => @page), method: :delete %></td>
-            <% elsif @more == 'add' %>
-              <td><%= button_to 'Add', course_facilitator_index_path(:course_id => @course.id, :user_id => user.id, :page => @page) %></td>
+          <% if @more == 'admin' %></td>
+            <td><% user.ownedcourses.each do |course| %>
+              <%= course.title %>
+              <br></br>
+            <% end %></td>
+            <td><% user.ownedcourses.each do |course| %>
+              <%= check_box_tag("relation_ids[#{FacilitateOwnedcourse.find_by_facilitator_id_and_ownedcourse_id(user.id, course.id).id}]") %>
+              <br></br>
             <% end %>
+          <% end %>
+          <% if @more == 'approve' %>
+            <td><%= button_to 'approve', course_facilitator_index_path(:course_id => @course.id, :user_id => user.id, :page => @page) %></td>
+            <td><%= button_to 'reject', course_facilitator_delete_path(:course_id => @course.id, :user_id => user.id, :page => @page), method: :delete %></td>
+          <% elsif @more == 'edit' %>
+            <td><%= button_to 'remove', course_facilitator_delete_path(:course_id => @course.id, :user_id => user.id, :page => @page), method: :delete %></td>
+          <% elsif @more == 'add' %>
+            <td><%= button_to 'Add', course_facilitator_index_path(:course_id => @course.id, :user_id => user.id, :page => @page) %></td>
           <% end %>
         </tr>
       <% end %>

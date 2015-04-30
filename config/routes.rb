@@ -29,6 +29,7 @@ Decal::Application.routes.draw do
   match 'add_category' => 'admin#add_category'
   match 'remove_semester' => 'admin#remove_semester'
   match 'remove_category' => 'admin#remove_category'
+  match 'remove_facilitators' => 'admin#remove_facilitators'
 
   match 'favorites' => 'courses#favorites'
   match 'unfavorite' => 'courses#unfavorite'
