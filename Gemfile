@@ -33,7 +33,8 @@ group :assets do
   # gem 'ckeditor_rails'
   # gem 'mini_magick'
   gem 'tinymce-rails'
-  gem 'date_validator'
+  # gem 'date_validator'
+  gem 'validates_timeliness', '~> 3.0'
   gem 'figaro'
   gem 'fog'
   

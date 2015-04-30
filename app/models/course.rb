@@ -20,8 +20,8 @@ class Course < ActiveRecord::Base
   validates_presence_of :title, :department_num, :faculty_email, :faculty_name,  :if => lambda { |o| o.current_step == "1" }
 
   validates :application_url, :if => lambda { |o| o.current_step == "3" }, :allow_blank => true, :format => /(^$)|(^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(([0-9]{1,5})?\/.*)?$)/ix
-  validates :application_due, :if => lambda { |o| o.current_step == "3" }, date: { allow_blank: true, after: Proc.new { Time.now }, before: Proc.new { Time.now + 1.year }, message: '... Please enter an upcoming date' }
-
+  # validates :application_due, :if => lambda { |o| o.current_step == "3" }, date: { allow_blank: true, after: Proc.new { Time.now }, before: Proc.new { Time.now + 1.year }, message: '... Please enter an upcoming date' }
+  validates_date :application_due, :if => lambda { |o| o.current_step == "3" }, :on_or_after => lambda { Date.current }, :allow_blank => true, :on_or_after_message => '... Please enter an upcoming date'
 
   validates_inclusion_of :category, :in => Category.categories, :if => lambda { |o| o.current_step == "1" }, :message => "must be selected from the dropdown menu"
 
