@@ -11,10 +11,11 @@ class AdminController < ApplicationController
 
   def index
     params[:tab] ||= 'curr'
+    @more = 'admin'
     if params[:tab] != 'manageadmins'
       @courses = Course.filter params, (params[:tab] == 'pending')
     else
-      @users = User.joins(:facilitate_ownedcourses)
+      @users = User.select("DISTINCT users.*").joins(:facilitate_ownedcourses)
     end
   end
 
@@ -30,6 +31,16 @@ class AdminController < ApplicationController
           course.pending = true
           course.save!
         end
+      end
+    end
+    redirect_to admin_index_path(:tab => params[:tab]), method: :get
+  end
+
+  def remove_facilitators
+    if params[:relation_ids]
+      params[:relation_ids] = params[:relation_ids].keys
+      params[:relation_ids].each do |id|
+        FacilitateOwnedcourse.destroy(id)
       end
     end
     redirect_to admin_index_path(:tab => params[:tab]), method: :get

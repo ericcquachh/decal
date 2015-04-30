@@ -68,7 +68,6 @@
 
 
       <%if params[:tab] != "manageadmins"%>  
-        <% @access = 'admin' %>
         <%= form_tag(controller: "admin", action: "index", method: "post") do %>
           <%= hidden_field_tag :tab, params[:tab] %>
           <div class="col-md-8">
@@ -87,7 +86,11 @@
         <% end %>
       <%else%>
         <div class="col-md-8">
-          <%= render 'shared/user_table' %>
+          <%= form_tag(remove_facilitators_path) do %>
+            <%= hidden_field_tag :tab, params[:tab] %>
+            <%= render 'shared/user_table' %>
+            <%= submit_tag("Remove Facilitator(s)",:class=>'btn btn-primary')%>
+          <% end %>
         </div>
       <%end%>
 </div>
