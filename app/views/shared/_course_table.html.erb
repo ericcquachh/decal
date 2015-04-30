@@ -40,7 +40,6 @@
           <%= section.status %>
           <br></br>
         <% end %></td>
-        <br></br>
       <% end %>
       <% if @favorite %>
         <td><%= button_to "delete", {:controller => :courses, :action => 'unfavorite', :id => course.id}, :method => :delete %><td>
