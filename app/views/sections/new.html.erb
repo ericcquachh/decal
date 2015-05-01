@@ -1,5 +1,5 @@
 
-<%= form_for(@section, :url => course_sections_path(:course_id => @course.id)) do |f| %>
+<%= form_for(@section, :url => course_section_path(:course_id => @course.id, :id => @section.id)) do |f| %>
 
     <% if !@section.errors.empty? %>
       <div id="error_explanation">
