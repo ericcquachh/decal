@@ -23,8 +23,8 @@ class Course < ActiveRecord::Base
   # validates :application_due, :if => lambda { |o| o.current_step == "3" }, date: { allow_blank: true, after: Proc.new { Time.now }, before: Proc.new { Time.now + 1.year }, message: '... Please enter an upcoming date' }
   validates_date :application_due, :if => lambda { |o| o.current_step == "3" }, :on_or_after => lambda { Date.current }, :allow_blank => true, :on_or_after_message => '... Please enter an upcoming date'
 
-  validates_inclusion_of :category, :in => Category.categories, :if => lambda { |o| o.current_step == "1" }, :message => "must be selected from the dropdown menu"
-
+  # Proc is a data structure so the categories can be accessed
+  validates_inclusion_of :category, :in => proc{Category.categories}, :if => lambda { |o| o.current_step == "1" }, :message => "must be selected from the dropdown menu"
 
   validates_presence_of :description, :if => lambda { |o| o.current_step == "2" }
   validates_presence_of :enrollment_info, :if => lambda { |o| o.current_step == "3"}

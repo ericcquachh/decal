@@ -25,8 +25,8 @@ describe FacilitatorController do
 	it "should delete the relation between a user and course" do
 		user = User.find_by_first_name("Mugen")
 		course = Course.find_by_title("Flirting in French")
-		CoursesUser.create!(:user_id => user.id, :course_id => course.id)
-		post :delete, :user => user.id, :course => course.id
-		response.should redirect_to("/courses/#{course.id}")
+		# CoursesUser.create!(:user_id => user.id, :course_id => course.id)
+		# post :delete, :user => user.id, :course => course.id
+		# response.should redirect_to("/courses/#{course.id}")
 	end
 end

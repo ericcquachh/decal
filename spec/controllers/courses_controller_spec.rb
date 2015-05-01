@@ -2,29 +2,19 @@ require 'spec_helper'
 
 describe CoursesController do
 
-  # Simple Test to see if database can be instantiated correctly
-  it "should be a sanity test" do
-    course = Course.create(title: "Vacuum Cleaner", category: "Politics", units: "3", status: "open")
-    Course.create(title: "Soap Opera", category: "Politics", units: "3", status: "open")
-    Course.create(title: "The Communist Manifesto", category: "Politics", units: "3", status: "open")
-    Course.create(title: "Kim Jong Un: Our Dear Leader", category: "Politics", units: "15", status: "open")
-    course.title == "Vacuum Cleaner"
-    another_course = Course.where(category: "Politics")
-    another_course.each do |course|
-      check_var = 0
-      if course.title == "Kim Jong Un: Our Dear Leader"
-        check_var = 1
-      end
-      check_var != 0
-    end
-  end
-
   describe 'filtering courses' do
     before :each do
-      course1 = Course.create(title: "Flirting in French", category: "Languages", units: "2", status: "Full", pending: false)
-      course2 = Course.create(title: "Ballmer Peak", category: "Computer Science", units: "3", status: "Open", pending: false)
-      course3 = Course.create(title: "The Communist Manifesto", category: "Business", units: "3", status: "Full", pending: false)
-      course4 = Course.create(title: "Kim Jong Un: Our Dear CEO", category: "Business", units: "1", status: "Open", pending: false)
+      Category.create!(name: "Computer Science")
+      Category.create!(name: "Fitness")
+      Category.create!(name: "Business")
+      Category.create!(name: "Languages")
+      Category.create!(name: "Cognitive Science")
+      Semester.create!(name: "Spring 2015")
+      Semester.create!(name: "Fall 2015")
+      course1 = Course.create!(semester: "Spring 2015", title: "Flirting in French", category: "Computer Science",  units: 1, pending: false, description: 'hi', enrollment_info: 'hi', department_num: 1, course_email: "temp@berkeley.edu", faculty_email: "temp@berkeley.edu", faculty_name: "hi")  
+      course2 = Course.create!(semester: "Fall 2015", title: "Ballmer Peak", category: "Cognitive Science", units: 1, pending: false, description: 'hi', enrollment_info: 'hi', department_num: 1, course_email: "temp@berkeley.edu", faculty_email: "temp@berkeley.edu", faculty_name: "hi") 
+      course3 = Course.create!(semester: "Spring 2015",title: "The Communist Manifesto", category: "Computer Science", units: '1-2', pending: false, description: 'hi', enrollment_info: 'hi', department_num: 1, course_email: "temp@berkeley.edu", faculty_email: "temp@berkeley.edu", faculty_name: "hi") 
+      course4 = Course.create!(semester: "Fall 2015",title: "Kim Jong Un: Our Dear CEO", category: "Fitness", units: '1-2', pending: false, description: 'hi', enrollment_info: 'hi', department_num: 1, course_email: "temp@berkeley.edu", faculty_email: "temp@berkeley.edu", faculty_name: "hi") 
     end
 
     it 'should default to all courses' do
@@ -66,9 +56,9 @@ describe CoursesController do
 
   end
 
-
     describe 'other CRUD actions' do
       before :each do
+
         course = Course.create(title: "Python on Crack", category: "Computer Science", status: "Open", units: "3")
         put :update, {:id => 1, :title => "Intro to Python"}
       end
