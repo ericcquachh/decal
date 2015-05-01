@@ -3,7 +3,7 @@
   <%= field_set_tag 'HOW DO I GET IN?' do %>
     <div><%= f.label :enrollment_info, 'ENROLLMENT INFORMATION: ' %>
       What's your policy? First come, first served? Interviews? Applications? Lottery?<br/><br/>
-      <%= f.text_area :enrollment_info, :class => 'tinymce' %>
+      <%= f.text_area :enrollment_info, :class => 'form-control' %>
     </div>
     <br/>
     <div><%= f.label :enrollment_info, 'ENROLLMENT APPLICATION: ' %>
@@ -19,15 +19,13 @@
 
       <div>
         <b>Application URL (e.g. "https://docs.google.com/forms/..." ):</b><br />
-        <%= f.text_field :application_url %>
+        <%= f.text_field :application_url, :class=>'form-control' %>
       </div><br/>
       <div>
         <b>Application Due Date:</b><br />
-        <%= f.date_select :application_due, :order => [:day, :month, :year], :include_blank => true %>
+        <%= f.date_select :application_due, :order => [:day, :month, :year], :include_blank => true, :class=>'form-control selectpicker' %>
       </div><br/>
     </div>
   <% end %>
 </div>
 
-
-<%= tinymce %>

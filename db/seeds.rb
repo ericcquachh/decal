@@ -62,11 +62,11 @@ section3 = Section.new(section_title: "3", days: "ThF", status: "Full", start_ti
 section3.course = course1
 section3.save
 
-section4 = Section.new(section_title: "4", days: "MTu", status: "Started", start_time: Section.time_to_int("11:30AM"), end_time: Section.time_to_int("12:30PM"), location: "186 Barrows")
+section4 = Section.new(section_title: "4", days: "MTu", status: "Open", start_time: Section.time_to_int("11:30AM"), end_time: Section.time_to_int("12:30PM"), location: "186 Barrows")
 section4.course = course3
 section4.save
 
-section5 = Section.new(section_title: "5", days: "F", status: "Started", start_time: Section.time_to_int("1:00PM"), end_time: Section.time_to_int("2:00PM"), location: "186 Barrows")
+section5 = Section.new(section_title: "5", days: "F", status: "Full", start_time: Section.time_to_int("1:00PM"), end_time: Section.time_to_int("2:00PM"), location: "186 Barrows")
 section5.course = course4
 section5.save
 

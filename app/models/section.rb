@@ -32,7 +32,7 @@ class Section < ActiveRecord::Base
   end
 
   def self.statuses
-    ["Open", "Started", "Full"]
+    ["Open", "Full"]
   end
 
   def filled?
