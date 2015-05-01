@@ -3,7 +3,7 @@ Decal::Application.routes.draw do
   devise_for :users, :controllers =>{:omniauth_callbacks => "omniauth_callbacks", :registrations=>"registrations" }
 
   resources :courses do
-      resources :sections
+      resources :sections, except: [:show]
       resources :uploads, only: [:index, :new, :create, :destroy]
       resources :facilitator, only: [:index, :create]
       delete '/facilitator', to: 'facilitator#delete', as: 'facilitator_delete'
@@ -11,13 +11,11 @@ Decal::Application.routes.draw do
   end
 
   resources :admin
-  resources :home
+  resources :home, only: [:index]
   # paths for dashboard
-  resources :dashboard
-  resources :existing_courses
+  resources :dashboard, only: [:index]
 
   # paths for adding facilitator to courses
-  delete '/dashboard', to: 'dashboard#delete', as: 'dashboard'
 
   # get '/dashboard/existing', to: 'dashboard#show', as: 'dashboard_existing'
   match 'promote' => 'courses#promote'
@@ -29,7 +27,7 @@ Decal::Application.routes.draw do
   match 'add_category' => 'admin#add_category'
   match 'remove_semester' => 'admin#remove_semester'
   match 'remove_category' => 'admin#remove_category'
-  match 'remove_facilitator' => 'admin#remove_facilitator'
+  match 'remove_facilitators' => 'admin#remove_facilitators'
 
   match 'favorites' => 'courses#favorites'
   match 'unfavorite' => 'courses#unfavorite'

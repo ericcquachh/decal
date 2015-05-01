@@ -11,14 +11,4 @@ class DashboardController < ApplicationController
   def index
   end
 
-  def create
-    params.keys.each do |key|
-      if params[key] == "1"
-       course = Course.find_by_title(key)
-       relation = FacilitateOwnedcourse.find_by_facilitator_id_and_ownedcourse_id(current_user.id, course.id)
-       relation.destroy 
-      end
-    end
-    redirect_to dashboard_path
-  end
 end
