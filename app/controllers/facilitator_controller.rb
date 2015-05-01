@@ -9,6 +9,7 @@ class FacilitatorController < ApplicationController
     end
   end
 
+  #might not even need this line since the is_facilitator already processes null users
   def logged_in
     if current_user.nil? || !(user_signed_in?)
       redirect_to :root, notice: 'make sure you login fool'
