@@ -17,13 +17,11 @@ describe DashboardController do
 		response.should_not be_success
 	end
 
-	it "tests params filtering and delete" do
-		user1 = User.find_by_email("mugenjin@berkeley.edu")
-		sign_in user1
-		flirt = Course.find_by_title("Flirting in French")
-		FacilitateOwnedcourse.create!(:ownedcourse_id => flirt.id, :facilitator_id => user1.id)
-		post :create, {"Flirting in French" => "1"}
-		response.should redirect_to dashboard_path
-	end
+	# it "tests params filtering and delete" do
+	# 	user1 = User.find_by_email("mugenjin@berkeley.edu")
+	# 	sign_in user1
+	# 	flirt = Course.find_by_title("Flirting in French")
+	# 	FacilitateOwnedcourse.create!(:ownedcourse_id => flirt.id, :facilitator_id => user1.id)
+	# end
 
 end

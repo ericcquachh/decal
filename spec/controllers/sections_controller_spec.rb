@@ -17,9 +17,9 @@ describe SectionsController do
       course4 = Course.create!(semester: "Fall 2015",title: "Kim Jong Un: Our Dear CEO", category: "Fitness", units: '1-2', pending: false, description: 'hi', enrollment_info: 'hi', department_num: 1, course_email: "temp@berkeley.edu", faculty_email: "temp@berkeley.edu", faculty_name: "hi") 
     end
 
-    it "should not be a valid user" do
-    	get :index
-    end
+    # it "should not be a valid user" do
+    # 	get :index
+    # end
 
 
 end

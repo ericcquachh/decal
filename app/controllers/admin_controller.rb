@@ -8,7 +8,6 @@ class AdminController < ApplicationController
     end
   end
 
-
   def index
     params[:tab] ||= 'curr'
     @more = 'admin'

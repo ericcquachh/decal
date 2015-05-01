@@ -79,18 +79,6 @@ describe CoursesController do
         course.title == "Intro to Python"
       end
 
-      it "should remove the course from the database" do
-        user = User.find_by_first_name("Mugen")
-        course = Course.find_by_title("Intro to Python")
-        sign_in user
-        delete :destroy, {:id => course.id, :course_id => course.id}
-        begin
-          course = Course.find(course.id)
-        rescue ActiveRecord::RecordNotFound
-          true
-        end
-      end
-
       it "should show the course if found in the database" do
         user = User.find_by_first_name("Mugen")
         sign_in user
@@ -116,6 +104,8 @@ describe CoursesController do
         user = User.find_by_first_name("Mugen")
         course = Course.find_by_title("Intro to Python")
         sign_in user
+        put :update, {:id => course.id}
+        Course.any_instance.stub(:update_attributes).and_return(false)
         put :update, {:id => course.id}
         get :makeadmin
         get :removeadmin
@@ -150,6 +140,13 @@ describe CoursesController do
         Course.any_instance.stub(:last_step?).and_return(true)
         Course.any_instance.stub(:all_valid?).and_return(true)
         post :create, :course => {:title => "Chinese"}, :previous_button => false
+      end
+
+      it "should test facilitator requests" do
+        user = User.find_by_first_name("Mugen")
+        course = Course.find_by_title("Intro to Python")
+        sign_in user
+        get :facilitator_request, :id => '1'
       end
 
   end

@@ -32,11 +32,4 @@ describe FacilitatorController do
 		response.should redirect_to dashboard_index_path
 	end
 
-	it "should make a facilitator request" do
-		user = User.find_by_first_name("Mugen")
-		course = Course.find_by_title("Flirting in French")
-		sign_in user
-		get :facilitator_request, :course_id => course.id
-		response.should redirect_to("/courses/#{course.id}")
-	end
 end

@@ -1,12 +1,6 @@
 class SectionsController < ApplicationController
 
-  before_filter :can_edit
-
-  def can_edit
-    if !(Course.find(params[:course_id]).verify_facilitator? current_user)
-      redirect_to course_path(params[:course_id]), notice: 'You do not have access to this page'
-    end
-  end
+  before_filter :is_facilitator
 
   def new
     @course = Course.find(params[:course_id])
@@ -40,7 +34,6 @@ class SectionsController < ApplicationController
   def update
     @course = Course.find(params[:course_id])
     @section = Section.find(params[:id])
-
     respond_to do |format|
       if @section.update_attributes(params[:section])
         format.html { redirect_to course_path(params[:course_id]), notice: 'You have successfully updated the section' }

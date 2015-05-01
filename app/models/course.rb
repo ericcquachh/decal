@@ -36,9 +36,9 @@ class Course < ActiveRecord::Base
 
   def self.filter input, pending
     output = Course.select("DISTINCT courses.*").where(:semester => Semester.current_semester(input[:semester])).where(:pending => pending)
-    output = Section.need_to_filter(input) ? output.joins(:sections) : output.joins("LEFT JOIN \"sections\"")
+    output = Section.need_to_filter(input) ? output.joins(:sections) : output.joins("LEFT JOIN sections on sections.course_id = courses.id")
     output = output.where(:category => input[:category]) if input[:category]
-    output = output.where('title like ?', "%#{input[:search_field]}%") if !input[:search_field].blank?
+    output = output.where('title ILIKE ?', "%#{input[:search_field]}%") if !input[:search_field].blank?
     if input[:units]
       course = Course.arel_table
       new = input[:units].collect {|t| "%#{t}%"}

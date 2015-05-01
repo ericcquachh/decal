@@ -30,20 +30,45 @@ describe UploadsController do
 		response.should be_success
 	end	
 
+	#make sure to write redirect matching soon
 	it "should test the create uploads page" do
 		course = Course.find_by_title("Flirting in French")
 		user = User.find_by_first_name("Mugen")
 		attachment = File.open(File.join(Rails.root, '/spec/test.pdf'))
 		sign_in user
+        Upload.any_instance.stub(:save).and_return(true)
 		post :create, :course_id => course.id, :upload => {:name => "Albert Wang", :attachment => attachment}, :syl => true
-		response.should redirect_to("/courses/#{course.id}/uploads/new")
+		response.should redirect_to("/courses/#{course.id}")
+        Upload.any_instance.stub(:syl).and_return(false)
+        Upload.any_instance.stub(:cpf).and_return(true)
+        Upload.any_instance.stub(:save).and_return(true)
+ 		post :create, :course_id => course.id, :upload => {:name => "Albert Wang", :attachment => attachment}, :syl => true
+        Upload.any_instance.stub(:syl).and_return(false)
+        Upload.any_instance.stub(:cpf).and_return(false)
+        Upload.any_instance.stub(:save).and_return(true)
+ 		post :create, :course_id => course.id, :upload => {:name => "Albert Wang", :attachment => attachment}, :syl => true
+        Upload.any_instance.stub(:syl).and_return(true)
+        Upload.any_instance.stub(:cpf).and_return(true)
+        Upload.any_instance.stub(:save).and_return(true)
+ 		post :create, :course_id => course.id, :upload => {:name => "Albert Wang", :attachment => attachment}, :syl => true
 	end
 
 	it "should test destroy uploads" do
 		user = User.find_by_first_name("Mugen")
 		course = Course.find_by_title("Flirting in French")
 		upload = Upload.find_by_name("Anna Huang")
+		upload.course = course
+		upload.save!
 		sign_in user
+        Upload.any_instance.stub(:syl).and_return(true)
+		delete :destroy, :id => upload.id, :course_id => course.id
+		response.should redirect_to("/courses/#{course.id}")
+		upload = Upload.find_by_name("Nicole Feng")
+		upload.course = course
+		upload.save!
+
+        Upload.any_instance.stub(:syl).and_return(false)
+        Upload.any_instance.stub(:cpf).and_return(true)
 		delete :destroy, :id => upload.id, :course_id => course.id
 		response.should redirect_to("/courses/#{course.id}")
 	end

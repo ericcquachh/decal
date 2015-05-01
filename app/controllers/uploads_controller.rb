@@ -1,32 +1,21 @@
 class UploadsController < ApplicationController
+
   before_filter :logged_in, :except => [:index, :show]
   before_filter :is_facilitator, :only => [:destroy]
 
-  def logged_in
-    if current_user.nil? || !(user_signed_in?)
-      redirect_to :root, notice: 'make sure you login fool'
-    end
-  end
-
-  def is_facilitator
-    if !(Course.find(params[:course_id]).verify_facilitator? current_user)
-      redirect_to :root, notice: 'You do not have these priveleges'
-    end
-  end
-
   #not sure if we need index; maybe admin will need it
   def index
-  	@course = Course.find(params[:course_id])
-  	@uploads = Upload.all
+    @course = Course.find(params[:course_id])
+    @uploads = Upload.all
   end
 
   def new
-  	@upload = Upload.new
-  	@course = Course.find(params[:course_id])
+    @upload = Upload.new
+    @course = Course.find(params[:course_id])
   end
 
   def create
-  	@upload = Upload.new(params[:upload])
+    @upload = Upload.new(params[:upload])
     if params[:syl] or params[:cpf]
       params[:upload][:syl] = params[:syl]
       params[:upload][:cpf] = params[:cpf]

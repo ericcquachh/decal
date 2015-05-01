@@ -42,7 +42,7 @@
         <% end %></td>
       <% end %>
       <% if @more == 'favorite' %>
-        <td><%= button_to "delete", {:controller => :courses, :action => 'unfavorite', :id => course.id}, :method => :delete %><td>
+        <td><%= button_to "Unfavorite", {:controller => :courses, :action => 'unfavorite', :id => course.id}, :method => :delete %><td>
       <% end %>
       <% if @more == 'admin' or @more == 'facilitator' %>
         <td><%= link_to 'Edit', edit_course_path(course) %></td>
