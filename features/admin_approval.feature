@@ -19,10 +19,10 @@ Scenario: Successfully approve a course
 	Given I check "XYZ"
 	And I press "approve_courses"
 	Then I should not see "XYZ"
-        And I should see "Teach"
-        When I follow "approved_courses"
-        Then I should see "XYZ"
-        And I should not see "Teach"
+	And I should see "Teach"
+	When I follow "approved_courses"
+	Then I should see "XYZ"
+	And I should not see "Teach"
 	When I visit the home page
 	Then I should see "XYZ"
 

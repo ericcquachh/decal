@@ -5,28 +5,22 @@ Feature: Request to Add Course
 
 Background: user has logged in
   Given I sign in as a user
-  And I visit facilitate course page
+  And I visit the dashboard page
   Then I should see "How to start a Course"
   When I follow "submit_course_for_approval"
-  Then I should see "New course"
+  Then I should see "NEW COURSE"
 
 Scenario: User successfully submits valid request course approval form
   Given I submitted a new course request form with valid fields
-  And I upload a valid CPF form
-  And I upload a valid syllabus
-  Then I should see "Course request successfully submitted to admin."
+  Then I should see "Course successfully requested. Please submit your CPF and Syllabus in order to get course approved by admin."
 
 Scenario: User submits invalid form
   Given I input invalid fields in the new course request form
-  And I upload a valid CPF form
-  And I upload a valid syllabus
   And I press "continue"
   Then the page should have an error
 
 Scenario: User submits incomplete form
   Given I leave incomplete fields in the new course request form
-  And I upload a valid CPF form
-  And I upload a valid syllabus
   And I press "continue"
   Then I should see "can't be blank"
       
@@ -34,13 +28,19 @@ Scenario: User submits form without CPF
   Given I submitted a new course request form with valid fields
   And I upload a valid syllabus
   And I don't upload a valid CPF
-  Then I should see "You need to upload a valid CPF form"
+  Then I should see "Your application won't be considered until you upload both a SYLLABUS and a completed CPF."
 
 Scenario: User submits form without syllabus
   Given I submitted a new course request form with valid fields
   And I upload a valid CPF form
   And I don't upload a valid syllbaus
-  Then I should see "You need to upload a valid syllabus"
+  Then I should see "Your application won't be considered until you upload both a SYLLABUS and a completed CPF."
+
+Scenario: User submits form without syllabus
+  Given I submitted a new course request form with valid fields
+  And I upload a valid CPF form
+  And I upload a valid syllbaus
+  Then I should see "You successfully uploaded both required documents. Please wait for course approval."
 
 Scenario: Logged out user cannot submit form
   Given I log out

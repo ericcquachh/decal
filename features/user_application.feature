@@ -14,12 +14,12 @@ Background: User has logged in
 Scenario: User can apply for course if status is open
 	Given I click on "XYZ" course
 	And the course status is open
-	Then I should see "apply" button
+	Then I should see the "apply" button
 
 Scenario: User cannot apply for course if status is full
 	Given I click on "Teach" course
 	And the course status is full
-	Then I should not see "apply"
+	Then I should not see the "apply" button
 	And I should see "sorry the course is full!"
 
 Scenario: User should not be able to apply for the same course multiple times

@@ -34,7 +34,7 @@
         <h3>Add More</h3>
         <ul class="nav nav-pills nav-stacked">
           <li><%= link_to 'Sections', new_course_section_path(@course), :method => :get,:class => "btn btn-primary" %></li>
-          <li><%= link_to "Facilitators", course_facilitator_index_path(@course), :method => :get, :class => "btn btn-primary" %></li>
+          <li><%= link_to "Facilitators", course_facilitator_index_path(@course), :method => :get, :class => "btn btn-primary", :id => "add_cofacilitator" %></li>
         </ul>
       </div>
 

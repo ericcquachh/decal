@@ -9,15 +9,15 @@ Background: Facilitator has logged in
 		| email                      | first name | last name | password    |
 		| jetli@berkeley.edu         | jet        | li        | 12345678    |
 		| pierceoeflein@berkeley.edu | pierce     | oeflein   | 12345678    |
-	When I visit facilitate course page
+	When I visit the dashboard page
 	And I follow "submit_course_for_approval"
-	And I submitted a new course request form with valid fields
+	And I submit a new course "Test Course" request form with valid fields
 	And my course "Test Course" is approved
 
 Scenario: Facilitator can search and approve a student
-	Given I visit facilitate course page
+	Given I visit the dashboard page
 	And I click on "Test Course" course
-	When I add facilitators for my course
+	When I try to add a cofacilitator for my course
 	And I search for "jet"
 	And I check "jetli@berkeley.edu"
 	And I press "add_these_facilitators"
@@ -26,6 +26,6 @@ Scenario: Facilitator can search and approve a student
 Scenario: Facilitator should not find a non-existent student
 	Given I visit facilitate course page
 	And I click on "Test Course" course
-	When I add facilitators for my course
+	When I try to add a cofacilitator for my course
 	And I search for "sdgs"
 	Then I should not see "sdgs@berkeley.edu"
