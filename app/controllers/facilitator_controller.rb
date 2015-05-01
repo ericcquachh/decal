@@ -1,12 +1,11 @@
 class FacilitatorController < ApplicationController
 
-  before_filter :is_facilitator, :except => [:facilitator_request]
-  before_filter :logged_in, :only => [:facilitator_request]
+  before_filter :is_facilitator
 
   def index
     @course = Course.find(params[:course_id])
-    @users = User.where('id NOT IN (?)', @course.facilitators.empty? ? '' : @course.facilitators)
-    @users = @users.where('email like ?', "%#{params[:search_field]}%") if !params[:search_field].blank?
+    @users = User.where('id NOT IN (?)', @course.facilitators.empty? ? '' : @course.facilitators).order(:email)
+    @users = @users.where('email ILIKE ?', "%#{params[:search_field]}%") if !params[:search_field].blank?
   end
 
   def create
@@ -31,11 +30,6 @@ class FacilitatorController < ApplicationController
     else
       redirect_to course_path(:id => courseid)
     end
-  end
-
-  def facilitator_request
-    FacilitateRequest.create!(request_id: current_user.id, receiver_id: params[:course_id])
-    redirect_to course_path(:id => params[:course_id])
   end
 
 end

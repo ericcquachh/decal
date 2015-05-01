@@ -137,7 +137,7 @@
         <% if @course.requests.include? current_user %>
           <h5>You already requested to become a facilitator for this course</h5>
         <%else%>
-           <%= button_to 'Request to be Facilitator', course_facilitator_request_path(:course_id => @course.id), {:class => "btn btn-primary"} %>
+           <%= button_to 'Request to be Facilitator', facilitator_request_path(id: @course.id), {:class => "btn btn-primary"} %>
         <% end %>
       <%end%>
     </div>
