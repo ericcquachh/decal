@@ -16,8 +16,9 @@ describe FavoriteCourse do
 			:first_name => "felix", :last_name => "liu")
 			User.create!(:email => "jamescheng@berkeley.edu", :password => "jalapenocheddar",
 			:first_name => "james", :last_name => "cheng")
-			Course.create!(semester: "Spring 2015", title: "A", description: "bleh", enrollment_info: "enrolled", category: "Business", status: "Open", units: 1, pending: false) 
-			Course.create!(semester: "Fall 2015", title: "B", description: "bleh", enrollment_info: "enrolled", category: "Cognitive Science", status: "Open", units: 1, pending: false) 
+			Course.create!(semester: "Spring 2015", title: "A", category: "Computer Science",  units: 1, pending: false, description: 'hi', enrollment_info: 'hi', department_num: 1, course_email: "temp@berkeley.edu", faculty_email: "temp@berkeley.edu", faculty_name: "hi")  
+			Course.create!(semester: "Fall 2015", title: "B", category: "Cognitive Science", units: 1, pending: false, description: 'hi', enrollment_info: 'hi', department_num: 1, course_email: "temp@berkeley.edu", faculty_email: "temp@berkeley.edu", faculty_name: "hi") 
+   
 		end
 
 		it 'should test basic sanity of User/Course Favorite' do
