@@ -87,7 +87,9 @@ class CoursesController < ApplicationController
     else
       session[:course_step] = session[:course_params] = nil
       flash[:notice] = "Course successfully requested. Please submit your CPF and Syllabus in order to get course approved by admin."
-      redirect_to course_path(@course)
+      # i really dunno why but have to do it non-RESTFUL redirect because of rspec
+      # sorry for bad form
+      redirect_to("/courses/#{@course.id}")
     end
   end
 
