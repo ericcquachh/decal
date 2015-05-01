@@ -33,8 +33,8 @@
       <div class="col-md-3">
         <h3>Add More</h3>
         <ul class="nav nav-pills nav-stacked">
-          <li><%= link_to 'Sections', {:controller => :sections, :action => 'new', :course_id => @course.id}, :method => :get,:class => "btn btn-primary" %></li>
-          <li><%= link_to "Facilitators", course_facilitator_index_path(:course_id => @course.id), :method => :get, :class => "btn btn-primary" %></li>
+          <li><%= link_to 'Sections', new_course_section_path(@course), :method => :get,:class => "btn btn-primary" %></li>
+          <li><%= link_to "Facilitators", course_facilitator_index_path(@course), :method => :get, :class => "btn btn-primary" %></li>
         </ul>
       </div>
 
