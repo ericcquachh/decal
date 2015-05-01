@@ -3,18 +3,6 @@ class FacilitatorController < ApplicationController
   before_filter :is_facilitator, :except => [:facilitator_request]
   before_filter :logged_in, :only => [:facilitator_request]
 
-  def is_facilitator
-    if !(Course.find(params[:course_id]).verify_facilitator? current_user)
-      redirect_to :root, notice: 'You do not have access to this page'
-    end
-  end
-
-  def logged_in
-    if current_user.nil? || !(user_signed_in?)
-      redirect_to :root, notice: 'make sure you login fool'
-    end
-  end
-
   def index
     @course = Course.find(params[:course_id])
     @users = User.where('id NOT IN (?)', @course.facilitators.empty? ? '' : @course.facilitators)

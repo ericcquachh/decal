@@ -3,19 +3,6 @@ class CoursesController < ApplicationController
   # GET /courses.json
 
   before_filter :logged_in, :except => [:index, :show]
-  before_filter :is_facilitator, :only => [:destroy]
-
-  def logged_in
-    if current_user.nil? || !(user_signed_in?)
-      redirect_to :root, notice: 'make sure you login fool'
-    end
-  end
-
-  def is_facilitator
-    if !(Course.find(params[:course_id]).verify_facilitator? current_user)
-      redirect_to :root, notice: 'You do not have these priveleges'
-    end
-  end
 
   def index
     @courses = Course.filter params, false
@@ -117,18 +104,6 @@ class CoursesController < ApplicationController
         format.html { render action: "edit" }
         format.json { render json: @course.errors, status: :unprocessable_entity }
       end
-    end
-  end
-
-  # DELETE /courses/1
-  # DELETE /courses/1.json
-  def destroy
-    @course = Course.find(params[:id])
-    @course.destroy
-
-    respond_to do |format|
-      format.html { redirect_to courses_url }
-      format.json { head :no_content }
     end
   end
 

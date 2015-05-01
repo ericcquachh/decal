@@ -4,7 +4,7 @@ Decal::Application.routes.draw do
 
   resources :home, only: [:index]
 
-  resources :courses do
+  resources :courses, except: [:destroy] do
       resources :sections, except: [:show]
       resources :uploads, only: [:index, :new, :create, :destroy]
       # paths for adding facilitator to courses

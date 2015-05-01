@@ -125,7 +125,7 @@
     <div class="page-header">
       <h3>Current Facilitators</h3>
       <div class="current_facilitators">
-        <% @more = 'edit' %>
+        <% @course.verify_facilitator?(current_user) ? @more = 'edit' : @more = nil %>
         <% @users = @course.facilitators %>
         <% if !@users.blank? %>
           <%= render 'shared/user_table' %>
