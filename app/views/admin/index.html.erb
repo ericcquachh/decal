@@ -4,11 +4,12 @@
     
       
         <h3>Manage</h3>
-        <ul class="nav nav-pills nav-stacked">
-          <li class="<%= "active" if params[:tab] == 'curr'%>"><%= link_to 'APPROVED COURSES', admin_index_path(:tab => 'curr'), {:class => "btn btn-primary"} %></li>
-          <li class="<%= "active" if params[:tab] == 'pending'%>"><%= link_to 'PENDING COURSES', admin_index_path(:tab => 'pending'), {:class => "btn btn-primary"} %></li>
-          <li class="<%= "active" if params[:tab] == 'manageadmins'%>"><%= link_to 'FACILITATORS', admin_index_path(:tab => 'manageadmins'), {:class => "btn btn-primary"} %></li>
-        </ul>    
+          <ul class="nav nav-pills nav-stacked">
+            <li class="<%= "active" if params[:tab] == 'curr'%>"><%= link_to 'APPROVED COURSES', admin_index_path(:tab => 'curr'), {:id => "approved_courses"}, {:class => "btn btn-primary"} %></li>
+            <li class="<%= "active" if params[:tab] == 'pending'%>"><%= link_to 'PENDING COURSES', admin_index_path(:tab => 'pending'), {:id => "pending_courses"}, {:class => "btn btn-primary"} %></li>
+            <li class="<%= "active" if params[:tab] == 'manageadmins'%>"><%= link_to 'FACILITATORS', admin_index_path(:tab => 'manageadmins'), {:id=> "facilitators"}, {:class => "btn btn-primary"}%></li>
+          </ul>    
+          <br/>   
         <br/>
         <div class="form-group">
         <%if params[:tab] != "manageadmins"%>
