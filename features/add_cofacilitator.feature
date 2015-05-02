@@ -9,23 +9,24 @@ Background: Facilitator has logged in
 		| email                      | first name | last name | password    |
 		| jetli@berkeley.edu         | jet        | li        | 12345678    |
 		| pierceoeflein@berkeley.edu | pierce     | oeflein   | 12345678    |
-	When I visit the dashboard page
+	When I visit facilitate course page
 	And I follow "submit_course_for_approval"
-	And I submit a new course "Test Course" request form with valid fields
+	And I submitted a new course request form with valid fields
 	And my course "Test Course" is approved
 
 Scenario: Facilitator can search and approve a student
-	Given I visit the dashboard page
+	Given I visit facilitate course page
 	And I click on "Test Course" course
-	When I try to add a cofacilitator for my course
+	When I add facilitators for my course
+	Then I should see "Add Facilitators"
 	And I search for "jet"
-	And I check "jetli@berkeley.edu"
-	And I press "add_these_facilitators"
 	Then I should see "jetli@berkeley.edu"
+	And I press "Add"
+	Then I should see "User has been promoted to facilitator"
 
 Scenario: Facilitator should not find a non-existent student
 	Given I visit facilitate course page
 	And I click on "Test Course" course
-	When I try to add a cofacilitator for my course
+	When I add facilitators for my course
 	And I search for "sdgs"
 	Then I should not see "sdgs@berkeley.edu"

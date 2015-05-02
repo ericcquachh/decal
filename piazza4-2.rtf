@@ -1,0 +1,54 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1347\cocoasubrtf570
+{\fonttbl\f0\fnil\fcharset0 HelveticaNeue;}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue0;\red237\green236\blue236;\red237\green236\blue236;
+}
+\margl1440\margr1440\vieww20300\viewh11000\viewkind0
+\deftab720
+\pard\pardeftab720\sl358
+
+\f0\fs28 \cf2 \cb3 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Pivotal: {\field{\*\fldinst{HYPERLINK "https://www.pivotaltracker.com/n/projects/1285688"}}{\fldrslt \expnd0\expndtw0\kerning0
+\ul \outl0\strokewidth0 https://www.pivotaltracker.com/n/projects/1285688}}\
+TravisCI: {\field{\*\fldinst{HYPERLINK "https://travis-ci.org/ericcquachh/decal"}}{\fldrslt \expnd0\expndtw0\kerning0
+\ul \outl0\strokewidth0 https://travis-ci.org/ericcquachh/decal}}\
+Github: {\field{\*\fldinst{HYPERLINK "https://github.com/ericcquachh/decal"}}{\fldrslt \expnd0\expndtw0\kerning0
+\ul \outl0\strokewidth0 https://github.com/ericcquachh/decal}}\
+Heroku: {\field{\*\fldinst{HYPERLINK "http://decal.herokuapp.com/"}}{\fldrslt \expnd0\expndtw0\kerning0
+\ul \outl0\strokewidth0 http://decal.herokuapp.com/}}\
+Codeclimate: {\field{\*\fldinst{HYPERLINK "https://codeclimate.com/github/ericcquachh/decal"}}{\fldrslt \expnd0\expndtw0\kerning0
+\ul \outl0\strokewidth0 https://codeclimate.com/github/ericcquachh/decal}}\
+Notes and Assumptions:\
+Our main focus for this iteration was admin access control, the process of requesting and approving new courses, and the process of a facilitator adding co-facilitators to the course. We have deprecated facilitator \'93demote\'94 and \'93promote\'94 from Iteration 3, and instead used admin to approve courses which in turn grants facilitator access to the user that submitted the course approval form. For testing purposes, we are still using a few elements from Iteration 3 that will be deprecated in final iteration: In addition to Google OAuth, we added a test sign up and sign in that still validates {\field{\*\fldinst{HYPERLINK "http://berkeley.edu/"}}{\fldrslt \expnd0\expndtw0\kerning0
+\ul \outl0\strokewidth0 berkeley.edu}} emails. We also added makeadmin/removeadmin buttons to easily test access control, which will be deleted in the future iteration once we finalize admin access.\
+\
+Definitions:\
+We use the term 'cofacilitator' in stories to just differentiate between facilitators that made the course and facilitators who are added by the main facilitator. In all practical sense, there is no difference between a cofacilitator and a facilitator. Additionally, the way we differentiate between user and facilitator has changed; a facilitator is now just a normal user that happens to own a course (as opposed to a :facilitator boolean like we had before). \
+\
+Backlog:\
+Since we implemented the process of a facilitator adding co-facilitators to the course, we have deferred the story of users requesting to be co-facilitators. Because of massive changes to access control and the process of creating courses, we have isolated filtering (the main focus of Iteration 1), and will restore it in the final iteration.\
+\
+\
+\pard\pardeftab720\sl358
+\cf0 \cb4 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 Pivotal: {\field{\*\fldinst{HYPERLINK "https://www.pivotaltracker.com/n/projects/1285688"}}{\fldrslt \expnd0\expndtw0\kerning0
+\ul https://www.pivotaltracker.com/n/projects/1285688}}\
+TravisCI: {\field{\*\fldinst{HYPERLINK "https://travis-ci.org/ericcquachh/decal"}}{\fldrslt \expnd0\expndtw0\kerning0
+\ul https://travis-ci.org/ericcquachh/decal}}\
+Github: {\field{\*\fldinst{HYPERLINK "https://github.com/ericcquachh/decal"}}{\fldrslt \expnd0\expndtw0\kerning0
+\ul https://github.com/ericcquachh/decal}}\
+Heroku: {\field{\*\fldinst{HYPERLINK "http://decal.herokuapp.com/"}}{\fldrslt \expnd0\expndtw0\kerning0
+\ul http://decal.herokuapp.com/}}\
+Codeclimate: {\field{\*\fldinst{HYPERLINK "https://codeclimate.com/github/ericcquachh/decal"}}{\fldrslt \expnd0\expndtw0\kerning0
+\ul https://codeclimate.com/github/ericcquachh/decal}}\cf2 \cb3 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 \
+\pard\pardeftab720\sl358
+\cf2 Notes:\
+In our final iteration, we decided to strive for a finished MVP which we could present to our customer. This meant really polishing up the UI to create a better interface for the user. A couple changes we made from the last iteration is a cleaner dashboard which now can be used by all users. For a basic user, the dashboard now has a way for users to favorite classes when they browse through the possible DeCal listings. Another feature was the implementation of validations on uploads which forces users who are submitting courses to be required to upload a CPF and Syllabus. We were able to clear out the backlog and fix the filtering issue that has been plaguing our app and now, any user can filter courses to their desire.\
+\
+Definitions:\
+CPF and Syllabus are simply titles for documents associated with the required documents needed to be uploaded. For clarification, the makeadmin and removeadmin essentially give superuser powers meaning the user has the ability to touch many restricted features of the site. \
+\
+Backlog:\
+We have cleared out our backlog! The filtering issue we have had all this time is now fixed and the user or in the story, Student, or as a matter of fact, any user, has the ability to filter courses to their desire. \
+\
+}

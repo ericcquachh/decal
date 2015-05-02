@@ -5,9 +5,9 @@
         <div class="form-group">
           <h3>Manage</h3>
           <ul class="nav nav-pills nav-stacked">
-            <li class="<%= "active" if params[:tab] == 'curr'%>"><%= link_to 'APPROVED COURSES', admin_index_path(:tab => 'curr'), {:class => "btn btn-primary"} %></li>
-            <li class="<%= "active" if params[:tab] == 'pending'%>"><%= link_to 'PENDING COURSES', admin_index_path(:tab => 'pending'), {:class => "btn btn-primary"} %></li>
-            <li class="<%= "active" if params[:tab] == 'manageadmins'%>"><%= link_to 'FACILITATORS', admin_index_path(:tab => 'manageadmins'), {:class => "btn btn-primary"} %></li>
+            <li class="<%= "active" if params[:tab] == 'curr'%>"><%= link_to 'APPROVED COURSES', admin_index_path(:tab => 'curr'), {:id => "approved_courses"}, {:class => "btn btn-primary"} %></li>
+            <li class="<%= "active" if params[:tab] == 'pending'%>"><%= link_to 'PENDING COURSES', admin_index_path(:tab => 'pending'), {:id => "pending_courses"}, {:class => "btn btn-primary"} %></li>
+            <li class="<%= "active" if params[:tab] == 'manageadmins'%>"><%= link_to 'FACILITATORS', admin_index_path(:tab => 'manageadmins'), {:id=> "facilitators"}, {:class => "btn btn-primary"}%></li>
           </ul>    
           <br/>
 
@@ -73,9 +73,9 @@
             
             <div class="pull-right">
               <% if params[:tab] == "pending" %>
-                <%= submit_tag("Approve Course(s)",:class=>'btn btn-primary')%>
+                <%= submit_tag("Approve Course(s)", :id => "approve_courses", :class=>'btn btn-primary')%>
               <% else %>
-                <%= submit_tag("Unapprove Course(s)",:class=>'btn btn-primary')%>
+                <%= submit_tag("Unapprove Course(s)", :id => "unapprove_courses", :class=>'btn btn-primary')%>
               <% end %>
             </div>
           

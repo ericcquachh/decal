@@ -2,7 +2,7 @@
 
 def create_visitor
   @visitor = { :class_level=>"Senior", :first_name => "first", :last_name => "last", :email => "testing@berkeley.edu",
-    :password => "testingpass", :password_confirmation => "testingpass", :facilitator=>false }
+    :password => "testingpass", :password_confirmation => "testingpass"}
 end
 
 def create_non_facilitator
@@ -13,13 +13,13 @@ end
 
 
 def create_facilitator
-  @facilitator = { :facilitator=>true, :first_name => "first", :last_name => "last", :email => "facilitator@berkeley.edu",
+  @facilitator = {:first_name => "first", :last_name => "last", :email => "facilitator@berkeley.edu",
   :password => "testingpass", :password_confirmation => "testingpass" }
   @user = User.create(@facilitator)
 end
 
 def create_other_facilitator
-  @facilitator = { :facilitator=>true, :first_name => "Kevin", :last_name => "Casey", :email => "overlord@berkeley.edu",
+  @facilitator = {:first_name => "Kevin", :last_name => "Casey", :email => "overlord@berkeley.edu",
   :password => "testingpass", :password_confirmation => "testingpass" }
   @user = User.create(@facilitator)
 end
