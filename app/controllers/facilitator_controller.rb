@@ -5,7 +5,7 @@ class FacilitatorController < ApplicationController
   def index
     @course = Course.find(params[:course_id])
     @users = User.where('id NOT IN (?)', @course.facilitators.empty? ? '' : @course.facilitators).order(:email)
-    @users = @users.where('email ILIKE ?', "%#{params[:search_field]}%") if !params[:search_field].blank?
+    @users = @users.where('email LIKE ?', "%#{params[:search_field]}%") if !params[:search_field].blank?
   end
 
   def create
