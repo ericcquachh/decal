@@ -75,9 +75,9 @@
             
             <div class="pull-right">
               <% if params[:tab] == "pending" %>
-                <%= submit_tag("Approve Course(s)",:class=>'btn btn-primary')%>
+                <%= submit_tag("Approve Course(s)", :id => "approve_courses", :class=>'btn btn-primary')%>
               <% else %>
-                <%= submit_tag("Unapprove Course(s)",:class=>'btn btn-primary')%>
+                <%= submit_tag("Unapprove Course(s)", :id => "unapprove_courses", :class=>'btn btn-primary')%>
               <% end %>
             </div>
           
