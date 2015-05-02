@@ -54,8 +54,16 @@ Then /^I should see my new section in facilitate course page$/ do
   page.should have_content "Test Section"
 end
 
+Then /^I should redirect to login$/ do
+  page.should have_content "Redirecting to"
+end
+
 Given /^I visit facilitate course page$/ do
-  visit '/dashboard'
+  begin
+    visit '/dashboard'
+  rescue ActionController::RoutingError
+    puts "make sure you login"
+  end
 end
 
 Then /^I create a new section$/ do

@@ -188,8 +188,8 @@ Then /^I should be signed in$/ do
 end
 
 Then /^I should be signed out$/ do
-  page.should have_content "Sign up"
-  page.should have_content "Sign in"
+  page.should have_link "SIGNUP"
+  page.should have_link "SIGNIN"
   page.should_not have_content "Logout"
 end
 
