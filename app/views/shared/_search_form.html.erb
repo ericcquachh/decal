@@ -14,9 +14,9 @@ $(document).ready(function(){
   <div class="col-md-4 padding-none">
     <ul class="nav nav-pills nav-stacked" id="myTab">
         <li><a href="#title">Title</a></li>
-        <li><a href="#categories">Categories</a></li>
         <li><a href="#logistics">Logistics</a></li>
         <li><a href="#time">Time</a></li>
+        <li><a href="#sort">Sort</a></li>
     </ul>
     <br/>
   </div>
@@ -24,9 +24,6 @@ $(document).ready(function(){
     <div class="tab-content">
 
         <div id="title" class="tab-pane fade">
-         <%=label_tag("Semester") %>
-               <%= select_tag 'semester', options_for_select(Semester.semesters, Semester.current_semester(params[:semester])), :class => 'form-control selectpicker'   %>
-
           <%= label_tag("SEARCH") %>
           <input type="text" class="form-control" placeholder="By title" id=<%= text_field_tag('search_field') %> </input>
         </div>
@@ -35,9 +32,7 @@ $(document).ready(function(){
      
           <%= label_tag("CATEGORIES") %>
                <%= select_tag 'category', options_for_select(Category.categories, params[:category]), :multiple => true, :class => 'form-control selectpicker' %>
-
-          <%=label_tag("Sort") %>
-               <%= select_tag 'sort', options_for_select(Course.sorting.keys, params[:sort]), :include_blank => true, :class => 'form-control selectpicker'   %>
+          
         </div>
 
         <div id="logistics" class="tab-pane fade">
@@ -68,6 +63,14 @@ $(document).ready(function(){
             <%= select_tag 'end_time', options_for_select(Section.all_times, params[:end_time]), :include_blank => true, :class => 'form-control selectpicker' %>
         
         </div>
+        <div id="sort" class="tab-pane fade">
+          <%=label_tag("Semester") %>
+               <%= select_tag 'semester', options_for_select(Semester.semesters, Semester.current_semester(params[:semester])), :class => 'form-control selectpicker'   %>
+          <br/><br/>
+          <%=label_tag("Sort") %>
+               <%= select_tag 'sort', options_for_select(Course.sorting.keys, params[:sort]), :include_blank => true, :class => 'form-control selectpicker'   %>
+        </div>
+      
       
     </div>
     <br/>
