@@ -9,7 +9,7 @@
       <th>Unfavorite</th>
     <% end %>
     <% if @more == 'admin' or @more == 'facilitator' %>
-      <th>Edit</th>
+    
       <% if @more == 'admin' %>
           <th>Syllabus</th>
           <th>CPF</th>
@@ -49,7 +49,6 @@
         <td><%= button_to "Unfavorite", {:controller => :courses, :action => 'unfavorite', :id => course.id}, :method => :delete %><td>
       <% end %>
       <% if @more == 'admin' or @more == 'facilitator' %>
-        <td><%= link_to 'Edit', edit_course_path(course) %></td>
         <% if @more == 'admin' %>
           <% if course.has_syl? %>
             <% course.uploads.each do |upload| %>

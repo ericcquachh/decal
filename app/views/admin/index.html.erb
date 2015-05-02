@@ -2,7 +2,7 @@
   <form class="form-inline">
     <div class="col-md-4 box">
     
-      <div class="form-group">
+    
         <h3>Manage</h3>
         <ul class="nav nav-pills nav-stacked">
           <li class="<%= "active" if params[:tab] == 'curr'%>"><%= link_to 'APPROVED COURSES', admin_index_path(:tab => 'curr'), {:class => "btn btn-primary"} %></li>
@@ -19,7 +19,7 @@
           <% end %>
         <%end%>
         <br/>
-      </div>
+      
     
       <div class="line">
       </div>
@@ -52,7 +52,6 @@
         <% end %>
       </div>
       <div class="col-md-12">
-
         <%= form_tag(add_semester_path) do %>
           <%= label_tag("Add Semester:") %><br/>
           <input class="form-control" placeholder="Ex. Spring 2015" id=<%= text_field_tag('semester') %> </input>
@@ -65,7 +64,6 @@
 
 
       <br/>
-
       <%if params[:tab] != "manageadmins"%>  
         <%= form_tag(controller: "admin", action: "index", method: "post") do %>
           <%= hidden_field_tag :tab, params[:tab] %>
