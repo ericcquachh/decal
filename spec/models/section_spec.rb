@@ -25,7 +25,7 @@ describe Section do
 		it "should touch all the personal functions" do
 			Section.all_days.should eq(["M", "Tu", "W", "Th", "F"])
 			Section.all_times
-			Section.statuses.should eq(["Open", "Started", "Full"])
+			Section.statuses.should eq(["Open", "Full"])
 			section = Section.create!(section_title: "3", days: "ThF", status: "Full", start_time: Section.time_to_int("10:00AM"), end_time: Section.time_to_int("11:00AM"), location: "186 Barrows")
 			section.filled?
 			section.full_time
