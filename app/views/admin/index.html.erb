@@ -2,7 +2,7 @@
   <form class="form-inline">
     <div class="col-md-4 box">
     
-    
+      
         <h3>Manage</h3>
         <ul class="nav nav-pills nav-stacked">
           <li class="<%= "active" if params[:tab] == 'curr'%>"><%= link_to 'APPROVED COURSES', admin_index_path(:tab => 'curr'), {:class => "btn btn-primary"} %></li>
@@ -10,7 +10,7 @@
           <li class="<%= "active" if params[:tab] == 'manageadmins'%>"><%= link_to 'FACILITATORS', admin_index_path(:tab => 'manageadmins'), {:class => "btn btn-primary"} %></li>
         </ul>    
         <br/>
-
+        <div class="form-group">
         <%if params[:tab] != "manageadmins"%>
 
           <%= form_for(admin_index_path, method: :get, id: 'units_form') do %>
@@ -19,11 +19,13 @@
           <% end %>
         <%end%>
         <br/>
-      
+      </div>
     
       <div class="line">
       </div>
+      <h3>Tools</h3>
       <div class="row">
+
         <div class="col-md-6">
           <%= form_tag(remove_category_path, id: 'remove_category') do %>
             <%= label_tag("Remove Category:") %>
