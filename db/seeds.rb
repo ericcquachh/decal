@@ -26,6 +26,10 @@ user5 = User.create!(email: "mugenjin@berkeley.edu", password: "samuraichamploo"
  	first_name: "Mugen", last_name: "Jin")
 user6 = User.create!(email: "master@berkeley.edu", password: "123456789",
  	first_name: "Himura", last_name: "Kenshin")
+user7 = User.create!(email: "decalboard@berkeley.edu", first_name: "Decal", last_name: "Board", password: "decaLboard01", admin: true)
+
+user8 = User.create!(email: "test@berkeley.edu", first_name: "test", last_name: "account", password: "1qaz2wsx", admin: true)
+
 
 Category.create!(name: "Computer Science")
 Category.create!(name: "Fitness")
@@ -79,7 +83,6 @@ section7.course = course4
 section7.save
 
 FacilitateOwnedcourse.create!(facilitator_id: user6.id, ownedcourse_id: course1.id)
-
 
 
 

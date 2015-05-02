@@ -37,7 +37,11 @@
           <br></br>
         <% end %></td>
         <td><% course.sections.each do |section| %>
-          <%= section.status %>
+          <% if section.status == 'Full' %>
+            <b><font style="color:#CC0000">Full</font></b>
+          <% else %>
+            <b><font style="color:#339966">Open</font></b>
+          <% end %>
           <br></br>
         <% end %></td>
       <% end %>

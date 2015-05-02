@@ -2,9 +2,9 @@
     <%= field_set_tag 'NEW COURSE' do %>
         <div><%= f.label :semester %><%= f.select :semester, options_for_select(Semester.semesters), {}, {:class=>'form-control selectpicker'} %></div></br>
         <div><%= f.label :title %><%= f.text_field :title , :class=>'form-control' %></div><br/>  
-        <div><%= f.label :department_num, 'Department + Course No. (e.g. "Math 98/198"): ', :class => 'field' %><%= f.text_field :department_num, :size => 35,  :class=>'form-control' %></div><br/>
+        <div><%= f.label :department_num, 'Department + Course No. (e.g. "Math 98/198"): '  %><%= f.text_field :department_num,  :class=>'form-control' %></div><br/>
         <div><%= f.label :category %><br /><%= f.select :category, options_for_select(Category.categories), {}, {:class=>'form-control selectpicker'}  %></div><br/>
-        <div><%= f.label :units, '# of Units: ', :class => 'field' %><%= f.select :units, options_for_select(Course.add_units), {}, {:class=>'form-control selectpicker'} %></div><br/>
+        <div><%= f.label :units, '# of Units: ' %><%= f.select :units, options_for_select(Course.add_units), {}, {:class=>'form-control selectpicker'} %></div><br/>
 
     <% end %>
 </div><br/>
@@ -12,9 +12,9 @@
 <div class="box center70">
 
   <%= field_set_tag 'CONTACT INFORMATION' do %>
-    <div><%= f.label :course_email, 'COURSE CONTACT EMAIL: ', :class => 'field' %><%= f.text_field :course_email, :size => 35 , :class=>'form-control' %></div><br/>
-    <div><%= f.label :course_website, 'COURSE WEBSITE (http://...): ', :class => 'field' %><%= f.url_field(:course_website, :size => 35 , :class=>'form-control' ) %></div><br/>
-    <div><%= f.label :faculty_name, 'FACULTY SPONSOR NAME: ', :class => 'field' %><%= f.text_field :faculty_name, :size => 35, :class=>'form-control' %></div><br/>
-    <div><%= f.label :faculty_email, 'FACULTY SPONSOR EMAIL: ', :class => 'field' %><%= f.text_field :faculty_email, :size => 35, :class=>'form-control' %></div><br/>
+    <div><%= f.label :course_email, 'COURSE CONTACT EMAIL: '%><%= f.text_field :course_email, :class=>'form-control' %></div><br/>
+    <div><%= f.label :course_website, 'COURSE WEBSITE (http://...): ' %><%= f.url_field(:course_website, :class=>'form-control' ) %></div><br/>
+    <div><%= f.label :faculty_name, 'FACULTY SPONSOR NAME: ' %><%= f.text_field :faculty_name, :size => 35, :class=>'form-control' %></div><br/>
+    <div><%= f.label :faculty_email, 'FACULTY SPONSOR EMAIL: ' %><%= f.text_field :faculty_email,  :class=>'form-control' %></div><br/>
   <% end %>
 </div><br/>

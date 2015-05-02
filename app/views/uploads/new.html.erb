@@ -8,14 +8,17 @@
   </div>
 <% end %>
 
-<div class="well">
-  <%= form_for(@upload, html: { multipart: true }, url: course_uploads_path(@course)) do |f| %>
-    <%= f.label :name %>
-    <%= f.text_field :name %>
-    <%= f.label :attachment %>
-    <%= f.file_field :attachment %>
-    <div><%= f.check_box(:syl) %><%= f.label(:syl, "This is my syllabus for my course request", :class => 'field' ) %></div></br>
-    <div><%= f.check_box(:cpf) %><%= f.label(:cpf, "This is my CPF for my course request", :class => 'field' ) %></div></br>
-    <%= f.submit "Save", class: "btn btn-primary" %>
-  <% end %>
+<div class="center70">
+  <h1>File Upload</h1>
+  <div class="box">
+    <%= form_for(@upload, html: { multipart: true }, url: course_uploads_path(@course)) do |f| %>
+      <%= f.label :name %>
+      <%= f.text_field :name, :class=>'form-control' %><br/>
+      <%= f.label :attachment %>
+      <%= f.file_field :attachment %><br/>
+      <div><%= f.check_box(:syl) %><%= f.label(:syl, "This is my syllabus for my course request" ) %></div></br>
+      <div><%= f.check_box(:cpf) %><%= f.label(:cpf, "This is my CPF for my course request") %></div></br>
+      <%= f.submit "Save", class: "btn btn-primary" %>
+    <% end %>
+  </div>
 </div>

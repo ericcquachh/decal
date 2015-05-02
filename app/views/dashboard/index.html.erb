@@ -1,25 +1,14 @@
 
-<div>
+
   <div class="page-header">
-    <h3>How to start a Course</h3>
+    <h3>Create a Course</h3>
+  <%= link_to 'Submit A Course For Approval', new_course_path, {:class => "btn btn-primary", :id => "submit_course_for_approval"} %><br>
   </div>
-  1. Developing a syllabus <br/>
-  2. Complete the Course Proposal Form <br/>
-  3. Get a signature from Faculty Sponsor <br/>
-  4. Get a signature from Department Chair <br/>
-  5. Turn syllabus and CPF to Academic Senate <br/>
-  6. Submit course for approval below <br/>
-</div>
-<br/>
-<%= link_to 'Submit A Course For Approval', new_course_path, {:class => "btn btn-primary", :id => "submit_course_for_approval"} %><br>
-<br>
 
-<p>* If you are currently teaching a course, and do not have access to your course page, ask your lead facilitator for access</p>
 
-<div>
   <div class="page-header">
     <h3>Favorite Courses</h3>
-  </div>
+  
   <% if not current_user.favorites.blank? %>
     <% @more = 'favorite' %>
     <% @courses = current_user.favorites %>
@@ -27,30 +16,33 @@
   <% else %>
     <h5>You have not favorited any courses</h5>
   <% end %>
-</div>
+  </div>
+
 
 <% if not current_user.ownedcourses.blank? or current_user.admin %>
   <% @more = 'facilitator' %>
-  <div>
+
+    <div class="page-header">
+    <h3>Your Courses</h3>
+    
+    <% @courses = current_user.ownedcourses.where(:pending => false) %>
+    <% if not @courses.blank? %>
+      <% @page = 'dashboard' %>
+      <%= render 'shared/course_table' %>
+    <% else %>
+      <h5>No courses have been approved</h5>
+    <% end %>
+    </div>
+
     <div class="page-header">
       <h3>Courses Pending Approval</h3>
-    </div>
+    
     <% @courses = current_user.ownedcourses.where(:pending => true) %>
     <% if not @courses.blank? %>
       <%= render 'shared/course_table' %>
     <% else %>
       <h5>No courses currently pending approval</h5>
     <% end %>
-  </div>
+    </div>
 
-  <div class="page-header">
-  <h3>Your Courses</h3>
-  </div>
-  <% @courses = current_user.ownedcourses.where(:pending => false) %>
-  <% if not @courses.blank? %>
-    <% @page = 'dashboard' %>
-    <%= render 'shared/course_table' %>
-  <% else %>
-    <h5>No courses have been approved</h5>
-  <% end %>
 <%end%>
