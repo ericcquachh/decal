@@ -1,4 +1,4 @@
-
+<br/>
 <div class="panel panel-default">
   <div class="panel-heading">
     <h3 class="panel-title">DEVELOPER TOOLS</h3>
@@ -11,7 +11,7 @@
     <h3>Facilitator Status:</h3>
     
     <% if not user_signed_in? or current_user.ownedcourses.empty? %>
-      <p>You own no courses, so your ARE NOT a faciltiator. Currently you can be a facilitator through the following: Click Facilitate, Submit Course, Have an admin approve that course; Have a facilitator add you to their approved course. <p>
+      <p>You own no courses, so your ARE NOT a faciltiator. <p>
     <%else%>
       <p>You own course(s), so you ARE a facilitator.</p>
     <%end%>
@@ -26,9 +26,12 @@
     <div class="inner">
       <%= button_to 'makeadmin', makeadmin_path, {:class => "btn btn-primary"} %>
     </div>
+    <br/>
     <div class="inner">
       <%= button_to 'removeadmin', removeadmin_path, {:class => "btn btn-primary"} %>
     </div>
+    <br/>
+    <%= button_to "Test Sign In", new_user_session_path%>
     
   </div>
 </div>

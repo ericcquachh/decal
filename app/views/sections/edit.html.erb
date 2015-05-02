@@ -1,6 +1,7 @@
 
 <%= form_for(@section, :url => course_section_path(:course_id => @course.id, :id => @section.id)) do |f| %>
 
+    
     <% if !@section.errors.empty? %>
       <br/>
       <div id="error_explanation">
@@ -13,6 +14,7 @@
   <div class="box center70">
       <h3>Section Info</h3>
       <div><%= f.label :section_title, 'Section Title (e.g. "Section 1" or "Beginner"): ' %><%= f.text_field :section_title, :class => 'form-control' %></div><br/>
+      <div><%= f.label :facilitator, 'Facilitator(s): ' %><%= f.text_field :facilitator, :class => 'form-control' %></div><br/>
       <div><%= f.label :ccn_ld, 'CCN (Lower Division): '  %><%= f.text_field :ccn_ld,:class => 'form-control'  %></div><br/>
       <div><%= f.label :ccn_ud, 'CCN (Upper Division): '  %><%= f.text_field :ccn_ud,:class => 'form-control'  %></div><br/>
       <div><%= f.label(:ccn_publish, "Publish CCNs?" ) %></div><div><%= f.check_box(:ccn_publish) %>Yes</div><br/>
@@ -29,9 +31,9 @@
       <%= select_tag 'section[days]', options_for_select(Section.all_days, params[:days]), :multiple => true, :class => 'form-control selectpicker'  %>
       <br></br>
       <%= label_tag ("Start after:") %>
-      <%= select_tag 'section[start_time]', options_for_select(Section.all_times, "-Select Time-"), :class => 'form-control selectpicker'  %>
+      <%= select_tag 'section[start_time]', options_for_select(Section.all_times, "-Select Time-")  %>
       <%= label_tag ("End before:") %>
-      <%= select_tag 'section[end_time]', options_for_select(Section.all_times, "-Select Time-"), :class => 'form-control selectpicker'  %>
+      <%= select_tag 'section[end_time]', options_for_select(Section.all_times, "-Select Time-")  %>
 
   </div><br/>
   <div class="center70">

@@ -2,7 +2,6 @@
   <form class="form-inline">
     <div class="col-md-4 box">
     
-        <div class="form-group">
           <h3>Manage</h3>
           <ul class="nav nav-pills nav-stacked">
             <li class="<%= "active" if params[:tab] == 'curr'%>"><%= link_to 'APPROVED COURSES', admin_index_path(:tab => 'curr'), {:id => "approved_courses"}, {:class => "btn btn-primary"} %></li>
@@ -11,18 +10,19 @@
           </ul>    
           <br/>
 
-          <%if params[:tab] != "manageadmins"%>
+        <%if params[:tab] != "manageadmins"%>
 
-            <%= form_for(admin_index_path, method: :get, id: 'units_form') do %>
-              <%= hidden_field_tag :tab, params[:tab] %>
-              <%= render 'shared/search_form' %>
-            <% end %>
-          <%end%>
-          <br/>
-        </div>
-   
+          <%= form_for(admin_index_path, method: :get, id: 'units_form') do %>
+            <%= hidden_field_tag :tab, params[:tab] %>
+            <%= render 'shared/search_form' %>
+          <% end %>
+        <%end%>
+        <br/>
+      
+    
       <div class="line">
       </div>
+      <div class="row">
         <div class="col-md-6">
           <%= form_tag(remove_category_path, id: 'remove_category') do %>
             <%= label_tag("Remove Category:") %>
@@ -39,32 +39,30 @@
           <% end %>
           <br/>
         </div>
+      </div>
+      <br/>
         
-        <div class="col-md-12">
+      <div class="col-md-12">
 
-          <%= form_tag(add_category_path, id: 'add_category') do %>
-            <%= label_tag("Add Category:") %>
-            <input type="text" class="form-control" placeholder="Ex. Computer Science" id=<%= text_field_tag('category') %> </input>
-            <%= submit_tag "Add Category", :class=>"btn btn-primary pull-right center" %>
-          <% end %>
-        </div>
-        <div class="col-md-12">
-
-          <%= form_tag(add_semester_path) do %>
-            <%= label_tag("Add Semester:") %>
-            <input type="text" class="form-control" placeholder="Ex. Spring 2015" id=<%= text_field_tag('semester') %> </input>
-            <%= submit_tag "Add Semester", :class=>"btn btn-primary pull-right center" %>
-          <% end %>
-        </div>
+        <%= form_tag(add_category_path, id: 'add_category') do %>
+          <%= label_tag("Add Category:") %><br/>
+          <input class="form-control" placeholder="Ex. Computer Science" id=<%= text_field_tag('category') %> </input>
+          <%= submit_tag "Add Category", :class=>"btn btn-primary" %>
+        <% end %>
+      </div>
+      <div class="col-md-12">
+        <%= form_tag(add_semester_path) do %>
+          <%= label_tag("Add Semester:") %><br/>
+          <input class="form-control" placeholder="Ex. Spring 2015" id=<%= text_field_tag('semester') %> </input>
+          <%= submit_tag "Add Semester", :class=>"btn btn-primary" %>
+        <% end %>
+      </div>
   
     </div>
   </form>
 
 
       <br/>
-
-
-
       <%if params[:tab] != "manageadmins"%>  
         <%= form_tag(controller: "admin", action: "index", method: "post") do %>
           <%= hidden_field_tag :tab, params[:tab] %>

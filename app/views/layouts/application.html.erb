@@ -2,6 +2,7 @@
 <html>
 
   <head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>DeCal</title> 
     <%= stylesheet_link_tag    "application", :media => "all" %>
     <%= javascript_include_tag "application" %>
@@ -40,25 +41,10 @@
                 <li><a>HELP</a></li>
               </ul>
               <ul class="nav navbar-nav navbar-right">
-                <li><a href="<%= new_user_registration_path %>"><b>SIGNUP</b></a></li>
-                <li><a href="<%= user_omniauth_authorize_path(:google_oauth2) %>"><b>SIGNIN</b></a></li>
-              </ul>
-
-
-                
-                <!--<li><%= link_to "FACILITATE", dashboard_index_path %></li>-->
-                <!--
-                <% if user_signed_in? %>
-                Logged in as <strong><%= current_user.email %></strong>.
-                <li><%= link_to 'Edit profile', edit_user_registration_path  %></li>
-                <li><a><b>|</b></a></li>
-                <li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
-                <% else %>
-                <li><%= link_to "Sign up", new_user_registration_path %></li><li><a><b>|</b></a></li>
-                <li><%= link_to "@berkeley.edu Sign In", user_omniauth_authorize_path(:google_oauth2)%></li>
-                <li><%= link_to "Sign In", new_user_session_path%></li>
-                <% end %> -->
-
+                <% if !user_signed_in? %>
+                  <li><a href="<%= new_user_registration_path %>"><b>SIGNUP</b></a></li>
+                  <li><a href="<%= user_omniauth_authorize_path(:google_oauth2) %>"><b>SIGNIN</b></a></li>
+                <%end%>
 
               </ul>
 
@@ -72,18 +58,10 @@
           <div class="pull-right">
             <% if user_signed_in? %>
               Logged in as <strong><%= current_user.email %></strong>.
-            <!--   <%= link_to 'Edit profile', edit_user_registration_path  %> -->
-              <b>|</b>
-              <%= link_to "Logout", destroy_user_session_path, :method => :delete %>
-            <% else %>
-              <%= link_to "Sign up", new_user_registration_path %>
-              <b>|</b>
-              <%= link_to "Sign in with Berkeley", user_omniauth_authorize_path(:google_oauth2)%>
-              <b>|</b>
-              <%= link_to "Sign in", new_user_session_path%>
+              <%= link_to "Logout", destroy_user_session_path, method: :delete %>
             <% end %>
           </div>
-          
+          <br/>
           <% if notice %>
             <br/>
             <p class="alert alert-success"><%= notice %></p>

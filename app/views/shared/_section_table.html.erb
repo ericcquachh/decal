@@ -7,9 +7,9 @@
       <th>Time</th>
       <th>Starts</th>
       <th>Status</th>
-      <th>
-      <abbr title="Course Control Numbers">CCNs</abbr>
-      </th>
+      <th>CCN(LD)</th>
+      <th>CCN(UD)</th>
+      
       <% if @course.verify_facilitator? current_user %>
         <th>Delete</th>
         <th>Edit</th>
@@ -70,6 +70,7 @@
             <td><%= '--' %></td>
           <% end %>
         <% else %>
+          <td><%= '--' %></td>
           <td><%= '--' %></td>
         <% end %>
         <% if @course.verify_facilitator? current_user %>

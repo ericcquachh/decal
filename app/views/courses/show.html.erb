@@ -35,6 +35,7 @@
         <ul class="nav nav-pills nav-stacked">
           <li><%= link_to 'Sections', new_course_section_path(@course), :method => :get,:class => "btn btn-primary" %></li>
           <li><%= link_to "Facilitators", course_facilitator_index_path(@course), :method => :get, :class => "btn btn-primary", :id => "add_cofacilitator" %></li>
+          <li><%= link_to "Files", {:controller => :uploads, :action => 'new', :course_id => @course.id}, :method => :get, :class=>"btn btn-primary" %>
         </ul>
       </div>
 
@@ -56,6 +57,7 @@
     <% if @course.verify_facilitator? current_user %>
       <br/>
      <div class="line"/>
+     <br/>
     <%end%>
 
     <div class="row">
@@ -152,9 +154,6 @@
           <%= render 'shared/upload_table' %>
         <% else %>
           <h5>This course has no uploads</h5>
-        <% end %>
-        <% if @course.verify_facilitator? current_user %>
-          <%= button_to "New Upload", {:controller => :uploads, :action => 'new', :course_id => @course.id}, :method => :get %>
         <% end %>
       </div>
     </div
