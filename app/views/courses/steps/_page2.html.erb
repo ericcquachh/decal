@@ -4,9 +4,8 @@
   <%= field_set_tag 'WHAT IS THE COURSE LIKE?' do %>
     <div><%= f.label :description, 'COURSE DESCRIPTION: ' %><br/>
       A few paragraphs about your class - are there any papers or exams? What is the attendance policy? etc.<br/><br/>
-      <%= f.text_area :description, :class => 'tinymce' %>
+      <%= f.text_area :description, :class => 'form-control' %>
     </div><br/>
   <% end %>
 </div>
 
-<%= tinymce %>
