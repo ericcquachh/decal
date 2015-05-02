@@ -1,5 +1,12 @@
 #comment used to test initial git push
 #course
+
+Category.create!(name: "Computer Science")
+Category.create!(name: "Business")
+Category.create!(name: "Languages")
+
+Semester.create!(name: "Spring 2015")
+
 def mock_course
   @mock_course = { :title=>"Test Course", :category=>"Business", :units=>"3", :status=>"Open" }
 end
@@ -110,12 +117,14 @@ Given(/^these courses exist:$/) do |courses_table|
     input_course.title = course["Title"]
     input_course.category = course["Category"]
     input_course.units = course["Units"]
-    input_course.status = course["Status"]
     input_course.pending = course["Pending"]
-    input_course.save
+    input_course.department_num = course["Dep Num"]
+    input_course.faculty_email = course["Faculty Email"]
+    input_course.faculty_name = course["Faculty Name"]
+    input_course.semester = "Spring 2015"
+    input_course.save!
   end
 end
-
 
 And /I set everything to default/ do
   select("All", :from => "category")
@@ -192,6 +201,13 @@ Then(/^I should not see that course$/) do
   end
 end
 
+Then /^I should be able to see the link "([^"]*)"$/ do |link|
+  page.should have_link(link)
+end
+
+Then /^I should not be able to see the link "([^"]*)"$/ do |link|
+  page.should have_no_link(link)
+end
 
 # Iteration 3-2
 When /^(?:|I )press "([^"]*)"$/ do |button|
@@ -203,32 +219,36 @@ When /^(?:|I )follow "([^"]*)"$/ do |link|
 end
 
 def pending_course_info
-  @pending_course_info = {:pending=>true, :title=>"Test Course", :units => 2, :category => "Computer Science", :status => "Open", :department_num => "CS 200", :course_email => "contact@berkeley.edu",
-    :course_website => "http://www.course.com", :faculty_name => "Faculty God", :faculty_email => "faculty@berkeley.edu", :description => "Awesome class!", :enrollment_info => "Lottery"}
+  @pending_course_info = {:pending=>true, :title=>"Test Course", :semester => "Spring 2015", :units => 2, :category => "Computer Science", :department_num => "CS 200", :course_email => "contact@berkeley.edu",
+    :course_website => "http://www.course.com", :faculty_name => "Faculty God", :faculty_email => "faculty@berkeley.edu", :description => "Awesome class!", :enrollment_info => "Lottery", :has_cpf => true, :has_syl => true}
 end
 
 Given /^I submitted a new course request form with valid fields/ do
-  pending_course_info
-  fill_in "course_title", :with => @pending_course_info[:title]
-  select(@pending_course_info[:category], :from => "course_category")
-  fill_in "course_units", :with => @pending_course_info[:units]
-  select(@pending_course_info[:status], :from => "course_status")
-  click_button "continue"
-  fill_in "course_department_num", :with => @pending_course_info[:department_num]
-  fill_in "course_course_email", :with => @pending_course_info[:course_email]
-  fill_in "course_course_website", :with => @pending_course_info[:course_website]
-  fill_in "course_faculty_name", :with => @pending_course_info[:faculty_name]
-  fill_in "course_faculty_email", :with => @pending_course_info[:faculty_email]
-  click_button "continue"
-  fill_in "course_description", :with => @pending_course_info[:description]
-  fill_in "course_enrollment_info", :with => @pending_course_info[:enrollment_info]
-  click_button "continue"
+  @p_course = Course.create!(pending_course_info)
+  FacilitateOwnedcourse.create!(facilitator_id: @user.id, ownedcourse_id: @p_course.id)
+  #select(@pending_course_info[:semester], :from => "course_semester")
+  #fill_in "course_title", :with => @pending_course_info[:title]
+  #fill_in "course_department_num", :with => @pending_course_info[:department_num]
+  #select(@pending_course_info[:category], :from => "course_category")
+  #fill_in "course_units", :with => @pending_course_info[:units]
+
+  #fill_in "course_course_email", :with => @pending_course_info[:course_email]
+  #fill_in "course_course_website", :with => @pending_course_info[:course_website]
+  #fill_in "course_faculty_name", :with => @pending_course_info[:faculty_name]
+  #fill_in "course_faculty_email", :with => @pending_course_info[:faculty_email]
+  #click_button "continue"
+
+  #fill_in "course_description_ifr", :with => @pending_course_info[:description]
+  #click_button "continue"
+
+  #fill_in "course_enrollment_info_ifr", :with => @pending_course_info[:enrollment_info]
+  #click_button "continue"
 end
 
 Given /^my course "([^"]*)" is approved/ do |title|
   @my_course = Course.find_by_title(title)
-  @my_course.pending = false
-  @my_course.save
+  @p_course.pending = false
+  @p_course.save
 end
   
 Given /^I input invalid fields in the new course request form$/ do
@@ -245,7 +265,7 @@ Given /^I leave incomplete fields in the new course request form$/ do
 end
 
 When /^I add facilitators for my course/ do 
-  visit "/facilitator?course=1"
+  visit "/courses/1/facilitator"
 end
 
 When /^I search for "([^"]*)"/ do |name|
