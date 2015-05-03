@@ -35,10 +35,6 @@
                 <li class="<%= is_active?(admin_index_path) %>"><a href="/admin">ADMIN</a></li>
                 <%end%>
 
-                <li><a>EXPO</a></li>
-                <li><a>JOIN</a></li>
-                <li><a>ABOUT</a></li> 
-                <li><a>HELP</a></li>
               </ul>
               <ul class="nav navbar-nav navbar-right">
                 <% if !user_signed_in? %>
@@ -48,32 +44,39 @@
 
               </ul>
 
+            
+            </div><!-- /.navbar-collapse -->
 
-              </div><!-- /.navbar-collapse -->
-              </div><!-- /.container-fluid -->
-            </div>
-          </nav>
-        </header>
-        <div class="container">
-          <div class="pull-right">
-            <% if user_signed_in? %>
-              Logged in as <strong><%= current_user.email %></strong>.
-              <%= link_to "Logout", destroy_user_session_path, method: :delete %>
-            <% end %>
-          </div>
-          <br/>
-          <% if notice %>
-            <br/>
-            <p class="alert alert-success"><%= notice %></p>
-          <% end %>
-          <% if alert %>
-            <br/>
-            <p class="alert alert-danger"><%= alert %></p>
-          <% end %>
-          
-          <%= yield %>
-          <!-- end of header -->
+          </div><!-- /.container-fluid -->
         </div>
-      </body>
-    </html>
+      </nav>
+    </header>
+    <div class="container">
+      <div class="pull-right">
+        <% if user_signed_in? %>
+          Logged in as <strong><%= current_user.email %></strong>.
+          <%= link_to "Logout", destroy_user_session_path, method: :delete %>
+        <% end %>
+      </div>
+      <br/>
+      <% if notice %>
+        <br/>
+        <p class="alert alert-success"><%= notice %></p>
+      <% end %>
+      <% if alert %>
+        <br/>
+        <p class="alert alert-danger"><%= alert %></p>
+      <% end %>
+      
+      <%= yield %>
+      <!-- end of header -->
+    </div>
+    <footer class="footer">
+      <div class="container">
+        <p class="text-muted">© 2015, Democratic Education at Cal</p>
+      </div>
+    </footer>
+  </body>
+
+</html>
 
