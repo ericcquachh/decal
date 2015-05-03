@@ -8,7 +8,6 @@ class SectionsController < ApplicationController
   end
 
   def create
-    Section.to_add! params[:section]
     @section = Section.new(params[:section])
     @course = Course.find(params[:course_id])
     if @section.valid?
@@ -44,6 +43,5 @@ class SectionsController < ApplicationController
       end
     end
   end
-
 
 end

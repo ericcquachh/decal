@@ -28,7 +28,7 @@ describe SectionsController do
     	course = Course.find_by_title("Ballmer Peak")
     	user = User.find_by_first_name("Mugen")
     	sign_in user
-    	post :create, :course_id => course.id, :section => {section_title: "2", days: ['M','W','F'], status: "Full", start_time: Section.time_to_int("9:00AM"), end_time: Section.time_to_int("10:00AM"), location: "186 Barrows"}
+    	post :create, :course_id => course.id, :section => {section_title: "2", days: ['M','W','F'], status: "Full", start_time: "9:00AM", end_time: "10:00AM", location: "186 Barrows"}
     	section = Section.find_by_section_title("2")
     	delete :destroy, :course_id => course.id, :id => section.id
     end
@@ -37,7 +37,7 @@ describe SectionsController do
     	course = Course.find_by_title("Ballmer Peak")
     	user = User.find_by_first_name("Mugen")
     	sign_in user
-    	post :create, :course_id => course.id, :section => {section_title: "2", days: ['M','W','F'], status: "Full", start_time: Section.time_to_int("9:00AM"), end_time: Section.time_to_int("10:00AM"), location: "186 Barrows"}
+    	post :create, :course_id => course.id, :section => {section_title: "2", days: ['M','W','F'], status: "Full", start_time: "9:00AM", end_time: "10:00AM", location: "186 Barrows"}
     	section = Section.find_by_section_title("2")
     	get :edit, :course_id => course.id, :id => section.id
     	put :update, :course_id => course.id, :id => section.id
@@ -45,7 +45,7 @@ describe SectionsController do
     	put :update, :course_id => course.id, :id => section.id
     	delete :destroy, :course_id => course.id, :id => section.id
     	Section.any_instance.stub(:valid?).and_return(false)
-    	post :create, :course_id => course.id, :section => {section_title: "2", days: ['M','W','F'], status: "Full", start_time: Section.time_to_int("9:00AM"), end_time: Section.time_to_int("10:00AM"), location: "186 Barrows"}
+    	post :create, :course_id => course.id, :section => {section_title: "2", days: ['M','W','F'], status: "Full", start_time: "9:00AM", end_time: "10:00AM", location: "186 Barrows"}
     end
 
 end

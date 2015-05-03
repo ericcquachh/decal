@@ -68,10 +68,12 @@ ActiveRecord::Schema.define(:version => 20150427034637) do
     t.string   "status"
     t.string   "first_day"
     t.string   "location"
-    t.integer  "start_time"
-    t.integer  "end_time"
-    t.integer  "course_id"
+    t.string   "start_time"
+    t.string   "end_time"
+    t.integer  "start_int"
+    t.integer  "end_int"
     t.string   "days"
+    t.integer  "course_id"
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
   end
