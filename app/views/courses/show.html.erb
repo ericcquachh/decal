@@ -1,3 +1,4 @@
+   
 
 
 <% if !@course.pending or @course.verify_facilitator? current_user %>
@@ -13,7 +14,8 @@
           <% end %>
         </div>
       <% end %>
-       <h1>Tools</h1> 
+
+      <h1>Tools</h1> 
       <% if @course.pending %>
         <div id="pending_info box">
           <% @uploads = @course.uploads %>
@@ -49,71 +51,91 @@
           <h5>There are no new requests to facilitate this course</h5>
         <%end%>
       </div>
+
     </div>
-    <%end%>
+  <%end%>
 
 
   <div class="col-md-12">
     <% if @course.verify_facilitator? current_user %>
       <br/>
-     <div class="line"/>
+    <div class="line"/>
      <br/>
     <%end%>
+  </div>
 
-    <div class="row">
-      <div class="col-md-4">
-        <h1><%= @course.title %></h1>
-        <% if !@course.favorite_users.include? current_user%>
-          <%= button_to "Add to Favorites", {:controller => :courses, :action => 'favorites', :id => @course.id}, :method => :post, :class => "btn btn-primary" %></h1><br/>
-        <% else %>
-          <h5>You have favorited this course</h5>
-        <% end %>
-      </div>
 
-      <div class="col-md-2">
-        <h4><b>Semester</b></h4><%= @course.semester %> 
-      </div>
-      <div class="col-md-2">
-        <h4><b>Course</b></h4><%= @course.department_num %>
-      </div>
-      <div class="col-md-2">
-        <h4><b>Category</b></h4><%= @course.category %>
-      </div>
-      <div class="col-md-2">
-        <h4><b>Units</b></h4><%= @course.units %>
-      </div>
+  <div class="row">
+    <div class="col-md-4">
+      <h1><%= @course.title %></h1>
+      <% if !@course.favorite_users.include? current_user%>
+        <%= button_to "Add to Favorites", {:controller => :courses, :action => 'favorites', :id => @course.id}, :method => :post, :class => "btn btn-primary" %></h1><br/>
+      <% else %>
+        <h5>You have favorited this course</h5>
+      <% end %>
+    </div>
 
-      <% if !@course.application_url.blank? %>
-        <div class="col-md-2">
-            <h4><b>Apply By</b></h4>
-              <%= (@course.application_due) %> 
-        </div>
-      <%end%>
+    <div class="col-md-2">
+      <h4><b>Semester</b></h4><%= @course.semester %> 
+    </div>
+    <div class="col-md-2">
+      <h4><b>Course</b></h4><%= @course.department_num %>
+    </div>
+    <div class="col-md-2">
+      <h4><b>Category</b></h4><%= @course.category %>
+    </div>
+    <div class="col-md-2">
+      <h4><b>Units</b></h4><%= @course.units %>
+    </div>
 
+    <% if !@course.application_url.blank? %>
       <div class="col-md-2">
-        <h4><b>Contact Email</b></h4><%= @course.course_email %><br/>
+          <h4><b>Apply By</b></h4>
+            <%= (@course.application_due) %> 
       </div>
+    <%end%>
 
-      <% if !@course.course_website.blank? %>
-        <div class="col-md-2">
-          
-            <h4><b>Course Website</b></h4><a href="<%= @course.course_website %>" target="_blank"><%= @course.course_website %></a><br/>
+    <div class="col-md-2">
+      <h4><b>Contact Email</b></h4><%= @course.course_email %><br/>
+    </div>
+
+    <% if !@course.course_website.blank? %>
+      <div class="col-md-2">
         
-        </div>  
-      <%end%>
+        <h4><b>Course Website</b></h4><a href="<%= @course.course_website %>" target="_blank"><%= @course.course_website %></a><br/>
+      
+      </div>  
+    <%end%>
+  </div>
 
-    </div>   
-
+  <div class="col-md-12">
     <div class="page-header">
       <h3>About the Course</h3>
       <div><%= @course.description.html_safe %></div>
     </div>
+  </div>
 
+  <div class="col-md-6">
     <div class="page-header">
       <h3>How to Enroll</h3>
       <div><%= @course.enrollment_info.html_safe %></div>
     </div>
+  </div>
 
+  <div class="col-md-6">
+    <div class="page-header"> 
+      <h3>Application</h3>
+      <% if !@course.application_url.blank? %>
+        <%= (@course.application_due - Date.today).to_int %> days left until application deadline!</b><br/>
+        <%= button_to 'Start Application', @course.application_url, form: {target: '_blank'}, :method => :get %><br/>
+      <% else %>
+        <h5>No application has been added to this course yet.</h5>
+      <% end %>
+    </div>
+  </div>
+
+
+  <div class="col-md-12">
     <div class="page-header">
       <h3>Sections</h3>
       <% @sections = @course.sections %>
@@ -123,7 +145,9 @@
         <h5>This course has no sections</h5>
       <% end %>
     </div>
+  </div>
 
+  <div class="col-md-12">
     <div class="page-header">
       <h3>Current Facilitators</h3>
       <div class="current_facilitators">
@@ -143,9 +167,10 @@
         <% end %>
       <%end%>
     </div>
+  </div>
 
 
-
+  <div class="col-md-12">
     <div class="page-header">
       <h3>Files</h3>
       <div class="uploads">
@@ -156,11 +181,9 @@
           <h5>This course has no uploads</h5>
         <% end %>
       </div>
-    </div
-
-
-
-
+    </div>
+  </div>
+</div>
 
 <%else%>
   <h1>This course has not been approved by the admin.</h1>

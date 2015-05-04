@@ -58,17 +58,21 @@
         <% else %>
           <td><%= 'TBA' %></td>
         <% end %>
+
         <% if !section.ccn_publish.blank? %>
+
           <% if !section.ccn_ld.blank? %>
             <td><%= section.ccn_ld %></td>
           <% else %>
              <td><%= '--' %></td>
           <% end %>/
+
           <% if !section.ccn_ud.blank? %>
             <td><%= section.ccn_ud %></td>
           <% else %>
             <td><%= '--' %></td>
           <% end %>
+
         <% else %>
           <td><%= '--' %></td>
           <td><%= '--' %></td>
