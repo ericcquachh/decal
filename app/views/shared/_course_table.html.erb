@@ -33,7 +33,7 @@
         <td><%= '---' %></td>
       <% else %>
         <td><% course.sections.each do |section| %>
-          <%= section.full_time.to_str %>
+          <%= section.full_time.to_s %>
           <br></br>
         <% end %></td>
         <td><% course.sections.each do |section| %>
