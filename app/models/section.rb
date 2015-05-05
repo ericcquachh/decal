@@ -44,9 +44,9 @@ class Section < ActiveRecord::Base
 
   def full_time
     full = days.join 
-    full += " " + start_time.to_s if start_time
-    full += "-" + end_time.to_s if end_time
-    full
+    full += " " + start_time if start_time
+    full += "-" + end_time if end_time
+    full.to_s
   end
 
   def self.time_to_int time
