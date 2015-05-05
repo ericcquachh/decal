@@ -14,6 +14,7 @@ $(document).ready(function(){
   <div class="col-md-4 padding-none">
     <ul class="nav nav-pills nav-stacked" id="myTab">
         <li><a href="#title">Title</a></li>
+        <li><a href="#categories">Categories</a></li>
         <li><a href="#logistics">Logistics</a></li>
         <li><a href="#time">Time</a></li>
         <li><a href="#sort">Sort</a></li>
@@ -37,38 +38,32 @@ $(document).ready(function(){
 
         <div id="logistics" class="tab-pane fade">
       
-          <%= label_tag("Units:") %>
+          <%= label_tag("Units") %>
           <%= select_tag 'units', options_for_select(Course.units, params[:units]), :multiple => true, :class => 'form-control selectpicker' %>
           
           <br/><br/>
-          <%= label_tag("Status:") %>
+          <%= label_tag("Status") %>
           <%= select_tag 'status', options_for_select(Section.statuses, params[:status]), :multiple => true, :class => 'form-control selectpicker'%>
         </div>
 
         <div id="time" class="tab-pane fade">
-        
-          
-            <%= label_tag("Date:") %>
-            <%= select_tag 'days', options_for_select(Section.all_days, params[:days]), :multiple => true, :class => 'form-control selectpicker' %>
 
-         
+          <%=label_tag("Semester") %>
+          <%= select_tag 'semester', options_for_select(Semester.semesters, Semester.current_semester(params[:semester])), :class => 'form-control selectpicker'   %>
           <br/><br/>
-          
-            <%= label_tag ("Starting Time") %>
-            <%= select_tag 'start_time', options_for_select(Section.all_times, params[:start_time]), :include_blank => true, :class => 'form-control selectpicker' %>
-            <br/><br/>
-
-
-            <%= label_tag ("Ending Time") %>
-            <%= select_tag 'end_time', options_for_select(Section.all_times, params[:end_time]), :include_blank => true, :class => 'form-control selectpicker' %>
-        
+          <%= label_tag("Day(s) of Week") %>
+          <%= select_tag 'days', options_for_select(Section.all_days, params[:days]), :multiple => true, :class => 'form-control selectpicker' %>         
+          <br/><br/>
+          <%= label_tag ("Starting Time") %>
+          <%= select_tag 'start_time', options_for_select(Section.all_times, params[:start_time]), :include_blank => true, :class => 'form-control selectpicker' %>
+          <br/><br/>
+          <%= label_tag ("Ending Time") %>
+          <%= select_tag 'end_time', options_for_select(Section.all_times, params[:end_time]), :include_blank => true, :class => 'form-control selectpicker' %>
+      
         </div>
         <div id="sort" class="tab-pane fade">
-          <%=label_tag("Semester") %>
-               <%= select_tag 'semester', options_for_select(Semester.semesters, Semester.current_semester(params[:semester])), :class => 'form-control selectpicker'   %>
-          <br/><br/>
           <%=label_tag("Sort") %>
-               <%= select_tag 'sort', options_for_select(Course.sorting.keys, params[:sort]), :include_blank => true, :class => 'form-control selectpicker'   %>
+          <%= select_tag 'sort', options_for_select(Course.sorting.keys, params[:sort]), :include_blank => true, :class => 'form-control selectpicker'   %>
         </div>
       
       
